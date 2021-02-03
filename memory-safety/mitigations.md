@@ -1,8 +1,10 @@
 ---
-title: 3. Mitigating Memory-Safety Vulnerabilities
+title: 5. Mitigating Memory-Safety Vulnerabilities
 parent: Memory Safety
 nav_order: 3
 ---
+
+TODO: Would be good to split this into multiple sections. ~NN
 
 # Mitigating Memory-Safety Vulnerabilities
 

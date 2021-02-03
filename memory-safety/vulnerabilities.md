@@ -1,5 +1,5 @@
 ---
-title: 2. Memory Safety Vulnerabilities
+title: 4. Memory Safety Vulnerabilities
 parent: Memory Safety
 nav_order: 2
 ---
