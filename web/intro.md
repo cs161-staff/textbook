@@ -39,5 +39,5 @@ The path, <code style="color: red">/index.html</code>, tells your browser which
 page on the web server to request.  The web server uses the path to determine
 which page or resource should be returned to you.
 
-_Further reading_: [What is a
+_Further reading:_ [What is a
 URL?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL)
