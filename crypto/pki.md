@@ -4,6 +4,14 @@ parent: Cryptography
 nav_order: 5
 ---
 
+TODO: next time, discuss OCSP, stapling, privacy exposure vs.  "bad customer
+list" issue for CRLs. Think about removing web-of-trust: it doesn't appear to
+have sufficient legs to be worth discussing. However, the current text is also
+useful because it discusses notions like non-transitivity of trust. ~DAW
+
+Note, there's material on cryptographic protocols commented out
+at the end.
+
 # Key Management
 
 So far we've seen powerful techniques for securing communication such that the
@@ -214,7 +222,7 @@ this list by going to Preferences / Advanced / Certificates / View Certificates
 / Authorities. Firefox currently ships with about 88 trusted CAs preconfigured
 in the browser. Take a look and see what you think of those CAs. Do you know who
 those CAs are? Would you consider them trustworthy? You'll probably find many
-unfamiliar names. For instance, who is Unizeto? TURKTRUST? AC Camerfirma?  XRamp
+unfamiliar names. For instance, who is Unizeto? TURKTRUST? AC Camerfirma? XRamp
 Security Services? Microsec Ltd? Dhimyotis? Chunghwa Telecom Co.? Do you trust
 them?
 
@@ -318,7 +326,7 @@ system. There are two standard approaches to revocation:
   way to respond quickly to bad certificates: a bad certificate will circulate
   for at most one day after we discover it. Since we won't re-issue certificates
   known to be bad, after the lifetime elapses the certificate has effectively
-  been revoked.  However, the problem with short lifetimes is that legitimate
+  been revoked. However, the problem with short lifetimes is that legitimate
   parties must frequently contact their CA to get new certificates; this puts a
   heavy load on all the parties, and can create reliability problems if the CA
   is unreachable for a day. On the other hand, if we set the lifetime very long,
@@ -455,15 +463,173 @@ explicit step to enable security protections; the security should be
 ever-present and enabled automatically, in all cases. Arguably, users should not
 even have the power to disable the security protections, because that opens up
 the risk of social engineering attacks, where the attacker tries to persuade the
-user to turn off the cryptography.
+user to turn off the cryptography.{% comment %}[^3]{% endcomment %}
 
 Another design principle: "Users shouldn't have to understand cryptography to
 use the system securely." While it's reasonable to ask the designers of the
 system to understand cryptographic concepts, it is not reasonable to expect
 users to know anything about cryptography.
 
+{% comment %}
+
+## Cryptographic Protocols
+
+Finally, let me introduce some notation for cryptographic protocols. If $$A$$ is
+some party to the protocol, we may use $$K_A$$ to denote $$A$$'s public key and
+$$K_A^{-1}$$ to denote $$A$$'s private key. We might use $$K$$ to represent a
+shared (symmetric) key that is known only to some pair of unspecified parties.
+Or, if we want to be explicit about who knows the symmetric key, we might write
+$$K_{A,B}$$ to represent a symmetric key shared between $$A$$ and $$B$$.
+
+We also introduce special notation for encryption/signing that focuses more on
+what is signed and what key is used for signing, without dwelling on
+specifically what cryptographically algorithm is used for this purpose. Roughly
+speaking, $$\{M\}_K$$ represents an encryption of the message $$M$$ under the
+key $$K$$, although the details depend upon what kind of key $$K$$ is:
+
+- If $$K$$ is a symmetric key, $$\{M\}_K$$ represents applying both encryption
+  and a MAC to $$M$$. This can be assumed to provide both confidentiality and
+  integrity protection.
+
+  (For instance, a typical instantiation might be to send
+  $$C,\text{MAC}_{K_1}(C)$$ where $$C=\text{Encrypt}_{K_0}(M)$$ and
+  $$K=(K_0,K_1)$$. But the focus is typically not on the specifics of the
+  algorithms used.)
+
+- If $$K_A$$ is a public key, $$\{M\}_{K_A}$$ represents the encryption of
+  message $$M$$ under the public key $$K_A$$.
+
+- If $$K_A^{-1}$$ is a private key, $$\{M\}_{K_A^{-1}}$$ represents a signature
+  on the message $$M$$ under the private key $$K_A^{-1}$$. Typically we assume
+  that this includes both the message $$M$$ and a signature on $$M$$: anyone who
+  receives $$\{M\}_{K_A^{-1}}$$ can recover $$M$$ and also can (if they know the
+  public key $$K_A$$) verify the validity of the signature.
+
+  (For instance, a typical instantiation might be to send
+  $$M,\text{Sign}_{K_A^{-1}}(M)$$.)
+
+Please note: I am not defending this notation. This is not the notation that I
+would invent, were I crowned king of the (cryptographic) world. But this
+notation is a loose standard among the cryptographic community, and I've decided
+to teach you the accepted standard so that you can understand protocols written
+by other cryptographers. Expect to see this notation again in this course.
+
+If a cryptographic protocol calls for Alice to send an encrypted message to Bob
+as the first message of the protocol, we might write it like this:
+
+$$
+\begin{array}{lll}
+1. &A\to B: &\{M\}\_{K_B}\\
+\end{array}
+$$
+
+The "1." indicates that this is the first message in the protocol. The "$$A\to
+B$$" indicates that the protocol designer intended this message to be sent by
+$$A$$ to $$B$$ (however, these identities are not present in the data sent over
+the network, so it may well be possible for an attacker to spoof this message).
+Finally, everything after the colon (":") is the data that is included in
+payload of the packet sent to $$B$$.
+
+## Key Exchange with a Trusted Third Party
+
+If everybody trusts Trent, Alice can contact Trent and ask him to generate a
+fresh new session key that she can use to communicate with Bob, and ask Trent to
+securely share this with her and with Bob.
+
+The basic idea seems fairly simple. Let's look at how to instantiate this, in
+detail. In a highly influential paper written in 1978, Roger Needham and Michael
+Schroeder proposed a specific cryptographic protocol to do this. The next
+section describes the protocol.
+
+## The Needham-Schroeder Protocol
+
+Here is the Needham-Schroeder protocol. Assume Alice has a symmetric key $$K_A$$
+that has been shared with Trent and Bob has a key $$K_B$$ shared with Trent.
+
+$$
+\begin{array}{lll}
+1. &A\to T: &\{\text{I want to talk to Bob}\}\_{K_A}\\
+2. &T\to A: &\{\text{Use session key $k$, and send Bob this: } \{\text{This is
+   Alice; let's use session key $k$}\}_{K_B} \}_{K_A}\\
+3. &A\to B: &\{\text{This is Alice; let's use session key $k$}\}\_{K_B}\\
+\end{array}
+$$
+
+Now Alice and Bob can communicate securely using the key $$k$$. For instance, if
+Alice wanted to send the message "Launch the missiles!" to Bob, she might follow
+the above three steps by this message:
+
+$$
+\begin{array}{lll}
+4. &A\to B: &\{\text{Launch the missiles!}\}\_k\\
+\end{array}
+$$
+
+Unfortunately, the Needham-Schroeder protocol has a security vulnerability: it
+is vulnerable to replay attacks. A bad guy who eavesdrops on the messages above
+can later replay messages 3 and 4 to Bob.
+
+$$
+\begin{array}{lll}
+3. &\text{Bad Guy}\to B: &\{\text{This is Alice; let's use session key $k$}\}_{K_B}\\
+4. &\text{Bad Guy}\to B: &\{\text{Launch the missiles!}\}_k\\
+\end{array}
+$$
+
+The result is that Bob will think that Alice wanted him to launch the missiles a
+second time---even though Alice never authorized this. That's a security breach.
+This replay attack was first discovered in 1981 by Dorothy Denning and Giovanni
+Sacco.
+
+One solution is to add nonces that are unique for each session. A simple
+approach is to add a timestamp:
+
+$$
+\begin{array}{lll}
+1. &A\to T: &\{TS, \text{ I want to talk to Bob}\}\_{K_A}\\
+2. &T\to A: &\{TS, \text{ Use session key $k$, and send Bob : } \{TS, \text{
+   This is Alice; let's use session key $k$}\}_{K_B} \}_{K_A}\\
+3. &A\to B: &\{TS, \text{ This is Alice; let's use session key $k$}\}\_{K_B}\\
+4. &A\to B: &\{TS, \text{ Launch the missiles!}\}\_k\\
+\end{array}
+$$
+
+Kerberos, a widely used authentication system, is based upon this protocol.
+
+The Needham-Schroeder protocol is a classic example of the subtlety of
+cryptographic protocols. The original 1978 paper by Needham and Schroeder
+actually included two protocols: a symmetric-key version (shown above), and a
+public-key version (not shown here). As mentioned before, Denning and Sacco
+discovered an attack on the symmetric-key version in 1981. It was not until 1995
+that researchers first discovered that the public-key version is also secure:
+Gavin Lowe found a subtle man-in-the-middle attack. This discovery motivated a
+great deal of advanced research into the design and analysis of cryptographic
+protocols.
+
+{% endcomment %}
+
 [^1]:
     The client generally asks the user to confirm the trust decision, but users
     almost always ok the leap-of-faith.
 
 [^2]: Another term is TOFU = Trust On First Use.
+
+{% comment %}
+
+[^3]:
+    I'll share with you one story that may be apocryphal but illustrates the
+    concept. Several decades ago, a large company in the UK installed a line
+    encryptor to encrypt all of their external communications. Shortly
+    thereafter, they found that the bit-error rate on their communication link
+    suddenly shot way up, rendering the link unusable. If they removed the
+    encryptor, the bit-error rate soon went back to normal. The paranoid
+    explanation: an intelligence agency didn't like losing the ability to
+    eavesdrop on the traffic, so they made sure to jam the communications at a
+    low level (just enough to increase the bit error rate by a large factor)
+    whenever the company turned on encryption. Company employees decided that
+    the encryptor was flaky, removed it, and went back to communicating in
+    cleartext. Today, many phishing and malware attacks on the web are based on
+    social engineering: fooling the user into ignoring security alerts or
+    bypassing security checks that were intended to protect the user.
+
+{% endcomment %}

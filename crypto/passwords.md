@@ -370,6 +370,15 @@ In practice, there are several existing schemes for slow hashing that you can
 use: Scrypt, Bcrypt, or PBKDF2. They all use some variant of the "iterated
 hashing" trick mentioned above.
 
+{% comment %}
+
+Unfortunately, this back-of-the-envelope calculation might give a slightly
+overly optimistic view.  Attackers have gotten pretty good at learning the order
+in which they should try passwords, so password cracking tools are pretty good
+at cracking many user passwords.
+
+{% endcomment %}
+
 ## Implications for cryptography
 
 The analysis above has implications for the use of human-memorable passwords or

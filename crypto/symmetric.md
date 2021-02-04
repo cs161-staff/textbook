@@ -6,6 +6,11 @@ nav_order: 1
 
 TODO: Would be good to split this into multiple sections. ~NN
 
+{% comment %}
+When updating, check w/ a crypto guru that AES is still well-described as
+basically having no known flaws. DAW confirmed this for 2013.-->
+{% endcomment %}
+
 # Symmetric-Key Cryptography
 
 ## Overview
@@ -364,6 +369,66 @@ only has enough budget to do $$2^{64}$$ steps of computation, then as far as we
 know, she can only get advantage of about $$1/2^{64}$$ at distinguishing AES
 from a random permutation. This is remarkable: it means that Eve is learning
 almost nothing.
+
+{% comment %}
+
+## Sidebar: Advantage
+
+In the previous section, we introduced the notion of the "advantage" of an
+adversary. The _advantage_ is a general way of measuring how similar one setting
+is to another. This concept is often used in formalizing what it means for
+cryptographic algorithms to be secure, so let's look at it in general.
+
+Suppose that Trevor tosses a fair coin, and Gloria claims that she has some
+method to predict what outcome will come up, only slightly better than chance.
+(Maybe Gloria has really sharp eyes and can sometimes spot the head or tail on
+the coin just before it falls on Trevor's wrist, or something like that.) How
+can we quantify how much better Gloria is at guessing than just blind guessing?
+
+The obvious way is to compute the probability that Gloria guesses correctly.
+There's nothing wrong with that measure. But in some cases it's a bit easier to
+work with the advantage, which we define as $$\Adv(\text{Gloria}) = |p-q|$$, where
+$$p =$$ the probability that Gloria guesses Heads when the coin actually lands
+Heads, and $$q =$$ the probability that Gloria guesses Heads when the coin
+actually lands Tails. Note that the advantage is a number between 0 and 1; if
+the advantage is 0, it means Gloria is not doing any better than blind guessing,
+and if the advantage is 1, it means that Gloria always gets it right. The
+advantage is a way of measuring Gloria's edge: if Gloria always guesses Heads,
+her advantage is zero, and if she always guesses Tails, her advantage is zero,
+but if her guess is correlated to the true outcome, her advantage will be
+greater than zero.
+
+How does the advantage relate to the probability that Gloria guesses correctly?
+It turns out the two measures are interchangeable:
+
+$$
+\Adv(\text{Gloria}) = 2
+|\Pr[\text{Gloria guesses correctly}] - 1/2|
+$$
+
+and
+
+$$
+\Pr[\text{Gloria guesses
+correctly}]  = \frac{1}{2} \pm \frac{\Adv(\text{Gloria})}{2}.
+$$
+
+So the advantage is just a rescaled version of the probability that Gloria
+guesses correctly. There's no fundamental reason why we need both
+measures---but sometimes it is a little more convenient to work with the
+advantage, so it's useful to be familiar with the concept.
+
+We often use the advantage to measure how "similar" (or "distinguishable") two
+things are. If Eve has advantage at most $$\epsilon$$ of guessing whether she is
+interacting with a type-I or type-II box, for some small $$\epsilon$$, then it
+follows that type-I boxes are basically indistinguishable from type-II boxes:
+e.g., any place where a type-II box is secure, a type-I box will also be secure.
+We will often compare a real scheme to an ideal (but unimplementable) model of
+what the scheme ought achieve; if Eve's advantage at distinguishing these two is
+guaranteed to be small, then the real scheme is just as good as the
+idealization.
+
+{% endcomment %}
 
 ## Symmetric Encryption Schemes
 

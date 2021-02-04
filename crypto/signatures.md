@@ -255,7 +255,10 @@ We can view the private key as "unlocking" the trapdoor. Given the private key
 $$K$$, it becomes easy to compute $$F^{-1}$$, and of course it remains easy to
 compute $$F$$. Put another way, given $$y$$ and $$K$$, it becomes
 computationally easy to find $$x$$ such that $$y=F(x)$$, i.e., it is easy to
-compute $$F^{-1}(y)$$.
+compute $$F^{-1}(y)$$. {% comment %}Formally, this dependence upon the
+public/private key can be made explicit as follows: there is an algorithm to
+compute $$F_U(x)$$, given $$x$$ and $$U$$; and there is another algorithm to
+compute $$F_K^{-1}(y)$$, given $$y$$ and $$K$$.{% endcomment %}
 
 The RSA signature scheme specifies a particular method for building a trapdoor
 one-way function.
