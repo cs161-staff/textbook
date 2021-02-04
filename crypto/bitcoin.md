@@ -45,7 +45,6 @@ Spending Bitcoin is in many ways analogous to simply writing a check. If the
 address 1FuckBTC\... wants to send .052 Bitcoin to 1Ross5\..., the person who
 controls 1FuckBTC simply signs a message to the effect of "conduct this
 payment". The resulting hash
-
 [d6b24ab29fa8e8f2c43bb07a3437538507776a671d9301368b1a7a32107b7139](https://blockchain.info/tx/d6b24ab29fa8e8f2c43bb07a3437538507776a671d9301368b1a7a32107b7139?show_adv=true)
 
 [^1]:
