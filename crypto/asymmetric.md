@@ -123,6 +123,7 @@ Let \\(b_{n-1} \cdots b_1 b_0\\) be the binary form of \\(b\\), where \\(n =
 
 **for** \\(i := 1\\) to \\(n - 1\\) **do**
 
+<!-- prettier-ignore -->
 > \\(t_i := t_{i-1}^2 \bmod p\\)
 
 **end for**
@@ -142,6 +143,7 @@ Let \\(b_{n-1} \cdots b_1 b_0\\) be the binary form of \\(b\\), where \\(n =
 **end for**
 
 **return** \\(r\\)
+
 </div>
 
 ---
@@ -152,7 +154,7 @@ In the material to follow, we will be working with very large primes: primes
 that are thousands of bits long. Let's look at how to generate a random
 $$n$$-bit prime.
 
-It turns out that it's easy to test whether a given number is prime.  Fermat's
+It turns out that it's easy to test whether a given number is prime. Fermat's
 Little Theorem forms the basis of a kind of litmus test that helps decide
 whether a number is prime or not: to test if a number $$M$$ is prime, we select
 an $$a \bmod M$$ at random and compute $$a^{M-1} \bmod M$$. If the result is
@@ -219,7 +221,7 @@ The amazing thing is that Alice and Bob's conversation is entirely public, and
 from this public conversation, they both learn this secret value $$S$$---yet
 eavesdroppers who hear their entire conversation cannot learn $$S$$. As far as
 we know, there is no efficient algorithm to deduce $$S=g^{ab} \bmod p$$ from
-$$A=g^a \bmod p$$, $$B=g^b \bmod p$$, $$g$$, and $$p$$.  (If there were an
+$$A=g^a \bmod p$$, $$B=g^b \bmod p$$, $$g$$, and $$p$$. (If there were an
 efficient algorithm to recover $$S$$ from $$A,B,p,g$$, then this scheme would be
 insecure, because an eavesdropper could simply apply that algorithm to what she
 overhears.) In particular, the fastest known algorithms for solving this problem
@@ -249,7 +251,7 @@ Here is a summary of Diffie-Hellman key exchange:
 
 - **Key agreement protocol:** Alice randomly picks $$a$$ in the range $$0\ldots
   p-2$$ and sends $$A=g^a \bmod p$$ to Bob. Bob randomly picks $$b$$ in the
-  range $$0\ldots p-2$$ and sends $$B=g^b \bmod p$$ to Alice.  Alice computes
+  range $$0\ldots p-2$$ and sends $$B=g^b \bmod p$$ to Alice. Alice computes
   $$K=B^a \bmod p$$. Bob computes $$K=A^b \bmod p$$. Alice and Bob both end up
   with the same secret key $$K$$, yet as far as we know no eavesdropper can
   recover $$K$$ in any reasonable amount of time.
@@ -273,7 +275,7 @@ of El Gamal encryption scheme. El Gamal encryption works as follows. The system
 parameters are a large prime $$p$$ and a value $$g$$ satisfying $$1 < g< p-1$$,
 as in Diffie-Hellman. Bob chooses a random value $$b$$ (satisfying $$0 \le b \le
 p-2$$) and computes $$B=g^b \bmod p$$. Bob's public key is $$B$$, and his
-private key is $$b$$.  Bob publishes $$B$$ to the world, and keeps $$b$$ secret.
+private key is $$b$$. Bob publishes $$B$$ to the world, and keeps $$b$$ secret.
 
 Now, suppose Alice has a message $$m$$ (in the range $$1\ldots p-1$$) she wants
 to send to Bob, and suppose Alice knows that Bob's public key is $$B$$. To
@@ -344,11 +346,11 @@ Here is a summary of El Gamal encryption:
 ## Caveat: Don't try this at home!
 
 A brief warning is in order here. You've now seen the conceptual basis
-underlying public-key algorithms that are widely used in practice.  However, if
+underlying public-key algorithms that are widely used in practice. However, if
 you should need a public-key encryption algorithm, _don't implement your own
 based on the description here_. The discussion has omitted some nitty-gritty
 implementation details that are not all that relevant at the conceptual level,
-but are essential for robust security.  Instead of implementing these algorithms
+but are essential for robust security. Instead of implementing these algorithms
 yourself, you should just use a well-tested cryptographic library or protocol,
 such as TLS or PGP.
 
@@ -363,7 +365,7 @@ public key. The algorithms presented here don't help Alice figure out what is
 Bob's public key; she's on her own for that.
 
 You might think all Bob needs to do is broadcast his public key, for Alice's
-benefit. However, that's not secure against _active attacks_.  Attila the
+benefit. However, that's not secure against _active attacks_. Attila the
 attacker could broadcast his own public key, pretending to be Bob: he could send
 a spoofed broadcast message that appears to be from Bob, but that contains a
 public key that Attila generated. If Alice trustingly uses that public key to
@@ -371,10 +373,10 @@ encrypt messages to Bob, then Attila will be able to intercept Alice's encrypted
 messages and decrypt them using the private key Attila chose.
 
 What this illustrates is that Alice needs a way to obtain Bob's public key
-through some channel that she is confident cannot be tampered with.  That
-channel does not need to protect the _confidentiality_ of Bob's public key, but
-it does need to ensure the _integrity_ of Bob's public key. It's a bit tricky to
-achieve this.
+through some channel that she is confident cannot be tampered with. That channel
+does not need to protect the _confidentiality_ of Bob's public key, but it does
+need to ensure the _integrity_ of Bob's public key. It's a bit tricky to achieve
+this.
 
 One possibility is for Alice and Bob to meet in person, in advance, and exchange
 public keys. Some computer security conferences have "key-signing parties" where

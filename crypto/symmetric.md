@@ -307,10 +307,10 @@ the key $$K$$, we get a function mapping $$n$$ bits to $$n$$ bits:
 $$E_K:\{0,1\}^n \rightarrow \{0,1\}^n$$ defined by $$E_K(M) = E(K, M)$$.
 $$E_K$$ is required to be a _permutation_ on the $$n$$-bit strings, in other
 words, it must be an invertible (bijective) function. The inverse mapping of
-this permutation is the decryption algorithm $$D_K$$.  Decryption is the reverse
+this permutation is the decryption algorithm $$D_K$$. Decryption is the reverse
 of encryption: $$D_K(E_K(M)) = M$$.
 
-The Advanced Encryption Standard (AES) is an example of a block cipher.  It was
+The Advanced Encryption Standard (AES) is an example of a block cipher. It was
 designed in 1998 by Joan Daemen and Vincent Rijmen, two researchers from
 Belgium, in response to a competition organized by NIST.
 
@@ -344,13 +344,13 @@ adversary Eve is $$\Adv(\textrm{Eve}) = 2|p-1/2|$$, where $$p$$ is the
 probability that Eve guesses correctly which type of box she was given.
 
 Informally, the advantage of Eve measures how effective she is at distinguishing
-between the block cipher and a truly random permutation.  If Eve guesses
-blindly, she will be correct with probability $$p=1/2$$, so her advantage will
-be $$0$$. If Eve can always deduce which type of box she was given (so she is
-perfect at guessing), she will be correct with probability $$p=1$$, so her
-advantage will be $$1$$. Intuitively, a small advantage means that Eve is doing
-only a little bit better than chance; a large advantage means that Eve has
-gained significant information about which type of box she received.
+between the block cipher and a truly random permutation. If Eve guesses blindly,
+she will be correct with probability $$p=1/2$$, so her advantage will be $$0$$.
+If Eve can always deduce which type of box she was given (so she is perfect at
+guessing), she will be correct with probability $$p=1$$, so her advantage will
+be $$1$$. Intuitively, a small advantage means that Eve is doing only a little
+bit better than chance; a large advantage means that Eve has gained significant
+information about which type of box she received.
 
 If Eve's advantage is at most $$\epsilon$$ then we say that the block cipher is
 $$(T, \epsilon)$$-secure. For AES, the above discussion says that if Eve wants

@@ -8,7 +8,7 @@ TODO: Would be good to split this into multiple sections. ~NN
 
 # Passwords
 
-Passwords are widely used for authentication, especially on the web.  What
+Passwords are widely used for authentication, especially on the web. What
 practices should be used to make passwords as secure as possible?
 
 ## Risks and weaknesses of passwords
@@ -28,8 +28,8 @@ associated with password authentication:
   many different guesses at the user's password. If the user's password is easy
   to guess, such an attack might succeed.
 - _Social engineering and phishing._ An attacker might be able to fool the user
-  into revealing his/her password, e.g., on a phishing site.  We've examined
-  this topic previously, so we won't consider it further in these notes.
+  into revealing his/her password, e.g., on a phishing site. We've examined this
+  topic previously, so we won't consider it further in these notes.
 - _Eavesdropping._ Passwords are often sent in cleartext from the user to the
   website. If the attacker can eavesdrop (e.g., if the user is connecting to the
   Internet over an open Wifi network), and if the web connection is not
@@ -57,12 +57,12 @@ Another possible defense would be to use more advanced cryptographic protocols.
 For instance, one could imagine a challenge-response protocol where the server
 sends your browser a random challenge $$r$$; then the browser takes the user's
 password $$w$$, computes $$H(w,r)$$ where $$H$$ is a cryptographic hash (e.g.,
-SHA256), and sends the result to the server.  In this scheme, the user's
-password never leaves the browser and is never sent over the network, which
-defends against eavesdroppers. Such a scheme could be implemented today with
-Javascript on the login page, but it has little or no advantage over SSL (and it
-has some shortcomings compared to using SSL), so the standard defense is to
-simply use SSL.
+SHA256), and sends the result to the server. In this scheme, the user's password
+never leaves the browser and is never sent over the network, which defends
+against eavesdroppers. Such a scheme could be implemented today with Javascript
+on the login page, but it has little or no advantage over SSL (and it has some
+shortcomings compared to using SSL), so the standard defense is to simply use
+SSL.
 
 ## Mitigations for client-side malware
 
@@ -169,7 +169,7 @@ Let's explore some possible mitigations for online guessing:
   black-market services which will solve CAPTCHAs for you. They even provide
   easy-to-use APIs and libraries so you can automate the process of getting the
   solution to the CAPTCHA. These services employ human workers in countries with
-  low wages to solve the CAPTCHAs. The market rate is about $1--2 per thousand
+  low wages to solve the CAPTCHAs. The market rate is about \$1--2 per thousand
   CAPTCHAs solved, or about 0.1--0.2 cents per CAPTCHA solved. This does
   increase the cost of a targeted attack, but not beyond the realm of
   possibility.
@@ -229,7 +229,7 @@ for this application. Because cryptographic hash functions are one-way, it
 should be hard to recover the password $$w$$ from the hash $$H(w)$$; so if there
 is a security breach and the attacker steals a copy of the database, no
 cleartext passwords are revealed, and it should be hard for the attacker to
-invert the hash and find the user's hashes.  That's the idea, anyway.
+invert the hash and find the user's hashes. That's the idea, anyway.
 
 Unfortunately, this simple idea has some shortcomings:
 
@@ -237,9 +237,9 @@ Unfortunately, this simple idea has some shortcomings:
   steals a copy of the password database, so she now has the SHA256 hash of
   Bob's password. This enables her to test guesses at Bob's password very
   quickly, on her own computer, without needing any further interaction with the
-  website.  In particular, given a guess $$g$$ at the password, she can simply
+  website. In particular, given a guess $$g$$ at the password, she can simply
   hash $$g$$ to get $$H(g)$$ and then test whether $$H(g)$$ matches the password
-  hash in the database.  By using lists of common passwords, English words,
+  hash in the database. By using lists of common passwords, English words,
   passwords revealed in security breaches of sites who didn't use password
   hashing, and other techniques, one can generate many guesses. This is known as
   an _offline guessing attack_: offline, because Mallory doesn't need to
@@ -288,11 +288,11 @@ passwords on the server.
 First, we can eliminate the amortized guessing attack by _incorporating
 randomness into the hashing process_. When we create a new account for some
 user, we pick a random _salt_ $$s$$. The salt is a value whose only purpose is
-to be different for each user; it doesn't need to be secret.  The password hash
+to be different for each user; it doesn't need to be secret. The password hash
 for password $$w$$ is $$H(w,s)$$. Notice that the password hash depends on the
 salt, so even if Alice and Bob share the same password $$w$$, they will likely
 end up with different hashes (Alice will have $$H(w,s_A)$$ and Bob $$H(w,s_B)$$,
-where most likely $$s_A\ne s_B$$).  Also, to enable the server to authenticate
+where most likely $$s_A\ne s_B$$). Also, to enable the server to authenticate
 each user in the future, the salt for each user is stored in the user database.
 
 Instead of storing $$H(w)$$ in the database, we store $$s,H(w,s)$$ in the
@@ -318,7 +318,7 @@ was discovered that they were using SHA256, and consequently one researcher was
 able to recover 90% of their users' passwords in just 6 days. Not good.
 
 So, the second improvement is to _use a slow hash_. The reason that offline
-password guessing is so efficient is because SHA256 is so fast.  If we had a
+password guessing is so efficient is because SHA256 is so fast. If we had a
 cryptographic hash that was very slow---say, it took 1 millisecond to
 compute---then offline password guessing would be much slower; an attacker could
 only try 1000 guesses at the password per second.
