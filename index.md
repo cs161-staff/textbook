@@ -9,6 +9,8 @@ _By [David Wagner](https://people.eecs.berkeley.edu/~daw/), [Nicholas
 Weaver](https://www1.icsi.berkeley.edu/~nweaver/), Andrew Law, [Nicholas
 Ngai](https://ngai.me/), Peyrin Kao, Sheqi Zhang_
 
+**Note that this online version of the textbook is currently not being updated. The latest version of the course notes are available as PDFs on [the course website](https://cs161.org/resources#notes). We hope to have a first version of an online textbook available before the start of the Summer 2021 semester.**
+
 This is the textbook for the [CS 161: Computer Security course at UC
 Berkeley](https://cs161.org/). It provides a brief survey over common topics in
 computer security including memory safety, cryptography, web security, and
