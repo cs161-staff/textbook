@@ -100,8 +100,8 @@ attacker can take control. Note that the stack canary detects an attack before
 the function returns.
 
 The stack canary is a random value generated at _runtime_. The canary is 1 word
-long, so it is 32 bytes long in 32-bit architectures. In Project 1, the canary
-is 32 completely random bits. However, in reality, stack canaries are usually
+long, so it is 32 bits long in 32-bit architectures. In Project 1, the canary is
+32 completely random bits. However, in reality, stack canaries are usually
 guaranteed to contain a null byte. This lets the canary defend against
 string-based memory safety exploits, such as vulnerable calls to `strcpy` that
 read or write values from the stack until they encounter a null byte. The null
@@ -158,7 +158,7 @@ might never be able to try enough times to succeed. However, if the attacker can
 try thousands of times per second, then the attacker will probably succeed in
 just a few hours.
 
-On a 64-bit architecture, the stack canary has 56 bytes of randomness, so it is
+On a 64-bit architecture, the stack canary has 56 bits of randomness, so it is
 significantly harder to guess the canary value. Even at 1,000 tries per second,
 an attacker would need over 2 million years on average to guess the canary!
 
