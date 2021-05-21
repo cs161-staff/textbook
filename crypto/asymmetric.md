@@ -1,18 +1,19 @@
 ---
-title: 8. Asymmetric Cryptography
+title: 12. Asymmetric Cryptography
 parent: Cryptography
-nav_order: 3
+nav_order: 6
 ---
 
-TODO: Would be good to split this into multiple sections. ~NN
+# Asymmetric (public key) encryption
 
-# Asymmetric cryptography
+## Overview
 
-Previously we saw symmetric-key cryptography, where Alice and Bob share a secret
-key $$K$$. However, symmetric-key cryptography can be inconvenient to use,
-because it requires Alice and Bob to get together in advance to establish the
-key somehow. _Asymmetric cryptography_, also known as _public-key cryptography_,
-is designed to address this problem.
+Previously we saw symmetric-key encryption, where Alice and Bob share a secret
+key $$K$$ and use the same key to encrypt and decrypt messages. However,
+symmetric-key cryptography can be inconvenient to use, because it requires Alice
+and Bob to coordinate somehow and establish the shared secret key. _Asymmetric
+cryptography_, also known as _public-key cryptography_, is designed to address
+this problem.
 
 In a public-key cryptosystem, the recipient Bob has a publicly available key,
 his _public key_, that everyone can access. When Alice wishes to send him a
@@ -27,16 +28,9 @@ Bob can decrypt using his private key and recover $$K$$. Then Alice and Bob can
 communicate using a symmetric-key cryptosystem, with $$K$$ as their shared key,
 from there on.
 
-Public-key cryptography is a remarkable thing. Consider a function that, for a
-given public key, maps the message to the corresponding ciphertext. In a good
-public-key cryptosystem, this function must be easy to compute, and yet **very
-hard to invert**. In other words, it must form a _one-way function_: a function
-$$f$$ such that given $$x$$, it is easy to compute $$f(x)$$, but given $$y$$, it
-is hard to find a value $$x$$ such that $$f(x)=y$$. We need the computational
-equivalent of a process that turns a cow into hamburger: given the cow, you can
-produce hamburger, but there's no way to restore the original cow from the
-hamburger. It is by no means obvious that it should be possible to accomplish
-this, but it turns out it is, as we'll soon discuss.
+{% comment %}
+
+dropping this section, doesn't seem taught anymore  -peyrin sp21
 
 The known methods for public-key cryptography tend to rely heavily upon number
 theory, so we begin with a brief number theory refresher, and then develop an
@@ -170,112 +164,105 @@ tell us that among the $$n$$-bit numbers, roughly a $$\frac{1.44}{n}$$ fraction
 of them are prime. So after $$O(n)$$ iterations of this procedure we expect to
 find a prime of the desired length.
 
-## Diffie-Hellman key exchange
+{% endcomment %}
 
-Now we're ready to see our first public-key algorithm. Suppose Alice and Bob are
-on opposite sides of a crowded room. They can shout to each other, but everyone
-else in the room will overhear them. They haven't thought ahead to exchange a
-secret key in advance. How can they hold a private conversation?
+## Trapdoor One-way Functions
 
-It turns out there is a clever way to do it, first discovered by Whit Diffie and
-Marti Hellman in the 1970s. In high-level terms, the Diffie-Hellman key exchange
-works like this.
+Public-key cryptography relies on a close variant of the one-way function.
+Recall from the previous section that a one-way function is a function $$f$$
+such that given $$x$$, it is easy to compute $$f(x)$$, but given $$y$$, it is
+hard to find a value $$x$$ such that $$f(x)=y$$.
 
-Alice and Bob first do some work to establish a few parameters. They somehow
-agree on a large prime $$p$$. For instance, Alice could pick $$p$$ randomly and
-then announce it so Bob learns $$p$$. The prime $$p$$ does not need to be
-secret; it just needs to be very large. Also, Alice and Bob somehow agree on a
-number $$g$$ in the range $$1 < g < p-1$$. The values $$p$$ and $$g$$ are
-parameters of the scheme that could be hardcoded or identified in some standard;
-they don't need to be specific to Alice or Bob in any way, and they're not
-secret.
+A _trapdoor one-way function_ is a function $$f$$ that is one-way, but also has
+a special backdoor that enables someone who knows the backdoor to invert the
+function. As before, given $$x$$, it is easy to compute $$f(x)$$, but given only
+$$y$$, it is hard to find a value $$x$$ such that $$f(x) = y$$. However, given
+both $$y$$ and the special backdoor $$K$$, it is now easy to compute $$x$$ such
+that $$f(x) = y$$.
 
-Then, Alice picks a secret value $$a$$ at random from the set
-$$\{0,1,\dots,p-2\}$$, and she computes $$A=g^a \bmod p$$. At the same time, Bob
-randomly picks a secret value $$b$$ and computes $$B=g^b \bmod p$$. Now Alice
-announces the value $$A$$ (keeping $$a$$ secret), and Bob announces $$B$$
-(keeping $$b$$ secret). Alice uses her knowledge of $$B$$ and $$a$$ to compute
+A trapdoor one-way function can be used to construct a public encryption scheme
+as follows. Bob has a public key $$PK$$ and a secret key $$SK$$. He distributes
+$$PK$$ to everyone, but does not share $$SK$$ with anyone. We will use the
+trapdoor one-way function $$f(x)$$ as the encryption function.
 
-$$
-S = B^a \bmod p.
-$$
+Given the public key $$PK$$ and a plaintext message $$x$$, it is computationally
+easy to compute the encryption of the message: $$y = f(x)$$.
 
-Symmetrically, Bob uses his knowledge of $$A$$ and $$b$$ to compute
+Given a ciphertext $$y$$ and only the public key $$PK$$, it is hard to find the
+plaintext message $$x$$ where $$f(x) = y$$. However, given ciphertext $$y$$ and
+the secret key $$SK$$, it becomes computationally easy to find the plaintext
+message $$x$$ such that $$y=f(x)$$, i.e., it is easy to compute $$f^{-1}(y)$$.
 
-$$
-S = A^b \bmod p.
-$$
+We can view the private key as "unlocking" the trapdoor. Given the private key
+$$SK$$, it becomes easy to compute the decryption $$f^{-1}$$, and it remains
+easy to compute the encryption $$f$$.
 
-Note that
+Here are two examples of trapdoor functions that will help us build public
+encryption schemes:
 
-$$
-B^a = (g^b)^a = g^{ab} = (g^a)^b = A^b \pmod p,
-$$
+- _RSA Hardness_: Suppose $$n=pq$$, i.e. $$n$$ is the product of two large
+  primes $$p$$ and $$q$$. Given $$c = m^e \pmod{n}$$ and $$e$$, it is
+computationally hard to find $$m$$. However, with the factorization of $$n$$
+(i.e. $$p$$ or $$q$$), it becomes easy to find $$m$$.
 
-so both Alice and Bob end up with the same result, $$S$$. Finally, Alice and Bob
-can use $$S$$ as a shared key for a symmetric-key cryptosystem (in practice, we
-would apply some hash function to $$S$$ first and use the result as our shared
-key, for technical reasons).
+- _Discrete log problem_: Suppose $$p$$ is a large prime and $$g$$ is a
+  generator.  Given $$g$$, $$p$$, $$A = g^a \pmod{p}$$, and
+  $$B = g^b \pmod{p}$$, it is computationally hard to find $$g^{ab} \pmod{p}$$.
+  However, with $$a$$ or $$b$$, it becomes easy to find $$g^{ab} \pmod{p}$$.
 
-The amazing thing is that Alice and Bob's conversation is entirely public, and
-from this public conversation, they both learn this secret value $$S$$---yet
-eavesdroppers who hear their entire conversation cannot learn $$S$$. As far as
-we know, there is no efficient algorithm to deduce $$S=g^{ab} \bmod p$$ from
-$$A=g^a \bmod p$$, $$B=g^b \bmod p$$, $$g$$, and $$p$$. (If there were an
-efficient algorithm to recover $$S$$ from $$A,B,p,g$$, then this scheme would be
-insecure, because an eavesdropper could simply apply that algorithm to what she
-overhears.) In particular, the fastest known algorithms for solving this problem
-take $$2^{cn^{1/3} (\log n)^{2/3}}$$ time, if $$p$$ is a $$n$$-bit prime. For
-$$n=2048$$, these algorithms are far too slow to allow reasonable attacks.
+## RSA Encryption
 
-The security of Diffie-Hellman key exchange relies upon the fact that the
-following function is one-way: $$f(x) = g^x \bmod p$$. In particular, it is easy
-to compute $$f(\cdot)$$ (that's just modular exponentiation), but there is no
-known algorithm for computing $$f^{-1}(\cdot)$$ in any reasonable amount of
-time.
+_Under construction_
 
-Here is how this applies to secure communication among computers. In a computer
-network, each participant could pick a secret value $$x$$, compute $$X=g^x \bmod
-p$$, and publish $$X$$ for all time. Then any pair of participants who want to
-hold a conversation could look up each other's public value and use the
-Diffie-Hellman scheme to agree on a secret key known only to those two parties.
-This means that the work of picking $$p$$, $$g$$, $$x$$, and $$X$$ can be done
-in advance, and each time a new pair of parties want to communicate, they each
-perform only one modular exponentiation. Thus, this can be an efficient way to
-set up shared keys.
+For now, you can refer to [these notes from CS
+70](http://www.eecs70.org/static/notes/n7.pdf) for a detailed proof of RSA
+encryption. For this class, you won't need to remember the proof of why RSA
+works. All you need to remember is that we use the public key to encrypt
+messages, we use the corresponding private key to decrypt messages, and an
+attacker cannot break RSA encryption unless they can factor large primes, which
+is believed to be hard.
 
-Here is a summary of Diffie-Hellman key exchange:
+There is a tricky flaw in the RSA scheme described in the CS 70 notes. The
+scheme is deterministic, so it is not IND-CPA secure. Sending the same message
+multiple times causes information leakage, because an adversary can see when the
+same message is sent. This basic variant of RSA might work for encrypting
+"random" messages, but it is not IND-CPA secure. As a result, we have to add
+some randomness to make the RSA scheme resistant to information leakage.
 
-- **System parameters:** a 2048-bit prime $$p$$, a value $$g$$ in the range
-  $$2\ldots p-2$$. Both are arbitrary, fixed, and public.
+RSA introduces randomness into the scheme through a _padding mode_. Despite the
+name, RSA padding modes are more similar to the IVs in block cipher modes than
+the padding in block cipher modes. Unlike block cipher padding, public-key
+padding is not a deterministic algorithm for extending a message. Instead,
+public-key padding is a tool for mixing in some randomness so that the
+ciphertext output "looks random," but can still be decrypted to retrieve the
+original plaintext.
 
-- **Key agreement protocol:** Alice randomly picks $$a$$ in the range $$0\ldots
-  p-2$$ and sends $$A=g^a \bmod p$$ to Bob. Bob randomly picks $$b$$ in the
-  range $$0\ldots p-2$$ and sends $$B=g^b \bmod p$$ to Alice. Alice computes
-  $$K=B^a \bmod p$$. Bob computes $$K=A^b \bmod p$$. Alice and Bob both end up
-  with the same secret key $$K$$, yet as far as we know no eavesdropper can
-  recover $$K$$ in any reasonable amount of time.
+One common padding scheme is OAEP (Optimal Asymmetric Encryption Padding). This
+scheme effectively generates a random symmetric key, uses the random key to
+scramble the message, and encrypts both the scrambled message and the random
+key. To recover the original message, the attacker has to recover both the
+scrambled message and the random key in order to reverse the scrambling process.
 
 ## El Gamal encryption
 
 The Diffie-Hellman protocol doesn't quite deliver public-key encryption
-directly. It allows Alice and Bob to agree on a key that they then use with
-symmetric cryptography. An interactive protocol for agreeing on a secret key
-(like Diffie-Hellman) is somewhat different from a non-interactive algorithm for
-encrypting messages.
-
-There are also public-key cryptography algorithms that can directly support
-encryption, if desired. One of these is RSA, which you encountered in CS 70 (and
-did/will in CS 161 lecture). To cement the idea, here's another scheme for doing
-so that's actually a slight twist on Diffie-Hellman.
+directly. It allows Alice and Bob to agree on a shared secret that they could
+use as a symmetric key, but it doesn't let Alice and Bob control what the shared
+secret is. For example, in the Diffie-Hellman protocol we saw, where Alice and
+Bob each choose random secrets, the shared secret is also a random value.
+Diffie-Hellman on its own does not let Alice and Bob send encrypted messages to
+each other. However, there is a slight variation on Diffie-Hellman that would
+allow Alice and Bob to exchange encrypted messages.
 
 In 1985, a cryptographer by the name of Taher Elgamal invented a public-key
 encryption algorithm based on Diffie-Hellman. We will present a simplified form
-of El Gamal encryption scheme. El Gamal encryption works as follows. The system
-parameters are a large prime $$p$$ and a value $$g$$ satisfying $$1 < g< p-1$$,
-as in Diffie-Hellman. Bob chooses a random value $$b$$ (satisfying $$0 \le b \le
-p-2$$) and computes $$B=g^b \bmod p$$. Bob's public key is $$B$$, and his
-private key is $$b$$. Bob publishes $$B$$ to the world, and keeps $$b$$ secret.
+of El Gamal encryption scheme. El Gamal encryption works as follows.
+
+The public system parameters are a large prime $$p$$ and a value $$g$$
+satisfying $$1<g<p-1$$. Bob chooses a random value $$b$$ (satisfying
+$$0 \le b \le p-2$$) and computes $$B=g^b \bmod p$$. Bob's public key is $$B$$,
+and his private key is $$b$$.  Bob publishes $$B$$ to the world, and keeps $$b$$
+secret.
 
 Now, suppose Alice has a message $$m$$ (in the range $$1\ldots p-1$$) she wants
 to send to Bob, and suppose Alice knows that Bob's public key is $$B$$. To
@@ -296,14 +283,14 @@ $$
 R^{-b} \times S \bmod p,
 $$
 
-and the result is the message $$m$$ Alice sent him. Why does this decryption
-procedure work? If $$R=g^r \bmod p$$ and $$S = m \times B^r \bmod p$$ (as should
-be the case if Alice encrypted the message $$m$$ properly), then
+and the result is the message $$m$$ Alice sent him.
+
+Why does this decryption procedure work? If $$R=g^r \bmod p$$ and
+$$S = m \times B^r \bmod p$$ (as should be the case if Alice encrypted the
+message $$m$$ properly), then
 
 $$
-R^{-b} \times S
-= (g^r)^{-b} \times (m \times B^r) = g^{-rb} \times m \times g^{br}
-= m \pmod p.
+R^{-b} \times S = (g^r)^{-b} \times (m \times B^r) = g^{-rb} \times m \times g^{br} = m \pmod p.
 $$
 
 If you squint your eyes just right, you might notice that El Gamal encryption is
@@ -315,14 +302,21 @@ by multiplying it by the shared key $$K$$ modulo $$p$$.
 
 That last step is in effect a funny kind of one-time pad, where we use
 multiplication modulo $$p$$ instead of xor: here $$K$$ is the key material for
-the one-time pad, and $$m$$ is the message, and the ciphertext is $$S=m \times K
-= m \times B^r \pmod p$$. Since Alice chooses a new value $$r$$ independently
-for each message she encrypts, we can see that the key material is indeed used
-only once. And a one-time pad using modular multiplication is just as secure as
-xor, for essentially the same reason that a one-time pad with xor is secure:
-given any ciphertext $$S$$ and a hypothesized message $$m$$, there is exactly
-one key $$K$$ that is consistent with this hypothesis (i.e., exactly one value
-of $$K$$ satisfying $$S = m \times K \bmod p$$).
+the one-time pad, and $$m$$ is the message, and the ciphertext is
+$$S=m \times K = m \times B^r \pmod p$$. Since Alice chooses a new value $$r$$
+independently for each message she encrypts, we can see that the key material is
+indeed used only once. And a one-time pad using modular multiplication is just
+as secure as xor, for essentially the same reason that a one-time pad with xor
+is secure: given any ciphertext $$S$$ and a hypothesized message $$m$$, there is
+exactly one key $$K$$ that is consistent with this hypothesis (i.e., exactly one
+value of $$K$$ satisfying $$S = m \times K \bmod p$$).
+
+Another way you can view El Gamal is using the discrete log trapdoor one-way
+function defined above: Alice encrypts the message with $$B^r = g^{br}
+\pmod{p}$$.  Given only $$g$$, $$p$$, $$R = g^r \pmod{p}$$, and $$B = g^b
+\pmod{p}$$, it is hard for an attacker to learn $$g^{-br} \pmod{p}$$ and decrypt
+the message. However, with Bob's secret key $$b$$, Bob can easily calculate
+$$g^{-br} \pmod{p}$$ and decrypt the message.
 
 Note that for technical reasons that we won't go into, this simplified El Gamal
 scheme is actually _not_ semantically secure. With some tweaks, the scheme can
@@ -343,18 +337,7 @@ Here is a summary of El Gamal encryption:
 
 - **Decryption:** $$D_b(R,S) = R^{-b} \times S \bmod p$$.
 
-## Caveat: Don't try this at home!
-
-A brief warning is in order here. You've now seen the conceptual basis
-underlying public-key algorithms that are widely used in practice. However, if
-you should need a public-key encryption algorithm, _don't implement your own
-based on the description here_. The discussion has omitted some nitty-gritty
-implementation details that are not all that relevant at the conceptual level,
-but are essential for robust security. Instead of implementing these algorithms
-yourself, you should just use a well-tested cryptographic library or protocol,
-such as TLS or PGP.
-
-## What's the catch?
+## Public Key Distribution
 
 This all sounds great---almost too good to be true. We have a way for a pair of
 strangers who have never met each other in person to communicate securely with
@@ -384,3 +367,34 @@ like-minded security folks do just that. In a similar vein, some cryptographers
 print their public key on their business cards. However, this still requires
 Alice and Bob to meet in person in advance. Can we do any better? We'll soon see
 some methods that help somewhat with that problem.
+
+## Session Keys
+
+There is a problem with public key: it is _slow_. It is very, very slow. When
+encrypting a single message with a 2048b RSA key, the RSA algorithm requires
+exponentiation of a 2048b number to a 2048b power, modulo a 2048b number.
+Additionally, some public key schemes only really work to encrypt "random"
+messages. For example, RSA without OAEP leaks when the same message is sent
+twice, so it is only secure if every message sent consists of random bits. In
+the simplified El Gamal scheme shown in these notes, it is easy for an attacker
+to substitute the message $$M' = 2M$$. If the messages have meaning, this can be
+a problem.
+
+Because public key schemes are expensive and difficult to make IND-CPA secure,
+we tend to only use public key cryptography to distribute one or more _session
+keys_. Session keys are the keys used to actually encrypt and authenticate the
+message. To send a message, Alice first generates a random set of session keys.
+Often, we generate several different session keys for different purposes. For
+example, we may generate one key for encryption algorithms and another key for
+MAC algorithms. We may also generate one key to encrypt messages from Alice to
+Bob, and another key to encrypt messages from Bob to Alice. (If we need
+different keys for each message direction and different keys for encryption and
+MAC, we would need a total of four symmetric keys.) Alice then encrypts the
+message using a symmetric algorithm with the session keys (such as
+AES-128-CBC-HMAC-SHA-256 [^1]) and encrypts the random session keys with Bob's
+public key. When he receives the ciphertext, Bob first decrypts the session keys
+and then uses the session keys to decrypt the original message.
+
+[^1]:
+    That is, using AES with 128b keys in CBC mode and then using HMAC with
+    SHA-256 for integrity

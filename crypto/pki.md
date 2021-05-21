@@ -1,16 +1,21 @@
 ---
-title: 10. Key Management
+title: 14. Key Management
 parent: Cryptography
-nav_order: 5
+nav_order: 8
 ---
 
-TODO: next time, discuss OCSP, stapling, privacy exposure vs.  "bad customer
-list" issue for CRLs. Think about removing web-of-trust: it doesn't appear to
-have sufficient legs to be worth discussing. However, the current text is also
-useful because it discusses notions like non-transitivity of trust. ~DAW
+{% comment %}
+TODO: next time, discuss OCSP, stapling, privacy exposure vs. "bad customer
+list" issue for CRLs
 
-Note, there's material on cryptographic protocols commented out
-at the end.
+Think about removing web-of-trust: it doesn't appear to have sufficient legs to
+be worth discussing. However, the current text is also useful because it
+discusses notions like non-transitivity of trust.
+
+Note, there's material on cryptographic protocols commented out at the end.
+
+TODO: Cleanup -peyrin
+{% endcomment %}
 
 # Key Management
 
@@ -22,7 +27,7 @@ them. For instance, how does Alice find out Bob's public key? Does it matter?
 
 ## Man-in-the-middle Attacks
 
-Suppose Alice wants to communicate security with Bob over an insecure
+Suppose Alice wants to communicate securely with Bob over an insecure
 communication channel, but she doesn't know his public key (and he doesn't know
 hers). A naive strategy is that she could just send Bob a message asking him to
 send his public key, and accept whatever response she gets back (over the
@@ -119,10 +124,19 @@ number of shortcomings:
   secured against remote attacks.
 
 Because of these limitations, the trusted directory service concept is not
-widely used in practice. However, some of these limitations---specifically, the
-ones relating to scalability, reliability, and the requirement for online access
-to the directory service---can be addressed through a clever idea known as
-digital certificates.
+widely used in practice, except in the context of messengers (such as Signal),
+where in order to send a message, Alice already has to be online.
+
+In this case, the best approach is described as "trust but verify" using a key
+transparency mechanism. Suppose Alice and Bob discovered each others keys
+through the central keyserver. If they are ever in person, they can examine
+their devices to ensure that Alice actually has the correct key for Bob and vice
+versa. Although inconvenient, this acts as a check on a rogue keyserver, as the
+rogue keyserver would know there is at least a chance of getting caught.
+
+However, some of these limitations---specifically, the ones relating to
+scalability, reliability, and the requirement for online access to the directory
+service---can be addressed through a clever idea known as digital certificates.
 
 ## Digital Certificates
 
@@ -224,7 +238,8 @@ in the browser. Take a look and see what you think of those CAs. Do you know who
 those CAs are? Would you consider them trustworthy? You'll probably find many
 unfamiliar names. For instance, who is Unizeto? TURKTRUST? AC Camerfirma? XRamp
 Security Services? Microsec Ltd? Dhimyotis? Chunghwa Telecom Co.? Do you trust
-them?
+them? {% comment %} I don't know about you, but I've never heard of many of
+these CAs, and I have no clue whether they are trustworthy. {% endcomment %}
 
 The browser manufacturers have decided that, whether you like it or not, those
 CAs are trusted. You might think that it's an advantage to have many CAs
@@ -259,7 +274,7 @@ $$
 $$
 
 $$
-\{\text{David Wagner's public key is $K_\text{daw}$}\}_{K_\text{Napolitano\xspace}^{-1}}
+\{\text{David Wagner's public key is $$K_\text{daw}$$}\}_{K_\text{Napolitano\xspace}^{-1}}
 $$
 
 This is a simple example of a _certificate chain_: a sequence of certificates,
@@ -349,8 +364,8 @@ system. There are two standard approaches to revocation:
   efficient than constantly re-issuing certificates with a short validity
   period.
 
-  However, revocation lists also pose some special challenges of their own. What
-  should clients do if they are unable to download a recent copy of the
+  However, revocation lists also pose some special challenges of their own.
+  What should clients do if they are unable to download a recent copy of the
   revocation list? If clients continue to use an old copy of the revocation
   list, then this creates an opportunity for an attacker who receives a bogus
   certificate to DoS the CA's revocation servers in order to prevent revocation
@@ -362,6 +377,12 @@ system. There are two standard approaches to revocation:
 
   Today, systems that use revocation lists typically ignore these
   denial-of-service risks and hope for the best.
+
+{% comment %}
+What do CAs do today, on the web? Modern browser do contain code[^3] to check
+revocation lists, if this is enabled by CAs. However, when last I checked, the
+popular CAs had not enabled revocation lists.
+{% endcomment %}
 
 ## Web of Trust
 
@@ -396,15 +417,17 @@ This example illustrates two challenges:
   it doesn't necessarily follow that Alice trusts Carol. (More precisely: Alice
   might consider Bob trustworthy, and Bob might consider Carol trustworthy, but
   Alice might not consider Carol trustworthy.)
+
 - _Trust isn't absolute._ We often trust a person for a specific purpose,
-  without necessarily placing absolute trust in them. To quote one security
-  expert: "I trust my bank with my money but not with my children; I trust my
-  relatives with my children but not with my money." Similarly, Alice might
-  trust that Bob will not deliberately act with malicious intent, but it's
-  another question whether Alice trusts Bob to very diligently check the
-  identity of everyone whose certificate he signs; and it's yet another question
-  entirely whether Alice trusts Bob to have good judgement about whether third
-  parties are trustworthy.
+  without necessarily placing absolute trust in them. <!-- I might trust the
+  phone company won't maliciously try to cheat me, but whether I trust them to
+  be competent is another question.--> To quote one security expert: "I trust my
+  bank with my money but not with my children; I trust my relatives with my
+  children but not with my money." Similarly, Alice might trust that Bob will
+  not deliberately act with malicious intent, but it's another question whether
+  Alice trusts Bob to very diligently check the identity of everyone whose
+  certificate he signs; and it's yet another question entirely whether Alice
+  trusts Bob to have good judgement about whether third parties are trustworthy.
 
 The web-of-trust model doesn't capture these two facets of human behavior very
 well.
@@ -446,10 +469,12 @@ What do you think of this approach?
 - A rigorous cryptographer might say: this is totally insecure, because an
   attacker could just mount a MITM attack on the first interaction between the
   client and server.
+
 - A pragmatist might say: that's true, but it still prevents many kinds of
   attacks. It prevents passive eavesdropping. Also, it defends against any
   attacker who wasn't present during the first interaction, and that's a
   significant gain.
+
 - A user might say: this is easy to use. Users don't need to understand anything
   about public keys, key management, digital certificates or other cryptographic
   concepts. Instead, the SSH client takes care of security for them, without
@@ -463,12 +488,45 @@ explicit step to enable security protections; the security should be
 ever-present and enabled automatically, in all cases. Arguably, users should not
 even have the power to disable the security protections, because that opens up
 the risk of social engineering attacks, where the attacker tries to persuade the
-user to turn off the cryptography.{% comment %}[^3]{% endcomment %}
+user to turn off the cryptography.{% comment %}[^4]{% endcomment %}
 
 Another design principle: "Users shouldn't have to understand cryptography to
 use the system securely." While it's reasonable to ask the designers of the
 system to understand cryptographic concepts, it is not reasonable to expect
 users to know anything about cryptography.
+
+[^1]:
+    The client generally asks the user to confirm the trust decision, but users
+    almost always ok the leap-of-faith.
+
+[^2]: Another term is TOFU = Trust On First Use.
+
+{% comment %}
+
+[^3]:
+    See the Online Certificate Status Protocol (OCSP).
+
+{% endcomment %}
+
+{% comment %}
+
+[^4]:
+    I'll share with you one story that may be apocryphal but illustrates the
+    concept. Several decades ago, a large company in the UK installed a line
+    encryptor to encrypt all of their external communications. Shortly
+    thereafter, they found that the bit-error rate on their communication link
+    suddenly shot way up, rendering the link unusable. If they removed the
+    encryptor, the bit-error rate soon went back to normal. The paranoid
+    explanation: an intelligence agency didn't like losing the ability to
+    eavesdrop on the traffic, so they made sure to jam the communications at a
+    low level (just enough to increase the bit error rate by a large factor)
+    whenever the company turned on encryption. Company employees decided that
+    the encryptor was flaky, removed it, and went back to communicating in
+    cleartext. Today, many phishing and malware attacks on the web are based on
+    social engineering: fooling the user into ignoring security alerts or
+    bypassing security checks that were intended to protect the user.
+
+{% endcomment %}
 
 {% comment %}
 
@@ -519,16 +577,16 @@ as the first message of the protocol, we might write it like this:
 
 $$
 \begin{array}{lll}
-1. &A\to B: &\{M\}\_{K_B}\\
+1. &A\to B: &\{M\}_{K_B}\\
 \end{array}
 $$
 
-The "1." indicates that this is the first message in the protocol. The "$$A\to
-B$$" indicates that the protocol designer intended this message to be sent by
-$$A$$ to $$B$$ (however, these identities are not present in the data sent over
-the network, so it may well be possible for an attacker to spoof this message).
-Finally, everything after the colon (":") is the data that is included in
-payload of the packet sent to $$B$$.
+The "1." indicates that this is the first message in the protocol. The
+"$$A\to B$$" indicates that the protocol designer intended this message to be
+sent by $$A$$ to $$B$$ (however, these identities are not present in the data
+sent over the network, so it may well be possible for an attacker to spoof this
+message). Finally, everything after the colon (":") is the data that is included
+in payload of the packet sent to $$B$$.
 
 ## Key Exchange with a Trusted Third Party
 
@@ -548,20 +606,14 @@ that has been shared with Trent and Bob has a key $$K_B$$ shared with Trent.
 
 $$
 \begin{array}{lll}
-1. &A\to T: &\{\text{I want to talk to Bob}\}\_{K_A}\\
-2. &T\to A: &\{\text{Use session key $k$, and send Bob this: } \{\text{This is
-   Alice; let's use session key $k$}\}_{K_B} \}_{K_A}\\
-3. &A\to B: &\{\text{This is Alice; let's use session key $k$}\}\_{K_B}\\
-\end{array}
-$$
-
-Now Alice and Bob can communicate securely using the key $$k$$. For instance, if
-Alice wanted to send the message "Launch the missiles!" to Bob, she might follow
-the above three steps by this message:
-
-$$
-\begin{array}{lll}
-4. &A\to B: &\{\text{Launch the missiles!}\}\_k\\
+1. &A\to T: &\{\text{I want to talk to Bob}\}_{K_A}\\
+2. &T\to A: &\{\text{Use session key $$k$$, and send Bob this: }
+  \{\text{This is Alice; let's use session key $$k$$}\}_{K_B} \}_{K_A}\\
+3. &A\to B: &\{\text{This is Alice; let's use session key $$k$$}\}_{K_B}\\
+\end{array}$$$$ Now Alice and Bob can communicate securely using the key $$k$$. For
+instance, if Alice wanted to send the message "Launch the missiles!" to Bob, she
+might follow the above three steps by this message: $$$$\begin{array}{lll}
+4. &A\to B: &\{\text{Launch the missiles!}\}_k\\
 \end{array}
 $$
 
@@ -571,8 +623,8 @@ can later replay messages 3 and 4 to Bob.
 
 $$
 \begin{array}{lll}
-3. &\text{Bad Guy}\to B: &\{\text{This is Alice; let's use session key $k$}\}_{K_B}\\
-4. &\text{Bad Guy}\to B: &\{\text{Launch the missiles!}\}_k\\
+3. &\text{Bad Guy}\to B: &\{\text{This is Alice; let's use session key $$k$$}\}\_{K_B}\\
+4. &\text{Bad Guy}\to B: &\{\text{Launch the missiles!}\}\_k\\
 \end{array}
 $$
 
@@ -587,9 +639,9 @@ approach is to add a timestamp:
 $$
 \begin{array}{lll}
 1. &A\to T: &\{TS, \text{ I want to talk to Bob}\}\_{K_A}\\
-2. &T\to A: &\{TS, \text{ Use session key $k$, and send Bob : } \{TS, \text{
-   This is Alice; let's use session key $k$}\}_{K_B} \}_{K_A}\\
-3. &A\to B: &\{TS, \text{ This is Alice; let's use session key $k$}\}\_{K_B}\\
+2. &T\to A: &\{TS, \text{ Use session key $$k$$, and send Bob : }
+   \{TS, \text{ This is Alice; let's use session key $$k$$}\}_{K_B} \}_{K_A}\\
+3. &A\to B: &\{TS, \text{ This is Alice; let's use session key $$k$$}\}\_{K_B}\\
 4. &A\to B: &\{TS, \text{ Launch the missiles!}\}\_k\\
 \end{array}
 $$
@@ -605,31 +657,5 @@ that researchers first discovered that the public-key version is also secure:
 Gavin Lowe found a subtle man-in-the-middle attack. This discovery motivated a
 great deal of advanced research into the design and analysis of cryptographic
 protocols.
-
-{% endcomment %}
-
-[^1]:
-    The client generally asks the user to confirm the trust decision, but users
-    almost always ok the leap-of-faith.
-
-[^2]: Another term is TOFU = Trust On First Use.
-
-{% comment %}
-
-[^3]:
-    I'll share with you one story that may be apocryphal but illustrates the
-    concept. Several decades ago, a large company in the UK installed a line
-    encryptor to encrypt all of their external communications. Shortly
-    thereafter, they found that the bit-error rate on their communication link
-    suddenly shot way up, rendering the link unusable. If they removed the
-    encryptor, the bit-error rate soon went back to normal. The paranoid
-    explanation: an intelligence agency didn't like losing the ability to
-    eavesdrop on the traffic, so they made sure to jam the communications at a
-    low level (just enough to increase the bit error rate by a large factor)
-    whenever the company turned on encryption. Company employees decided that
-    the encryptor was flaky, removed it, and went back to communicating in
-    cleartext. Today, many phishing and malware attacks on the web are based on
-    social engineering: fooling the user into ignoring security alerts or
-    bypassing security checks that were intended to protect the user.
 
 {% endcomment %}

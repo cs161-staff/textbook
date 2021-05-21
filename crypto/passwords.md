@@ -1,10 +1,8 @@
 ---
-title: 9. Passwords
+title: 15. Passwords
 parent: Cryptography
-nav_order: 4
+nav_order: 9
 ---
-
-TODO: Would be good to split this into multiple sections. ~NN
 
 # Passwords
 
@@ -27,18 +25,22 @@ associated with password authentication:
 - _Online guessing attacks._ An attacker could repeatedly try logging in with
   many different guesses at the user's password. If the user's password is easy
   to guess, such an attack might succeed.
+
 - _Social engineering and phishing._ An attacker might be able to fool the user
   into revealing his/her password, e.g., on a phishing site. We've examined this
   topic previously, so we won't consider it further in these notes.
+
 - _Eavesdropping._ Passwords are often sent in cleartext from the user to the
   website. If the attacker can eavesdrop (e.g., if the user is connecting to the
   Internet over an open Wifi network), and if the web connection is not
   encrypted, the attacker can learn the user's password.
+
 - _Client-side malware._ If the user has a keylogger or other client-side
   malware on his/her machine, the keylogger/malware can capture the user's
   password and exfiltrate it to the attacker.
-- _Server compromise._ If the server is compromised, an attacker may be able to
-  learn the passwords of people who have accounts on that site. This may help
+
+- _Server compromise._ If the server is compromised, an attacker may be able
+  to learn the passwords of people who have accounts on that site. This may help
   the attacker break into their accounts on other sites.
 
 We'll look at defenses and mitigations for each of these risks, below.
@@ -169,13 +171,12 @@ Let's explore some possible mitigations for online guessing:
   black-market services which will solve CAPTCHAs for you. They even provide
   easy-to-use APIs and libraries so you can automate the process of getting the
   solution to the CAPTCHA. These services employ human workers in countries with
-  low wages to solve the CAPTCHAs. The market rate is about \$1--2 per thousand
+  low wages to solve the CAPTCHAs. The market rate is about \$$1--2 per thousand
   CAPTCHAs solved, or about 0.1--0.2 cents per CAPTCHA solved. This does
-  increase the cost of a targeted attack, but not beyond the realm of
-  possibility.
+  increase the cost of a targeted attack, but not beyond the realm of possibility.
 
   CAPTCHAs do not stop an untargeted attack. For instance, an attacker who makes
-  one guess at each of 1000 accounts won't have to solve any CAPTCHAs. Or, if
+  one guess at each of 1000 accounts won't have to solve any CAPTCHAs.  Or, if
   for some reason the attacker wants to make 10 guesses at each of 100 accounts,
   the attacker will only have to solve 900 CAPTCHAs, which will cost the
   attacker maybe a dollar or two: not very much.
@@ -250,11 +251,11 @@ Unfortunately, this simple idea has some shortcomings:
   This lets Mallory test many guesses rapidly. For instance, on modern hardware,
   it is possible to test something in the vicinity of 1 billion passwords per
   second (i.e., to compute about 1 billion SHA256 hashes per second). So,
-  imagine that Mallory breaks into a site with 100 million users. Then, by
+  imagine that Mallory breaks into a site with 100 million users.  Then, by
   testing $$2^{20}$$ guesses at each user's password, she can learn about half
   of those users' passwords. How long will this take? Well, Mallory will need to
   make 100 million $$\times 2^{20}$$ guesses, or a total of about 100 trillion
-  guesses. At 1 billion guesses per second, that's about a day of computation.
+  guesses.  At 1 billion guesses per second, that's about a day of computation.
   Ouch. In short, the hashing of the passwords helps some, but it didn't help
   nearly as much as we might have hoped.
 
@@ -298,7 +299,7 @@ each user in the future, the salt for each user is stored in the user database.
 Instead of storing $$H(w)$$ in the database, we store $$s,H(w,s)$$ in the
 database, where $$s$$ is a random salt. Notice that $$s$$ is stored in
 cleartext, so if the attacker gets a copy of this database, the attacker will
-see the value of $$s$$. That's OK; the main point is that each user will have a
+see the value of $$s$$.  That's OK; the main point is that each user will have a
 different salt, so the attacker can no longer use the amortized guessing attack
 above. For instance, if the salt for Alice is $$s_A$$, the attacker can try
 guesses $$g_1,g_2,\dots,g_n$$ at her password by computing
@@ -371,12 +372,10 @@ use: Scrypt, Bcrypt, or PBKDF2. They all use some variant of the "iterated
 hashing" trick mentioned above.
 
 {% comment %}
-
 Unfortunately, this back-of-the-envelope calculation might give a slightly
 overly optimistic view.  Attackers have gotten pretty good at learning the order
 in which they should try passwords, so password cracking tools are pretty good
 at cracking many user passwords.
-
 {% endcomment %}
 
 ## Implications for cryptography
