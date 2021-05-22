@@ -1,5 +1,5 @@
 ---
-title: 13. HTTP
+title: 18. HTTP
 parent: Web Security
 nav_order: 2
 ---
@@ -15,14 +15,24 @@ understanding web security.
 
 ## The Request-Response Model
 
-Fundementally, HTTP follows a request-response model, where clients (such as
+Fundamentally, HTTP follows a request-response model, where clients (such as
 browsers) must actively start a connection to the server and issue a request,
 which the server then responds to. This request can be something like "Send me a
-webpage" or "Change the password for my user account to `foobar`." To the first
-example, the server would logically respond with the contents of the web page,
-and to the second example, the response may be something as simple as "Okay,
-I've changed your password." The exact structure of these requests will be
-covered in further detail in the next couple sections.
+webpage" or "Change the password for my user account to `foobar`." In the first
+example, the server might respond with the contents of the web page, and in the
+second example, the response might be something as simple as "Okay, I've changed
+your password." The exact structure of these requests will be covered in further
+detail in the next couple sections.
+
+The original version of HTTP, HTTP 1.1, is a text-based protocol, where each
+HTTP request and response contains a _header_ with some metadata about the
+request or response and a _payload_ with the actual contents of the request or
+response. HTTP2, a more recent version of HTTP, is a binary-encoded protocol
+for efficiency, but the same concepts apply.
+
+For all requests, the server generates and sends a response. The response
+includes a series of headers and, in the payload, the body of the data
+requested.
 
 ## Structure of a Request
 
@@ -61,10 +71,13 @@ request.
 
 While there are quite a few methods for requests, the two types that we will
 focus on for this course are GET requests and POST requests. GET requests are
-intended for "getting" information from the server and generally do not change
-anything on the server's end. POST requests are intended for sending information
-to the server that somehow modifies its internal state, such as adding a comment
-in a forum or changing your password.
+are generally intended for "getting" information from the server. POST requests
+are intended for sending information to the server that somehow modifies its
+internal state, such as adding a comment in a forum or changing your password.
+
+In the original HTTP model, GET requests are not supposed to change any server
+state. However, modern web applications often change server state in response to
+GET requests in query parameters.
 
 Of note, only POST requests can contain a body in addition to request headers.
 Notice that the body of the second example request contains the username and

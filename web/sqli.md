@@ -1,5 +1,5 @@
 ---
-title: 16. SQL Injection (SQLi)
+title: 21. SQL Injection (SQLi)
 parent: Web Security
 nav_order: 5
 ---
@@ -12,25 +12,26 @@ SQL injection is a special case of a more broad category of attacks called code
 injections.
 
 As an example, consider a calculator website that accepts user input and calls
-`eval` in the backend to perform the calculation. For example, if a user types
-<code style="color: red">2+3</code>
-into the website, the server will run <code>eval("<span style="color: red">2+3</span>")</code> and return the result to the
-user.
+`eval` in Python in the server backend to perform the calculation. For example,
+if a user types <code style="color: red">2+3</code> into the website, the server
+will run <code>eval('<span style="color: red">2+3</span>')</code> and return the
+result to the user.
 
 If the web server is not careful about checking user input, an attacker could
 provide a malicious input like
 
 <p style="text-align: center">
-  <code style="color: red">2+3"); system("rm *.*</code>
+  <code style="color: red">2+3"); os.system("rm -rf /</code>
 </p>
 
 When the web server plugs this into the `eval` function, the result looks like
 
 <p style="text-align: center">
-  <code>eval("<span style="color: red">2+3"); system("rm *.*</span>")</code>
+  <code>eval("<span style="color: red">2+3"); os.system("rm *.*</span>")</code>
 </p>
 
-If interpreted as code, this causes the web server to delete all its files!
+If interpreted as code, this statement causes the web server to delete all its
+files!
 
 The general idea behind these attacks is that a web server uses user input as
 part of the code it runs. If the input is not properly checked, an attacker
@@ -76,7 +77,7 @@ to be run. Consider the following malicious input:
 
 <p style="text-align: center">
   <code style="color: red">
-    garbage'; SELECT * FROM passwords WHERE username = 'admin
+    garbage'; SELECT password FROM passwords WHERE username = 'admin
   </code>
 </p>
 
@@ -131,7 +132,6 @@ don't know anyone's username. How might we achieve this using SQL injection?
 
 First, in the username field, we should add a dummy username and a quote to end
 the opening quote from the original query:
-
 
 <p style="text-align: center">
   <code>
@@ -258,9 +258,11 @@ an escaped backslash, and the quote won't be escaped!
 
 The key takeaway here is that building a good escaper can be tricky, and there
 are many edge cases to consider. There is almost no circumstance in which you
-should try to build one yourself; secure SQL escapers exist in SQL libraries
-almost every language, and the next section will talk about an even more robust
-method.
+should try to build an escaper yourself; secure SQL escapers exist in SQL
+libraries for almost every programming language. However, if you are running SQL
+statements with raw user input, escapers are often an ineffective solution,
+because you need to ensure that every call is properly escaped. A far more
+robust solution is to use parameterized SQL.
 
 ## Defense: Parameterized SQL/Prepared Statements
 
@@ -269,10 +271,25 @@ statements. This type of SQL compiles the query first, and then plugs in user
 input after the query has already been interpreted by the SQL parser. Because
 the user input is added after the query is compiled and interpreted, there is no
 way for any attacker input to be treated as SQL code. Parameterized SQL prevents
-all SQL injections attacks, so it is the best defense against SQL injection!
+all SQL injection attacks, so it is the best defense against SQL injection!
+
+In most SQL libraries, parameterized SQL and unsafe, non-paramaterized SQL are
+provided as two different API functions. You can ensure that you've eliminated
+_all_ potential SQL vulnerabilities in your code by searching for every database
+query and replacing each API call with a call to the parameterized SQL API
+function.
+
+The biggest problem with parameterized SQL is compatibility. SQL is a (mostly)
+generic language, so SQL written for MySQL can run on Postgres or commercial
+databases. Parameterized SQL requires support from the underlying database
+(since the processing itself happens on the database side), and there is no
+common standard for expressing parameterized SQL. Most SQL libraries will handle
+the translation for you, but switching to prepared statements may make it harder
+to switch between databases.
 
 In practice, most modern SQL libraries support parameterized SQL and prepared
-statements.
+statements. If the library you are using does not support parameterized SQL, it
+is probably best to switch to a different SQL library.
 
 _Further reading:_ [OWASP Cheat Sheet on SQL
 Injection](https://owasp.org/www-community/attacks/SQL_Injection)

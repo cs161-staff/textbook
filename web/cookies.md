@@ -1,5 +1,5 @@
 ---
-title: 18. Cookies and Session Management
+title: 23. Cookies and Session Management
 parent: Web Security
 nav_order: 7
 ---
@@ -63,6 +63,11 @@ on a request to
 because the URL domain ends in the cookie domain, and the URL path begins with
 the cookie path.
 
+Note that cookie policy uses a different set of rules than the same origin policy. This has caused problems in the past.
+{% comment %}
+Nick wrote: "has caused problems in the path." typo? -peyrin
+{% endcomment %}
+
 ## Cookie Policy: Setting Domain and Path
 
 For security reasons, we don't want a malicious website `evil.com` to be able to
@@ -81,10 +86,11 @@ This policy has one exception: cookies cannot have domains set to a top-level
 domain, such as `.edu` or `.com`, since these are too broad and pose a security
 risk. If `evil.com` could set cookies with domain `.com`, the attacker would
 have the ability to affect all `.com` websites, since this cookie would be sent
-to all `.com` websites.
+to all `.com` websites. The web browser maintains a list of top-level domains,
+which includes two-level TLDs like `.co.uk`.
 
 The cookie policy allows a server to set the `Path` attribute without any
-restrictions.
+restrictions.[^1]
 
 _Further reading:_
 [Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
@@ -111,3 +117,10 @@ user. Cookies are how the browser stores and sends session tokens to the server.
 Cookies can also be used to save other state, as discussed earlier. In other
 words, session tokens are a special type of cookie that keep users logged in
 over many requests and responses.
+
+[^1]:
+    The lack of restriction on the `Path` attribute has caused problems in the
+    past, as cookies are presented to the server and JavaScript as an unordered
+    set of name/value pairs, but is stored internally as name/path/value tuples,
+    so if two cookies with the same name and host but different path are
+    present, both will be presented to the server in unspecified order.

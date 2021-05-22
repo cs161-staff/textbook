@@ -1,5 +1,5 @@
 ---
-title: 17. Cross-Site Scripting (XSS)
+title: 22. Cross-Site Scripting (XSS)
 parent: Web Security
 nav_order: 6
 ---
@@ -12,11 +12,16 @@ malicious JavaScript.
 
 XSS attacks are powerful because they subvert the same-origin policy. Normally,
 an attacker can only run JavaScript on websites they control (such as
-`http://evil.com`), so their JavaScript cannot affect websites with origins
-different from `http://evil.com`. However, if the attacker can inject JavaScript
-into `http://google.com`, then when a user loads `http://google.com`, their
+`https://evil.com`), so their JavaScript cannot affect websites with origins
+different from `https://evil.com`. However, if the attacker can inject JavaScript
+into `https://google.com`, then when a user loads `https://google.com`, their
 browser will run the attacker's JavaScript with the origin of
-`http://google.com`.
+`https://google.com`.
+
+XSS attacks allow malicious JavaScript to run in the user's browser with the
+same origin as a legitimate website. This allows the attacker to perform any
+action the user can perform at `https://google.com` or steal any user secrets
+associated with Google and send them back to the attacker.
 
 There are two main categories of XSS attacks: stored XSS and reflected XSS.
 
@@ -105,6 +110,9 @@ signs are encoded as `&lt;` and `&gt;`, respectively. These encodings cause less
 than and greater than signs to display on the webpage, without being interpreted
 as HTML.
 
+Fortunately, there is a standardized set of sanitizations that is known to be
+robust.
+
 ## Defense: Content Security Policy
 
 Another XSS defense is using a content security policy (CSP) that specifies a
@@ -116,6 +124,13 @@ are injected by the attacker.
 CSPs are defined by a web server and enforced by a browser. In the HTTP
 response, the server attaches a `Content-Security-Policy` header, and the
 browser checks any scripts against the header.
+
+If you enable CSP, you can no longer run *any* scripts that are embedded
+directly in the HTML document. You can only load external scripts specified by
+the `script` tag and an external URL. These scripts can only be fetched from the
+sites specified in the CSP. This prevents an attacker from directly injecting
+scripts into an HTML document or modifying the HTML document to fetch scripts
+from the attacker's domain.
 
 _Further reading:_ [OWASP Cheat Sheet on
 XSS](https://owasp.org/www-community/attacks/xss/)

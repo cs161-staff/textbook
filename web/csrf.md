@@ -1,5 +1,5 @@
 ---
-title: 19. Cross-Site Request Forgery (CSRF)
+title: 24. Cross-Site Request Forgery (CSRF)
 parent: Web Security
 nav_order: 8
 ---
@@ -85,14 +85,14 @@ legitimately.
 
 ## Defense: Referer Validation
 
-Another way to defend against CSRF tokens is to check the Referer field in the
-HTTP header. When a browser issues an HTTP request, it includes a Referer header
-which indicates which URL the request was made from. For example, if a user
-fills out a form from a legitimate bank website, the Referer header will be set
-to `bank.com`, but if the user visits the attacker's website and the attacker
-fills out a form and submits it, the Referer header will be set to `evil.com`.
-The server can check the Referer header on each request and reject any requests
-that have untrusted or suspicious Referer headers.
+Another way to defend against CSRF tokens is to check the Referer[^1] field in
+the HTTP header. When a browser issues an HTTP request, it includes a Referer
+header which indicates which URL the request was made from. For example, if a
+user fills out a form from a legitimate bank website, the Referer header will be
+set to `bank.com`, but if the user visits the attacker's website and the
+attacker fills out a form and submits it, the Referer header will be set to
+`evil.com`.  The server can check the Referer header on each request and reject
+any requests that have untrusted or suspicious Referer headers.
 
 Referer validation is a good defense if it is included on every request, but it
 poses some problems if someone submits a request with the Referer header left
@@ -111,3 +111,9 @@ addition to CSRF tokens, instead of as the only defense against CSRF attacks.
 
 _Further reading:_ [OWASP Cheat Sheet on
 CSRF](https://owasp.org/www-community/attacks/csrf)
+
+[^1]:
+    Yes, the "Referer" field represents a roughly three decade old misspelling
+    of referrer. This is a silly example of how "legacy", that is old design
+    decisions, can impact things decades later because it can be very hard to
+    change things
