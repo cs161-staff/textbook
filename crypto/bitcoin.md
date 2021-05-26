@@ -7,6 +7,8 @@ nav_order: 10
 {% comment %}
 Draft I found in the fa19 repo. Incomplete and not sure if it ever was finished.
 We should finish it this semester -peyrin sp21
+
+Updated using notes created from SP20 lectures 38 & 39 ~fuzail su21
 {% endcomment %}
 
 # Bitcoin
@@ -31,8 +33,9 @@ simplified model, a functioning currency should have the following properties:
 
 In traditional physical currency, these properties are enforced by a trusted,
 centralized party such as a bank. Everyone trusts the bank to keep an accurate
-list of people with accounts and the balances in each account. If Alice sends
-$$n$$ units to Bob, both Alice and Bob trust that the bank will correctly
+list of account holders with their appropriate account balances, and ensure that
+the identity of each user is correct before proceeding with a transaction. So, if 
+Alice sends $$n$$ units to Bob, both Alice and Bob trust that the bank will correctly
 decrease Alice's balance by $$n$$ and increase Bob's balance by $$n$$. Everyone
 also trusts that the bank will not let Alice spend $$n+1$$ units of currency if
 she only has $$n$$ units in her account.
@@ -131,6 +134,30 @@ transaction, Alice is trying to spend $9 when she only has $6, so we know it
 must be an invalid transaction. Because the ledger is trusted, it will reject
 this invalid transaction.
 
+Thus, the idea is to have each block have a list of the transactions that show 
+where the money being used in this transaction came from, which also means that 
+blocks have to be sorted in order of creation. Now, our ledger looks as follows (again 
+assuming that Bob starts with 10$$B$$ and everyone else starts with 0$$B$$:
+
+- $$TX_1$$ = $$PK_B$$ (Bob) sends $$PK_A$$ (Alice) 5$$B$$, and the money came from the initial budget. $$TX_1$$ signed with $$SK_B$$
+- $$TX_2$$ = $$PK_A$$ (Alice) sends $$PK_E$$ (Eve) 5$$B$$, and the money came from $$TX_1$$. $$TX_2$$ signed with $$SK_A$$
+
+So, to check a transaction, we follow four steps:
+
+1. Check that the signature on the transaction is verified using the $$PK$$ of the sender
+2. Check that the sender in this transaction was the receiver in some previous transaction 
+3. Check that the sender in this transaction has not spent the money in some previous transaction
+4. Check that the sender has the appropriate amount of money
+
+If we were checking $$TX_2$$, we first check that $$TX_2$$ was actually signed by Alice. 
+Then, we check that Alice received some money in the past by checking the previous transactions. 
+In $$TX_2$$, we see that Alice received the money from $$TX_1$$, and checking $$TX_1$$ verifies 
+that Alice was the receiver. Next, we check that Alice has not spent the money earlier, so we 
+scan the history of the blockchain and we don’t see anywhere where the money from $$TX_1$$ was 
+used. Finally, we check that Alice has 5 $$B$$ by again checking $$TX_1$$ and seeing that she 
+did receive 5 $$B$$ from Bob. At this point, we have verified that $$TX_2$$ is a valid transaction, 
+and we thus append it to the blockchain ledger. 
+ 
 At this point, we have created a functioning currency:
 
 - Each person has a unique account, uniquely identified by public key.
@@ -169,14 +196,107 @@ contains the hash of the previous block, etc. In other words, each time we
 append a new message in a new block, the hash of the previous block contains a
 digest of all the entries in the hash chain so far.
 
-Another way to see this is to write out the hashes. For example,
-$$\text{Block 4} = m_4, H(\text{Block 3}) = m_4, H(m_3, H(\text{Block 2})) = m_4, H(m_3, H(m_2, H(\text{Block 1}))) = m_4, H(m_3, H(m_2, H(m_1)))$$.
+Another way to see this is to write out the hashes. For example:  
+
+$$\text{Block 4} = m_4, H(\text{Block 3})$$  
+    $$= m_4, H(m_3, H(\text{Block 2}))$$  
+    $$ = m_4, H(m_3, H(m_2, H(\text{Block 1})))$$  
+    $$= m_4, H(m_3, H(m_2, H(m_1)))$$  
+
 Note that Block 4 contains a digest of all the messages so far, namely $$m_1,
 m_2, m_3, m_4$$.
 
+## Properties of Hash Chains
+
+Assume that Alice is given the $$H(\text{Block } i)$$ from a trusted source, 
+but she downloads blocks 1 through $$i$$ from an untrusted source. Only using 
+the $$H(\text{Block } i)$$, Alice can verify that the blocks she downloaded 
+from the untrusted source are not compromised by recomputing the hashes of 
+each block, checking that they match the hash in the next block, and so on, 
+until the last block, which she checks against the hash she received from the trusted source. Let’s walk through an example:
+
+Say Alice received the $$H(\text{Block 4})$$ from somewhere she trusts and 
+then fetches the entire blockchain from a compromised server (so she downloads 
+blocks 1 through 4). Can an attacker give Alice an incorrect chain, say with 
+block 2 being incorrect, without her detecting it? No! Since we use cryptographic 
+hashes, which are collision resistant, two different blocks cannot hash to the 
+same value. Say that block 2 is incorrect and Alice instead received block $$2'$$, then $$H(\text{Block } 2')$$ $$\neq$$ $$H(\text{Block 2})$$. 
+Since block 3 includes the hash of block $$2'$$, block 3 will also be incorrect, 
+so the third block that Alice received is block $$3'$$ $$\neq$$ block 3. So, $$H(\text{Block } 3')$$ 
+$$\neq$$ $$H(\text{Block 3})$$. Then, since block 4 includes the hash of block $$3'$$, block 4 will 
+also be incorrect, so the fourth block that Alice received is block $$4'$$ $$\neq$$ block 4. So, 
+$$H(\text{Block } 4')$$ $$\neq$$ $$H(\text{Block 4})$$. Since Alice received H(block 4) from a 
+trusted source, and it does not match up with $$H(\text{Block} 4')$$, 
+Alice is able to detect misbehavior. On the other hand, if the $$H(\text{Block } 4')$$ 
+did match $$H(\text{Block 4})$$, then the blockchain that Alice downloaded is correct, and we have no misbehavior. 
+
+So, perhaps the most important property in a hash chain is that if you get the hash 
+of the latest block from a trusted source, then you can verify that all of the previous history is correct.
+
+
+## Consensus in Bitcoin
+
+In Bitcoin, every participant in the network stores the entire blockchain (and thus all of its history) 
+since we don’t utilize a centralized server. When someone wants to create a new transaction, they broadcast 
+that transaction to everyone, and each user on the network has to check the transaction. If the transaction 
+is correct, they will append it to their local blockchain. 
+
+The issue is that some users might be malicious, meaning that they might not append certain transactions 
+or might not check certain transactions correctly or might replay certain transactions 
+or might allow invalid transactions. Bitcoin, however, assumes that the majority of users are honest. 
+
+Perhaps one of the biggest issues is forks, which are essentially different versions of the blockchain that exist 
+at the same time. For example, say that Mallory bought a house from Bob for 500 $$B$$, and this transaction is 
+appended to the ledger. Mallory can then try “go back in time” and start the blockchain from just before this transaction 
+was added to it, and can start appending new transaction entries from there. If Mallory can get other users to 
+accept this new forked chain, she can get her 500 $$B$$ back! 
+
+This means that we need a way for all users to agree on the content of the blockchain: _consensus via proof of work_.
+
+
+## Consensus via Proof of Work
+
+In Bitcoin, while every user locally stores the entire blockchain, not every user can add a block. 
+This special privilege is reserved for certain users, known as _miners_, who can only add a block 
+if they have a valid proof of work. A miner validates transactions before solving a _proof of work_, 
+which, if completed before any other miner, allows the miner to append the block to the blockchain. 
+The proof of work is a computational puzzle that takes the hash of the current block concatenated 
+with a random number. This random number can be incremented so that the hash changes, until the 
+proof of work is solved. The proof of work is considered solved when the resulting hash starts 
+with $$N$$ zero bits, where the value of $$N$$ (e.g. 33) is determined by the Bitcoin algorithm. 
+
+Miners then broadcast blocks with their proof of work. All honest miners listen for such blocks, 
+check the blocks for correctness, and _accept the longest correct chain_. If a miner appends a 
+block with some incorrect transaction, the block is ignored. The key idea for consensus is that 
+everyone will always prefer the longest correct chain. Thus, if multiple miners append blocks 
+at the same time, consensus is gained by the longest correct chain, and the rest of the 
+“versions” are discarded. When two different miners at the same time solve a proof of work and 
+append two different blocks, thus forking the network, the next miner that appends onto one of these chains invalidates the other chain. 
+
+Say for example that an honest miner $$M_1$$ stores the current local blockchain $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$, 
+and hears about transaction $$T$$. $$M_1$$ checks $$T$$, then tries to mine (solve for the proof of work) 
+for a new block $$b_4$$ to now include transaction $$T$$. However, if miner $$M_2$$ mines $$b_4$$ first, 
+$$M_2$$ will broadcast $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4$$. $$M_1$$ checks $$b_4$$, accepts it, gives up mining block 4, 
+then starts to mine for block 5. $$M_1$$ now has the blockchain $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4$$ stored locally and 
+has started to mine $$b_5$$. However, if $$M_1$$ hears miner 3 broadcasts $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4’$$&rarr;$$b_5’$$, 
+$$M_1$$ will discard the shorter blockchain ($$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4$$) in favor of the longer one 
+($$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4’$$&rarr;$$b_5’$$). By always accepting the longest blockchain, all the miners are ensured to have the same blockchain view. 
+
+Remember that Bitcoin assumes that more than half of the users are honest, meaning that more 
+than half of the computing power is in the hands of honest miners, thus ensuring that honest 
+miners will always have an advantage to mine the longest chain. Going back to the example 
+about forks that prompted this discussion, if proof of consensus is implemented, Mallory 
+cannot fork the blockchain since she does not have >50% of the computing power in the 
+world. Since the longest chain is always taken as the accepted, Mallory’s forked chain 
+will be shorter unless she can mine new entries faster than the aggregate mining power of everyone else in the world. 
+
+Go forth and mine!
+ 
 {% comment %}
 
 Below is from Nick in fa19 I think? -peyrin
+
+I don't think this needs to go in the notes, it can be something that is just said in a blue lecture slide ~fuzail
 
 ## Editorial: Practical problems with Bitcoin
 
