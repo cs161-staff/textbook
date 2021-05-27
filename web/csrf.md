@@ -1,5 +1,5 @@
 ---
-title: 24. Cross-Site Request Forgery (CSRF)
+title: 26. Cross-Site Request Forgery (CSRF)
 parent: Web Security
 nav_order: 8
 ---

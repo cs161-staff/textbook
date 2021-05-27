@@ -1,5 +1,5 @@
 ---
-title: 20. Same-Origin Policy
+title: 22. Same-Origin Policy
 parent: Web Security
 nav_order: 4
 ---

@@ -1,5 +1,5 @@
 ---
-title: 23. Cookies and Session Management
+title: 25. Cookies and Session Management
 parent: Web Security
 nav_order: 7
 ---
