@@ -1,5 +1,5 @@
 ---
-title: 35. DNSSEC
+title: 37. DNSSEC
 parent: Network Security
 nav_order: 9
 ---

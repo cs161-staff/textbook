@@ -1,5 +1,5 @@
 ---
-title: 34. DNS
+title: 36. DNS
 parent: Network Security
 nav_order: 8
 ---

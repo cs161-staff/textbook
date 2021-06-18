@@ -1,5 +1,5 @@
 ---
-title: 21. SQL Injection (SQLi)
+title: 23. SQL Injection (SQLi)
 parent: Web Security
 nav_order: 5
 ---
