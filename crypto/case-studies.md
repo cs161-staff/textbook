@@ -1,9 +1,9 @@
 ---
-title: 17. Signal
+title: 15. Case Studies
 parent: Cryptography
-nav_order: 13
+nav_order: 11
 ---
 
-# Signal
+# Case Studies
 
 TODO: Under construction.

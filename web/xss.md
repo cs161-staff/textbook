@@ -1,7 +1,7 @@
 ---
-title: 24. Cross-Site Scripting (XSS)
+title: 22. Cross-Site Scripting (XSS)
 parent: Web Security
-nav_order: 6
+nav_order: 5
 ---
 
 # Cross-Site Scripting (XSS)

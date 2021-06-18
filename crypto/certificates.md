@@ -1,7 +1,7 @@
 ---
-title: 14. Key Management
+title: 13. Certificates
 parent: Cryptography
-nav_order: 8
+nav_order: 9
 ---
 
 {% comment %}
@@ -17,7 +17,7 @@ Note, there's material on cryptographic protocols commented out at the end.
 TODO: Cleanup -peyrin
 {% endcomment %}
 
-# Key Management
+# Certificates
 
 So far we've seen powerful techniques for securing communication such that the
 only information we must carefully protect regards "keys" of various sorts.

@@ -1,10 +1,10 @@
 ---
-title: Principles and Patterns
+title: Security Principles
 nav_order: 1
 has_children: true
 ---
 
-# Principles and Patterns
+# Security Principles
 
 The security principles module of this course is the least technically involved
 and is essentially covered in the first one or two lectures. Basically, it's a

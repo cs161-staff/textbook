@@ -1,10 +1,10 @@
 ---
-title: 12. Asymmetric Cryptography
+title: 11. Public-Key Encryption
 parent: Cryptography
-nav_order: 6
+nav_order: 7
 ---
 
-# Asymmetric (public key) encryption
+# Public-Key (Asymmetric) Encryption
 
 ## Overview
 

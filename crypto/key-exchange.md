@@ -1,7 +1,7 @@
 ---
-title: 11. Diffie-Hellman Key Exchange
+title: 10. Diffie-Hellman Key Exchange
 parent: Cryptography
-nav_order: 5
+nav_order: 6
 ---
 
 # Diffie-Hellman key exchange

@@ -1,7 +1,7 @@
 ---
-title: 9. Message Authentication Codes (MACs)
+title: 8. Message Authentication Codes (MACs)
 parent: Cryptography
-nav_order: 3
+nav_order: 4
 ---
 
 # Message Authentication Codes (MACs)

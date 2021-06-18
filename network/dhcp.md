@@ -1,5 +1,5 @@
 ---
-title: 32. DHCP
+title: 29. DHCP
 parent: Network Security
 nav_order: 4
 ---

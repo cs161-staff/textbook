@@ -1,7 +1,7 @@
 ---
-title: 10. Pseudorandom Number Generators
+title: 9. Pseudorandom Number Generators
 parent: Cryptography
-nav_order: 4
+nav_order: 5
 ---
 
 # Pseudorandom Number Generators

@@ -1,7 +1,7 @@
 ---
-title: 7. Symmetric-Key Cryptography
+title: 6. Symmetric-Key Cryptography
 parent: Cryptography
-nav_order: 1
+nav_order: 2
 ---
 
 {% comment %}

@@ -1,7 +1,7 @@
 ---
-title: 17. Tor
-parent: Cryptography
-nav_order: 11
+title: 40. Anonymity and Tor
+parent: Network Security
+nav_order: 15
 ---
 
 {% comment %}

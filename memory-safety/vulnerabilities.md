@@ -1,10 +1,10 @@
 ---
-title: 4. Memory Safety Vulnerabilities
+title: 3. Memory Safety Vulnerabilities
 parent: Memory Safety
 nav_order: 2
 ---
 
-# Memory safety vulnerabilities
+# Memory Safety Vulnerabilities
 
 TODO: Would be good to split this into multiple sections. ~NN
 

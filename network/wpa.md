@@ -1,5 +1,5 @@
 ---
-title: 31. WPA
+title: 28. WPA
 parent: Network Security
 nav_order: 3
 ---

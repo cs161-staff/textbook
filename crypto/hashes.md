@@ -1,10 +1,10 @@
 ---
-title: 8. Cryptographic Hash Functions
+title: 7. Cryptographic Hashes
 parent: Cryptography
-nav_order: 2
+nav_order: 3
 ---
 
-# Cryptographic Hash Functions
+# Cryptographic Hashes
 
 Cryptographic hash functions are another useful primitive. A cryptographic hash
 function is a function $$H$$; $$H(M)$$ is called the _hash_ of the message

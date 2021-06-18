@@ -1,5 +1,5 @@
 ---
-title: 29. Networking Background
+title: 26. Introduction to Networking
 parent: Network Security
 nav_order: 1
 ---

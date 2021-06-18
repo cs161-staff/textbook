@@ -1,7 +1,7 @@
 ---
 title: 16. Bitcoin
 parent: Cryptography
-nav_order: 10
+nav_order: 12
 ---
 
 {% comment %}

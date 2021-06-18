@@ -1,7 +1,7 @@
 ---
-title: 38. Intrusion Detection
+title: 37. Intrusion Detection
 parent: Network Security
-nav_order: 10
+nav_order: 12
 ---
 
 # Intrusion Detection
