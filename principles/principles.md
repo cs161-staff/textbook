@@ -147,7 +147,7 @@ systems is a great idea; should your computer and house catch on fire, for
 example, it should be no big deal since all your data is backed-up 
 in some other location. 
 
-## Defense in depth.
+## Defense in depth
 
 The key idea of defense in depth is that multiple types of defenses should 
 be layered together so an attacker would have to breach all the defenses 
@@ -172,7 +172,7 @@ meaning that both detectors have to alert in order to trigger a response.
 In this case, the false positive rate would decrease while the false negative rate 
 would increase. 
 
-## Least privilege.
+## Least privilege
 
 Consider a research building home to a team of scientists as well as other
 people hired to maintain the building (janitors, IT staff, kitchen staff, etc.)
@@ -212,7 +212,7 @@ Microsoft security team have recognized the risks inherent in this, and have
 taken many steps to warn people away from running with Administrator privileges,
 so things have gotten better in this respect.
 
-## Separation of responsibility.
+## Separation of responsibility
 
 Split up privilege, so no one person or program has complete power. Require
 more than one party to approve before access is granted.
@@ -237,7 +237,7 @@ multiple parties to work together to excercise that privelage since it is more
 likely for a single party to be malicious than for all of the parties to be 
 malicious and collude with one another. 
 
-## Ensure complete mediation.
+## Ensure complete mediation
 
 When enforcing access control policies, make sure that you check _every_ access
 to _every_ object. This kind of thinking is helpful to detect where
@@ -267,7 +267,7 @@ As such, you should never rely on obscurity as part of your security.
 Always assume that the attacker knows every detail about the system that 
 you are working with (including its algorithms, hardware, defenses, etc.) 
 
-## Use fail-safe defaults.
+## Use fail-safe defaults
 
 Choose default settings that "fail safe", balancing security with 
 usability when a system goes down. When we get to firewalls, you will learn 
@@ -282,7 +282,7 @@ for security. It would be much more dangerous if it had fail-open behavior,
 since then all an attacker would need to do is wait for the firewall to crash
 (or induce a crash) and then the fort is wide open.
 
-## Design security in from the start.
+## Design security in from the start
 
 Trying to retrofit security to an existing application after it has already been
 spec'ed, designed, and implemented is usually a very difficult proposition. At
@@ -297,7 +297,7 @@ Finally, let's examine three principles that are widely accepted in the
 cryptographic community (although not often articulated) that can play a useful
 role in considering computer system security as well.
 
-## Conservative design.
+## Conservative design
 
 Systems should be evaluated according to the worst security failure that is at
 all plausible, under assumptions favorable to the attacker. If there is any
@@ -307,7 +307,7 @@ balance this against _Security is economics_: that is, we must decide the degree
 to which our threat model indicates we indeed should spend resources addressing
 the given scenario.
 
-## Kerckhoffs' principle.
+## Kerckhoffs' principle
 
 Cryptosystems should remain secure even when the attacker knows all internal
 details of the system.[^4] The **key** should be the only thing that must be
@@ -317,7 +317,7 @@ usually a lot easier to change the key than to replace every instance of the
 running software. (This principle is closely related to _Don't rely on security
 through obscurity._)
 
-## Proactively study attacks.
+## Proactively study attacks
 
 We should devote considerable effort to trying to break our own systems; this is
 how we gain confidence in their security. Also, because security is a game where
@@ -326,16 +326,14 @@ hole is discovered after a system is widely deployed, it pays to try to identify
 attacks before the bad guys find them, so that we have some lead time to close
 the security holes before they are exploited in the wild.
 
-# Design Patterns for Building Secure Systems
+## The Trusted Computing Base (TCB)
 
-Here, we aim to capture some important patterns for building secure
-systems, and, in particular, what you can do at design time to improve security.
-How can you choose an architecture that will help reduce the likelihood of flaws
-in your system, or increase the likelihood that you will be able to survive such
-flaws? We begin with a powerful concept, the notion of a trusted computing base
-(TCB).
-
-## The Trusted Computing Base (TCB).
+Now that you understand some of the important principles for building secure systems, 
+we will try to see what you can do at design time to implement these principles and 
+improve security. The question we want to answer is how can you choose an architecture 
+that will help reduce the likelihood of flaws in your system, or increase the likelihood 
+that you will be able to survive such flaws? We begin with a powerful concept, the notion 
+of a trusted computing base, also known as the TCB. 
 
 In any system, the _trusted computing base_ (TCB) is that portion of the system
 that must operate correctly in order for the security goals of the system to be
@@ -360,7 +358,7 @@ system in a way that is at all reasonable, the SSH daemon is supposed to be
 protected (by the operating system's memory protection) from interference by
 unprivileged applications, like a web browser.
 
-## TCB Design Principles.
+## TCB Design Principles
 
 Several principles guide us when designing a TCB:
 
@@ -384,7 +382,7 @@ defects that an adversary can exploit, it's pretty clear which one to pick![^5]
 The lesson is to shed code: design your system so that as much code as possible
 can be _moved outside_ the TCB.
 
-## Benefits of TCBs.
+## Benefits of TCBs
 
 The notion of a TCB is a very powerful and pragmatic one as it allows a primitive
 yet effective form of modularity. It lets us separate the system into two parts:
@@ -411,7 +409,7 @@ In summary, some good principles are:
   just on functionality or performance grounds---choose an architecture that
   makes the TCB as simple and clear as possible.
 
-## TOCTTOU Vulnerabilities.
+## TOCTTOU Vulnerabilities
 
 A common failure of ensuring complete mediation involves race conditions. 
 The time of check to time of use (TOCTTOU) vulnerability usually arises 
