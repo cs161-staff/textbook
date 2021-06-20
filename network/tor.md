@@ -88,7 +88,7 @@ The key idea behind onion routing is the use of multiple proxy servers
 chained together in the hopes that at least one can be trusted. Again, 
 Alice wants to send the message $$M$$ to Bob, but this time she doesn’t 
 quite trust her proxy server, so instead decides to use onion routing 
-to chain together 3 different intermediaries (let’s call them Fuzzy, 
+to chain together 3 different intermediaries (let’s call them Frank, 
 Dan, and Charlie). 
 
 - Charlie is going to be the final proxy in the chain, so it needs 
@@ -106,18 +106,18 @@ Dan decrypts the packet using his private key to obtain $$((M, Bob)_{KCharlie}, 
 then sends $$M’$$ = $$(M, Bob)_{KCharlie}$$ to Charlie. 
 - Since Alice doesn’t trust Dan either to not reveal her identity, 
 she again wants to route the message through a different proxy server, 
-Fuzzy. Again, the proxy requires the message and the recipient that it 
+Frank. Again, the proxy requires the message and the recipient that it 
 forwards the message to. In this case the message is $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ 
-and the recipient is Dan. So the packet that Charlie Fuzzy receives is 
-$$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)_{KFuzzy}$$. Fuzzy decrypts 
+and the recipient is Dan. So the packet that Frank receives is 
+$$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)_{KFrank}$$. Frank decrypts 
 the packet using his private key to obtain $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)$$, 
 then sends $$M’’$$ = $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ to Dan. 
 
-The overall routing scheme sends the packet from $$Alice$$ &rarr; $$Fuzzy$$ 
-&rarr; $$Dan$$ &rarr; $$Charlie$$ &rarr; $$Bob$$, where Fuzzy, Dan, and 
+The overall routing scheme sends the packet from $$Alice$$ &rarr; $$Frank$$ 
+&rarr; $$Dan$$ &rarr; $$Charlie$$ &rarr; $$Bob$$, where Frank, Dan, and 
 Charlie are the three intermediaries, or proxies: 
-- Alice sends Fuzzy $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)_{KFuzzy}$$
-- Fuzzy decrypts this using his private key and sends $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ to Dan
+- Alice sends Frank $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)_{KFrank}$$
+- Frank decrypts this using his private key and sends $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ to Dan
 - Dan decrypts this using his private key and sends $$(M, Bob)_{KCharlie}$$ to Charlie
 - Charlie decrypts this using his private key and sends $$M$$ to Bob
 - For additional security, the message $$M$$ could also have been encrypted using $${PK_Bob}$$. 
@@ -127,7 +127,7 @@ and no one proxy knows both the sender and the recipient. In fact,
 even if $$n-1$$ of the intermediaries were malicious and were colluding, 
 as long as one recipient is honest, there is a low probability that they 
 can connect Alice and Bob. If there were not a lot of people using the 
-system however, if Fuzzy and Charlie colluded, there would be a way to 
+system however, if Frank and Charlie colluded, there would be a way to 
 link the messages. In reality, though, each proxy server would likely 
 be sending and receiving several thousands of messages, so it would be 
 extremely difficult to link these two messages together. 
