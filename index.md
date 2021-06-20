@@ -5,21 +5,15 @@ nav_order: 0
 
 # Computer Security
 
-_By [David Wagner](https://people.eecs.berkeley.edu/~daw/), [Nicholas
-Weaver](https://www1.icsi.berkeley.edu/~nweaver/), Andrew Law, [Nicholas
-Ngai](https://ngai.me/), Peyrin Kao, Sheqi Zhang, Fuzail Shakir_
+_By [David Wagner](https://people.eecs.berkeley.edu/~daw/), [Nicholas Weaver](https://www1.icsi.berkeley.edu/~nweaver), [Peyrin Kao](https://peyrin.github.io), Fuzail Shakir, Andrew Law, and [Nicholas Ngai](https://ngai.me/)_
 
-**Note that this online version of the textbook is currently not being updated. The latest version of the course notes are available as PDFs on [the course website](https://cs161.org/resources#notes). We hope to have a first version of an online textbook available before the start of the Summer 2021 semester.**
+_Additional contributions by Noura Alomar, Sheqi Zhang, [Shomil Jain](https://shomil.me)_
 
 This is the textbook for the [CS 161: Computer Security course at UC
 Berkeley](https://cs161.org/). It provides a brief survey over common topics in
 computer security including memory safety, cryptography, web security, and
 network security.
 
-As it stands currently, this textbook is a work-in-progress based on course
-notes compiled from past semesters, with active work being done to organize them
-into a single reference for students to use. Please contact
-[cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information
-regarding corrections.
+As of the Summer 2021 semester, this textbook is still being actively maintained and updated. Please contact [cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information regarding corrections.
 
-TODO: License? ~NN
+License: We are still working on getting approval to license this textbook under a Creative Commons license. In the meantime, please contact [cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information regarding licensing.
