@@ -1,5 +1,5 @@
 ---
-title: 1. Principles for Building Secure Systems
+title: 1. Security Principles
 parent: Security Principles
 nav_order: 1
 ---
