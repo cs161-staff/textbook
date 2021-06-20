@@ -4,42 +4,108 @@ parent: Security Principles
 nav_order: 1
 ---
 
-TODO: Would be good to split this into multiple sections. ~NN
-
-TODO: Clean up this section to match lecture slides. ~Peyrin
-
 # Principles for Building Secure Systems
 
 In this chapter, we will look at some general principles for secure system
 design.[^1] These ideas also allow us to examine existing systems to understand
 their security properties.
 
-## Security is economics.
+## Know your threat model
 
-No system is completely, 100% secure against all attacks. Rather, systems may
-only need to resist a certain level of attack. There is no point buying a
-$10,000 firewall to protect $1,000 worth of trade secrets.
+A threat model is a model of who your attacker is and what resources they have. 
+Attackers target systems for various reasons, be it money, politics, fun, etc. 
+Some aren't looking for anything logical, some attackers just want to watch the 
+world burn. 
 
-Also, it is often helpful to quantify the level of effort that an attacker would
-need to expend to break the system. Adi Shamir once wrote, "There are no secure
-systems, only degrees of insecurity." A lot of the science of computer security
-comes in measuring the degree of insecurity.
+Take, for example your own personal security. Understanding your threat model 
+has to do with understanding who and why might someone attack you; criminals, 
+for example, could attack you for money, teenagers could attack you for laughs 
+(or to win a dare), governments might spy on you to collect intelligence (but 
+you probably are not important enough for that just yet), or intimate partners 
+could spy on you. 
 
-Analogy: Safes come with a rating of their level of security. For instance, a
-consumer-grade safe might indicate that it will resist attack for up to 5
-minutes by anyone without tools. A high-end safe might be rated TL-30: it is
-secure against a burglar with safecracking tools and limited to 30 minutes
-access to the safe. (With such a safe, we know that we need to hire security
-guards who are able to respond to any intrusion within 30 minutes.)
+Once you understand who your attacker is and what resources they might possess, 
+there are some common assumptions that we take into account for attackers:
 
-Security usually comes at a cost, whether that cost is financial, or whether the
-cost refers to time spent developing security. Consider the safes analogy again.
-A more secure safe is going to cost more than a less secure safe. With infinite
-money, you could use the best safe available to lock all your valuables.
-However, since you don't, you must determine how valuable the thing you want to
-protect is and judge how much you are willing to pay to protect it. This
-illustrates that security is often a choice where someone needs to make a
-decision regarding how much security is worth.
+1. The attacker can interact with your systems without anyone noticing, meaning 
+that you might not always be able to detect the attacker tampering with your system
+before they attack.
+2. The attacker has some general information about your system, namely the operating 
+system, any potential software vulnerabilities, etc.
+3. The attacker is persistent and lucky; for example, if  an attack is successful 
+1/1,000,000 times, the attacker will try 1,000,000 times. 
+4. The attacker has the resources required to undertake the attack (up to an extent). 
+This will be touched on in "Securities is Economics", but depending on who your threat 
+model is, assume that the attacker has the ability and resources to perform the attack.
+5. The attacker can coordinate several complex attacks across various systems, meaning 
+that the attacker does not have to mount only a single attack on one device, but rather 
+can attack your entire network at the same time. 
+6. Infrastructure is pretty difficult to compromise, meaning that an attack that requires 
+the attacker to break the internet is a lot less worrisome than one that requires the 
+attacker to break a single computer. 
+7. Every system is a potential target. For example, a casino was once hacked because a 
+fish-tank thermometer was hacked within the network. 
+
+Finally, be extremely vigilant when dealing with old code as the assumptions 
+that were originally made might no longer be valid and the thread model might 
+have changed. When the internet was first created, for example, it was mostly populated 
+by academics who (mostly) trusted one another. As such, several networking protocols 
+made the assumption that all other network participants could be trusted and were not 
+malicious. Today however, the Internet is populated by billions of devices, some 
+of whom are malicious. As such, many network protocols that were designed a long time ago 
+are now suffering under the strain of attack.  
+
+## Consider Human Factors
+
+The key idea here is that security systems must be usable by ordinary people, and 
+therefore must be designed to take into account the role that humans will play. 
+As such, you must remember that programmers make mistakes and will use tools that 
+allow them to make mistakes (like C and C++). Similarily, users like convenience; 
+if a security system is unusable and not user-friendly, no matter how secure it is, 
+it will go unused. Users will find a way to subvert security systems if it makes 
+their lives easier. 
+
+No matter how secure your system is, it all comes down to people. Social engineering 
+attacks, for example, exploit other people's trust and access for personal gain. The 
+takeaway here is to consider the tools that are presented to users, and try to make 
+them fool-proof and as user-friendly as possible. 
+
+For example, your computer pops up with a notification that tells you it needs to 
+restart to "finish installing important updates"; if you are like a majority of the 
+user population, you likely click "remind me later", pushing off the update. If the 
+computer is attempting to fix a security patch, the longer the update gets pushed, 
+the more time your computer is vulnerable to an attack. However, since the update 
+likely inconveniences the user, they forego the extra security for convenience. 
+
+Another example is that the NSA’s cryptographic equipment stores its key material 
+on a small physical token. This token is built in the shape of an ordinary door 
+key. To activate an encryption device, you insert the key into a slot on the 
+device and turn the key. This interface is intuitively understandable, even 
+for 18-year-olds soldiers out in the field with minimal training in cryptography.
+
+
+## Security is economics
+
+No system is completely, 100% secure against all attacks; rather, systems 
+only need to be protected against a certain level of attacks. Since more 
+security usually costs more money to implement, the expected benefit of 
+your defense should be proportional to the expected cost of the attack. 
+Essentially, there is no point putting a $100 lock on a $1 item. 
+
+To understand this concept, we can think about physical safes, which come 
+with a rating of their level of security. For instance, a consumer grade safe, 
+a TL-15, might indicate that it will resist attacks for up to 15 minutes by 
+anyone with common tools, and might cost around $3,000, while a TL-30, a safe that 
+would resist attacks for up to 30 minutes with common tools might cost around $5000. 
+Finally, a TXTL-60 (a super high-end safe), might resist attacks for up to 60 
+minutes with common tools, a cutting torch, and up to 4 oz of explosives, and 
+would cost upwards of $50,000. The idea is that security usually comes at a cost. 
+A more secure safe is going to cost you more than a less secure safe. With infinite 
+money, you could use the best safe available to lock all your valuables, but since 
+you don't have infinite money, you must determine how valuable the thing you 
+want to protect is, and you must judge how much you are willing to pay to 
+protect it. This illustrates that security is often a cost-benefit analysis 
+where someone needs to make a decision regarding how much security is worth. 
 
 A corollary of this principle is you should focus your energy on securing the
 weakest links. Security is like a chain: a system is only as secure as the
@@ -47,6 +113,64 @@ weakest link. Attackers follow the path of least resistance, and they will
 attack the system at its weakest point. There is no sense putting an expensive
 high-end deadbolt on a screen door; attackers aren't going to bother trying to
 pick the lock when they can just rip out the screen and step through.
+
+## Detect if you can't prevent
+
+If prevention is stopping an attack from taking place, detection is simply 
+learning that the attack has taken place, and response would be doing 
+something about the attack. The idea is that if you cannot prevent the attack 
+from happening, you should at least be able to know that the attack has happened. 
+Once you know that the attack has happened, you should find a way to respond, since 
+detection without response is pointless. 
+
+For example, the Federal Information Processing Standard (FIPS) are publicly 
+announced standards developed for use in computer systems by various 
+government contractors. Type III devices---the highest level of security in 
+the standard, are intended to be tamper-resistant. However, Type III devices are very expensive. 
+Type II devices are only required to be tamper-evident, so that if someone tampers with
+them, this will be visible (e.g., a seal will be visibly broken). This means
+they can be built more cheaply and used in a broader array of applications.
+
+A _false positive_ is when you detect something when there is nothing there. 
+A _false negative_ is when you don't detect something when there is something there. 
+False positives and false negatives are usually the real cost of detection 
+since false positives require some type of response (and too many false 
+positives can cause systems to be removed), and false negatives are a 
+failure of detection and can be catastrophic. All reasonable detectors will 
+have a non-zero false positive and false negative rate. 
+
+When dealing with response, you should always assume that bad things will 
+happen, and therefore prepare your systems for the worst case outcome. 
+You should always plan security in a way that lets you get back to some 
+form of a working state. For example, keeping offsite backups of computer 
+systems is a great idea; should your computer and house catch on fire, for 
+example, it should be no big deal since all your data is backed-up 
+in some other location. 
+
+## Defense in depth.
+
+The key idea of defense in depth is that multiple types of defenses should 
+be layered together so an attacker would have to breach all the defenses 
+to successfully attack a system. 
+
+Take, for example, a castle defending its king. The castle has high walls. Behind
+those walls might be a moat, and then another layer of walls. Layering multiple
+simple defensive strategies together can make security stronger. However,
+defense in depth is not foolproof--no amount of walls will stop siege cannons
+from attacking the castle. Also, beware of diminishing returns--if you've
+already built 100 walls, the 101st wall may not add enough additional protection
+to justify the cost of building it (securities is economics).
+
+Another example of defense in depth is through a composition of detectors. 
+Say you had two detectors, $$D_1$$ and $$D_2$$, which have false positive 
+rates of $$FP_1$$ and $$FP_2$$ respectively, and false negative rates of 
+$$FN_1$$ and $$FN_2$$, respectively. One way to use the two detectors would 
+be to have them in parallel, meaning that either detector going off would trigger 
+a response. This would increase the false positive rate and decrease the false 
+negative rate. On the other hand, we could also have the detectors in series, 
+meaning that both detectors have to alert in order to trigger a response. 
+In this case, the false positive rate would decrease while the false negative rate 
+would increase. 
 
 ## Least privilege.
 
@@ -73,14 +197,14 @@ gain all the privileges the program had. Thus, the fewer privileges that a
 program has, the less harm is done if it should someday be penetrated by a
 buffer overrun attack.
 
-Example: How does Unix do, in terms of least privilege? Answer: Pretty lousy.
+How does Unix do, in terms of least privilege? Answer: Pretty lousy.
 Every program gets all the privileges of the user that invokes it. For instance,
 if I run a editor to edit a single file, the editor receives all the privileges
 of my user account, including the powers to read, modify, or delete all my
 files. That's much more than is needed; strictly speaking, the editor probably
 only needs access to the file being edited to get the job done.
 
-Example: How is Windows, in terms of least privilege? Answer: Just as lousy.
+How is Windows, in terms of least privilege? Answer: Just as lousy.
 Arguably worse, because many users run under an Administrator account, and many
 Windows programs require that you be Administrator to run them. In this case,
 every program receives total power over the whole computer. Folks on the
@@ -88,28 +212,16 @@ Microsoft security team have recognized the risks inherent in this, and have
 taken many steps to warn people away from running with Administrator privileges,
 so things have gotten better in this respect.
 
-## Use fail-safe defaults.
-
-Use default-deny polices. Start by denying all access, then allow only that
-which has been explicitly permitted. Ensure that if the security mechanisms fail
-or crash, they will default to secure behavior, not to insecure behavior.
-
-Example: the way that _firewalls_ work, they must explicitly decide to forward a
-given packet or else the packet is lost (dropped). If a firewall suffers a
-failure, no packets will be forwarded. Thus, a firewall fails safe. This is good
-for security. It would be much more dangerous if it had fail-open behavior,
-since then all an attacker would need to do is wait for the firewall to crash
-(or induce a crash) and then the fort is wide open.
-
 ## Separation of responsibility.
 
 Split up privilege, so no one person or program has complete power. Require
 more than one party to approve before access is granted.
 
-Examples: In a nuclear missile silo, two launch officers must agree before the
+In a nuclear missile silo, for example, two launch officers must agree before the
 missile can be launched.
 
-Example: In a movie theater, you pay the teller and get a ticket stub; then when
+Another example of this principle in action is in a  movie theater, 
+where you pay the teller and get a ticket stub; then when
 you enter the movie theater, a separate employee tears your ticket in half and
 collects one half of it, putting it into a lockbox. Why bother giving you a
 ticket that 10 feet later is going to be collected from you? One answer is that
@@ -120,117 +232,28 @@ honest, since at the end of the day, the manager can reconcile the number of
 ticket stubs collected against the amount of cash collected and detect some
 common shenanigans.
 
-Example: In many companies, purchases over a certain amount must be approved
-both by the requesting employee and by a separate purchasing office. This
-control helps prevent fraud, since it is less likely that both will collude and
-since it is unlikely that the purchasing office will have any conflict of
-interest in the choice of vendor.
-
-## Defense in depth.
-
-This is a closely related principle. There's a saying that you can recognize a
-security guru who is particularly cautious if you see someone wearing both a
-belt and a set of suspenders. (What better way to avoid getting caught with your
-trousers around your ankles?) The principle is that if you use multiple
-redundant protections, then all of them would need to be breached before the
-system's security will be endangered.
-
-Example: Consider a castle defending its king. The castle has high walls. Behind
-those walls might be a moat, and then another layer of walls. Layering multiple
-simple defensive strategies together can make security stronger. However,
-defense in depth is not foolproof--no amount of walls will stop siege cannons
-from attacking the castle. Also, beware of diminishing returns--if you've
-already built 100 walls, the 101st wall may not add enough additional protection
-to justify the cost of building it.
-
-## Psychological acceptability.
-
-It is important that your users buy into the security model.
-
-Example: Suppose the company firewall administrator gains a reputation for
-capriciously, for no good reason, blocking applications that the engineers need
-to use to get their job done. Pretty soon, the engineers are going to view the
-firewall as damage and route around it, maybe setting up tunnels, or bypassing
-it in any number of other ways. This is not a game that the firewall
-administartor is going to win. No system can remain secure for long when its
-users actively seek to subvert it.
-
-Example: The system administrator issues an edict that, henceforth, all
-passwords will be automatically generated unmemorizable strings that are at
-least 17 characters long, and must be changed once a month. What's likely to
-happen is that users will simply write down their password on a yellow sticky
-attached to their monitor, visible to anyone who looks. Such well-intentioned
-edicts can ultimately turn out to be counter-productive.
-
-## Human factors matter.
-
-A closely related topic: Security systems must be usable by ordinary people, and
-must be designed to take into account the role humans will play.
-
-Example: Your web browser pops up security warnings all the time, with vague
-alarming warnings but no clear indication of what steps you can take and no
-guidance on how to handle the risk. What are you going to do? If you're like
-most of the user population, you're soon going to learn to always click "Ok" any
-time a security dialogue box pops up.
-
-Example: The NSA's cryptographic equipment stores its key material on a small
-physical token. This token is built in the shape of an ordinary door key. To
-activate an encryption device, you insert the key into a slot on the device and
-turn the key. This interface is intuitively understandable, even for
-18-year-olds soldiers out in the field with minimal training in cryptography.
+The idea here is that if you need to have privelage, require 
+multiple parties to work together to excercise that privelage since it is more 
+likely for a single party to be malicious than for all of the parties to be 
+malicious and collude with one another. 
 
 ## Ensure complete mediation.
 
 When enforcing access control policies, make sure that you check _every_ access
 to _every_ object. This kind of thinking is helpful to detect where
-vulnerabilities could be, and might be useful to you in Project 1.
+vulnerabilities could be. As such, you have to ensure that all access is 
+monitored and protected. One way to accomplish this is through a 
+_reference monitor_, which is a single point through which all access must occur. 
 
-Caching is a slightly sticky subject. In some cases, you can get away with not
-checking every access and allowing security decisions to be cached, but beware.
-If the context relevant to the security decision changes, and the cache entry
-isn't invalidated, then someone might get away with accessing something they
-shouldn't.
+## Shannon's Maxim
 
-## Know your threat model.
+Shannon's Maxim states that the attacker knows the system that they are attacking. 
 
-Be careful with old code. The assumptions originally made might no longer be
-valid. The threat model may have changed.
-
-Example: In the early days, the Internet was populated only by researchers, who
-mostly trusted each other. Many networking protocols designed during those days
-made assumptions that all other network participants were benign and would not
-try to harm others. Of course, today the Internet is populated by millions of
-users, who do not always have such benign intent; consequently, many network
-protocols designed long ago are now suffering under the strain of attack. Spam
-is one well-known example of this syndrome.
-
-## Detect if you can't prevent.
-
-If you can't prevent break-ins, at least detect them (and, where possible,
-provide a way to recover or to identify the perpetrator). Save audit logs so
-that you have some way to analyze break-ins after the fact.
-
-Example: FIPS 140-1 sets out a federal standard on tamper-resistant hardware.
-Type III devices---the highest level of security in the standard---are intended
-to be tamper-resistant. However, Type III devices are very expensive. Type II
-devices are only required to be tamper-evident, so that if someone tampers with
-them, this will be visible (e.g., a seal will be visibly broken). This means
-they can be built more cheaply and used in a broader array of applications.
-
-## Don't rely on security through obscurity.
-
-The phrase 'security through obscurity' has come to be understood to refer to
-systems that rely on the secrecy of their design, algorithms, or source code to
-be secure.[^3] The problem with this is that it is **brittle**: it often proves
-very hard to keep the design of the system secret from a sufficiently motivated
-adversary. For instance, every running installation is going to have binary
-executable code, and it is tedious but not all that difficult to disassemble and
-reverse-engineer such code. Also problematic is that it is very difficult to
-assess, with any confidence, the chances that the secret will leak or the
-difficulty of learning the secret. Moreover, it's disastrous if this secret ever
-leaks: it is often hard to update widely-deployed systems, so there may be no
-recourse if someone ever succeeds in reverse-engineering the code.
-Historically, security through obscurity has a lousy track record: many systems
+"Security through obscurity" has come to be understoof to refer to systems that 
+rely on the secrecy of their design, algorithms, or source code to be secure. [^3]
+The issue with this, however, is that it is extremely brittle and it often proves 
+to be difficult to keep the design of a system secret from a sufficiently 
+motivated attacker. Historically, security through obscurity has a lousy track record: many systems
 that have relied upon the secrecy of their code or design for security have
 failed miserably.
 
@@ -239,6 +262,25 @@ closed-source applications. But it does mean that you shouldn't trust any system
 that _relies_ on security through obscurity, and you should probably be
 skeptical about claims that keeping the source code secret makes the system
 significantly more secure.
+
+As such, you should never rely on obscurity as part of your security. 
+Always assume that the attacker knows every detail about the system that 
+you are working with (including its algorithms, hardware, defenses, etc.) 
+
+## Use fail-safe defaults.
+
+Choose default settings that "fail safe", balancing security with 
+usability when a system goes down. When we get to firewalls, you will learn 
+about default-deny polices, which start by denying all access, then allowing only those
+which have been explicitly permitted. Ensure that if the security mechanisms fail
+or crash, they will default to secure behavior, not to insecure behavior.
+
+For example, firewalls must explicitly decide to forward a
+given packet or else the packet is lost (dropped). If a firewall suffers a
+failure, no packets will be forwarded. Thus, a firewall fails safe. This is good
+for security. It would be much more dangerous if it had fail-open behavior,
+since then all an attacker would need to do is wait for the firewall to crash
+(or induce a crash) and then the fort is wide open.
 
 ## Design security in from the start.
 
@@ -286,7 +328,7 @@ the security holes before they are exploited in the wild.
 
 # Design Patterns for Building Secure Systems
 
-In this chapter, we aim to capture some important patterns for building secure
+Here, we aim to capture some important patterns for building secure
 systems, and, in particular, what you can do at design time to improve security.
 How can you choose an architecture that will help reduce the likelihood of flaws
 in your system, or increase the likelihood that you will be able to survive such
@@ -295,30 +337,20 @@ flaws? We begin with a powerful concept, the notion of a trusted computing base
 
 ## The Trusted Computing Base (TCB).
 
-A _trusted_ component is a part of the system that we rely upon to operate
-correctly, if the whole system is to be secure; to turn it around, a trusted
-component is one that is able to violate our security goals if it misbehaves. A
-_trustworthy_ component is a part of the system that we would be justified in
-trusting, i.e., where we'd be justified in expecting it to operate correctly.
-For instance, on Unix systems the super-user (root) is trusted; hopefully people
-with access to this account are also trustworthy, or else we are in trouble.
-
 In any system, the _trusted computing base_ (TCB) is that portion of the system
 that must operate correctly in order for the security goals of the system to be
 assured. We have to rely on every component in the TCB to work correctly.
-However, anything that is outside the TCB isn't relied upon in any way: even if
+However, anything that is outside the TCB isn't relied upon in any way; even if
 it misbehaves or operates maliciously, it cannot defeat the system's security
-goals. Indeed, we can take the latter statement as our definition of the TCB:
-the TCB must be large enough so that nothing outside the TCB can violate
-security.
+goals. Generally, the TCB is made to be as small as possible since a smaller, 
+simpler TCB is easier to write and audit. 
 
-Example: Suppose the security goal is that only authorized users are allowed to
+Suppose the security goal is that only authorized users are allowed to
 log into my system using SSH. What is the TCB? Well, the TCB includes the SSH
 daemon, since it is the one that makes the authentication and authorization
-decisions---if it has a bug (say, a buffer overrun), or if it was programmed to
-behave maliciously (say, the SSH implementor has included a backdoor in it),
-then it will be able to violate my security goal (e.g., by allowing access to
-unauthorized users). That's not all. The TCB also includes the operating system,
+decisions; if it has a bug, or if it was programmed to behave maliciously,
+then it will be able to violate my security goal by allowing access to
+unauthorized users. The TCB also includes the operating system,
 since the operating system has the power to tamper with the operation of the SSH
 daemon (e.g., by modifying its address space). Likewise, the CPU is in the TCB,
 since we are relying upon the CPU to execute the SSH daemon's machine
@@ -328,36 +360,21 @@ system in a way that is at all reasonable, the SSH daemon is supposed to be
 protected (by the operating system's memory protection) from interference by
 unprivileged applications, like a web browser.
 
-Another example: Suppose that we deploy a firewall at the network perimeter to
-enforce the security goal that only authorized external connections should be
-permitted into our internal network. Then in this case the firewall is in the
-TCB for this security goal. In addition, the deployment of the firewall reflects
-an assumption that all external connections will pass through it. Thus, the
-network's physical topology, forwarding and routing configurations, and controls
-over its access points will also be part of the TCB.
-
-A third example: When we build _access control_ into a system, there is always
-some mechanism that is responsible for enforcing the access control policy. We
-term such a mechanism as a **reference monitor**. The reference monitor is the
-TCB for the security goal of ensuring that the access control policy is
-followed. Basically, the notion of a reference monitor is just the idea of a
-TCB, specialized to the case of access control.
-
 ## TCB Design Principles.
 
 Several principles guide us when designing a TCB:
 
-- _Unbypassable:_ There must be no way to breach system security by bypassing
+- _Unbypassable (or completeness):_ There must be no way to breach system security by bypassing
   the TCB.
-- _Tamper-resistant:_ The TCB should be protected from tampering by anyone else.
+- _Tamper-resistant (or security):_ The TCB should be protected from tampering by anyone else.
   For instance, other parts of the system outside the TCB should not be able to
   modify the TCB's code or state. The integrity of the TCB must be maintained.
-- _Verifiable:_ It should be possible to verify the correctness of the TCB.
+- _Verifiable (or correctness):_ It should be possible to verify the correctness of the TCB.
   This usually means that the TCB should be as simple as possible, as generally
   it is beyond the state of the art to verify the correctness of subsystems with
   any appreciable degree of complexity.
 
-Keeping the TCB **simple and small** is good (excellent) practice. The less code
+Keeping the TCB **simple and small** is excellent. The less code
 you have to write, the fewer chances you have to make a mistake or introduce
 some kind of implementation flaw. Industry standard error rates are 1--5 defects
 per thousand lines of code. Thus, a TCB containing 1,000 lines of code might
@@ -369,8 +386,7 @@ can be _moved outside_ the TCB.
 
 ## Benefits of TCBs.
 
-Who cares about all this esoteric stuff about TCBs? The notion of a TCB is in
-fact a very powerful and pragmatic one. The concept of a TCB allows a primitive
+The notion of a TCB is a very powerful and pragmatic one as it allows a primitive
 yet effective form of modularity. It lets us separate the system into two parts:
 the part that is security-critical (the TCB), and everything else.
 
@@ -382,67 +398,6 @@ the system to be secure. Thus, when thinking about security, we can focus our
 effort where it really matters. And, if the TCB is only a small fraction of the
 system, we have much better odds at ending up with a secure system: the less of
 the system we have to rely upon, the less likely that it will disappoint.
-
-Let's do a concrete example. You've been hired by the National Archives to help
-with their email retention system. They're chartered with saving a copy of every
-email ever sent by government officials. They want to ensure that, once a record
-is saved, it cannot be subsequently deleted or destroyed. For instance, if
-someone is investigated, they are worried about the threat that someone might
-try to destroy embarassing or incriminating documents previously stored in the
-archives. The security goal is to prevent this kind of after-the-fact document
-destruction.[^6] So, you need to build a document storage system which is
-"append-only": once a document is added to the collection, it cannot be removed.
-How are you going to do it?
-
-One possible approach: You could augment the email program sitting on every
-government official's desktop computer to save a copy of all emails to some
-special directory on that computer. What's the TCB for this approach? Well, the
-TCB includes every copy of the email application on every government machine, as
-well as the operating systems, other privileged software, and system
-administrators with root/Administrator-level privilege on those machines. That's
-an awfully large TCB. The chances that everything in the TCB works correctly,
-and that no part of the TCB can be subverted, don't sound too good. After all,
-any system administrator could just delete files from a special directory after
-the fact. It'd be nice to have a better solution.
-
-A different idea: We might set up a high-speed networked printer, one that
-prints from continuous rolls of paper. An email will be considered added to the
-collection when it has been printed. Let's feed a giant roll of blank paper into
-the printer. Once the paper is printed, the paper might spool out into some
-giant canister. We'll lock up the room to make sure no one can tamper with the
-printouts. What's the TCB in this system? The TCB includes the physical security
-of the room. Also, the TCB includes the printer: we're counting on it to be
-impossible for the printer to be driven in reverse and overwrite previously
-printed material.
-
-This scheme can be improved if we add a ratchet in the paper spool, so that the
-spool can only rotate in one direction. Thus, the paper feed cannot be reversed:
-once something is printed on a piece of paper and it scrolls into the canister,
-it cannot be later overwritten. Given such a ratchet, we no longer need to trust
-the printer. The TCB includes only this one little ratchet gizmo, and the
-physical security for the room, but nothing else. Neat! That sounds like
-something we could secure.
-
-One problem with this one-way ratcheted printer business is that it involves
-paper. A _lot_ of paper. (Government bureaucrats can generate an awful lot of
-email.) Also, paper isn't keyword-searchable. Instead, let's try to find an
-electronic solution.
-
-An all-electronic approach: We set up a separate computer that is networked and
-runs a special email archiving service. The service accepts connections from
-anyone; when an email is sent over such a connection, the service adds the email
-to its local filesystem. The filesystem is carefully implemented to provide
-write-once semantics: once a file is created, it can never be overwritten or
-deleted. We might also configure the network routers so that hosts cannot
-connect to any other port or service on that computer. What's in the TCB now?
-Well, the TCB includes that computer, the code of this server application, the
-operating system and filesystem and other privileged code on this machine, the
-system administrators of this machine, the packet firewall, the physical
-security mechanisms (locks and so on) protecting the machine room where this
-computer is located, and so on. The TCB is bigger than with a printer---but it
-is vastly better than an approach where the TCB includes all the privileged
-software and privileged users on every government machine. This sounds
-manageable.
 
 In summary, some good principles are:
 
@@ -458,84 +413,45 @@ In summary, some good principles are:
 
 ## TOCTTOU Vulnerabilities.
 
-It is worth knowing about a type of concurrency risk that often has particular
-relevance when enforcing access control policies such as when using a reference
+A common failure of ensuring complete mediation involves race conditions. 
+The time of check to time of use (TOCTTOU) vulnerability usually arises 
+when enforcing access control policies such as when using a reference
 monitor. Consider the following code:
 
 ```
-int openregularfile(char *path) {
-    struct stat s;
-    if (stat(path, &s) < 0)
-        return -1;
-    if (!S_ISRREG(s.st_mode)) {
-        error("only allowed to open regular files; nice try!");
-        return -1;
-    }
-    return open(path, O_RDONLY);
+procedure withdraw(amount w) {
+    // contact central server to get balance
+    1. let b := balance
+    2. if b < w, abort
+   
+    // contact central server to set the balance
+    3. set balance := b - w
+    4. dispence $w to the user
 }
 ```
+This code takes as input the amount you want to withdraw, w. It then looks up your 
+bank balance in the database; if you do not have enough money in your account 
+to withdraw the specified amount, then it aborts the transaction. If you do have 
+enough money, it decrements your balance by the amount that you want to withdraw 
+and then dispenses the cash to you. 
 
-This code is trying to open a file, but only if it is a regular file (e.g., not
-a symlink, not a directory, not a special device). On Unix, the `stat()` call is
-used to extract meta-data about the file, including whether it is a regular file
-or not. Then, the `open()` call is used to open the file.
+Suppose that multiple calls to withdraw can take place concurrently (i.e. two 
+separate ATMs). Also suppose that the attacker can somehow pause the execution of 
+procedure on one ATM. 
 
-The flaw in the above code is that it assumes the state of the filesystem will
-remain unchanged between the `stat()` and the `open()`. However, this
-assumption may be faulty if there is any other code that might execute
-_concurrently_. Suppose an attacker can change the file that `path` refers to
-after the call to `stat()` completes, but _before_ `open()` is invoked. If
-`path` refers to a regular file when the `stat()` is executed, but refers to
-some other kind of file when the `open()` is executed, this bypasses the check
-in the code! If that check was there for a security reason, the attacker may be
-able to subvert system security.
-
+So suppose that your current account balance is $100 and you want to withdraw $100. 
+At the first ATM, suppose you pause it _after_ step 2. Then, you go over to the 
+second ATM and proceed to withdraw $100 successfully (meaning that your account balance 
+should now be $0). You then go back to the first ATM and unpause the procedure; 
+since the account balance check was completed before you withdrew the money from 
+the second ATM, the first ATM still thinks you have $100 in your account, and it 
+allows you to withdraw another $100! So despite your bank account having only 
+$100 to begin with, you ended up with $200. 
+ 
 This is known as a _Time-Of-Check To Time-Of-Use_ (TOCTTOU) vulnerability,
-because the meaning of `path` changed from the time when it is checked (the
-`stat()`) and the time when it is used (the `open()`). In Unix, this often comes
-up with filesystem calls, because sequences of system calls do not execute in an
-atomic fashion, and the filesystem is where most long-lived state is stored.
-However, the risk is not specific to files. In general, TOCTTOU vulnerabilities
-can arise anywhere that there is mutable state that is shared between two or
-more entities. For instance, multi-threaded Java servlets and applications are
-at risk for this kind of flaw.
-
-## Leveraging Modularity.
-
-A well-designed system will be decomposed into modules, where modules interact
-with each other only through well-defined interfaces. Each module should perform
-a clear function; the essence is conceptual clarity of what it does (what
-functionality it provides), not how it does it (how it is implemented).
-
-Sound modular design can also significant strengthen the security properties of
-a system by providing forms of _isolation_---keeping potential problems
-localized, and minimizing the assumptions made between components.
-
-For example, consider a network server that listens on a port below 1024. A good
-design might partition the server into two distinct pieces, each its own
-process: a small start-up wrapper, and the application itself. Because binding
-to a port in the range 0--1023 requires root privileges on Unix systems, the
-wrapper could run as root, bind to the desired port to some file descriptor, and
-then spawn the application as a separate process and pass it the file
-descriptor. The application itself could then run as a non-root user, limiting
-the damage if the application is compromised. We can write the wrapper in just a
-few dozen lines of code, so we should be able to validate it quite thoroughly.
-
-As another example, consider structuring a web server as a composition of two
-modules. One module might be responsible for interacting with the network; it
-could handle incoming network connections and parse them to identify the
-requested URL. The second module might translate the URL into a filename and
-read it from the filesystem. Note that the first module can be run with no
-privileges at all (assuming it is started by a root wrapper that binds to
-port 80). The second module might be run as some special userid (e.g., `www`),
-and we might ensure that only documents intended to be publicly visible are
-readable by user `www`. This approach then leverages the file access controls
-provided by the operating system so that even if the second module is subverted,
-the attacker cannot harm the rest of the system.
-
-These practices are often known under the name _privilege separation_, because
-we split the architecture up into multiple modules, some privileged and some
-unprivileged.
+because between the check and the use of whatever state was checked, the state 
+somehow changed. In the above example, between the time that the balance was checked 
+and the time that balance was set, the balance was somehow changed. 
 
 [^1]:
     Many of these principles are due to Saltzer and Schroeder, who wrote a
@@ -556,7 +472,7 @@ unprivileged.
 
 [^4]:
     We'll discuss the notions of cryptography and cryptosystems more in
-    subsequent lectures.
+    subsequent lectures (Chapter 5).
 
 [^5]:
     Windows XP consisted of about 40 million lines of code---all of which were
