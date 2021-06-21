@@ -4,6 +4,8 @@ nav_order: 2
 has_children: true
 ---
 
+# Memory Safety
+
 In this section, we will be looking at software security—problems associated with
 the software implementation. You may have a perfect design, a perfect specification, perfect
 algorithms, but still have implementation vulnerabilities. In fact, after configuration errors,
