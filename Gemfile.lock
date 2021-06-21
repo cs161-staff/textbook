@@ -211,8 +211,6 @@ GEM
       jekyll-seo-tag (~> 2.1)
     minitest (5.14.3)
     multipart-post (2.1.1)
-    nokogiri (1.11.1-arm64-darwin)
-      racc (~> 1.4)
     nokogiri (1.11.1-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.1-x86_64-linux)
@@ -258,6 +256,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   universal-darwin-20
   x86_64-linux
 
