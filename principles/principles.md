@@ -39,11 +39,8 @@ This will be touched on in "Securities is Economics", but depending on who your 
 model is, assume that the attacker has the ability and resources to perform the attack.
 5. The attacker can coordinate several complex attacks across various systems, meaning 
 that the attacker does not have to mount only a single attack on one device, but rather 
-can attack your entire network at the same time. 
-6. Infrastructure is pretty difficult to compromise, meaning that an attack that requires 
-the attacker to break the internet is a lot less worrisome than one that requires the 
-attacker to break a single computer. 
-7. Every system is a potential target. For example, a casino was once hacked because a 
+can attack your entire network at the same time.  
+6. Every system is a potential target. For example, a casino was once hacked because a 
 fish-tank thermometer was hacked within the network. 
 
 Finally, be extremely vigilant when dealing with old code as the assumptions 
