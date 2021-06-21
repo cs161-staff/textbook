@@ -6,31 +6,30 @@ nav_order: 2
 
 # Memory Safety Vulnerabilities
 
-TODO: Would be good to split this into multiple sections. ~NN
-
 ## Buffer overflow vulnerabilities
 
 We'll start our discussion of vulnerabilities with one of the most common types
-of error---_buffer overflow_ (also called _buffer overrun_) vulnerabilities.
-Buffer overflow vulnerabilities are a particular risk in C. Since C is an
+of errors --- _buffer overflow_ (also called _buffer overrun_) vulnerabilities.
+Buffer overflow vulnerabilities are a particular risk in C, and since C is an
 especially widely used systems programming language, you might not be surprised
 to hear that buffer overflows are one of the most pervasive kind of
 implementation flaws around. However, buffer overflows are not unique to C, as
 C++ and Objective-C both suffer from these vulnerabilities as well.
 
-As a low-level language, we can think of C as a portable assembly language. The
-programmer is exposed to the bare machine, which is one reason that C is such a
-popular systems language. C is also a very old language, so there are a lot of
-legacy systems, old codebases written in C that are still maintained and
-updated. A particular weakness that we will discuss is the absence of automatic
-bounds-checking for array or pointer access. For example, if the programmer
+C is a low-level language, meaning that the programmer is always exposed to the 
+bare machine, one of the reasons why C is such a popular systems language. Furthermore, 
+C is also a very old language, meaning that there are several legacy systems, 
+which are old codebases written in C that are still maintained and updated. 
+A particular weakness that we will discuss is the absence of automatic
+bounds-checking for array or pointer accesses. For example, if the programmer
 declares an array `char buffer[4]`, C will not automatically throw an error if
 the programmer tries to access `buffer[5]`. It is the programmer's
 responsibility to carefully check that every memory access is in bounds. This
-can get difficult as your code gets complicated (e.g. for loops, user inputs,
+can get difficult as your code gets more and more complicated (e.g. for loops, user inputs,
 multi-threaded programs).
 
-A buffer overflow bug is one where the programmer fails to perform adequate
+It is through this absence of automatic bounds-checking that buffer overflows take 
+advantage of. A buffer overflow bug is one where the programmer fails to perform adequate
 bounds checks, triggering an out-of-bounds memory access that writes beyond the
 bounds of some memory region. Attackers can use these out-of-bounds memory
 accesses to corrupt the program's intended behavior.
@@ -56,15 +55,12 @@ Note that `char buf[8]` is defined outside of the function, so it is located in
 the static part of memory. Also note that each row of the diagram represents 4
 bytes, so `char buf[8]` takes up 2 rows.
 
-Also, note that `gets(buf)` writes user input from lower addresses to higher
-addresses, starting at `buf`. Because there is no bounds checking, this means
-the attacker can overwrite parts of memory at higher addresses than `buf`.
+`gets(buf)` writes user input from lower addresses to higher
+addresses, starting at `buf`, and since there is no bounds checking, 
+the attacker can overwrite parts of memory at addresses higher than `buf`.
 
-This bug typically causes a crash and a core-dump, because some unintended part
-of memory above `buf` has been corrupted. What might be less obvious is that the
-consequences can be far worse than that.
-
-To illustrate some of the dangers, we modify the example slightly.
+To illustrate some of the dangers that this bug can cause, let's slightly 
+modify the example:
 
 ```
 char buf[8];
@@ -76,22 +72,24 @@ void vulnerable() {
 
 Note that both `char buf[8]` and `authenticated` are defined outside of the
 function, so they are both located in the static part of memory. In C, static
-memory is filled in the order that variables are defined. This means that
-`authenticated` is at a higher address in memory than `buf`.
+memory is filled in the order that variables are definedi, so `authenticated` 
+is at a higher address in memory than `buf` (since static memory grows upward 
+and `buf` was defined first, `buf` is at a lower memory address).
 
 Imagine that elsewhere in the code, there is a login routine that sets the
 `authenticated` flag only if the user proves knowledge of the password.
 Unfortunately, the `authenticated` flag is stored in memory right after `buf`.
+Note that we use "after" here to mean "at a higher memory address". 
 
 ![Two words of memory for buf overwritten and an authenticated above it
 overwritten](/assets/images/memory-safety/vulnerabilities/overflow2.png)
 
 If the attacker can write 9 bytes of data to `buf` (with the 9th byte set to a
 non-zero value), then this will set the `authenticated` flag to true, and the
-attacker will gain access.
+attacker will be able to gain access.
 
 The program above allows that to happen, because the `gets` function does no
-bounds-checking: it will write as much data to `buf` as is supplied to it. In
+bounds-checking; it will write as much data to `buf` as is supplied to it by the user. In
 other words, the code above is _vulnerable_: an attacker who can control the
 input to the program can bypass the password checks.
 
@@ -153,8 +151,8 @@ effective methods of malicious code injection.
 One powerful method for exploiting buffer overrun vulnerabilities takes
 advantage of the way local variables are laid out on the stack.
 
-_Stack smashing_ attacks exploit the x86 function call convention. See Section 1
-of these notes for a refresher on how x86 function calls work.
+_Stack smashing_ attacks exploit the x86 function call convention. See [Chapter 2] (https://textbook.cs161.org/memory-safety/x86.html) 
+for a refresher on how x86 function calls work.
 
 Suppose the code looks like this:
 
@@ -242,7 +240,7 @@ executing instructions at `buf`, which causes the shellcode to execute.
 
 ![buf overwritten with shellcode, the sfp overwritten with 0xAAAA, and the rip
 overwritten with the address of
-buf](/assets/images/memory-safety/vulnerabilities/overflow6.png){width="40%"}
+buf](/assets/images/memory-safety/vulnerabilities/overflow6.png)
 
 Now suppose our shellcode is 100 bytes long. If we try our input from before,
 the shellcode won't fit in the 12 bytes between the buffer and the rip. It turns
@@ -258,7 +256,7 @@ shellcode.
 
 ![Two words of buf and the sfp overwritten with 0xAAAA, the rip overwritten with
 the address of rip + 4, and the shellcode overwritten above
-it](/assets/images/memory-safety/vulnerabilities/overflow7.png){width="40%"}
+it](/assets/images/memory-safety/vulnerabilities/overflow7.png)
 
 The discussion above has barely scratched the surface of techniques for
 exploiting buffer overrun bugs. Stack smashing dates back to at least the late
@@ -330,6 +328,13 @@ If the attacker can see what is printed, the attacker can mount several attacks:
 - The attacker can write any value to any address in the victim's memory. (Use
   `%n` and many tricks; the details are beyond the scope of this writeup.) You
   might want to ponder how this could be used for malicious code injection.
+
+Let's look at some more examples of format string vulnerabilities:
+- `printf("100% done!")` will use the `%d` to print 4 bytes on the stack, 8 bytes above the RIP 
+  of `printf`
+- `printf("100% stopped!")` will use the `%s` to print the bytes pointed to 
+by the address located 8 bytes above the RIP of `printf` up until the first 
+NULL byte.
 
 The bottom line: _If your program has a format string bug, assume that the
 attacker can learn all secrets stored in memory, and assume that the attacker
