@@ -151,7 +151,7 @@ effective methods of malicious code injection.
 One powerful method for exploiting buffer overrun vulnerabilities takes
 advantage of the way local variables are laid out on the stack.
 
-_Stack smashing_ attacks exploit the x86 function call convention. See [Chapter 2] (https://textbook.cs161.org/memory-safety/x86.html) 
+_Stack smashing_ attacks exploit the x86 function call convention. See [Chapter 2](https://textbook.cs161.org/memory-safety/x86.html) 
 for a refresher on how x86 function calls work.
 
 Suppose the code looks like this:
