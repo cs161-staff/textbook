@@ -6,15 +6,11 @@ nav_order: 1
 
 # Principles for Building Secure Systems
 
-In this chapter, we will look at some general principles for secure system
-design.[^1] These ideas also allow us to examine existing systems to understand
-their security properties.
-
 ## Know your threat model
 
 A threat model is a model of who your attacker is and what resources they have. 
 Attackers target systems for various reasons, be it money, politics, fun, etc. 
-Some aren't looking for anything logical, some attackers just want to watch the 
+Some aren't looking for anything logical--some attackers just want to watch the 
 world burn. 
 
 Take, for example your own personal security. Understanding your threat model 
@@ -45,7 +41,7 @@ fish-tank thermometer was hacked within the network.
 
 Finally, be extremely vigilant when dealing with old code as the assumptions 
 that were originally made might no longer be valid and the thread model might 
-have changed. When the internet was first created, for example, it was mostly populated 
+have changed. When the Internet was first created, for example, it was mostly populated 
 by academics who (mostly) trusted one another. As such, several networking protocols 
 made the assumption that all other network participants could be trusted and were not 
 malicious. Today however, the Internet is populated by billions of devices, some 
@@ -57,7 +53,7 @@ are now suffering under the strain of attack.
 The key idea here is that security systems must be usable by ordinary people, and 
 therefore must be designed to take into account the role that humans will play. 
 As such, you must remember that programmers make mistakes and will use tools that 
-allow them to make mistakes (like C and C++). Similarily, users like convenience; 
+allow them to make mistakes (like C and C++). Similarly, users like convenience; 
 if a security system is unusable and not user-friendly, no matter how secure it is, 
 it will go unused. Users will find a way to subvert security systems if it makes 
 their lives easier. 
@@ -74,11 +70,11 @@ computer is attempting to fix a security patch, the longer the update gets pushe
 the more time your computer is vulnerable to an attack. However, since the update 
 likely inconveniences the user, they forego the extra security for convenience. 
 
-Another example is that the NSA’s cryptographic equipment stores its key material 
+Another example: the NSA’s cryptographic equipment stores its key material 
 on a small physical token. This token is built in the shape of an ordinary door 
 key. To activate an encryption device, you insert the key into a slot on the 
 device and turn the key. This interface is intuitively understandable, even 
-for 18-year-olds soldiers out in the field with minimal training in cryptography.
+for 18-year-old soldiers out in the field with minimal training in cryptography.
 
 
 ## Security is economics
@@ -111,6 +107,15 @@ attack the system at its weakest point. There is no sense putting an expensive
 high-end deadbolt on a screen door; attackers aren't going to bother trying to
 pick the lock when they can just rip out the screen and step through.
 
+A closely related principle is conservative design, which states that
+systems should be evaluated according to the worst security failure that is at
+all plausible, under assumptions favorable to the attacker. If there is any
+plausible circumstance under which the system can be rendered insecure, then it
+is prudent to consider seeking a more secure system. Clearly, however, we must
+balance this against "security is economics": that is, we must decide the degree
+to which our threat model indicates we indeed should spend resources addressing
+the given scenario.
+
 ## Detect if you can't prevent
 
 If prevention is stopping an attack from taking place, detection is simply 
@@ -128,21 +133,13 @@ Type II devices are only required to be tamper-evident, so that if someone tampe
 them, this will be visible (e.g., a seal will be visibly broken). This means
 they can be built more cheaply and used in a broader array of applications.
 
-A _false positive_ is when you detect something when there is nothing there. 
-A _false negative_ is when you don't detect something when there is something there. 
-False positives and false negatives are usually the real cost of detection 
-since false positives require some type of response (and too many false 
-positives can cause systems to be removed), and false negatives are a 
-failure of detection and can be catastrophic. All reasonable detectors will 
-have a non-zero false positive and false negative rate. 
-
 When dealing with response, you should always assume that bad things will 
 happen, and therefore prepare your systems for the worst case outcome. 
 You should always plan security in a way that lets you get back to some 
 form of a working state. For example, keeping offsite backups of computer 
-systems is a great idea; should your computer and house catch on fire, for 
-example, it should be no big deal since all your data is backed-up 
-in some other location. 
+systems is a great idea. Even if your system is completely destroyed, 
+it should be no big deal since all your data is backed up 
+in some other location.  
 
 ## Defense in depth
 
@@ -156,7 +153,7 @@ simple defensive strategies together can make security stronger. However,
 defense in depth is not foolproof--no amount of walls will stop siege cannons
 from attacking the castle. Also, beware of diminishing returns--if you've
 already built 100 walls, the 101st wall may not add enough additional protection
-to justify the cost of building it (securities is economics).
+to justify the cost of building it (security is economics).
 
 Another example of defense in depth is through a composition of detectors. 
 Say you had two detectors, $$D_1$$ and $$D_2$$, which have false positive 
@@ -174,8 +171,8 @@ would increase.
 Consider a research building home to a team of scientists as well as other
 people hired to maintain the building (janitors, IT staff, kitchen staff, etc.)
 Some rooms with sensitive research data might be only accessible to trusted
-scientists. These rooms should not be accessible to the "other hired people"
-e.g. janitors. For best security practices, any one party should only have as
+scientists. These rooms should not be accessible to the maintenance staff
+(e.g. janitors). For best security practices, any one party should only have as
 much privilege as it needs to play its intended role.
 
 In technical terms, give a program the set of access privileges that it
@@ -185,14 +182,15 @@ privilege you give each program and system component.
 Least privilege is an enormously powerful approach. It doesn't reduce the
 probability of failure, but it can reduce the expected cost of failures. The
 less privilege that a program has, the less harm it can do if it goes awry or
-becomes subverted.[^2]
+becomes subverted.
 
 For instance, the principle of least privilege can help reduce the damage caused
-by buffer overruns. If a program is compromised by a buffer overrun attack, then
+by buffer overflow. (We'll discuss buffer overflows more in the next section.)
+If a program is compromised by a buffer overflow attack, then
 it will probably be completely taken over by an intruder, and the intruder will
 gain all the privileges the program had. Thus, the fewer privileges that a
 program has, the less harm is done if it should someday be penetrated by a
-buffer overrun attack.
+buffer overflow attack.
 
 How does Unix do, in terms of least privilege? Answer: Pretty lousy.
 Every program gets all the privileges of the user that invokes it. For instance,
@@ -217,20 +215,17 @@ more than one party to approve before access is granted.
 In a nuclear missile silo, for example, two launch officers must agree before the
 missile can be launched.
 
-Another example of this principle in action is in a  movie theater, 
-where you pay the teller and get a ticket stub; then when
-you enter the movie theater, a separate employee tears your ticket in half and
+Another example of this principle in action is in a movie theater, 
+To watch a movie, you first pay the cashier and get a ticket stub. Then, when
+you enter the movie theater, a different employee tears your ticket in half and
 collects one half of it, putting it into a lockbox. Why bother giving you a
 ticket that 10 feet later is going to be collected from you? One answer is that
-this helps prevent insider fraud. Tellers are low-paid employees, and they
-might be tempted to under-charge a friend, or to over-charge a stranger and
-pocket the difference. The presence of two employees helps keep them both
-honest, since at the end of the day, the manager can reconcile the number of
-ticket stubs collected against the amount of cash collected and detect some
-common shenanigans.
+this helps prevent insider fraud. Employees might be tempted to let their friends
+watch a movie without paying. The presence of two employees makes an attack harder, 
+since both employees must work together to let someone watch a movie without paying.
 
-The idea here is that if you need to have privelage, require 
-multiple parties to work together to excercise that privelage since it is more 
+In summary, if you need to perform a privileged action, require 
+multiple parties to work together to exercise that privilege, since it is more 
 likely for a single party to be malicious than for all of the parties to be 
 malicious and collude with one another. 
 
@@ -246,13 +241,18 @@ _reference monitor_, which is a single point through which all access must occur
 
 Shannon's Maxim states that the attacker knows the system that they are attacking. 
 
-"Security through obscurity" has come to be understoof to refer to systems that 
-rely on the secrecy of their design, algorithms, or source code to be secure. [^3]
-The issue with this, however, is that it is extremely brittle and it often proves 
-to be difficult to keep the design of a system secret from a sufficiently 
-motivated attacker. Historically, security through obscurity has a lousy track record: many systems
-that have relied upon the secrecy of their code or design for security have
-failed miserably.
+"Security through obscurity" refers to systems that rely on the secrecy of their
+design, algorithms, or source code to be secure.  The issue with this, however, is
+that it is extremely brittle and it is often difficult to keep the design of a
+system secret from a sufficiently  motivated attacker. Historically, security
+through obscurity has a lousy track record: many systems that have relied upon the
+secrecy of their code or design for security have failed miserably.
+
+In defense of security through obscurity, one might hear reasoning like: "this system
+is so obscure, only 100 people around the world understand anything about it, so what are
+the odds that an adversary will bother attacking it?" One problem with such reasoning 
+is that such an approach is self-defeating. As the system becomes more popular, there 
+will be more incentive to attack it, and then we cannot rely on its obscurity to keep attackers away.
 
 This doesn't mean that open-source applications are necessarily more secure than
 closed-source applications. But it does mean that you shouldn't trust any system
@@ -263,6 +263,15 @@ significantly more secure.
 As such, you should never rely on obscurity as part of your security. 
 Always assume that the attacker knows every detail about the system that 
 you are working with (including its algorithms, hardware, defenses, etc.) 
+
+A closely related principle is Kerckhoff's Principle, which states that
+cryptographic systems should remain secure even when the attacker knows all internal
+details of the system. (We'll discuss cryptographic systems more in
+the cryptography section.) The secret key should be the only thing that must be
+kept secret, and the system should be designed to make it easy to change keys
+that are leaked (or suspected to be leaked). If your secrets are leaked, it is
+usually a lot easier to change the key than to replace every instance of the
+running software.
 
 ## Use fail-safe defaults
 
@@ -294,34 +303,6 @@ Finally, let's examine three principles that are widely accepted in the
 cryptographic community (although not often articulated) that can play a useful
 role in considering computer system security as well.
 
-## Conservative design
-
-Systems should be evaluated according to the worst security failure that is at
-all plausible, under assumptions favorable to the attacker. If there is any
-plausible circumstance under which the system can be rendered insecure, then it
-is prudent to consider seeking a more secure system. Clearly, however, we must
-balance this against _Security is economics_: that is, we must decide the degree
-to which our threat model indicates we indeed should spend resources addressing
-the given scenario.
-
-## Kerckhoffs' principle
-
-Cryptosystems should remain secure even when the attacker knows all internal
-details of the system.[^4] The **key** should be the only thing that must be
-kept secret, and the system should be designed to make it easy to change keys
-that are leaked (or suspected to be leaked). If your secrets are leaked, it is
-usually a lot easier to change the key than to replace every instance of the
-running software. (This principle is closely related to _Don't rely on security
-through obscurity._)
-
-## Proactively study attacks
-
-We should devote considerable effort to trying to break our own systems; this is
-how we gain confidence in their security. Also, because security is a game where
-the attacker gets the last move, and where it can be very costly if a security
-hole is discovered after a system is widely deployed, it pays to try to identify
-attacks before the bad guys find them, so that we have some lead time to close
-the security holes before they are exploited in the wild.
 
 ## The Trusted Computing Base (TCB)
 
@@ -355,9 +336,7 @@ system in a way that is at all reasonable, the SSH daemon is supposed to be
 protected (by the operating system's memory protection) from interference by
 unprivileged applications, like a web browser.
 
-## TCB Design Principles
-
-Several principles guide us when designing a TCB:
+**TCB Design Principles**: Several principles guide us when designing a TCB:
 
 - _Unbypassable (or completeness):_ There must be no way to breach system security by bypassing
   the TCB.
@@ -375,13 +354,11 @@ some kind of implementation flaw. Industry standard error rates are 1--5 defects
 per thousand lines of code. Thus, a TCB containing 1,000 lines of code might
 have 1--5 defects, while a TCB containing 100,000 lines of code might have
 100--500 defects. If we need to then try to make sure we find and eliminate any
-defects that an adversary can exploit, it's pretty clear which one to pick![^5]
+defects that an adversary can exploit, it's pretty clear which one to pick![^1]
 The lesson is to shed code: design your system so that as much code as possible
 can be _moved outside_ the TCB.
 
-## Benefits of TCBs
-
-The notion of a TCB is a very powerful and pragmatic one as it allows a primitive
+**Benefits of TCBs**: The notion of a TCB is a very powerful and pragmatic one as it allows a primitive
 yet effective form of modularity. It lets us separate the system into two parts:
 the part that is security-critical (the TCB), and everything else.
 
@@ -421,7 +398,7 @@ procedure withdraw(amount w) {
    
     // contact central server to set the balance
     3. set balance := b - w
-    4. dispence $w to the user
+    4. give w dollars to the user
 }
 ```
 This code takes as input the amount you want to withdraw, w. It then looks up your 
@@ -448,34 +425,7 @@ because between the check and the use of whatever state was checked, the state
 somehow changed. In the above example, between the time that the balance was checked 
 and the time that balance was set, the balance was somehow changed. 
 
+
 [^1]:
-    Many of these principles are due to Saltzer and Schroeder, who wrote a
-    classic paper in the 1970s with advice on this topic.
-
-[^2]:
-    There are many real-world analogies to this principle. For example, we don't
-    require exam proctors to carry sidearms when a notepad or a camera will
-    suffice.
-
-[^3]:
-    One might hear reasoning like: "this system is so obscure, only 100 people
-    around the world understand anything about it, so what are the odds that an
-    adversary will bother attacking it?" One problem with such reasoning is that
-    such an approach is self-defeating. As the system becomes more popular,
-    there will be more incentive to attack it, and then we cannot rely on its
-    obscurity to keep attackers away.
-
-[^4]:
-    We'll discuss the notions of cryptography and cryptosystems more in
-    subsequent lectures (Chapter 5).
-
-[^5]:
     Windows XP consisted of about 40 million lines of code---all of which were
     in the TCB. Yikes!
-
-[^6]:
-    Assume that you don't have to worry about the problem of making sure that
-    documents are entered into the archive in the first place. Maybe users will
-    mostly comply initially, and we're only really worried about a "change of mind."
-    Or, maybe it is someone else's job to ensure that the necessary documents get
-    into the archive.

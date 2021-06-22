@@ -6,12 +6,8 @@ has_children: true
 
 # Security Principles
 
-The security principles module of this course is the least technically involved
-and is essentially covered in the first one or two lectures. Basically, it's a
-list of "things to remember" when thinking about security. Vulnerabilities will
-usually violate one or more of these rules. Your job on exams is to determine
-which security principle best fits a given scenario.
+In this section, we will look at some general principles for secure system design. These ideas also allow us to examine existing systems to understand their security properties.
 
-We teach these security principles because they are prevalent across all avenues
-of the security field and you may hear about them in academic literature, or
-just in informal conversation in the class.
+In other words, this section contains a list of "things to remember" when thinking about security.
+
+We teach these security principles because they appear frequently in all aspects of the security field. You may hear about them in academic literature and in later parts of this class.
