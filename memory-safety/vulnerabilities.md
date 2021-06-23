@@ -72,7 +72,7 @@ void vulnerable() {
 
 Note that both `char buf[8]` and `authenticated` are defined outside of the
 function, so they are both located in the static part of memory. In C, static
-memory is filled in the order that variables are definedi, so `authenticated` 
+memory is filled in the order that variables are defined, so `authenticated` 
 is at a higher address in memory than `buf` (since static memory grows upward 
 and `buf` was defined first, `buf` is at a lower memory address).
 
