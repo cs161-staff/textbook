@@ -4,7 +4,7 @@ nav_order: 3
 has_children: true
 ---
 
-# Introduction
+# Cryptography
 
 In this unit, we'll be studying _cryptography_, techniques for securing
 information and communication in the presence of an attacker. In particular, we

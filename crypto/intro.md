@@ -13,11 +13,9 @@ in particular, just enough to get a feeling for how they work at a conceptual
 level. Understanding cryptography at a conceptual level will give you good
 intuition for how industrial systems use cryptography in practice.
 
-However, cryptography in practice is very tricky to get right. As
-[@SwiftOnSecurity](https://twitter.com/swiftonsecurity) puts it, "Cryptography
-is magic math that cares what color of pen you use." Actual real-world
-cryptographic implementations require attention to a lot of details and hundreds
-of possible pitfalls. For example, private information might leak out through
+However, cryptography in practice is very tricky to get right. Actual real-world
+cryptographic implementations require great attention to detail and have hundreds of 
+possible pitfalls. For example, private information might leak out through
 various side-channels, random number generators might go wrong, and
 cryptographic primitives might lose all security if you use them the wrong way.
 We won't have time to teach all of those details and pitfalls to you in CS 161,
@@ -44,12 +42,12 @@ practice.
 ## Brief History of Cryptography
 
 The word "cryptography" comes from the Latin roots _crypt_, meaning secret, and
-_graphia_, meaning writing. So cryptography is literally the study of how to
+_graphia_, meaning writing. So cryptography is quite literally the study of how to
 write secret messages.
 
 Schemes for sending secret messages go back to antiquity. 2,000 years ago,
 Julius Caesar employed what's today referred to as the "Caesar cypher," which
-consists of permuting the alphabet by simply shifting each letter forward by a
+consists of permuting the alphabet by shifting each letter forward by a
 fixed amount. For example, if Caesar used a shift by $$3$$ then the message
 "cryptography" would be encoded as "fubswrjudskb". With the development of the
 telegraph (electronic communication) during the 1800s, the need for encryption
@@ -60,8 +58,8 @@ modern standards.
 
 The second phase of cryptography, the "mechanical era," was the result of a
 German project to create a mechanical device for encrypting messages in an
-unbreakable code. The resulting _Enigma_ machine was a remarkable engineering
-feat. Even more remarkable was the massive British effort during World War II to
+unbreakable code. The resulting _Enigma_ machine was a remarkable feat of
+engineering. Even more remarkable was the massive British effort during World War II to
 break the code. The British success in breaking the Enigma code helped influence
 the course of the war, shortening it by about a year, according to most experts.
 There were three important factors in the breaking of the Enigma code. First,
@@ -77,23 +75,19 @@ it, once codebreakers made enough initial progress to show the potential for
 success. At its peak, the British codebreaking organization employed over 10,000
 people, a level of effort that vastly exceeded anything the Germans had
 anticipated. They also developed electromechanical systems that could, in
-parallel, search an incredible number of possible keys until they found the
-right one.
+parallel, search an incredible number of possible keys until the right one was found.
 
 Modern cryptography is distinguished by its reliance on mathematics and
 electronic computers. It has its early roots in the work of Claude Shannon
-following World War II. The analysis of the _one-time pad_ (discussed later in
-these notes) is due to Shannon. The early 1970s saw the the introduction by NIST
-(the National Institute for Standards in Technology) of a standardized
-cryptosystem, _DES_. DES answered the growing need for digital encryption
-standards in banking and other business. The decade starting in the late 1970s
+following World War II. The analysis of the _one-time pad_ (discussed in the next chapter) is due to Shannon. The early 1970s saw the introduction of a standardized cryptosystem, DES, by the National Institute for Standards in Technology (NIST). DES answered the growing need for digital encryption
+standards in banking and other businesses. The decade starting in the late 1970s
 then saw an explosion of work on a computational theory of cryptography.
 
 # Definitions
 
 Intuitively, we can see that the Caesar cypher is not secure (try all 26
 possible shifts and you'll get the original message back), but how can we prove
-that it is insecure? To formally study cryptography, we will have to define a
+that it is, in fact, insecure? To formally study cryptography, we will have to define a
 mathematically rigorous framework that lets us analyze the security of various
 cryptographic schemes.
 
@@ -109,8 +103,8 @@ some settings, Eve may be replaced by an active adversary _Mallory_, who can
 tamper with communications in addition to eavesdropping on them.
 
 The goal is to design a scheme for scrambling the messages between Alice and Bob
-in such a way that Eve has no clue about the content of their exchange, and
-Mallory is unable to tamper with the content of their exchange without being
+in such a way that Eve has no clue about the contents of their exchange, and
+Mallory is unable to tamper with the contents of their exchange without being
 detected. In other words, we wish to simulate the ideal communication channel
 using only the available insecure channel.
 
@@ -135,10 +129,12 @@ achieve.
 
 _Confidentiality_ is the property that prevents adversaries from reading our
 private data. If a message is confidential, then an attacker does not know its
-contents. Most cryptographic algorithms that guarantee confidentiality work as
-follows: Alice _encrypts_ a message by changing it into a scrambled form that
+contents. You can think about confidentiality like locking and unlocking a message in a lockbox. Alice uses a key to lock the message in a box and then sends the message (in the locked box) over the insecure channel to Bob. Eve can see the locked box, but cannot access the message inside since she does not have a key to open the box. When Bob receives the box, he is able to unlock it using the key and retrieve the message.
+
+Most cryptographic algorithms that guarantee confidentiality work as
+follows: Alice uses a key to _encrypt_ a message by changing it into a scrambled form that
 the attacker cannot read. She then sends this encrypted message over the
-insecure channel to Bob. When Bob receives the encrypted message, he _decrypts_
+insecure channel to Bob. When Bob receives the encrypted message, he uses the key to _decrypt_
 the message by changing it back into its original form. We sometimes call the
 message _plaintext_ when it is unencrypted and _ciphertext_ when it is
 encrypted. Even if the attacker can see the encrypted ciphertext, they should
@@ -152,6 +148,10 @@ contents without being detected.
 _Authenticity_ is the property that lets us determine who created a given
 message. If a message has authenticity, then we can be sure that the message was
 written by the person who claims to have written it.
+
+You might be thinking that authenticity and integrity seem very closely related, and you would be correct; it makes sense that before you can prove that a message came from a particular person, you first have to prove that the message was not changed. In other words, before you can prove authenticity, you first have to be able to prove integrity. However, these are not identical properties and we will take a look at some edge cases as we delve further into the cryptographic unit.
+
+You can think about cryptographic algorithms that ensure integrity and authenticity as adding a seal on the message that is being sent. Alice uses the key to add a special seal, like a piece of tape on the envelope, on the message. She then sends the sealed message over the unsecure channel. If Mallory tampers with the message, she will break the tape on the envelope, and therefore break the seal. Without the key, Mallory cannot create her own seal. When Bob receives the message, he checks that the seal is untampered before unsealing the envelope and revealing the message.
 
 Most cryptographic algorithms that guarantee integrity and authenticity work as
 follows: Alice generates a _tag_ or a _signature_ on a message.  She sends the
@@ -180,7 +180,7 @@ settings.
 
 | | Symmetric-key | Asymmetric-key |
 | | :--------------------------------------- | :--------------------------------------------------- |
-| Confidentiality | Symmetric-key encryption (e.g., AES-CBC) | Public-key encryption(e.g., El Gamal, RSA encryption) |
+| Confidentiality | Block ciphers with chaining modes (e.g., AES-CBC) | Public-key encryption(e.g., El Gamal, RSA encryption) |
 | Integrity and authentication | MACs (e.g., AES-CBC-MAC) | Digital signatures (e.g., RSA signatures) |
 
 In symmetric-key encryption, Alice uses her secret key to encrypt a message, and
@@ -194,8 +194,8 @@ one except Alice and Bob should be able to learn anything about the message
 Alice is sending.
 
 In the symmetric-key setting, _message authentication codes (MACs)_ provide
-integrity and authenticity. Alice uses her secret key to generate a MAC on her
-message, and Bob uses the same secret key verify the MAC. If the MAC is valid,
+integrity and authenticity. Alice uses the shared secret key to generate a MAC on her
+message, and Bob uses the same secret key to verify the MAC. If the MAC is valid,
 then Bob can be confident that no attacker modified the message, and the message
 actually came from Alice.
 
@@ -241,12 +241,12 @@ about security principles:
 > secret, and the system should be designed to make it easy to change keys that
 > are leaked (or suspected to be leaked). If your secrets are leaked, it is
 > usually a lot easier to change the key than to replace every instance of the
-> running software. (This principle is closely related to _Don't rely on
+> running software. (This principle is closely related to _Shannon's Maxim: Don't rely on
 > security through obscurity._)
 
 Consistent with Kerckhoff's principle, we will assume that the attacker knows
 the encryption and decryption algorithms.[^1] The only information the attacker
-is missing is the secret key.
+is missing is the secret key(s).
 
 ## Threat models
 
