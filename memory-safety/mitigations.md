@@ -18,7 +18,7 @@ concerns, memory-unsafe languages such as C are still prevalent today.
 One way to ensure memory safety is to carefully reason about memory accesses in
 your code, by defining pre-conditions and post-conditions for every function you
 write and using invariants to prove that these conditions are satisfied.
-Although it is a good skill to have, this process is paintsakingly tedious and
+Although it is a good skill to have, this process is painstakingly tedious and
 rarely used in practice, so it is no longer in scope for this class. If you'd
 like to learn more, see this lecture from David Wagner:
 [video](https://www.youtube.com/watch?v=d8UGf6aWiQI),
@@ -47,7 +47,7 @@ for vulnerabilities, by subjecting your code to thorough tests. Fuzz testing, or
 testing with random inputs, testing corner cases, and using tools like 
 Valgrind (to detect memory leaks), are all excellent ways to help test your code. 
 Though it is pretty difficult to know whether you have tested your code "enough" 
-to deem it safe, there are several code-soverage tools that can help you out. 
+to deem it safe, there are several code-coverage tools that can help you out. 
 
 Sometimes you might be forced to program in a memory-unsafe language, and you
 cannot reason about every memory access in your code. For example, you might be
@@ -163,7 +163,7 @@ behaviors that we can account for using standard compiler techniques. In fact,
 so-called "ROP compilers" exist to take an existing vulnerable program and a
 desired execution flow and generate a series of return addresses.
 
-The general strategy for executing ROPs is to write a chaiin of return addresses 
+The general strategy for executing ROPs is to write a chain of return addresses 
 at the RIP to achieve the behavior that we want. Each return address should point 
 to a gadget, which is a small set of assembly instructions that already exist in memory 
 and usually end in a `ret` instruction (note that gadgets are not functions, they don't 
@@ -417,8 +417,8 @@ a constant address. Instead, the attacker has to guess the address of their
 malicious instructions. Since ASLR can shuffle all four segments of memory, 
 theoretically, certain attacks can be mitigated. By randomizing the stack, the 
 attacker cannot place shellcode on the stack without knowing the address of the 
-stack. By randomizing the heap, the attacker, similarily, cannot place shellcode 
-on the heap without knnowing the address of the heap. Finally, by randomizing the 
+stack. By randomizing the heap, the attacker, similarly, cannot place shellcode 
+on the heap without knowing the address of the heap. Finally, by randomizing the 
 code, the attacker cannot construct an ROP chain or a return-to-libc attack 
 without knowing the address of the code. 
 
