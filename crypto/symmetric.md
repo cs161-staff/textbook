@@ -122,8 +122,8 @@ algorithm Eve uses during the game must run in $$O(n^k)$$ time, for some
 constant $$k$$.
 
 _Eve only wins if she has a non-negligible advantage._ Consider a scheme where
-Eve can correctly which message was sent with probability $$1/2 + 1/1^{128}$$.
-This number is greater than $$1/2$$, but Eve's advantage is $$1/1^{128}$$, which
+Eve can correctly which message was sent with probability $$1/2 + 1/2^{128}$$.
+This number is greater than $$1/2$$, but Eve's advantage is $$1/2^{128}$$, which
 is astronomically small. In this case, we say that Eve has _negligible_
 advantage--the advantage is so small that Eve cannot use it to mount any
 practical attacks. For example, the scheme might use a 128-bit key, and Eve can
