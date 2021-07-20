@@ -33,6 +33,8 @@ color_scheme: custom
 aux_links:
   "CS 161":
     - "https://cs161.org"
+  "Dark Mode":
+    - "#"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
