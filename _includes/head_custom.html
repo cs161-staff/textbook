@@ -3,3 +3,16 @@
   async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
 ></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    let a = document.getElementsByClassName('site-button')[2];
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (jtd.getTheme() === 'dark') {
+        jtd.setTheme('default');
+      } else {
+        jtd.setTheme('dark');
+      }
+    });
+  });
+</script>
