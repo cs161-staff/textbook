@@ -1,5 +1,5 @@
 ---
-title: 36. Firewalls
+title: 35. Firewalls
 parent: Network Security
 nav_order: 11
 ---

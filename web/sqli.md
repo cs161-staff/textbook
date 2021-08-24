@@ -1,7 +1,7 @@
 ---
-title: 24. SQL Injection (SQLi)
+title: 17. SQL Injection (SQLi)
 parent: Web Security
-nav_order: 7
+nav_order: 1
 ---
 
 # SQL Injection

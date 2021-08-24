@@ -1,5 +1,5 @@
 ---
-title: 25. CAPTCHAs
+title: 24. CAPTCHAs
 parent: Web Security
 nav_order: 8
 ---

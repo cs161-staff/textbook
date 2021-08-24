@@ -1,5 +1,5 @@
 ---
-title: 35. Denial-of-Service (DoS)
+title: 34. Denial-of-Service (DoS)
 parent: Network Security
 nav_order: 10
 ---

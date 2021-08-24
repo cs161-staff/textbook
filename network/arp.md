@@ -1,5 +1,5 @@
 ---
-title: 27. ARP
+title: 26. ARP
 parent: Network Security
 nav_order: 2
 ---
