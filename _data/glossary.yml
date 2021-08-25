@@ -1,0 +1,58 @@
+---
+- term: security
+  definition: "Enforcing a desired property in the presence of an attacker"
+  chapter: "1"
+- term: threat model
+  definition: "A thread model is a model of who your attacker is and what resources they have"
+  chapter: "1"
+- term: tcb
+  definition: "TCB (Trusted Computing Base) are the components of a system that security relies upon"
+  chapter: "1"
+- term: kiss principle
+  definition: "Keep It Simple, Stupid"
+  chapter: "1"
+- term: deterrence
+  definition: "Deterrence refers to stopping the attack before it happens"
+  chapter: "1"
+- term: prevention
+  definition: "Prevention refers to stopping the attack as it happens"
+  chapter: "1"
+- term: detection
+  definition: "Detection refers to learning that there was an attack after the attack has taken place"
+  chapter: "1"
+- term: response
+  definition: "Response refers to doing something about the attack after the attack has taken place"
+  chapter: "1"
+- term: securities is economics
+  definition: "Securities is economics is a security principle that says that defenses are not free and are often less than the sum of their parts"
+  chapter: "1"
+- term: least privilege
+  definition: "Least Privilege is a security principle wherein one should consider what permissions an entity or program needs to be able to do its job correctly and only grant privileges that are needed for correct functioning and nothing more"
+  chapter: "1"
+- term: separation of responsibility
+  definition: "Separation of responsibility is a security principle wherein if you need to have a privilege, consider requiring multiple parties to work together (collude) to exercise it"
+  chapter: "1"
+- term: ensure complete mediation
+  definition: "Ensure complete mediation is a security principle wherein you ensure that every access point is monitored and protected"
+  chapter: "1"
+- term: reference monitor
+  definition: "A reference monitor is a single point through which all access must occur, like a network firewall, for example"
+  chapter: "1"
+- term: shannon’s maxim
+  definition: "Shannon’s Maxim is a security principle wherein the enemy knows the system, meaning that you should assume that the attacker knows every detail about the system you are working with"
+  chapter: "1"
+- term: know your threat model
+  definition: "Knowing your threat model is a security principle wherein you should understand your attacker, their resources, and their motivation"
+  chapter: "1"
+- term: consider human factors
+  definition: "Consider human factors is a security principle wherein if your system is unusable, it will be unused"
+  chapter: "1"
+- term: defense in depth
+  definition: "Defense in depth is a security principle wherein you should layer multiple types of defenses"
+  chapter: "1"
+- term: use fail-safe defaults
+  definition: "Use fail-safe defaults is a security principle that states you should construct systems that fail in a safe state, balancing security and usability"
+  chapter: "1"
+- term: design in security from the start
+  definition: "Design in security from the start is a security principle wherein you should consider all security principles when designing a new system, rather than patching it afterwards"
+  chapter: "1"
