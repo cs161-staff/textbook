@@ -23,11 +23,11 @@ A PDF copy of the textbook is available, divided into sections:
 
 ## Corrections
 
-As of the Summer 2021 semester, this textbook is still being actively maintained and updated.
+As of the Fall 2021 semester, this textbook is still being actively maintained and updated. Please contact [cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information regarding corrections.
 
-Updates will be recorded in the [Changelog](/changelog.html).
+## Source and Changelog
 
-Please contact [cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information regarding corrections.
+The source for the textbook and a log of all changes is [available on Github](https://github.com/cs161-staff/textbook).
 
 ## License
 
