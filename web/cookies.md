@@ -4,7 +4,7 @@ parent: Web Security
 nav_order: 4
 ---
 
-# Cookies and Session Management
+# 20. Cookies and Session Management
 
 HTTP is a stateless protocol, which means each request and response is
 independent from all other requests and responses. However, many features on the
@@ -26,7 +26,7 @@ browser will automatically attach the relevant cookies to a request and send it
 to the web server. The additional information in these cookies helps the web
 server customize its response.
 
-## Cookie Attributes
+## 20.1. Cookie Attributes
 
 Every cookie is a name-value pair. For example, a cookie `darkmode=true` has
 name `darkmode` and value `true`.
@@ -47,7 +47,7 @@ attached to each request.
   cookie.
 - The `expires` field tells the browser when to stop remembering the cookie.
 
-## Cookie Policy: Domain and Path
+## 20.2. Cookie Policy: Domain and Path
 
 The browser sends a cookie to a given URL if the cookie's `Domain` attribute is
 a domain-suffix of the URL domain, and the cookie's `Path` attribute is a prefix
@@ -68,7 +68,7 @@ Note that cookie policy uses a different set of rules than the same origin polic
 Nick wrote: "has caused problems in the path." typo? -peyrin
 {% endcomment %}
 
-## Cookie Policy: Setting Domain and Path
+## 20.3. Cookie Policy: Setting Domain and Path
 
 For security reasons, we don't want a malicious website `evil.com` to be able to
 set a cookie with domain `bank.com`, since this would allow an attacker to
@@ -95,7 +95,7 @@ restrictions.[^1]
 _Further reading:_
 [Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
 
-## Session Management
+## 20.4. Session Management
 
 Cookies are often used to keep users logged in to a website over many requests
 and responses. When a user sends a login request with a valid username and

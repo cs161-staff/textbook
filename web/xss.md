@@ -4,7 +4,7 @@ parent: Web Security
 nav_order: 6
 ---
 
-# Cross-Site Scripting (XSS)
+# 22. Cross-Site Scripting (XSS)
 
 XSS is a class of attacks where an attacker injects malicious JavaScript onto a
 webpage. When a victim user loads the webpage, the user's browser will run the
@@ -25,7 +25,7 @@ associated with Google and send them back to the attacker.
 
 There are two main categories of XSS attacks: stored XSS and reflected XSS.
 
-## Stored XSS
+## 22.1. Stored XSS
 
 In a stored XSS attack, the attacker finds a way to persistently store malicious
 JavaScript on the web server. When the victim loads the webpage, the web server
@@ -44,7 +44,7 @@ This post is now stored in Facebook's servers. If another user loads the
 attacker's posts, they will receive an HTML page with this script on it, and the
 browser will run the script and trigger a pop-up that says `XSS attack!`
 
-## Reflected XSS
+## 22.2. Reflected XSS
 
 In a reflected XSS attack, the attacker finds a vulnerable webpage where the
 server receives user input in an HTTP request and displays the user input in the
@@ -74,7 +74,7 @@ attack!")</script>`. When the victim loads this URL, Google will return
 The victim's browser will run the script and trigger a pop-up that says `XSS
 attack!`
 
-## Defense: Sanitize Input
+## 22.3. Defense: Sanitize Input
 
 A good defense against XSS is checking for malicious input that might cause
 JavaScript to run, such as `<script>` tags. However, it is very difficult to
@@ -113,7 +113,7 @@ as HTML.
 Fortunately, there is a standardized set of sanitizations that is known to be
 robust.
 
-## Defense: Content Security Policy
+## 22.4. Defense: Content Security Policy
 
 Another XSS defense is using a content security policy (CSP) that specifies a
 list of allowed domains where scripts can be loaded from.  For example,

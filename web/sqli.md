@@ -1,12 +1,12 @@
 ---
-title: 17. SQL Injection (SQLi)
+title: 17. SQL Injection
 parent: Web Security
 nav_order: 1
 ---
 
-# SQL Injection
+# 17. SQL Injection
 
-## Code Injection
+## 17.1. Code Injection
 
 SQL injection is a special case of a more broad category of attacks called code
 injections.
@@ -37,7 +37,7 @@ The general idea behind these attacks is that a web server uses user input as
 part of the code it runs. If the input is not properly checked, an attacker
 could create a special input that causes unintended code to run on the server.
 
-## SQL Injection Example
+## 17.2. SQL Injection Example
 
 Many modern web servers use SQL databases to store information such as user
 logins or uploaded files. These servers often allow users to interact with the
@@ -94,7 +94,7 @@ like
 If interpreted as code, this causes the query to return the password for the
 `admin` user!
 
-## SQL Injection Strategies
+## 17.3. SQL Injection Strategies
 
 Writing a malicious input that creates a syntactically valid SQL query can be
 tricky. Let's break down each part of the malicious input from the previous
@@ -222,7 +222,7 @@ Thus, another malicious username and password is
 _Further reading:_ [SQL Injection Attacks by
 Example](http://www.unixwiz.net/techtips/sql-injection.html)
 
-## Defense: Escape Inputs
+## 17.4. Defense: Escape Inputs
 
 One way of defending against SQL injection is to escape any potential input that
 could be used in an attack. Escaping a character means that you tell SQL to
@@ -264,7 +264,7 @@ statements with raw user input, escapers are often an ineffective solution,
 because you need to ensure that every call is properly escaped. A far more
 robust solution is to use parameterized SQL.
 
-## Defense: Parameterized SQL/Prepared Statements
+## 17.5. Defense: Parameterized SQL/Prepared Statements
 
 A better defense against SQL injection is to use parameterized SQL or prepared
 statements. This type of SQL compiles the query first, and then plugs in user

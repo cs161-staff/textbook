@@ -4,7 +4,9 @@ parent: Web Security
 nav_order: 5
 ---
 
-# Cross-Site Request Forgery (CSRF)
+# 21. Cross-Site Request Forgery (CSRF)
+
+## CSRF Attacks
 
 Using cookies and session tokens to keep a user logged in has some associated
 security risks. In a cross-site request forgery (CSRF) attack, the attacker
@@ -59,7 +61,7 @@ input values that transfer \$100 to Mallory. Like before, the victim's browser
 automatically attaches the session token to the request, so the server accepts
 this POST request as if it was from the victim.
 
-## Defense: CSRF Token
+## 21.2. Defense: CSRF Token
 
 A good defense against CSRF attacks is to include a CSRF token on webpages. When
 a legitimate user loads a webpage from the server with a form, the server will
@@ -83,7 +85,7 @@ could try querying the server for a CSRF token, but it would not properly map to
 the victim's session token, because the victim never requested the form
 legitimately.
 
-## Defense: Referer Validation
+## 21.3. Defense: Referer Validation
 
 Another way to defend against CSRF tokens is to check the Referer[^1] field in
 the HTTP header. When a browser issues an HTTP request, it includes a Referer

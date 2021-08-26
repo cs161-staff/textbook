@@ -4,7 +4,7 @@ parent: Web Security
 nav_order: 3
 ---
 
-# Same-Origin Policy
+# 19. Same-Origin Policy
 
 Browsing multiple webpages poses a security risk. For example, if you have a
 malicious website (`www.evil.com`) and Gmail (`www.gmail.com`) open, you don't
@@ -15,7 +15,7 @@ Modern web browsers defend against these attacks by enforcing the same-origin
 policy, which isolates every webpage in your browser, except for when two
 webpages have the same origin.
 
-## Origins
+## 19.1. Origins
 
 The origin of a webpage is determined by its protocol, domain name, and port.
 For example, the following URL has protocol `http`, domain name
@@ -50,7 +50,7 @@ This means `http://wikipedia.org` has the same origin as
 `http://wikipedia.org:80`, but it does not have the same origin as
 `http://wikipedia.org:81`.
 
-## Exceptions
+## 19.2. Exceptions
 
 In general, the origin of a webpage is defined by its URL. However, there are a
 few exceptions to this rule:

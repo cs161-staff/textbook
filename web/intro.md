@@ -1,12 +1,12 @@
 ---
-title: 18. Introduction to Web
+title: 18. Introduction to the Web
 parent: Web Security
 nav_order: 2
 ---
 
-# Intro to the Web
+# 18. Introduction to the Web
 
-## URLs
+## 18.1. URLs
 
 Every resource (webpage, image, PDF, etc.) on the web is identified by a URL
 (Uniform Resource Locator). URLs are designed to describe exactly where to find
@@ -99,7 +99,7 @@ where <code style="color: blue">http</code> is the protocol,
 _Further reading:_ [What is a
 URL?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL)
 
-# HTTP
+## 18.2. HTTP
 
 The protocol that powers the World Wide Web is the Hypertext Transfer Protocol,
 abbreviated as HTTP. It is the language that clients use to communicate with
@@ -108,7 +108,7 @@ be able to provide you with a full overview of HTTP, this section is meant to
 get you familiar with several aspects of the protocol that are important to
 understanding web security.
 
-## The Request-Response Model
+## 18.3. HTTP: The Request-Response Model
 
 Fundamentally, HTTP follows a request-response model, where clients (such as
 browsers) must actively start a connection to the server and issue a request,
@@ -129,7 +129,7 @@ For all requests, the server generates and sends a response. The response
 includes a series of headers and, in the payload, the body of the data
 requested.
 
-## Structure of a Request
+## 18.4. HTTP: Structure of a Request
 
 Below is a very simple HTTP request.
 
@@ -162,7 +162,7 @@ username=alice@foo.com&password=12345678
 Here, we have a couple more headers and a different request type: the POST
 request.
 
-## GET vs. POST
+## 18.5. HTTP: GET vs. POST
 
 While there are quite a few methods for requests, the two types that we will
 focus on for this course are GET requests and POST requests. GET requests are
@@ -189,7 +189,7 @@ Dnt: 1
 In this case, there are two query parameters, `search` and `sortby`, which have
 values of `security` and `popularity`, respectively.
 
-# Elements of a Webpage
+## 18.6. Elements of a Webpage
 
 The HTTP protocol is designed to return arbitrary files. The response header
 usually specifies a [media type](https://en.wikipedia.org/wiki/Media_type) that
@@ -205,7 +205,7 @@ performs some server-side computation and generates and sends an HTTP response.
 Then, the browser performs some browser-side computation on the HTTP response
 and displays the result to the user.
 
-## HTML
+## 18.7. Elements of a Webpage: HTML
 
 HTML (Hypertext Markup Language) lets us create structured documents with
 paragraphs, links, fillable forms, and embedded images, among other features.
@@ -229,7 +229,7 @@ this, modern browsers enforce frame isolation, which means the outer page cannot
 change the contents of the inner page, and the inner page cannot change the
 contents of the outer page.
 
-## CSS
+## 18.8. Elements of a Webpage: CSS
 
 CSS (Cascading Style Sheets) lets us modify the appearance of an HTML page by
 using different fonts, colors, and spacing, among other features. You are not
@@ -238,7 +238,7 @@ powerful as JavaScript when used maliciously. If an attacker can force a victim
 to load some malicious CSS, this is functionally equivalent to the attacker
 forcing the victim to load malicious JavaScript.
 
-## JavaScript
+## 18.9. Elements of a Webpage: JavaScript
 
 JavaScript is a programming language that runs in your browser. It is a very
 powerful language--in general, you can assume JavaScript can arbitrarily modify

@@ -4,7 +4,9 @@ parent: Web Security
 nav_order: 8
 ---
 
-# CAPTCHAs
+# 24. CAPTCHAs
+
+## 24.1. Using CAPTCHAs
 
 Consider the following scenario: you've created a website that allows users to
 upload a picture. Your server will scan the picture for text using a
@@ -30,7 +32,7 @@ etc. A more recent example you may be familiar with is Google's reCAPTCHA
 algorithm, which shows you some images and asks you to identify the objects in
 the pictures (e.g. "Select all images with boats.")
 
-## Issues with CAPTCHAs
+## 24.2. Issues with CAPTCHAs
 
 There's an inherent arms race present here: as solving algorithms get better,
 our defense deteriorates. The reason why CAPTCHAs have gotten so much harder
