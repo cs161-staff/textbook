@@ -6,7 +6,7 @@ nav_order: 5
 
 # 21. Cross-Site Request Forgery (CSRF)
 
-## CSRF Attacks
+## 21.1. CSRF Attacks
 
 Using cookies and session tokens to keep a user logged in has some associated
 security risks. In a cross-site request forgery (CSRF) attack, the attacker
