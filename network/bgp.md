@@ -4,9 +4,9 @@ parent: Network Security
 nav_order: 5
 ---
 
-# IP Routing: BGP
+# 29. IP Routing: BGP
 
-## Cheat sheet
+## 29.1. Cheat sheet
 
 - Layer: 3 (inter-network)
 
@@ -17,7 +17,7 @@ nav_order: 5
 
 - Defense: Accept as a fact of life and rely on higher layers
 
-## Networking background: Subnets
+## 29.2. Networking background: Subnets
 
 Recall that IP addresses uniquely identify a single machine on the global
 network. (With NAT, the address could correspond to multiple machines, but this
@@ -63,7 +63,7 @@ is located within the AS. If the final destination is within the AS, it routes
 the packet directly to the final destination. Otherwise, it must forward the
 packet to another AS that is closer to the final destination.
 
-## Protocol: BGP
+## 29.3. Protocol: BGP
 
 Routing between ASs on the Internet is determined by BGP (the Border Gateway
 Protocol). BGP operates by having each AS advertise which networks it is
@@ -75,7 +75,7 @@ between two advertisements, it will generally select the shortest path. Actual
 BGP path selection is a fair bit more complicated than described here, but is
 out of scope for this class (take CS 168 to learn more).
 
-## Attack: Malicious ASs
+## 29.4. Attack: Malicious ASs
 
 The biggest problem with BGP is that it operates on trust, assuming that all ASs
 are effectively honest. Thus an AS can lie and say that it is responsible for a
@@ -89,7 +89,7 @@ lower layers usually include checksums or CRC checks designed to detect
 corrupted packets. Sanity check: Why do the checksums not prevent a malicious AS
 from modifying packets?[^2]
 
-## Defenses
+## 29.5. Defenses
 
 In practice, there's not much anyone can do to defend against a malicious AS,
 since each AS operates relatively independently. Instead, we rely on protocols

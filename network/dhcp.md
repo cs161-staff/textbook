@@ -4,9 +4,9 @@ parent: Network Security
 nav_order: 4
 ---
 
-# DHCP
+# 28. DHCP
 
-## Cheat sheet
+## 28.1. Cheat sheet
 
 - Layer: 2-3 (see below)
 
@@ -17,7 +17,7 @@ nav_order: 4
 
 - Defense: Accept as a fact of life and rely on higher layers
 
-## Protocol: DHCP
+## 28.2. Protocol: DHCP
 
 **DHCP** (**Dynamic Host Configuration Protocol**) is responsible for setting up
 configurations when a computer first joins a local network. These settings
@@ -60,7 +60,7 @@ broadcast so that if multiple servers made offers in step 2, all the servers
 know which one has been chosen. Sanity check: why must client discover be
 broadcast?[^1]
 
-## Networking background: NAT
+## 28.3. Networking background: NAT
 
 Because there are more computers than IPv4 addresses on the modern Internet, and
 not all networks support IPv6 (expanded address space) yet, DHCP supports **NAT
@@ -83,7 +83,7 @@ message to the original computer on the local network. With NAT, the router
 could potentially use a single valid IP address to send packets on behalf of
 every computer on the local network.
 
-## Attack
+## 28.4. Attack
 
 The attack on DHCP is almost identical to ARP spoofing. At the server offer
 step, an attacker can send a forged configuration, which the client will accept
@@ -95,7 +95,7 @@ attacker can also become a man-in-the-middle by manipulating the DNS server
 address, which lets the attacker supply malicious translations between
 human-readable host names (www.google.com) and IP addresses (6.6.6.6).
 
-## Defenses
+## 28.5. Defenses
 
 In reality, many networks just accept DHCP spoofing as a fact of life and rely
 on the higher layers to defend against attackers (the general idea: if the

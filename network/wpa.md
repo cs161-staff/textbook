@@ -4,9 +4,9 @@ parent: Network Security
 nav_order: 3
 ---
 
-# Wireless Local Networks: WPA2
+# 27. Wireless Local Networks: WPA2
 
-## Cheat sheet
+## 27.1. Cheat sheet
 
 - Layer: Link (2)
 
@@ -18,7 +18,7 @@ nav_order: 3
 
 - Defense: WPA2-Enterprise
 
-## Networking background: WiFi
+## 27.2. Networking background: WiFi
 
 Another implementation of the link layer is WiFi, which wirelessly connects
 machines in a LAN. Because it wireless connections over cellular networks, WiFi
@@ -38,7 +38,7 @@ the network, and all data is transmitted without encryption. This means that
 anybody else on the same network can see your traffic and inject packets, like
 in ARP spoofing.
 
-## Protocol
+## 27.3. Protocol
 
 **WPA2-PSK (WiFi Protected Access: Pre-Shared Key)** is a protocol that enables
 secure communications over a WiFi network by encrypting messages with
@@ -107,7 +107,7 @@ practice](/assets/images/network/wpa/wpa2-real.png)
 4. The client sends an ACK to indicate that it successfully received the GTK, as
    before.
 
-## Attacks
+## 27.4. Attacks
 
 In the WPA2 handshake, everything except the GTK is sent unencrypted. Recall
 that the PTK is derived with the two nonces, the PSK, and the MAC addresses of
@@ -126,7 +126,7 @@ PTK, and checks if that PTK is consistent with the MICs. If the WiFi password is
 low-entropy, an attacker with enough compute power can brute-force the password
 and learn the PTK.
 
-## Defenses: WPA2-Enterprise
+## 27.5. Defenses: WPA2-Enterprise
 
 The main problem leading to the attacks in the previous section is that every
 user on the network uses the same secrecy (the WiFi password) to derive private

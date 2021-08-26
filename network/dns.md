@@ -4,11 +4,7 @@ parent: Network Security
 nav_order: 8
 ---
 
-TODO: There are two main sections in this: DNS and DNS security. Think about
-splitting them and organizing sections more nicely and uniformly (and the same
-goes for every other section, too). ~NN 2021-05-22
-
-# DNS
+# 32. DNS
 
 The Internet is commonly indexed in two different ways. Humans refer to websites
 using human-readable names such as `google.com` and `eecs.berkeley.edu`, while
@@ -16,7 +12,7 @@ computers refer to websites using IP addresses such as `172.217.4.174` and
 `23.195.69.108`. **DNS**, or the **Domain Name System**, is the protocol that
 translates between the two.
 
-## Name servers
+## 32.1. Name servers
 
 It would be great if there was single server that stored a mapping from every
 domain to every IP address that everyone could query, but unfortunately, there
@@ -40,7 +36,7 @@ address (e.g. `192.5.6.30`). Be careful not to confuse the domain name with the
 zone. For example, this name server has `.net` in its domain, but it responds to
 DNS requests for `.edu` domains.
 
-## Name server hierarchy
+## 32.2. Name server hierarchy
 
 You might notice two problems with this design. First, the `.com` zone may be
 smaller than the entire Internet, but it is still impractical for one name
@@ -126,7 +122,7 @@ recursive resolver and the name server.
 Congratulations, you now understand how DNS translates domains to IP addresses!
 The rest of this section describes the specific implementation details of DNS.
 
-## DNS Message Format
+## 32.3 DNS Message Format
 
 Since every website lookup must start with a DNS query, DNS is designed to be
 very lightweight and fast - it uses UDP (best-effort packets, no TCP handshakes)
@@ -209,7 +205,7 @@ of four categories (question, answer, authority, additional), and each record
 contains a type, a key, and a value. There are A type records and NS type
 records.
 
-## DNS Lookup
+## 32.4. DNS Lookup
 
 Now, let's walk through a real DNS query for the IP address of
 `eecs.berkeley.edu`. You can try this at home with the [`dig`
@@ -338,9 +334,7 @@ helps speed up DNS, because fewer packets need to be sent across the network to
 translate a domain name to an IP address. Caching also helps reduce request load
 on the highest-level name servers.
 
-# DNS Security
-
-## Bailiwick
+## 32.5. DNS Security: Bailiwick
 
 DNS is insecure against a malicious name server. For example, if a
 `berkeley.edu` name server was taken over by an attacker, it could send answer
@@ -369,7 +363,7 @@ server can only provide records for domains under `berkeley.edu` (not
 under `.edu` (not `google.com`), and the root name servers can provide records
 for anything.
 
-## On-path attackers and off-path attackers
+## 32.6. DNS Security: On-path attackers and off-path attackers
 
 Against an on-path attacker, DNS is completely insecure - everything is sent
 over plaintext, so an attacker can read the request, construct a malicious
@@ -388,7 +382,7 @@ Kaminsky discovered a flaw in the DNS protocol in 2008. This attack was so
 severe that Kaminsky was awarded with a [Wikipedia
 article](https://en.wikipedia.org/wiki/Dan_Kaminsky).
 
-## Kaminsky attack
+## 32.7. DNS Security: Kaminsky attack
 
 The Kaminsky attack relies on querying for nonexistent domains. Remember that
 the legitimate response for a nonexistent domain is an `NXDOMAIN` status with no

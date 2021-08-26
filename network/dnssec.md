@@ -4,13 +4,13 @@ parent: Network Security
 nav_order: 9
 ---
 
-# DNSSEC
+# 33. DNSSEC
 
 **DNSSEC** is an extension to regular DNS that provides integrity and
 authentication on all DNS messages sent. Sanity check: Why do we not care about
 the confidentiality of DNSSEC?[^1]
 
-## Signing records
+## 33.1. Signing records
 
 We want every DNS record to have integrity and authenticity, and we want
 everyone to be able to verify the integrity and authenticity of records. Digital
@@ -34,7 +34,7 @@ You might see a flaw in this design: what if a name server is malicious? Then
 the malicious name server could return valid signatures on malicious records.
 How do we modify our design to prevent this?
 
-## Delegating trust
+## 33.2. Delegating trust
 
 The main issue in our design so far is we lack a _trust anchor_. We want DNSSEC
 to defend against malicious name servers, so we cannot implicitly trust the name
@@ -76,7 +76,7 @@ so now we trust `.edu`. Next, `.edu` signs `berkeley.edu`'s public key. We trust
 `.edu`, and `.edu` signed `berkeley.edu`'s public key, so now we trust
 `berkeley.edu`.
 
-## DNSSEC Intuition
+## 33.3. DNSSEC Intuition
 
 With these ideas in mind, let's revisit the DNS query for `eecs.berkeley.edu`
 from earlier and convert it to a secure DNSSEC query. _The DNSSEC additions are
@@ -122,7 +122,7 @@ trusted.
 Congratulations, you now have all the intuition for how DNSSEC works! The rest
 of this section shows how we implement this design in DNS.
 
-## New DNSSEC record types
+## 33.4. New DNSSEC record types
 
 To store cryptographic information in DNS messages, we need to introduce a few
 new record types.
@@ -172,7 +172,7 @@ flags (e.g. the `DO` flag requests DNSSEC information), but in order to be
 backwards-compatible with regular DNS, the section is encoded as an additional
 record when sent in the request and the reply.
 
-## Key Signing Keys and Zone Signing Keys
+## 33.5. Key Signing Keys and Zone Signing Keys
 
 There is one final complication in DNSSEC--what if a name server wants to change
 its key pair? A key change is necessary if, for example, an attacker steals the
@@ -247,7 +247,7 @@ Verification would proceed as follows.
 - Dark orange: We trust `berkeley.edu`'s ZSK. `berkeley.edu`'s ZSK signs the
   final answer record (14-15), so now we trust the final answer.
 
-## DNSSEC query walkthrough
+## 33.6. DNSSEC query walkthrough
 
 Now we're ready to see a full DNSSEC query in action. As before, you can try
 this at home with the [`dig`
@@ -439,7 +439,7 @@ This response has the final answer `A` type record and a signature on the final
 answer. Because we trust the `berkeley.edu` name server's ZSK (from the previous
 part), we also trust the final answer.
 
-## Nonexistent domains
+## 33.7. Nonexistent domains
 
 Remember that DNS is designed to be fast and lightweight. However, public-key
 cryptography is slow, because it requires math. As a result, name servers that

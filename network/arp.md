@@ -4,9 +4,9 @@ parent: Network Security
 nav_order: 2
 ---
 
-# Wired Local Networks: ARP
+# 26. Wired Local Networks: ARP
 
-## Cheat sheet
+## 26.1. Cheat sheet
 
 - Layer: Link (2)
 
@@ -40,7 +40,7 @@ removed: where the bytes of the MAC come from -peyrin
 
 {% endcomment %}
 
-## Networking background: Ethernet
+## 26.2. Networking background: Ethernet
 
 Recall that on a LAN (local-area network), all machines are connected to all
 other machines. Ethernet is one particular LAN implementation that uses wires to
@@ -60,7 +60,7 @@ introduce any traffic they desire by simply sending packets with a spoofed MAC
 address. Sanity check: what type of adversary does this make someone on the same
 LAN network as a victim?[^1]
 
-## Protocol: ARP
+## 26.3. Protocol: ARP
 
 **ARP**, the **Address Resolution Protocol**, translates Layer 3 IP addresses
 into Layer 2 MAC addresses.
@@ -82,7 +82,7 @@ MAC address.
 Any received ARP replies are always cached, even if no broadcast request (step
 1) was ever made.
 
-## Attack: ARP Spoofing
+## 26.4. Attack: ARP Spoofing
 
 Because there is no way to verify that the reply in step 2 is actually from Bob,
 it is easy to attack this protocol. If Mallory is able to create a spoofed reply
@@ -99,7 +99,7 @@ response must arrive faster than the legitimate response to fool the victim.
 This is a common pattern for on-path attackers, who cannot block the legitimate
 response and thus must race to send their response first.
 
-## Defenses: Switches
+## 26.5. Defenses: Switches
 
 A simple defense against ARP spoofing is to use a tool like arpwatch, which
 tracks the IP address to MAC address pairings across the LAN and makes sure

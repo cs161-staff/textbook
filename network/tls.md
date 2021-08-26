@@ -4,7 +4,7 @@ parent: Network Security
 nav_order: 7
 ---
 
-# TLS
+# 31. TLS
 
 **TLS** (**Transport Layer Security**) is a protocol that provides an end-to-end
 encrypted communication channel. (You may sometimes see **SSL**, which is the
@@ -25,7 +25,7 @@ TLS relies on TCP to guarantee that messages are delivered reliably in the
 proper order. From the application viewpoint, TLS is effectively just like a TCP
 connection with additional security guarantees.
 
-## TLS Handshake
+## 31.1. TLS Handshake
 
 ![Diagram of the first part of the TLS handshake, from the ClientHello to the
 server certificate presentation](/assets/images/network/tls/tls1.png)
@@ -147,7 +147,7 @@ encryption and integrity keys of the sender before being sent. Because these
 messages have full confidentiality and integrity, TLS has achieved end-to-end
 security between the client and the server.
 
-## Replay attacks
+## 31.2. Replay attacks
 
 Recall that a **replay attack** involves an attacker recording old messages and
 sending them to the server. Even though the attacker doesn't know what these
@@ -170,7 +170,7 @@ What about a replay attack within the same connection? In practice, messages
 sent over TLS usually include some counter or timestamp so that an attacker
 cannot record a TLS message and send it again within the same connection.
 
-## TLS in practice
+## 31.3. TLS in practice
 
 The biggest advantage and problem of TLS is the certificate authorities. "Trust
 does not scale", that is, you personally can't make trust decisions about

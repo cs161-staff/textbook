@@ -4,7 +4,7 @@ parent: Network Security
 nav_order: 12
 ---
 
-# Intrusion Detection
+# 36. Intrusion Detection
 
 In this class, we've talked about many ways to prevent attacks, but not all
 defenses are perfect, and attacks will often slip through our defenses. How do
@@ -16,13 +16,13 @@ network is connected to the Internet with a router (recall that all requests
 from the local network to the wider Internet will pass through this router). How
 can we detect attacks on this network?
 
-## Types of detectors
+## 36.1. Types of detectors
 
 There are three broad types of detectors. The main difference in implementation
 is where on the network these detectors are installed. Each type of detector has
 its advantages and drawbacks.
 
-### Network Intrusion Detection System (NIDS)
+## 36.2. Types of detectors: Network Intrusion Detection System (NIDS)
 
 A NIDS (network intrusion detection system) is installed between the router and
 the internal network. This means that all requests to and from the outside
@@ -88,7 +88,7 @@ since it compromises the security of private keys and the security guarantees of
 NIDS, and it may allow network analysts to see sensitive information that only
 the end hosts should see.
 
-### Host-based Intrusion Detection System (HIDS)
+## 36.3. Types of detectors: Host-based Intrusion Detection System (HIDS)
 
 A HIDS (host-based intrusion detection system) is installed directly on the end
 hosts. For example, antivirus software might be considered a HIDS, because it is
@@ -119,7 +119,7 @@ understand the contents of the end request. The HIDS would also need to reason
 about how the underlying filesystem interprets the contents of the end request.
 This can lead to further parsing inconsistencies and evasion attacks.
 
-### Logging
+## 36.4. Types of detectors: Logging
 
 A third approach to intrusion detection is logging. Most modern web servers
 generate logs with information such as what web requests have been made, what
@@ -143,7 +143,7 @@ In terms of cost, logging is usually cheap, because web servers already have
 built-in logging mechanisms. The only overhead is occasionally running an
 external script on those logs to search for evidence of attacks.
 
-## False Positives and False Negatives
+## 36.5. False Positives and False Negatives
 
 There are two ways a detector can go wrong. A _false negative_ occurs when an
 attack happens but the detector incorrectly reports that there is no attack. A
@@ -193,14 +193,14 @@ positives that it becomes impractical to manually review every single false
 positive. For more information on this phenomenon, read about the [base rate
 fallacy](https://en.wikipedia.org/wiki/Base_rate_fallacy).
 
-## Strategies of detectors
+## 36.6. Detection strategies
 
 So far, we've talked about how detectors are installed and how to measure their
 effectiveness, but we haven't talked about how the detector actually analyzes
 network traffic to detect an attack. There are four main strategies for
 detecting an attack, each with their benefits and drawbacks.
 
-### Signature-based detection
+## 36.7. Detection strategies: Signature-based detection
 
 **The idea**: Look for activity that matches the structure of a known attack.
 
@@ -228,7 +228,7 @@ Cons:
   enough that the signature no longer matches. If the signature detector is too
   simple, it's easy to modify the attack slightly to circumvent the detector.
 
-### Anomaly-based detection
+## 36.8. Detection strategies: Anomaly-based detection
 
 **The idea**: Develop a model of what normal activity looks like. Flag any
 activity that deviates from normal activity.
@@ -260,7 +260,7 @@ Cons:
 In general, anomaly-based behavior is mostly studied in academic papers but not
 widely deployed as a detection strategy.
 
-### Specification-based detection
+## 36.9. Detection strategies: Specification-based detection
 
 **The idea**: Manually specify what normal activity looks like. Flag any
 activity that deviates from normal activity.
@@ -288,7 +288,7 @@ Cons:
 - It's very time-consuming to manually write specifications for every
   application.
 
-### Behavioral detection
+## 36.10: Detection strategies: Behavioral detection
 
 **The idea**: Look for evidence of compromise.
 

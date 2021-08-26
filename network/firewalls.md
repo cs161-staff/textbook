@@ -4,9 +4,9 @@ parent: Network Security
 nav_order: 11
 ---
 
-# Firewalls
+# 35. Firewalls
 
-## Introduction to Controlling Network Access
+## 35.1. Introduction to Controlling Network Access
 
 Suppose you are given a machine and asked to harden it against external attacks. How would you go about doing it?
 
@@ -21,7 +21,7 @@ Now, all we need to know to implement a firewall is:
 1. What is our _security policy_? Namely, which network services should be made visible to the outside world and which should be blocked? How do we discern insiders from outsiders?
 2. How will we _enforce the security policy_? How do we build a firewall that does what we want it to do and what are the implementation issues?
 
-## Security Policy
+## 35.2. Security Policy
 
 If you wanted to visualize the topology of the internal network, you could think about having an internal network, which hosts all of the company’s machines, the external world, which is the rest of the internet, and a communications link between the two. 
 
@@ -48,7 +48,7 @@ As such, a majority of well-implemented firewalls implement a default-deny syste
 
 To identify network services, recall that TCP and UDP connections can be uniquely identified by the machine’s IP address and port number. Therefore, we can identify each network service with a triplet $$(m, r, p)$$, where $$m$$ is the IP address of a machine, $$r$$ is the protocol identifier (i.e. TCP or UDP), and $$p$$ is the port number. For instance, the company might have its official web server hosted on machine 1.2.3.4, and then (1.2.3.4, TCP, 80) would be added to the allowed list. In a default-deny policy, the list of network services that should be externally visible would be represented as a set of these triplets.
 
-## Enforcement: Stateful Packet Filters
+## 35.3. Enforcement: Stateful Packet Filters
 
 The main idea behind enforcing security policies is to do so at a choke point in the network. The existence of a central choke point gives us a single place to monitor, where we can easily enforce a security policy on thousands of machines with minimal effort. This idea of a choke point is similar to that of physical security; at an airport, for example, all passengers are funneled through a security checkpoint where access can be controlled. It is easier to perform such checks at one, or a few, checkpoints rather than hundreds or even thousands of entrances. 
 
@@ -64,7 +64,7 @@ This ruleset allows anyone to open a TCP connection to port 25 on machine 1.2.3.
 
 A stateful packet filter maintains state, meaning that it keeps track of all open connections that have been established. When a packet is processed, the filter allows the firewall to check whether the packet is part of a connection that is already open. If it is, then the packet can be forwarded. Without state, it is harder to know how to handle the packet; for example, if we see a packet that is going from X to Y, we don’t know if the packet was on a connection that was initiated by X or by Y, the answer to which might determine whether or not the packet is allowed to be forwarded. By keeping state, stateful packet filters allow policies that inspect the data, like for example, a policy that blocks any attempt to log into an FTP server with the username “root”. However, stateful packet filters must be written extremely carefully to ensure that it only keeps a small amount of information per connection to ensure that the firewall does not run out of memory. 
 
-## Enforcement: Other Firewalls
+## 35.4. Enforcement: Other Firewalls
 
 _Stateless packet filters_ tend to operate on the network level and generally only look at TCP, UDP, and IP headers. In contrast to stateful packet filters, stateless packet filters do not keep any state, meaning that each packet is handled as it arrives, with no memory or history retained by the firewall. 
 
@@ -73,7 +73,7 @@ _Application-layer firewalls_ restrict traffic according to the content of the d
 Rather than simply inspecting traffic, we can also build firewalls that participate in application layer exchanges. For example, we can introduce a web proxy in a network and configure all local systems to use it for their web access. The local web browsers would then connect to the proxy rather than directly to remote web servers, and the proxy would in turn make the actual remote request. A major benefit of this design is that we can include monitoring in the proxy that has available for its decision-making all of the application-layer information associated with a given request and reply, so we can make fine-grained allow/deny decisions based on a wealth of information. This sort of design isn’t specific to web proxies but can be done for many different types of applications. The general term is an application proxy or gateway proxy. One difficulty with using this approach, however, is implementation complexity. The application proxy needs to understand all of the details of the application protocol that it mediates. Another potential issue concerns performance. If we bottleneck all of the site’s outbound traffic through just a few proxy systems, they may be overwhelmed by the load.
 
 
-## Firewall Principles
+## 35.5. Firewall Principles
 
 In general, the mechanism that enforces an access control policy often takes the form of a reference monitor. The purpose of a reference monitor is to examine every request to access any controlled resource (an “object”) and determine whether that request should be allowed.
 
@@ -90,13 +90,13 @@ We can recognize a firewall as an instance of a reference monitor. How are these
 
 Finally, firewalls also embody _orthogonal security_ meaning that it can be deployed to protect pre-existing legacy systems much more easily than other security mechanisms that have to be integrated with the rest of the system. A reference monitor that filters the set of requests, dropping unallowed requests but allowing allowed requests to pass through unchanged, is essentially transparent to the rest of the system: other components do not need to be aware of the presence of the reference monitor. 
 
-## Firewall Advantages
+## 35.6. Firewall Advantages
 
 - Central control: A firewall provides a single point of control. When security policies change, only the firewall has to be updated; we do not have to touch individual machines. For instance, when a new threat to an Internet service is discovered, it is often possible to very quickly block it by modifying the firewall’s security policy slightly, and all internal machines benefit from this protection. This makes it easier to administer, control, and update the security policy for an entire organization. 
 - Easy to deploy: Because firewalls are essentially transparent to internal hosts, there is an easy migration path, and they are easy to deploy (incrementally, or all at once). Because one firewall can protect thousands of machines, they provide a huge amount of leverage. 
 - Solve an important problem: Firewalls address a burning problem. Security vulnerabilities in network services are rampant. In principle, a better response might be to clean up the quality of the code in our network services; but that is an enormous challenge, and firewalls are much cheaper.
 
-## Firewall Disadvantages
+## 35.7. Firewall Disadvantages
 
 - Loss of functionality: The very essence of the firewalls concept involves turning off functionality, and often users miss the disabled functionality. Some applications don’t work with firewalls. For instance, peer-to-peer networks have big problems: if both users are behind firewalls, then when one user tries to connect to another user, the second user’s firewall will see this as an inbound connection and will usually block it. The observation underlying firewalls is that connectivity begets risk, and firewalls are all about managing risk by reducing connectivity from the outside world to internal machines. It should be no surprise that reducing network connectivity can reduce the usefulness of the network.
 - The malicious insider problem: Firewalls make the assumption that insiders are trusted. This gives internal users the power to violate your security policy. Firewalls are usually used to establish a security perimeter between the inside and outside world. However, if a malicious party breaches that security perimeter in any way, or otherwise gains control of an inside machine, then the malicious party becomes trusted and can wreak havoc, because inside machines have unlimited power to attack other inside machines. For this reason, Bill Cheswick called firewalled networks a “crunchy outer coating, with a soft, chewy center.” There is nothing that the firewall can do once a bad guy gets inside the security perimeter. We see this in practice. For example, laptops have become a serious problem. People take their laptop on a trip with them, connect to the Internet from their hotel room (without any firewall), get infected with malware, then bring their laptop home and connect it to their company’s internal network, and the malware proceeds to infect other internal machines. 

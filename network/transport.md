@@ -4,9 +4,9 @@ parent: Network Security
 nav_order: 6
 ---
 
-# Transport Layer: TCP, UDP
+# 30. Transport Layer: TCP, UDP
 
-## Cheat sheet
+## 30.1. Cheat sheet
 
 - Layer: 4 (transport)
 
@@ -20,7 +20,7 @@ nav_order: 6
 - Defense: Rely on cryptography at a higher layer (TLS). Use randomly generated
   sequence numbers to stop off-path attackers.
 
-## Networking background: Ports
+## 30.2. Networking background: Ports
 
 Recall that IP, the layer 3 (inter-network) protocol, is a best-effort protocol,
 meaning that packets can be corrupted, reordered, or dropped entirely. Also, IP
@@ -50,7 +50,7 @@ reliable, in-order packet delivery, while UDP does not. Both protocols use port
 numbers to support communication between processes. The choice of protocol
 depends on the context of the application.
 
-## Protocol: UDP
+## 30.3. Protocol: UDP
 
 **UDP (user datagram protocol)** is a best-effort transport layer protocol. With
 UDP, applications send and receive discrete packets, and packets are not
@@ -69,7 +69,7 @@ TODO: This diagram can be better. ~NN
 | Source port | Destination port |
 | Length | Checksum |
 
-## Protocol: TCP
+## 30.4. Protocol: TCP
 
 **TCP (Transmission Control Protocol)** is a reliable, in-order,
 connection-based stream protocol. In TCP, a client first establishes a
@@ -202,7 +202,7 @@ connection." Unlike FIN packets, RST packets are not acknowledged. A RST usually
 indicates something went wrong, such as a program crashing or abruptly
 terminating a connection.
 
-## Tradeoffs between TCP and UDP
+## 30.5. Tradeoffs between TCP and UDP
 
 TCP is slower than UDP, because it requires a 3-way handshake at the start of
 each connection, and it will wait indefinitely for dropped packets to resent.
@@ -213,7 +213,7 @@ extremely short response times, so it uses UDP instead of TCP at the transport
 layer. Video games and voice applications often use UDP because it is better to
 just miss a request than to stall everything waiting for a retransmission.
 
-## Attack: TCP Packet Injection
+## 30.6. Attack: TCP Packet Injection
 
 The main attack in TCP is **packet injection**. The attacker spoofs a malicious
 packet, filling in the header so that the packet looks like it came from someone
@@ -258,7 +258,7 @@ outlined above applies, and in addition, the in-path adversary doesn't have to
 race the party they are spoofing. A man in the middle can just block the message
 from ever arriving to the other party and send their own.
 
-## Defenses: TLS, random initial sequence numbers
+## 30.7. Defenses: TLS, random initial sequence numbers
 
 The main problem here is that TCP by itself provides no confidentiality or
 integrity guarantees. To prevent injections like these, we rely on TLS, which is

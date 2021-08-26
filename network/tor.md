@@ -13,9 +13,9 @@ or move this from crypto to after NIDS is covered -fuzail su21
 
 {% endcomment %}
 
-# Tor
+# 39. Anonymity and Tor
 
-## Overview
+## 39.1. Overview
 
 Imagine you wanted to use a group messaging app to share a public message 
 but did not want your name attached to your message. How would you go 
@@ -57,7 +57,7 @@ to have access to your identity, so you are _not quite_ completely anonymous,
 and you would be completely correct. We will see a couple of ways to circumvent 
 this further down the road. 
 
-## Anonymity in Cryptography
+## 39.2. Anonymity in Cryptography
 
 Let’s try to understand in a little more detail how anonymity works 
 when dealing with cryptography. Say that Alice wants to send a 
@@ -82,7 +82,7 @@ complete trust in the proxy server in the hopes that they will not
 reveal her identity. To prevent having to place full trust in a 
 third party server, we use the concept of onion routing. 
 
-## Onion Routing
+## 39.3. Onion Routing
 
 The key idea behind onion routing is the use of multiple proxy servers 
 chained together in the hopes that at least one can be trusted. Again, 
@@ -137,7 +137,7 @@ censorship circumvention. While this example only depicted onion
 routing in one-direction, it can easily be scaled up, and Tor provides 
 bidirectional communication. 
 
-## Onion Routing Issues and Attacks
+## 39.4. Onion Routing Issues and Attacks
 
 One of the downsides in onion routing is performance, as the message 
 has to bounce off of several proxy servers before it reaches its 

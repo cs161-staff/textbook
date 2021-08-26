@@ -4,14 +4,14 @@ parent: Network Security
 nav_order: 1
 ---
 
-# Networking Background
+# 25. Introduction to Networking
 
 To discuss network security, first we need to know how the network is designed.
 This section provides a (simplified) overview of the various Internet layers and
 how they interact. A video version of this section is available: see [Lecture
 11, Summer 2020](https://su20.cs161.org/lectures/11).
 
-## Local Area Networks
+## 25.1. Local Area Networks
 
 The primary goal of the Internet is to move data from one location to another. A
 good analogy for the Internet is the postal system, which we'll refer to
@@ -45,7 +45,7 @@ to the other apartment complex.
 With enough routers and LANs, we can connect the entire world in a **wide area
 network**, which forms the basis of the Internet.
 
-## Internet layering
+## 25.2. Internet layering
 
 You may have noticed that this design uses layers of abstraction to build the
 Internet. The lowest layer (layer 1, also called the physical layer) moves bits
@@ -75,7 +75,7 @@ been added since then. We will see these higher layers later.
 | 2 | Link |
 | 1 | Physical |
 
-## Protocols and Headers
+## 25.3. Protocols and Headers
 
 Each layer has its own set of **protocols**, a set of agreements on how to
 communicate. Each protocol specifies how communication is structured (e.g.
@@ -110,7 +110,7 @@ header and provides the remaining content to the layer directly above. When the
 message reaches the highest layer, all headers have been processed, and the
 recipient sees the regular human-readable text from before.
 
-## Addressing: MAC, IP, Ports
+## 25.4. Addressing: MAC, IP, Ports
 
 Depending on the layer, a machine can be referred to by several different
 addresses.
@@ -193,7 +193,7 @@ with physical protocols such as voltage levels to send them over a link.
 
 {% endcomment %}
 
-## Packets vs. Connections
+## 25.5. Packets vs. Connections
 
 Notice that in the postal system example, the post office has no idea if you and
 your pen pal are having a conversation through letters. The Internet is the
@@ -216,7 +216,7 @@ IP (Internet Protocol) at layer 3 only guarantees _best-effort delivery_, and
 does not handle any errors. Instead, we rely on higher layers for correctness
 and security.
 
-## Network Adversaries
+## 25.6. Network Adversaries
 
 Network adversaries can be sorted into 3 general categories. They are, from
 weakest to strongest:
