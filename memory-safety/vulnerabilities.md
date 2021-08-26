@@ -4,9 +4,9 @@ parent: Memory Safety
 nav_order: 2
 ---
 
-# Memory Safety Vulnerabilities
+# 3. Memory Safety Vulnerabilities
 
-## Buffer overflow vulnerabilities
+## 3.1. Buffer overflow vulnerabilities
 
 We'll start our discussion of vulnerabilities with one of the most common types
 of errors --- _buffer overflow_ (also called _buffer overrun_) vulnerabilities.
@@ -146,7 +146,7 @@ critical influence on the subsequent flow of execution of the program). Because
 these conditions occur only rarely in practice, attackers have developed more
 effective methods of malicious code injection.
 
-## Stack smashing
+## 3.2. Stack smashing
 
 One powerful method for exploiting buffer overrun vulnerabilities takes
 advantage of the way local variables are laid out on the stack.
@@ -292,7 +292,7 @@ mounted by attackers. The bottom line is this: _If your program has a buffer
 overflow bug, you should assume that the bug is exploitable and an attacker can
 take control of your program._
 
-## Format string vulnerabilities
+## 3.3. Format string vulnerabilities
 
 Let's look next at another type of vulnerability:
 
@@ -340,7 +340,7 @@ The bottom line: _If your program has a format string bug, assume that the
 attacker can learn all secrets stored in memory, and assume that the attacker
 can take control of your program._
 
-## Integer conversion vulnerabilities
+## 3.4. Integer conversion vulnerabilities
 
 What's wrong with this code?
 
@@ -403,7 +403,7 @@ buffer and then writes a lot more than 4 bytes into it: a classic buffer
 overflow. You have to know the semantics of your programming language very well
 to avoid all the pitfalls.
 
-## Off-by-one vulnerabilities
+## 3.5. Off-by-one vulnerabilities
 
 Off-by-one errors are very common in programming: for example, you might
 accidentally use `<=` instead of `<`, or you might accidentally start a loop at
@@ -509,7 +509,7 @@ Also, note that it is not enough to place the shellcode 4 bytes above where the
 forged sfp is pointing. You need to put the address of shellcode there, since
 the program will interpret that part of memory as the rip.
 
-## Other memory safety vulnerabilities
+## 3.6. Other memory safety vulnerabilities
 
 Buffer overflows, format string vulnerabilities, and the other examples above
 are examples of _memory safety_ bugs: cases where an attacker can read or write

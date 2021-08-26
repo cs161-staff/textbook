@@ -4,9 +4,9 @@ parent: Security Principles
 nav_order: 1
 ---
 
-# Principles for Building Secure Systems
+# 1. Security Principles
 
-## Know your threat model
+## 1.1. Know your threat model
 
 A threat model is a model of who your attacker is and what resources they have. 
 Attackers target systems for various reasons, be it money, politics, fun, etc. 
@@ -48,7 +48,7 @@ malicious. Today however, the Internet is populated by billions of devices, some
 of whom are malicious. As such, many network protocols that were designed a long time ago 
 are now suffering under the strain of attack.  
 
-## Consider Human Factors
+## 1.2. Consider Human Factors
 
 The key idea here is that security systems must be usable by ordinary people, and 
 therefore must be designed to take into account the role that humans will play. 
@@ -77,7 +77,7 @@ device and turn the key. This interface is intuitively understandable, even
 for 18-year-old soldiers out in the field with minimal training in cryptography.
 
 
-## Security is economics
+## 1.3. Security is economics
 
 No system is completely, 100% secure against all attacks; rather, systems 
 only need to be protected against a certain level of attacks. Since more 
@@ -116,7 +116,7 @@ balance this against "security is economics": that is, we must decide the degree
 to which our threat model indicates we indeed should spend resources addressing
 the given scenario.
 
-## Detect if you can't prevent
+## 1.4. Detect if you can't prevent
 
 If prevention is stopping an attack from taking place, detection is simply 
 learning that the attack has taken place, and response would be doing 
@@ -141,7 +141,7 @@ systems is a great idea. Even if your system is completely destroyed,
 it should be no big deal since all your data is backed up 
 in some other location.  
 
-## Defense in depth
+## 1.5. Defense in depth
 
 The key idea of defense in depth is that multiple types of defenses should 
 be layered together so an attacker would have to breach all the defenses 
@@ -166,7 +166,7 @@ meaning that both detectors have to alert in order to trigger a response.
 In this case, the false positive rate would decrease while the false negative rate 
 would increase. 
 
-## Least privilege
+## 1.6. Least privilege
 
 Consider a research building home to a team of scientists as well as other
 people hired to maintain the building (janitors, IT staff, kitchen staff, etc.)
@@ -207,7 +207,7 @@ Microsoft security team have recognized the risks inherent in this, and have
 taken many steps to warn people away from running with Administrator privileges,
 so things have gotten better in this respect.
 
-## Separation of responsibility
+## 1.7. Separation of responsibility
 
 Split up privilege, so no one person or program has complete power. Require
 more than one party to approve before access is granted.
@@ -229,7 +229,7 @@ multiple parties to work together to exercise that privilege, since it is more
 likely for a single party to be malicious than for all of the parties to be 
 malicious and collude with one another. 
 
-## Ensure complete mediation
+## 1.8. Ensure complete mediation
 
 When enforcing access control policies, make sure that you check _every_ access
 to _every_ object. This kind of thinking is helpful to detect where
@@ -237,7 +237,7 @@ vulnerabilities could be. As such, you have to ensure that all access is
 monitored and protected. One way to accomplish this is through a 
 _reference monitor_, which is a single point through which all access must occur. 
 
-## Shannon's Maxim
+## 1.9. Shannon's Maxim
 
 Shannon's Maxim states that the attacker knows the system that they are attacking. 
 
@@ -273,7 +273,7 @@ that are leaked (or suspected to be leaked). If your secrets are leaked, it is
 usually a lot easier to change the key than to replace every instance of the
 running software.
 
-## Use fail-safe defaults
+## 1.10. Use fail-safe defaults
 
 Choose default settings that "fail safe", balancing security with 
 usability when a system goes down. When we get to firewalls, you will learn 
@@ -288,7 +288,7 @@ for security. It would be much more dangerous if it had fail-open behavior,
 since then all an attacker would need to do is wait for the firewall to crash
 (or induce a crash) and then the fort is wide open.
 
-## Design security in from the start
+## 1.11. Design security in from the start
 
 Trying to retrofit security to an existing application after it has already been
 spec'ed, designed, and implemented is usually a very difficult proposition. At
@@ -304,7 +304,7 @@ cryptographic community (although not often articulated) that can play a useful
 role in considering computer system security as well.
 
 
-## The Trusted Computing Base (TCB)
+## 1.12. The Trusted Computing Base (TCB)
 
 Now that you understand some of the important principles for building secure systems, 
 we will try to see what you can do at design time to implement these principles and 
@@ -383,7 +383,7 @@ In summary, some good principles are:
   just on functionality or performance grounds---choose an architecture that
   makes the TCB as simple and clear as possible.
 
-## TOCTTOU Vulnerabilities
+## 1.13. TOCTTOU Vulnerabilities
 
 A common failure of ensuring complete mediation involves race conditions. 
 The time of check to time of use (TOCTTOU) vulnerability usually arises 

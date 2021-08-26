@@ -4,7 +4,9 @@ parent: Memory Safety
 nav_order: 3
 ---
 
-# Mitigating Memory-Safety Vulnerabilities
+# 4. Mitigating Memory-Safety Vulnerabilities
+
+## 4.1. Use a memory-safe language
 
 Some modern languages are designed to be intrinsically memory-safe, no matter
 what the programmer does. Java, Python, Go, Rust, Swift, and many other
@@ -14,6 +16,8 @@ _only_ way to stop 100% of memory safety vulnerabilities. In an ideal world, eve
 program in memory-safe languages and buffer overflow vulnerabilities would no
 longer exist. However, because of legacy code and perceived[^1] performance
 concerns, memory-unsafe languages such as C are still prevalent today.
+
+## 4.2. Writing memory-safe code
 
 One way to ensure memory safety is to carefully reason about memory accesses in
 your code, by defining pre-conditions and post-conditions for every function you
@@ -37,6 +41,8 @@ that check bounds so you don't have to. For example, using `fgets` instead of `g
 `strncpy` or `strlcpy` instead of `strcpy`, and `snprintf` instead of `sprintf`, are 
 all steps towards making your code slightly more safe. 
 
+## 4.3. Building secure software
+
 Yet another way to defend your code is to use tools to analyze and patch 
 insecure code. Utilizing run-time checks that do automatic bound-checking, for example 
 is an excellent way to help your code stay safe. If your check fails, you can direct 
@@ -48,6 +54,8 @@ testing with random inputs, testing corner cases, and using tools like
 Valgrind (to detect memory leaks), are all excellent ways to help test your code. 
 Though it is pretty difficult to know whether you have tested your code "enough" 
 to deem it safe, there are several code-coverage tools that can help you out. 
+
+## 4.4. Exploit mitigations
 
 Sometimes you might be forced to program in a memory-unsafe language, and you
 cannot reason about every memory access in your code. For example, you might be
@@ -72,7 +80,7 @@ cases, using multiple mitigations produces a synergistic effect: one mitigation
 on its own can be bypassed, but a combination of multiple mitigations forces an
 attacker to discover multiple vulnerabilities in the target program.
 
-## Defense: Non-executable pages
+## 4.5. Mitigation: Non-executable pages
 
 Many common buffer overflow exploits involve the attacker writing some machine
 code into memory, and then redirecting the program to execute that injected
@@ -102,7 +110,7 @@ the attack no longer works.
 This defense has several names in practice, including W\^X (Write XOR Execute),
 DEP (Data Execution Prevention), and the NX bit (no-execute bit).
 
-## Subverting non-executable pages: Return into libc
+## 4.6. Subverting non-executable pages: Return into libc
 
 Non-executable pages do not stop an attacker from executing existing code in
 memory. Most C programs import libraries with thousands or even million lines of
@@ -123,7 +131,7 @@ stack for arguments and find the malicious argument placed there by the
 attacker. The argument is not being run as code, so non-executable pages will
 not stop this attack.
 
-## Subverting non-executable pages: Return-oriented programming
+## 4.7. Subverting non-executable pages: Return-oriented programming
 
 We can take this idea of returning to already-loaded code and extend it further 
 to now execute arbitrary code. Return-oriented programming is a
@@ -179,7 +187,7 @@ ROP has become so common that non-executable pages are no longer a huge issue fo
 nowadays; while having writable and executable pages makes an attacker's life easier, 
 not a lot of effort has to be put in to subvert this defense mechanism. 
 
-## Defense: Stack canaries
+## 4.8. Mitigation: Stack canaries
 
 In the old days, miners would protect themselves against toxic gas buildup in
 the mine by bringing a caged canary into the mine. These particularly noisy
@@ -250,7 +258,7 @@ The performance overhead from checking stack canaries is negligible, and they
 defend against many of the most common exploits, so there is really no reason
 not to include stack canaries when programming in a memory-unsafe language.
 
-## Subverting stack canaries
+## 4.9. Subverting stack canaries
 
 Stack canaries make buffer overflow attacks harder for an attacker, but they do
 not defend programs against all buffer overflow attacks. There are many exploits
@@ -301,7 +309,7 @@ inject an exploit that overwrites the canary with its leaked value. All of this
 can happen within a single run of the program, so the canary value doesn't
 change on program restart.
 
-## Defense: Pointer authentication
+## 4.10. Mitigation: Pointer authentication
 
 As we saw earlier, stack canaries help detect if an attacker has modified the
 rip or sfp pointers by storing a secret value on the stack and checking if the
@@ -396,7 +404,7 @@ creating a validated pointer. The attacker could also try to discover the secret
 key stored in the CPU, or find a way to subvert the function $$f$$ used to
 generate the secret values.
 
-## Defense: Address Space Layout Randomization (ASLR)
+## 4.11. Mitigation: Address Space Layout Randomization (ASLR)
 
 Recall the stack smashing attacks from the previous section, where we overwrote
 the rip with the address of some malicious code in memory. This required
@@ -431,7 +439,7 @@ Modern systems can usually implement ASLR with minimal overhead because they
 dynamically link libraries at runtime, which requires each segment of memory to
 be relocatable.
 
-## Subverting ASLR
+## 4.12. Subverting ASLR
 
 The two main ways to subvert ASLR are similar to the main ways to subvert the
 stack canary: guess the address, or leak the address.
@@ -464,7 +472,7 @@ a function stack frame. This means that an attacker who leaks the absolute
 address of the sfp could deduce the address of the rip (and possibly other
 values on the stack).
 
-## Combining Mitigations
+## 4.13. Combining Mitigations
 
 We can use multiple mitigations together to force the attacker to find 
 multiple vulnerabilities to exploit the program; this is a process 
