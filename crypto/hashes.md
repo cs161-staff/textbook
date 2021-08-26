@@ -4,9 +4,9 @@ parent: Cryptography
 nav_order: 3
 ---
 
-# Cryptographic Hashes
+# 7. Cryptographic Hashes
 
-## Overview
+## 7.1. Overview
 
 A cryptographic hash function is a function, $$H$$, that when applied on a message, $$M$$, can be used to generate a fixed-length “fingerprint” of the message. As such, any change to the message, no matter how small, will change many of the bits of the hash value with there being no detectable patterns as to how the output changes based on specific input changes. In other words, any changes to the message, $$M$$, will change the resulting hash-value in some seemingly random way.
 
@@ -25,7 +25,7 @@ message---except that, of course, a hash function is a deterministic procedure.
 
 To understand the intuition behind hash functions, let’s take a look at one of its many uses: document comparisons. Suppose Alice and Bob both have a large, 1 GB document and wanted to know whether the files were the same. While they could go over each word in the document and manually compare the two, hashes provide a quick and easy alternative. Alice and Bob could each compute a hash over the document and securely communicate the hash values to one another. Then, since hash functions are deterministic, if the hashes are the same, then the files must be the same since they have the same “fingerprint”. On the other hand, if the hashes are different, it must be the case that the files are different. Determinism in hash functions ensures that providing the same input twice (i.e. providing the same document) will result in the same hash value; however, providing different inputs (i.e. providing two different documents) will result in two different hash values.
 
-## Properties of Hash Functions
+## 7.2. Properties of Hash Functions
 
 Cryptographic hash functions have several useful properties. The most significant
 include the following:
@@ -75,7 +75,7 @@ adversary to tamper with the hash, then this approach no longer works. The
 adversary could simply change the software, hash the changed software, and
 present the changed hash to Alice.
 
-## Hash Algorithms
+## 7.3. Hash Algorithms
 
 Cryptographic hashes have evolved over time. One of the earliest hash functions,
 MD5 (Message Digest 5) was broken years ago. The slightly more recent SHA1
@@ -112,7 +112,7 @@ For longer key lengths, however, we may relax the hash difficulty. For example,
 with 256b AES, the NSA uses SHA-384, not SHA-512, because, let's face it,
 $$2^{196}$$ operations is already a hugely impractical amount of computation.
 
-## Lowest-hash scheme
+## 7.4. Lowest-hash scheme
 
 Cryptographic hashes have many practical applications outside of cryptography.
 Here's one example that illustrates many useful properties of cryptographic

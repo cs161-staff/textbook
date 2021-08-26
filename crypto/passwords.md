@@ -4,12 +4,12 @@ parent: Cryptography
 nav_order: 10
 ---
 
-# Passwords
+# 14. Passwords
 
 Passwords are widely used for authentication, especially on the web. What
 practices should be used to make passwords as secure as possible?
 
-## Risks and weaknesses of passwords
+## 14.1. Risks and weaknesses of passwords
 
 Passwords have some well-known usability shortcomings. Security experts
 recommend that people pick long, strong passwords, but long random passwords are
@@ -45,7 +45,7 @@ associated with password authentication:
 
 We'll look at defenses and mitigations for each of these risks, below.
 
-## Mitigations for eavesdropping
+## 14.2. Mitigations for eavesdropping
 
 There is a straightforward defense against eavesdropping: we can use SSL (also
 known as TLS). In other words, instead of connecting to the web site via http,
@@ -66,7 +66,7 @@ on the login page, but it has little or no advantage over SSL (and it has some
 shortcomings compared to using SSL), so the standard defense is to simply use
 SSL.
 
-## Mitigations for client-side malware
+## 14.3. Mitigations for client-side malware
 
 It is very difficult to protect against client-side malware.
 
@@ -84,7 +84,7 @@ against this; passwords are fundamentally insecure in this threat model. The
 main defense is two-factor authentication, where we combine the password with
 some other form of authentication (e.g., a SMS sent to your phone).
 
-## Online guessing attacks
+## 14.4. Online guessing attacks
 
 How easy are online guessing attacks? Researchers have studied the statistics of
 passwords as used in the field, and the results suggest that online guessing
@@ -128,7 +128,7 @@ noticeable (easily detectable by the server). So, targeted attacks are possible,
 but the attacker is not guaranteed a success, and it might take quite a few
 attempts.
 
-## Mitigations for online guessing attacks
+## 14.5. Mitigations for online guessing attacks
 
 Let's explore some possible mitigations for online guessing:
 
@@ -194,7 +194,7 @@ Let's explore some possible mitigations for online guessing:
   meter during account creation can help encourage people to choose longer and
   stronger passwords.
 
-## Mitigations for server compromise
+## 14.6. Mitigations for server compromise
 
 The natural way to implement password authentication is for the website to store
 the passwords of all of its passwords in the clear, in its database.
@@ -211,7 +211,7 @@ passwords of all 32 million of their users and posted them on the Internet; not
 good. One study estimates that about 30--40% of sites still store passwords in
 the clear.
 
-### Password hashing
+## 14.7. Password hashing
 
 If storing passwords in the clear is not a good idea, what can we do that is
 better? One simple approach is to hash each password with a cryptographic hash
@@ -281,7 +281,7 @@ Unfortunately, this simple idea has some shortcomings:
   guessing attack, because we avoid repeated work: we only need to compute the
   hash of each candidate password once.
 
-### Password hashing, done right
+## 14.8. Password hashing, done right
 
 With these shortcomings in mind, we can now identify a better way to store
 passwords on the server.
@@ -378,7 +378,7 @@ in which they should try passwords, so password cracking tools are pretty good
 at cracking many user passwords.
 {% endcomment %}
 
-## Implications for cryptography
+## 14.9. Implications for cryptography
 
 The analysis above has implications for the use of human-memorable passwords or
 passphrases for cryptography.
@@ -406,7 +406,7 @@ whenever possible. Instead, it is better to use a truly random cryptographic
 key, e.g., a truly random 128-bit AES key, and find some way for the user to
 store it securely.
 
-## Alternatives to passwords
+## 14.10. Alternatives to passwords
 
 Finally, it is worth noting that there are many alternatives to passwords, for
 authenticating to a server. Some examples include:
@@ -424,7 +424,7 @@ We most likely won't have time to discuss any of these further in this class,
 but they are worth knowing about, for situations where you need more security
 than passwords can provide.
 
-## Summary
+## 14.11. Summary
 
 The bottom line is: don't store passwords in the clear. Instead, sites should
 store passwords in hashed form, using a slow cryptographic hash function and a

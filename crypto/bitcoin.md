@@ -11,9 +11,9 @@ We should finish it this semester -peyrin sp21
 Updated using notes created from SP20 lectures 38 & 39 ~fuzail su21
 {% endcomment %}
 
-# Bitcoin
+# 16. Bitcoin
 
-## Problem Statement
+## 16.1. Problem Statement
 
 Bitcoin is a digital cryptocurrency, which means it should have all the same
 properties as physical currency (e.g. the United States dollar). In our
@@ -45,7 +45,7 @@ currency system, but without any centralized party. Instead of relying on a
 trusted entity, Bitcoin uses cryptography to enforce the basic properties of
 currency.
 
-## Cryptographic Primitives
+## 16.2. Cryptographic Primitives
 
 Bitcoin uses two cryptographic primitives that you have already seen in this
 class. Let's briefly review their definitions and relevant properties.
@@ -66,7 +66,7 @@ the message was written by Alice and nobody tampered with it.
 With these two cryptographic primitives in mind, we can now start designing
 Bitcoin.
 
-## Identities
+## 16.3. Identities
 
 Since there is no centralized party to keep track of everyone's accounts, we
 will need to assign a unique identity to everyone. We also need to prevent
@@ -82,7 +82,7 @@ user. Because digital signatures are unforgeable, an attacker who doesn't know
 Bob's secret signing key will be unable to impersonate Bob, because the attacker
 cannot generate a signature that validates with $$PK_B$$.
 
-## Transactions
+## 16.4. Transactions
 
 Without a centralized party to validate transactions, we will need a way to
 cryptographically verify that Alice actually wants to send $$n$$ units of
@@ -96,7 +96,7 @@ did intend to make this transaction. Bitcoin doesn't validate the recipient--if
 someone wanted to refuse a transaction, they could create another transaction to
 send the money back.
 
-## Balances
+## 16.5. Balances
 
 In our transaction scheme so far, nothing is stopping Alice from creating and
 signing a message "$$PK_A$$ sends $$100n$$ units of currency to $$PK_B$$," even
@@ -179,7 +179,7 @@ This last problem is sometimes called the \emph{double-spending} problem, and it
 is notoriously difficult to solve in decentralized systems.
 {% endcomment %}
 
-## Hash chains
+## 16.6. Hash chains
 
 Recall that we need a public ledger that is append-only and immutable: everyone
 can add entries to the ledger, but nobody can modify or delete existing entries.
@@ -206,7 +206,7 @@ $$\text{Block 4} = m_4, H(\text{Block 3})$$
 Note that Block 4 contains a digest of all the messages so far, namely $$m_1,
 m_2, m_3, m_4$$.
 
-## Properties of Hash Chains
+## 16.7. Properties of Hash Chains
 
 Assume that Alice is given the $$H(\text{Block } i)$$ from a trusted source, 
 but she downloads blocks 1 through $$i$$ from an untrusted source. Only using 
@@ -234,7 +234,7 @@ So, perhaps the most important property in a hash chain is that if you get the h
 of the latest block from a trusted source, then you can verify that all of the previous history is correct.
 
 
-## Consensus in Bitcoin
+## 16.8. Consensus in Bitcoin
 
 In Bitcoin, every participant in the network stores the entire blockchain (and thus all of its history) 
 since we don’t utilize a centralized server. When someone wants to create a new transaction, they broadcast 
@@ -254,7 +254,7 @@ accept this new forked chain, she can get her 500 $$B$$ back!
 This means that we need a way for all users to agree on the content of the blockchain: _consensus via proof of work_.
 
 
-## Consensus via Proof of Work
+## 16.9. Consensus via Proof of Work
 
 In Bitcoin, while every user locally stores the entire blockchain, not every user can add a block. 
 This special privilege is reserved for certain users, known as _miners_, who can only add a block 

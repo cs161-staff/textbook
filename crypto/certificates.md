@@ -17,7 +17,7 @@ Note, there's material on cryptographic protocols commented out at the end.
 TODO: Cleanup -peyrin
 {% endcomment %}
 
-# Certificates
+# 13. Certificates
 
 So far we've seen powerful techniques for securing communication such that the
 only information we must carefully protect regards "keys" of various sorts.
@@ -25,7 +25,7 @@ Given the success of cryptography in general, arguably the biggest challenge
 remaining for its effective use concerns exactly those keys, and how to _manage_
 them. For instance, how does Alice find out Bob's public key? Does it matter?
 
-## Man-in-the-middle Attacks
+## 13.1. Man-in-the-middle Attacks
 
 Suppose Alice wants to communicate securely with Bob over an insecure
 communication channel, but she doesn't know his public key (and he doesn't know
@@ -67,7 +67,7 @@ for preventing MITM attacks is to ensure that every participant can verify the
 authenticity of other people's public keys. But how do we do that, specifically?
 We'll look next at several possible approaches to secure key management.
 
-## Trusted Directory Service
+## 13.2. Trusted Directory Service
 
 One natural approach to this key management problem is to use a trusted
 directory service: some organization that maintains an association between the
@@ -138,7 +138,7 @@ However, some of these limitations---specifically, the ones relating to
 scalability, reliability, and the requirement for online access to the directory
 service---can be addressed through a clever idea known as digital certificates.
 
-## Digital Certificates
+## 13.3. Digital Certificates
 
 _Digital certificates_ are a way to represent an alleged association between a
 person's name and their public key, as attested by some certifying party.
@@ -189,7 +189,7 @@ belief that Jerry takes the act of signing keys seriously, and won't sign a
 statement regarding David's public key unless Jerry is sure of the statement's
 correctness.
 
-## Public-Key Infrastructure (PKI)
+## 13.4. Public-Key Infrastructure (PKI)
 
 Let's now put together the pieces. A _Certificate Authority_ (CA) is a party who
 issues certificates. If Alice trusts some CA, and that CA issues Bob a digital
@@ -253,7 +253,7 @@ could affect the security of everyone who uses the web. The more CAs your
 browser trusts, the greater the risk of a security breach. That CA model is
 under increasing criticism for these reasons.
 
-## Certificate Chains and Hierarchical PKI
+## 13.5. Certificate Chains and Hierarchical PKI
 
 Above we looked at an example where Jerry Brown could sign certificates
 attesting to the public keys of every California state employee. However, in
@@ -303,7 +303,7 @@ In general, the hierarchy forms a tree. The depth can be arbitrary, and thus
 certificate chains may be of any length. The CA hierarchy is often chosen to
 reflect organizational structures.
 
-## Revocation
+## 13.6. Revocation
 
 What do we do if a CA issues a certificate in error, and then wants to
 invalidate the certificate? With the basic approach described above, there is
@@ -384,7 +384,7 @@ revocation lists, if this is enabled by CAs. However, when last I checked, the
 popular CAs had not enabled revocation lists.
 {% endcomment %}
 
-## Web of Trust
+## 13.7. Web of Trust
 
 Another approach is the so-called _web of trust_, which was pioneered by PGP, a
 software package for email encryption. The idea is to democratize the process of
@@ -448,7 +448,7 @@ in the security community, it is only partially used---not due to lack of
 understanding, but due to usability hurdles, including lack of integration into
 mainstream tools such as mail readers.
 
-## Leap-of-Faith Authentication
+## 13.8. Leap-of-Faith Authentication
 
 Another approach to managing keys is exemplified by SSH. The first time that you
 use SSH to connect to a server you've never connected to before, your SSH client

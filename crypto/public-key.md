@@ -4,9 +4,9 @@ parent: Cryptography
 nav_order: 7
 ---
 
-# Public-Key (Asymmetric) Encryption
+# 11. Public-Key (Asymmetric) Encryption
 
-## Overview
+## 11.1. Overview
 
 Previously we saw symmetric-key encryption, where Alice and Bob share a secret
 key $$K$$ and use the same key to encrypt and decrypt messages. However,
@@ -166,7 +166,7 @@ find a prime of the desired length.
 
 {% endcomment %}
 
-## Trapdoor One-way Functions
+## 11.2. Trapdoor One-way Functions
 
 Public-key cryptography relies on a close variant of the one-way function.
 Recall from the previous section that a one-way function is a function $$f$$
@@ -210,7 +210,7 @@ computationally hard to find $$m$$. However, with the factorization of $$n$$
   $$B = g^b \pmod{p}$$, it is computationally hard to find $$g^{ab} \pmod{p}$$.
   However, with $$a$$ or $$b$$, it becomes easy to find $$g^{ab} \pmod{p}$$.
 
-## RSA Encryption
+## 11.3. RSA Encryption
 
 _Under construction_
 
@@ -243,7 +243,7 @@ scramble the message, and encrypts both the scrambled message and the random
 key. To recover the original message, the attacker has to recover both the
 scrambled message and the random key in order to reverse the scrambling process.
 
-## El Gamal encryption
+## 11.4. El Gamal encryption
 
 The Diffie-Hellman protocol doesn't quite deliver public-key encryption
 directly. It allows Alice and Bob to agree on a shared secret that they could
@@ -337,7 +337,7 @@ Here is a summary of El Gamal encryption:
 
 - **Decryption:** $$D_b(R,S) = R^{-b} \times S \bmod p$$.
 
-## Public Key Distribution
+## 11.5. Public Key Distribution
 
 This all sounds great---almost too good to be true. We have a way for a pair of
 strangers who have never met each other in person to communicate securely with
@@ -368,7 +368,7 @@ print their public key on their business cards. However, this still requires
 Alice and Bob to meet in person in advance. Can we do any better? We'll soon see
 some methods that help somewhat with that problem.
 
-## Session Keys
+## 11.6. Session Keys
 
 There is a problem with public key: it is _slow_. It is very, very slow. When
 encrypting a single message with a 2048b RSA key, the RSA algorithm requires

@@ -4,7 +4,9 @@ parent: Cryptography
 nav_order: 4
 ---
 
-# Message Authentication Codes (MACs)
+# 8. Message Authentication Codes (MACs)
+
+## 8.1. Integrity and Authenticity
 
 When building cryptographic schemes that guarantee integrity and authentication,
 the threat we're concerned about is adversaries who send messages pretending to
@@ -21,7 +23,7 @@ Bob might securely exchange a shared secret key over an insecure communication
 channel, but for now you can assume that only Alice and Bob know the value of
 the secret key.
 
-## MAC: Definition
+## 8.2. MAC: Definition
 
 A MAC is a keyed checksum of the message that is sent along with the message. It
 takes in a fixed-length secret key and an arbitrary-length message, and outputs
@@ -55,7 +57,7 @@ this is a case where we are "communicating" to a "future version of ourselves,"
 so security for stored data can be viewed as a variant of communication
 security.
 
-## MAC: Security properties
+## 8.3. MAC: Security properties
 
 Given a secure MAC algorithm $$F$$, if the attacker replaces $$M$$ by some other
 message $$M'$$, then the tag will almost certainly[^1] no longer be valid: in
@@ -120,7 +122,7 @@ won't help Georgia forge a valid tag on any new message. Thus, MACs provide
 security against chosen-plaintext/ciphertext attacks, the strongest threat
 model.
 
-## AES-EMAC
+## 8.4. AES-EMAC
 
 How do we build secure MACs?
 
@@ -150,7 +152,7 @@ unforgeability definition and security game described in the previous section.
 An attacker cannot forge a valid AES-EMAC for a message they haven't seen
 before, even if they are allowed to query for MACs of other messages.
 
-## HMAC
+## 8.5. HMAC
 
 One of the best MAC constructions available is the HMAC, or Hash Message
 Authentication Code, which uses the cryptographic properties of a cryptographic
@@ -229,7 +231,7 @@ HMAC is also very efficient. The inner hash function call only needs to hash the
 bits of the message, plus $$n$$ bits, and the outer hash function call only
 needs to hash $$2n$$ bits.
 
-## MACs are not confidential
+## 8.6. MACs are not confidential
 
 A MAC does not guarantee confidentiality on the message $$M$$ to which it is
 applied. In the examples above, Alice and Bob have been exchanging non-encrypted
@@ -268,7 +270,7 @@ In practice, we usually want to guarantee confidentiality in addition to
 integrity and authenticity. Next we will see how we can combine encryption
 schemes with MACs to achieve this.
 
-## Authenticated Encryption
+## 8.7. Authenticated Encryption
 
 An _authenticated encryption_ scheme is a scheme that simultaneously guarantees
 confidentiality and integrity on a message. As you might expect, symmetric-key
@@ -319,7 +321,7 @@ to potentially leak information about the original message. The easiest way to
 avoid this category of attacks is to simply use different keys for the
 encryption and MAC functions.
 
-## AEAD Encryption Modes
+## 8.8. AEAD Encryption Modes
 
 There are also some special block cipher operation modes, known as AEAD
 (Authenticated Encryption with Additional Data) that, in addition to providing

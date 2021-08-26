@@ -4,9 +4,9 @@ parent: Cryptography
 nav_order: 5
 ---
 
-# Pseudorandom Number Generators
+# 9. Pseudorandom Number Generators
 
-## Randomness and entropy
+## 9.1. Randomness and entropy
 
 As we've seen in the previous sections, cryptography often requires randomness.
 For example, symmetric keys are usually randomly-generated bits, and random IVs
@@ -46,7 +46,7 @@ _computationally indistinguishable_ from true random bits--there is no efficient
 algorithm that would let an attacker distinguish between pseudorandom bits and
 truly random bits.
 
-## Pseudorandom Number Generators (pRNGs)
+## 9.2. Pseudorandom Number Generators (pRNGs)
 
 A _pseudorandom number generator (pRNG)_ is an algorithm that takes a small
 amount of truly random bits as input and outputs a long sequence of pseudorandom
@@ -83,7 +83,7 @@ Formally, a pRNG is defined by the following three functions:
   as needed. Some pRNGs also support adding additional entropy directly during
   this step.
 
-## Rollback resistance
+## 9.3. Rollback resistance
 
 In the previous section, we defined a secure pRNG as an algorithm whose output
 is computationally indistinguishable from random if the attacker does not know
@@ -107,7 +107,7 @@ generate the secret keys, and then used again to generate the IVs. If this pRNG
 was not rollback-resistant, then an attacker who compromises the internal state
 at this point could learn the value of the secret key.
 
-## HMAC-DRBG
+## 9.4. HMAC-DRBG
 
 There are many implementations of pRNGs, but one commonly-used pRNG in practice
 is HMAC-DRBG[^1], which uses the security properties of HMAC to build a pRNG.
@@ -246,7 +246,7 @@ Additionally, HMAC-DRBG has rollback resistance: if you can compute the previous
 state from the current state you have successfully reversed the underlying hash
 function!
 
-## Stream ciphers
+## 9.5. Stream ciphers
 
 As we've seen in the previous section, an attacker without knowledge of the
 internal state of a secure, rollback-resistant pRNG cannot predict the pRNG's

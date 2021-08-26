@@ -4,7 +4,7 @@ parent: Cryptography
 nav_order: 8
 ---
 
-# Digital Signatures
+# 12. Digital Signatures
 
 We can use the ideas from public-key encryption to build asymmetric
 cryptographic schemes that guarantee integrity and authentication too. In this
@@ -12,7 +12,7 @@ section, we will define _digital signatures_, which are essentially the
 public-key version of MACs, and show how they can help guarantee integrity and
 authentication.
 
-## Digital signature properties
+## 12.1. Digital signature properties
 
 Recall that in public-key encryption, anyone could use Bob's public key to
 encrypt a message and send it to him, but only Bob could use his secret key to
@@ -52,7 +52,7 @@ If $$PK,SK$$ are a matching pair of private and public keys (i.e., they were
 output by some call to $$\text{KeyGen}$$), and if $$S = \text{Sign}(SK,M)$$,
 then $$\text{Verify}(PK,M,S)=\text{true}$$.
 
-## RSA Signatures: High-level Outline
+## 12.2. RSA Signatures: High-level Outline
 
 At a high level, the RSA signature scheme works like this. It specifies a
 trapdoor one-way function $$F$$. The public key of the signature scheme is the
@@ -95,7 +95,7 @@ This is the general idea underpinning the RSA signature scheme. Now let's look
 at how to build a trapdoor one-way function, which is the key idea needed to
 make this all work.
 
-## Number Theory Background
+## 12.3. Number Theory Background
 
 Here are some basic facts from number theory, which will be useful in deriving
 RSA signatures. As previously discussed in lecture, we use $$\varphi(n)$$ to
@@ -138,7 +138,7 @@ $$d$$ from $$n$$. And, given knowledge of only $$n$$ (but not $$d$$ or $$p,q$$),
 it is believed to be computationally infeasible to compute the function $$G$$.
 The security of RSA will rely upon this hardness assumption.
 
-## RSA Signatures
+## 12.4. RSA Signatures
 
 We're now ready to describe the RSA signature scheme. The idea is that the
 function $$F$$ defined in Theorem [1](#th:cubing) will be our trapdoor one-way
@@ -188,7 +188,7 @@ discussion! We've omitted some technical details that do not change the big
 picture, but that are essential for security in practice. For your actual
 systems, use a reputable crypto library!
 
-## Definition of Security for Digital Signatures
+## 12.5. Definition of Security for Digital Signatures
 
 Finally, let's outline a formal definition of what we mean when we say that a
 digital signature scheme is secure. The approach is very similar to what we saw

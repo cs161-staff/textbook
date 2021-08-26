@@ -9,7 +9,7 @@ When updating, check w/ a crypto guru that AES is still well-described as
 basically having no known flaws. DAW confirmed this for 2013.
 {% endcomment %}
 
-# Symmetric-Key Encryption
+# 6. Symmetric-Key Encryption
 
 In this section, we will build symmetric-key encryption schemes that guarantee
 confidentiality. Because we are in the symmetric key setting, in this section we
@@ -20,7 +20,7 @@ that only Alice and Bob know the value of the secret key.
 
 For modern schemes, we are going to assume that all messages are bitstrings, which is a sequence of bits, 0 or 1 (e.g. `1101100101010101`). Text, images, and most other forms of communication can usually be converted into bitstrings before encryption, so this is a useful abstraction.
 
-## IND-CPA Security
+## 6.1. IND-CPA Security
 
 Recall from the previous chapter that confidentiality was defined to mean that an attacker cannot read our messages. This definition, while intuitive, is quite open-ended. If the
 attacker can read the first half of our message but not the second half, is that
@@ -179,7 +179,7 @@ block-cipher encryption.
 
 {% endcomment %}
 
-## XOR review
+## 6.2. XOR review
 
 Symmetric-key encryption often relies on the bitwise XOR (exclusive-or)
 operation (written as $$\oplus$$), so let's review the definition of XOR.
@@ -218,7 +218,7 @@ y &= 1 & &\text{simplify left-hand side using the identity above}
 \end{aligned}
 $$
 
-## One Time Pad
+## 6.3. One Time Pad
 
 The first symmetric encryption scheme we'll look at is the _one-time pad (OTP)_.
 The one time pad is a simple and idealized encryption scheme that helps
@@ -349,7 +349,7 @@ unused $$n$$-bit key. But if they've found a method to securely exchange an
 $$n$$-bit key, they could have just used that same method to exchange the
 $$n$$-bit message![^2]
 
-## Block Ciphers
+## 6.4. Block Ciphers
 
 As we've just seen, generating new keys for every encryption is difficult and
 expensive. Instead, in most symmetric encryption schemes, Alice and Bob share a
@@ -399,7 +399,7 @@ can also support $$k=192$$ or $$k=256$$ bit keys, but we will assume 128-bit
 keys in this class. It was designed to be extremely fast in both hardware and
 software.
 
-## Block Cipher Security
+## 6.5. Block Cipher Security
 
 Block ciphers, including AES, are not IND-CPA secure on their own because they
 are deterministic. In other words, encrypting the same message twice with the
@@ -571,7 +571,7 @@ idealization.
 
 {% endcomment %}
 
-## Block Cipher Modes of Operation
+## 6.6. Block Cipher Modes of Operation
 
 {% comment %}
 
@@ -717,7 +717,7 @@ operation](/assets/images/crypto/symmetric/CTR_decryption.png)
 For the rest of these notes, we will focus on analyzing CBC and CTR modes. As an
 exercise, you can try performing similar analysis on the other modes as well.
 
-## Parallelization
+## 6.7. Parallelization
 
 In some modes, successive blocks must be encrypted or decrypted sequentially. In
 other words, to encrypt the $$i$$th block of plaintext, you first need to
@@ -744,7 +744,7 @@ examine the encryption and decryption diagrams. Note that each block cipher only
 takes the nonce and counter as input, and there is no reliance on any previous
 ciphertext or plaintext.
 
-## Padding
+## 6.8. Padding
 
 We have already reasoned that block ciphers let us encrypt messages that are
 longer than one block long. What happens if we want to send a message that is
@@ -819,7 +819,7 @@ flexibly make up for 128 bits and uses 1 to mark for the beginning of the
 garbage bits.
 {% endcomment %}
 
-## Reusing IVs is insecure
+## 6.9. Reusing IVs is insecure
 
 Remember that ECB mode is not IND-CPA secure because it is deterministic.
 Encrypting the same plaintext twice always results in the same output, and this

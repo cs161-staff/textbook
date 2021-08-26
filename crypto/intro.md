@@ -4,9 +4,9 @@ parent: Cryptography
 nav_order: 1
 ---
 
-# Introduction to Cryptography
+# 5. Introduction to Cryptography
 
-## Disclaimer: Don't try this at home!
+## 5.1. Disclaimer: Don't try this at home!
 
 In this class, we will teach you the basic building blocks of cryptography, and
 in particular, just enough to get a feeling for how they work at a conceptual
@@ -39,7 +39,7 @@ In summary, know that we're going to teach you just enough cryptography to be
 dangerous, but not enough to implement industrial-strength cryptography in
 practice.
 
-## Brief History of Cryptography
+## 5.2. Brief History of Cryptography
 
 The word "cryptography" comes from the Latin roots _crypt_, meaning secret, and
 _graphia_, meaning writing. So cryptography is quite literally the study of how to
@@ -83,7 +83,7 @@ following World War II. The analysis of the _one-time pad_ (discussed in the nex
 standards in banking and other businesses. The decade starting in the late 1970s
 then saw an explosion of work on a computational theory of cryptography.
 
-# Definitions
+## 5.3. Definitions
 
 Intuitively, we can see that the Caesar cypher is not secure (try all 26
 possible shifts and you'll get the original message back), but how can we prove
@@ -91,7 +91,9 @@ that it is, in fact, insecure? To formally study cryptography, we will have to d
 mathematically rigorous framework that lets us analyze the security of various
 cryptographic schemes.
 
-## Alice, Bob, Eve, and Mallory
+The rest of this section defines some important terms that will appear throughout the unit.
+
+## 5.4. Definitions: Alice, Bob, Eve, and Mallory
 
 The most basic problem in cryptography is one of ensuring the security of
 communications across an insecure medium. Two recurring members of the cast of
@@ -108,7 +110,7 @@ Mallory is unable to tamper with the contents of their exchange without being
 detected. In other words, we wish to simulate the ideal communication channel
 using only the available insecure channel.
 
-## Keys
+## 5.5. Definitions: Keys
 
 The most basic building block of any cryptographic system (or _cryptosystem_) is
 the _key_. The key is a secret value that helps us secure messages. Many
@@ -122,7 +124,7 @@ each person has a secret key and a corresponding _public key_. You might
 remember RSA encryption from CS 70, which is an asymmetric-key encryption
 scheme.
 
-## Confidentiality, Integrity, Authenticity
+## 5.6. Definitions: Confidentiality, Integrity, Authenticity
 
 In cryptography, there are three main security properties that we want to
 achieve.
@@ -172,7 +174,7 @@ and Alice publishes a message with a valid signature. Then the judge cannot be
 sure that the message came from Bob--the signature could have plausibly been
 created by Alice.
 
-## Overview of schemes
+## 5.7: Overview of schemes
 
 We will look at cryptographic primitives that provide confidentiality,
 integrity, and authentication in both the symmetric-key and asymmetric-key
@@ -228,7 +230,7 @@ These primitives also have some useful applications unrelated to cryptography.
   to use an insecure communication channel to agree on a shared random secret
   key that is subsequently used for symmetric-key encryption.
 
-## Kerckhoff's Principle
+## 5.8. Definitions: Kerckhoff's Principle
 
 Let's now examine the threat model, which in this setting involves answering the
 question: How powerful are the attackers Eve and Mallory?
@@ -248,7 +250,7 @@ Consistent with Kerckhoff's principle, we will assume that the attacker knows
 the encryption and decryption algorithms.[^1] The only information the attacker
 is missing is the secret key(s).
 
-## Threat models
+## 5.9. Definitions: Threat models
 
 When analyzing the confidentiality of an encryption scheme, there are several
 possibilities about how much access an eavesdropping attacker Eve has to the

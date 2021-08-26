@@ -4,7 +4,7 @@ parent: Cryptography
 nav_order: 6
 ---
 
-# Diffie-Hellman key exchange
+# 10. Diffie-Hellman key exchange
 
 In the previous sections, we discussed symmetric-key schemes such as block
 ciphers and MACs. For these schemes to work, we assumed that Alice and Bob both
@@ -18,7 +18,7 @@ key is used for some series of encryptions and decryptions and is discarded once
 it is no longer needed. Thus Diffie-Hellman is effectively a way for two parties
 to agree on a _random_ value in the face of an eavesdropper.
 
-## Diffie-Hellman intuition
+## 10.1. Diffie-Hellman intuition
 
 A useful analogy to gain some intuition about Diffie-Hellman key exchange is to
 think about colors. Alice and Bob want to both share a secret color of paint,
@@ -54,7 +54,7 @@ wouldn't result in exactly the same secret, since there would be too much green
 in the mix. The result would be more like green-amber-green-blue than
 green-amber-blue.
 
-## Discrete logarithm problem
+## 10.2. Discrete logarithm problem
 
 The secret exchange in the color analogy relied on the fact that mixing two
 colors is easy, but separating a mixture of two colors is practically
@@ -79,7 +79,7 @@ logarithm problem_, and it is believed to be computationally hard to solve.
 Using the hardness of the discrete log problem and the analogy from above, we
 are now ready to construct the Diffie-Hellman key exchange protocol.
 
-## Diffie-Hellman protocol
+## 10.3. Diffie-Hellman protocol
 
 In high-level terms, the Diffie-Hellman key exchange works like this.
 
@@ -153,7 +153,7 @@ Here is a summary of Diffie-Hellman key exchange:
   with the same random secret key $$K$$, yet as far as we know no eavesdropper
   can recover $$K$$ in any reasonable amount of time.
 
-## Elliptic-curve Diffie-Hellman
+## 10.4. Elliptic-curve Diffie-Hellman
 
 In the section above, we used the discrete log problem to construct a
 Diffie-Hellman protocol, but we can generalize Diffie-Hellman key exchange to
@@ -193,7 +193,7 @@ same point $$S$$, so they now have a shared secret. Also, the elliptic-curve
 Diffie-Hellman problem states that given $$A = a \cdot G$$ and $$B = b \cdot
 G$$, there is no known efficient method for Eve to calculate $$S$$.
 
-## Difficulty in Bits
+## 10.5. Difficulty in Bits
 
 It is generally believed that the discrete log problem is hard, but how hard? In
 practice, it is generally believed that computing the discrete log modulo a
@@ -209,7 +209,7 @@ SHA-256 and either 256b elliptic curves or 2048b primes for Diffie-Hellman.
 Similarly, for top-secret use, the NSA uses 256b AES, 384b Elliptic Curves,
 SHA-384, and 3096b Diffie-Hellman and RSA.
 
-## Attacks on Diffie-Hellman
+## 10.6. Attacks on Diffie-Hellman
 
 As we've seen, Diffie-Hellman is secure against an eavesdropper Eve, who
 observes the messages sent between Alice and Bob, but does not tamper with them.
