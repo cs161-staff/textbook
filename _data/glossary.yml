@@ -193,7 +193,7 @@
   definition: "Cryptography is the study of secure communication over insecure channels" 
   chapter: "4" 
 
-- eavesdropper
+- term: eavesdropper
   definition: "An eavesdropper, commonly known as Eve, can read any data sent over the channel"
   chapter: "4" 
 
