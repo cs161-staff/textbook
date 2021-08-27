@@ -56,3 +56,92 @@
 - term: design in security from the start
   definition: "Design in security from the start is a security principle wherein you should consider all security principles when designing a new system, rather than patching it afterwards"
   chapter: "1"
+
+- term: bit
+  definition:  "A bit is a binary digit, either 0 or 1"
+  chapter: "2"
+
+- term: nibble
+  definition: "A nibble is 4 bits"
+  chapter: "2"
+
+- term: byte
+  definition: "A byte is 8 bits"
+  chapter: "2"
+
+- term: compiler
+  definition: "A compiler converts C code into assembly code"
+  chapter: "2"
+
+- term: assembler
+  definition: "An assembler converts assembly code into machine code (raw bits)"
+  chapter: "2"
+
+- term: linker
+  definition: "A linker deals with dependencies and libraries"
+  chapter: "2"
+
+- term: loader
+  definition: "A loader sets up memory space and runs the machine code"
+  chapter: "2"
+
+- term: heap
+  definition: "The heap is a section of memory that stores dynamically allocated memory and grows upwards"
+  chapter: "2"
+
+- term: stack
+  definition: "The stack is a section of memory that stores local variables and stack frames and grows downwards"
+  chapter: "2"
+
+- term: esp
+  definition: "The ESP is the stack pointer in x86 and points to the bottom of the current stack frame, similar to the sp in RISC-V"
+  chapter: "2"
+
+- term: ebp
+  definition: "The EBP is the base pointer in x86 and points to the top of the current stack frame, similar to the fp in RISC-V"
+  chapter: "2"
+
+- term: eip
+  definition: "The EIP is the instruction pointer in x86 and points to the current instruction, similar to the PC in RISC-V"
+  chapter: "2"
+
+- term: rip
+  definition: "The RIP (return instruction pointer) is the old EIP and is saved on the stack when calling a function"
+  chapter: "2"
+
+- term: sfp
+  definition: "The SFP (saved frame pointer) is the old EBP and is saved on the stack when calling a function"
+  chapter: "2"
+
+- term: callee-saved
+  definition: "Registers are callee-saved when the called function (the callee) must not change the value of the register when it returns"
+  chapter: "2"
+
+- term: caller-saved
+  definition: "Registers are caller-saved when the called function (the callee) may overwrite the register without saving or restoring it"
+  chapter: "2"
+
+- term: shellcode
+  definition: "Shellcode is malicious code inserted by the attacker into memory, to be executed using a memory safety exploit"
+  chapter: "2"
+
+- term: buffer overflow
+  definition: "A buffer overflow is a memory safety vulnerability wherein an attacker overwritten unintended parts of memory"
+  chapter: "2"
+
+- term: stack smashing
+  definition: "Stack smashing is a type of buffer overflow attack wherein the attacker overwrites saved registers on the stack"
+  chapter: "2"
+
+- term: integer memory-safety vulnerabilities
+  definition: "Integer memory-safety vulnerabilities occur when an attacker exploits how integers are represented in C memory"
+  chapter: "2"
+
+- term: format string vulnerabilities
+  definition: "Format string vulnerabilities occur when an attacker exploits the arguments to printf"
+  chapter: "2"
+
+- term: heap vulnerabilities
+  definition: "Heap vulnerabilities occur when an occur exploits the heap layout"
+  chapter: "2"
+
