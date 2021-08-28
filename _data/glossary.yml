@@ -122,150 +122,242 @@
   chapter: "2"
 
 - term: shellcode
-  definition: "Shellcode is malicious code inserted by the attacker into memory, to be executed using a memory safety exploit"
-  chapter: "2"
+  definition: "Shellcode is malicious code inserted by the attacker into memory, to be executed using a memory safety exploit" 
+  chapter: "3"
 
 - term: buffer overflow
   definition: "A buffer overflow is a memory safety vulnerability wherein an attacker overwritten unintended parts of memory"
-  chapter: "2"
+  chapter: "3"
 
 - term: stack smashing
   definition: "Stack smashing is a type of buffer overflow attack wherein the attacker overwrites saved registers on the stack"
-  chapter: "2"
+  chapter: "3"
 
 - term: integer memory-safety vulnerabilities
   definition: "Integer memory-safety vulnerabilities occur when an attacker exploits how integers are represented in C memory"
-  chapter: "2"
+  chapter: "3"
 
 - term: format string vulnerabilities
   definition: "Format string vulnerabilities occur when an attacker exploits the arguments to printf"
-  chapter: "2"
+  chapter: "3"
 
 - term: heap vulnerabilities
   definition: "Heap vulnerabilities occur when an occur exploits the heap layout"
-  chapter: "2"
+  chapter: "3"
 
 - term: memory-safe languages
   definition: "Memory safe languages are design to check bounds and prevent undefined memory-accesses and, are therefore not vulnerable to memory safety vulnerabilities"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: defensive programming
   definition: "Defensive programming is a technique of writing memory safe code wherein you always add checks in you code just in case"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: exploit mitigations
   definition: "Exploit mitigations, also known as code hardening, are compiler and runtime defenses that make common exploits harder"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: non-executable pages
   definition: "Non-executable pages is a defense against memory safety vulnerabilities wherein portions of memory are either executable or writable but not both"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: return-to-libc
   definition: "Return to libc is an exploit technique that overwrites the RIP to jump to a function in the standard C library (libc) or a common operating system function"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: rop
   definition: "ROP (Return Oriented Programming) consists of constructing custom shellcode using pieces of code that already exist in memory"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: gadget
   definition: "A gadget is a small set of assembly instructions that already exist in memory"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: stack canary
   definition: "A stack canary is a defense against memory safety vulnerabilities wherein a random, secret value is added to the stack and is later checked to see if it has been changed"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: pointer authentication
   definition: "Pointer authentication is a defense against memory safety vulnerabilities wherein instead of storing a pointer in memory, the unused bits are replaced with a pointer authentication code (PAC)"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: pac
   definition: "A PAC (Pointer Authentication Code) is a random value that replaces the unused bits when storing a pointer in memory"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: aslr
   definition: "ASLR (Address Space Layout Randomization) is a defense against memory safety vulnerabilities wherein each segment of memory is placed in a different location each time the program is run"
-  chapter: "3" 
+  chapter: "4" 
 
 - term: cryptography
   definition: "Cryptography is the study of secure communication over insecure channels" 
-  chapter: "4" 
+  chapter: "5" 
 
 - term: eavesdropper
   definition: "An eavesdropper, commonly known as Eve, can read any data sent over the channel"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: manipulator
   definition: "A manipulator, commonly known as Mallory, can read and modify any data sent over the channel"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: confidentiality
   definition: "Confidentiality is a goal of cryptography wherein the adversary cannot read our messages. Essentially, the ciphertext should not give the attacker any additional information about the plaintext"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: integrity
   definition: "Integrity is a goal of cryptography wherein the adversary cannot change any messages without being detected"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: authenticity
   definition: "Authenticity is a goal of cryptography wherein one can prove that a message came from the person who claims to have written it" 
-  chapter: "4" 
+  chapter: "5" 
 
 - term: key
   definition: "They key is the most basic building block of cryptography and can be used in algorithms to secure messages" 
-  chapter: "4" 
+  chapter: "5" 
 
 - term: symmetric key model
   definition: "In a symmetric key model, both Alice and Bob know the value of the secret key"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: asymmetric key model
   definition: "In an asymmetric key model, everybody has two keys, a secret key and a public key"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: kerckhoff’s principle
   definition: "Kerckhoff’s Principle is a security principle that is closely related to Shannon’s Maxim that states that cryptosystems should remain secure even when the attacker knows all the internal details of the system, except the key" 
-  chapter: "4" 
+  chapter: "5" 
 
 - term: plaintext
   definition: "Plaintext is the original message"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: ciphertext
   definition: "Ciphertext is the encrypted message" 
-  chapter: "4" 
+  chapter: "5" 
 
 - term: encrypt
   definition: "Encrypting a message uses the key to change the message from its original form into a scrambled form"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: decrypt
   definition: "Decrypting a message uses the key to change the message from its scrambled form back to its original form"
-  chapter: "4" 
+  chapter: "5" 
 
 - term: caesar cipher
   definition: "The Caesar cipher encrypts the plaintext by replacing each letter with the letter K positions later in the alphabet" 
-  chapter: "4" 
+  chapter: "5" 
+
+- term: traffic analysis
+  definition: "Traffic analysis is analyzing who is talking to whom and when"
+  chapter: "5"
+
+- term: side channels
+  definition: "Side channels are when information about the plaintext is revealed as a result of the implementation of the scheme, not the scheme itself"
+  chapter: "5"
 
 - term: chosen-plaintext attack
   definition: "In a chosen-plaintext attack, Eve tricks Alice into encrypting plaintext of her (Eve’s) choice"
-  chapter: "4" 
+  chapter: "6" 
 
 - term: correctness
-  definition: "Correctness ia a property we want from a symmetric encryption scheme wherein decrypting a ciphertext should result in the message that was originally encrypted"
-  chapter: "4" 
+  definition: "Correctness is a property we want from a symmetric encryption scheme wherein decrypting a ciphertext should result in the message that was originally encrypted"
+  chapter: "6" 
 
 - term: efficiency
   definition: "Efficiency is a property we want from a symmetric encryption scheme wherein encryption and decryption should be fast"
-  chapter: "4" 
+  chapter: "6" 
 
 - term: security
   definition: "Security is a property we want from a symmetric encryption scheme which is essentially the same as confidentiality"
-  chapter: "4" 
+  chapter: "6" 
 
 - term: ind-cpa
-  definition: "A scheme is IND-CPA (Indistinguishability Under Chosen Plaintext Attack) secure when even if Eve can trick Alice into encrypting some messages of Eve’s choosing, given the encryption of either M_0 or M_1, Eve cannot distinguish which message was sent with probability greater than ½"
-  chapter: "4" 
+  definition: "A scheme is IND-CPA (Indistinguishability Under Chosen Plaintext Attack) secure when even if Eve can trick Alice into encrypting some messages of Eve’s choosing, given the encryption of either M<sub>0</sub> or M<sub>1</sub>, Eve cannot distinguish which message was sent with probability greater than ½"
+  chapter: "6" 
+
+- term: block cipher
+  definition: "A block cipher is an encryption/decryption algorithm that encrypts a fixed-size block of bits"
+  chapter: "6"
+
+- term: permutation
+  definition: "A permutation, or a bijective function, is a function such that each input must correspond to exactly one unique output"
+  chapter: "6"
+
+- term: ecb
+  definition: "ECB (Electronic Code Book) is a mode of symmetric encryption where C<sub>i</sub> = Enc(K, M<sub>i</sub>)"
+  chapter: "6"
+
+- term: iv
+  definition: "An IV (Initialization Vector) is a random, but public, one-use value used in combination with a secret key as a means to introduce randomness into the algorithm"
+  chapter: "6"
+
+- term: nonce
+  definition: "A nonce, or a number used once, can be thought of like an IV, except the value has to be unique but not necessarily random"
+  chapter: "6"
+
+- term: cbc
+  definition: "CBC (Cipher Block Chaining) is a mode of symmetric encryption where C<sub>i</sub> = E_K(M<sub>i</sub> &oplus; C<sub>i-1</sub>) and C<sub>0</sub> = IV"
+  chapter: "6"
+
+- term: padding
+  definition: "Padding is adding dummy bytes at the end of the message until it is the proper length"
+  chapter: "6"
+
+- term: ctr
+  definition: "CTR (Counter) is a mode of symmetric encryption where C<sub>i</sub> = E_K(IV || counter) &oplus; M<sub>i</sub>"
+  chapter: "6"
+
+- term: hash function
+  definition: "A hash function takes in an arbitrary length message and outputs a fixed-length fingerprint over the input" 
+  chapter: "7" 
+
+- term: preimage resistance
+  definition: "Preimage resistance, also known as one-way-ness, is a property of a hash function where given an output, y, it is infeasible to find any input, x, such that H(x) = y"
+  chapter: "7" 
+
+- term: second preimage resistance
+  definition: "Second preimage resistance is a property of a hash function where given an input, x, it is infeasible to find another input, x’, where x &ne; x’, such that H(x) = H(x’)"
+  chapter: "7" 
+
+- term: collision
+  definition: "A collision is when two different inputs get hashed to the same output"
+  chapter: "7" 
+
+- term: collision resistance
+  definition: "Collision resistance is a property of hash functions where it is infeasible to find any pair of inputs, x and x’, such that H(x) = H(x’)" 
+  chapter: "7" 
+
+- term: birthday attack
+  definition: "The birthday attack is an attack on hash functions wherein finding a collision on an n-bit output requires only 2<sup>n/2</sup> tries on average"
+  chapter: "7" 
+
+- term: length extension attack
+  definition: "The length extension attack is an attack on hash functions where given H(x) and the length of x, but not x, an attacker can create H(x || m) for any m of the attacker’s choosing"
+  chapter: "7" 
+
+- term: mac
+  definition: "A MAC (Message Authentication Code) is a fixed-length, deterministic tag that is created on an arbitrary length message using a secret key"
+  chapter: "8" 
+
+- term: existentially unforgeable
+  definition: "A secure MAC is existentially unforgeable meaning that without the key, an attacker cannot create a valid tag on a message"
+  chapter: "8" 
+
+- term: authenticated encryption
+  definition: "Authenticated Encryption (AE) is a scheme that simultaneously guarantees confidentiality and integrity (and authenticity, depending on your threat model) on a message"
+  chapter: "8" 
+
+- term: key reuse
+  definition: "Key reuse is using the same key in two different algorithms (e.g. AES-CBC and HMAC)"
+  chapter: "8" 
+
+- term: authenticated encryption with additional data
+  definition: "Authenticated Encryption with Additional Data (AEAD) is an algorithm that provides both confidentiality and integrity over the plaintext and integrity over additional data"
+  chapter: "8" 
+
+- term: gcm
+  definition: "GCM (Galois Counter Mode) is an AEAD block cipher mode of operation"
+  chapter: "8" 
 
