@@ -529,3 +529,223 @@
   definition: "Proof of work is when the blockchain only accepts blocks whose hashes start with a sequence of n 0s"
   chapter: "16"
 
+- term: sql
+  definition: "SQL (Structured Query Language) is a language that is used to interact with and manage data that is stored in a database"
+  chapter: "17"
+
+- term: sql injection
+  definition: "A sequel injection (SQLi) is an attack that injects SQL into queries constructed by the server to cause malicious behavior"
+  chapter: "17"
+
+- term: blind sql injection
+  definition: "A blind sql injection is a SQL injection attack where little to no feedback is provided"
+  chapter: "17"
+
+- term: escape inputs
+  definition: "One way of defending against SQL injection is to escape any potential input that could be used in an attack. Escaping a character means that you tell SQL to treat this character as part of the string, not actual SQL syntax"
+  chapter: "17"
+
+- term: input sanitization
+  definition: "Input sanitization is a SQLi defense that either disallows or escapes certain special characters"
+  chapter: "17"
+
+- term: prepared statements
+  definition: "Prepared statements, also known as parameterized SQL, is a SQLi defense that compiles the query first, and then plugs in the user input after the query as already been interpreted by the SQL parser, ensuring there is no way for any attacker input to be treated as SQL code" 
+  chapter: "17"
+
+- term: web
+  definition: "The World Wide Web is a collection of data and services"
+  chapter: "18"
+
+- term: url
+  definition: "A URL (Uniform Resource Locator) is a string that uniquely identifies one piece of data on the web"
+  chapter: "18"
+
+- term: http
+  definition: "HTTP (Hypertext Transfer Protocol) is a protocol used to request and retrieve data from a web server"
+  chapter: "18"
+
+- term: html
+  definition: "HTML is a markup language for creating structures documents"
+  chapter: "18"
+
+- term: css
+  definition: "CSS (Cascading Style Sheets) is a style sheet language for defining the appearance of web pages"
+  chapter: "18"
+
+- term: javascript
+  definition: "JavaScript is a client-side programming language for running code in the web browser"
+  chapter: "18"
+
+- term: client-side
+  definition: "Client side is when code is sent by the server as part of the response and runs in the browser, not on the web server"
+  chapter: "18"
+
+- term: ftp
+  definition: "File Transfer Protocol"
+  chapter: "18"
+
+- term: domain
+  definition: "The domain is a part of the URL that defines which web server to contact"
+  chapter: "18"
+
+- term: path
+  definition: "The path is a part of the URL that defines which file on the web server to fetch"
+  chapter: "18"
+
+- term: get request
+  definition: "A GET request is a request that does not change the server-side state"
+  chapter: "18"
+
+- term: post request
+  definition: "A POST request is a request that updates the server-side state"
+  chapter: "18"
+
+- term: dom
+  definition: "DOM (Document Object Model) is a cross-platform model for representing and interacting with objects in HTML"
+  chapter: "18"
+
+- term: same-origin policy
+  definition: "The same-origin policy (SOP) is a rule that prevents one website from tampering with other unrelated websites and is enforced by the web browser"
+  chapter: "19"
+
+- term: origin
+  definition: "The origin of a web page is defined by its URL and is comprised of its protocol, domain, and port"
+  chapter: "19"
+
+- term: cookie
+  definition: "A cookie is a piece of data used to maintain state across multiple requests"
+  chapter: "20"
+
+- term: cookie jar
+  definition: "The cookie jar is the browser’s cookie storage"
+  chapter: "20"
+
+- term: domain attribute
+  definition: "The domain attribute is a part of the cookie and usually looks like the domain in a URL"
+  chapter: "20"
+
+- term: path attribute
+  definition: "The path attribute is a part of the cookie and usually looks like a path of the URL"
+  chapter: "20"
+
+- term: secure attribute
+  definition: "The secure attribute is a part of the cookie; if True, then the browser only sends the cookie if the request is made over HTTPS, not HTTP"
+  chapter: "20"
+
+- term: httponly attribute
+  definition: "The httpOnly attribute is a part of the cookie; if True, then the JavaScript in the browser is not allowed to access the cookie"
+  chapter: "20"
+
+- term: expired attribute
+  definition: "The expired attribute is a part of the cookie and it defines when the cookie is no longer valid"
+  chapter: "20"
+
+- term: cookie policy
+  definition: "Cookie policy (not the same as the SOP) is a set of rules that is enforced by the browser that defines when the cookie should be accepted and when it should be attached"
+  chapter: "20"
+
+- term: session
+  definition: "A session is a sequence of requests and responses associated with the same authenticated user"
+  chapter: "20"
+
+- term: session token
+  definition: "A session token is a secret value that is used to associate requests with an authenticated user"
+  chapter: "20"
+
+- term: csrf
+  definition: "CSRF (Cross Site Request Forgery), also known as XSRF) is an attack that exploits cookie-based authentication to perform an action as the victim"
+  chapter: "21"
+
+- term: csrf token
+  definition: "A CSRF token is a secret value provided by the server to the user that has to be attached in any following requests for the server to accept the request"
+  chapter: "21"
+
+- term: referer validation
+  definition: "Referer validation is one way to defend against CSRF tokens by having the server check the referer header on each request and reject any requests that have untrusted or suspicious referer headers"
+  chapter: "21"
+
+- term: same-site flag
+  definition: "The SameSite flag is a flag on a cookie that specifies it should be sent only when the domain of the cookie exactly matches the domain of the origin"
+  chapter: "21"
+
+- term: xss
+  definition: "XSS (Cross Site Scripting) is an attack that subverts the same-origin policy wherein an attacker injects JavaScript into websites that are viewed by other users"
+  chapter: "22"
+
+- term: stored xss
+  definition: "Stored, or persisted, XSS is a type of XSS attack where the attacker’s JavaScript is stored on the legitimate server and sent to browsers"
+  chapter: "22"
+
+- term: reflected xss
+  definition: "Reflected XSS is a type of XSS attack where the attacker causes the victim to input JavaScript into a request, and the content is reflected in the response from the server"
+  chapter: "22"
+
+- term: input sanitization
+  definition: "Input sanitization is a defense against XSS by checking for malicious input that might cause JavaScript to run, such as <script> tags"
+  chapter: "22"
+
+- term: html sanitization
+  definition: "HTML sanitization is a defense against XSS wherein certain special characters are represented as data rather than HTML"
+  chapter: "22"
+
+- term: csp
+  definition: "CSP (Content Security Policy) is a defense against XSS wherein the browser is instructed to only use resources loaded from specific places"
+  chapter: "22"
+
+- term: ui attacks
+  definition: "A UI (User Interface) attack is one wherein the attacker tricks the victim into thinking they are taking an intended action, when they are actually taking a malicious action"
+  chapter: "23"
+
+- term: clickjacking
+  definition: "Clickjacking is a type of UI attack wherein the attacker tricks the victim into clicking on something from the attack"
+  chapter: "23"
+
+- term: clickjacking temporal attack
+  definition: "A clickjacking temporal attack is one where JavaScript can detect the position of the cursor and change the website right before the user clicks on something"
+  chapter: "23"
+
+- term: enforce visual integrity
+  definition: "Enforcing visual integrity is a defense against clickjacking wherein we ensure clear visual separation between important dialogues and content"
+  chapter: "23"
+
+- term: enforce temporal integrity
+  definition: "Enforcing temporal integrity is a defense against clickjacking wherein we ensure that there is sufficient time for a user to register what they are clicking on"
+  chapter: "23"
+
+- term: frame-busting
+  definition: "Frame-busting is a defense against clickjacking wherein the legitimate website forbids other websites from embedding it in an iframe"
+  chapter: "23"
+
+- term: phishing
+  definition: "Phishing is tricking the victim into sending the attack personal information"
+  chapter: "23"
+
+- term: homograph attack
+  definition: "A homograph attack creates malicious URLs that look similar (or the same) to legitimate URLs"
+  chapter: "23"
+
+- term: browser-in-browser attack
+  definition: "A browser-in-browser attack is one where the attacker simulates the entire web browser with JavaScript"
+  chapter: "23"
+
+- term: 2fa
+  definition: "2FA (2 Factor Authentication) is where the user must prove their identity in two different ways before successfully authenticating"
+  chapter: "23"
+
+- term: relay attacks
+  definition: "Relay attacks, or transient phishing attacks, are when the attacker steals both factors in a phishing attack"
+  chapter: "23"
+
+- term: authentication token
+  definition: "An authentication token is a device that generates secure second-factor codes"
+  chapter: "23"
+
+- term: security key
+  definition: "A security key is a second factor that is designed to defend against phishing"
+  chapter: "23"
+
+- term: captcha
+  definition: "A CAPTCHA (Completely Automated Public Turing Test to tell Computers and Humans Apart) is a challenge that is easy for a human to solve but hard for a computer to solve"
+  chapter: "24"
+
