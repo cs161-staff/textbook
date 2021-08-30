@@ -361,3 +361,171 @@
   definition: "GCM (Galois Counter Mode) is an AEAD block cipher mode of operation"
   chapter: "8" 
 
+- term: entropy
+  definition: "Entropy is a measure of uncertainty (i.e. a measure of how unpredictable the outcomes are)"
+  chapter: "9"
+
+- term: prngs
+  definition: "PRNGs (Pseudorandom Number Generators), also known as deterministic random bit generators, are algorithms that use a little but of true randomness to generate a lot of random-looking output"
+  chapter: "9"
+
+- term: rollback resistance
+  definition: "Rollback resistance states that if an attacker learns in the internal PRNG state, they cannot learn anything about previous states or outputs"
+  chapter: "9"
+
+- term: stream ciphers
+  definition: "A stream cipher is a symmetric encryption algorithm that uses pseudorandom bits as the key to a one-time pad"
+  chapter: "9"
+
+- term: discrete log problem
+  definition: "The discrete logarithm problem states that given g<sup>a</sup> mode p, it is computationally hard to find a"
+  chapter: "10"
+
+- term: diffie-hellman problem
+  definition: "The Diffie-Hellman problem states that given g<sup>a</sup> mod p and g<sup>b</sup> mod p, it is computationally difficult to find g<sup>ab</sup> mod p"
+  chapter: "10"
+
+- term: ephemeral
+  definition: "Short-term and temporary, not permanent"
+  chapter: "10"
+
+- term: elliptic-curve diffie-hellman
+  definition: "Elliptic-Curve Diffie-Hellman is a variation of Diffie-Hellman that uses elliptic curves instead of modular arithmetic"
+  chapter: "10"
+
+- term: forward secrecy
+  definition: "Forward secrecy is a property of Diffie-Hellman wherein even if Eve records everything that was sent over the insecure channel and later steals all of Alice and Bob’s secrets, she can’t decrypt any messages that she recorded. Essentially, nothing is saved or can be recorded that can ever recover the key"
+  chapter: "10"
+
+- term: rsa problem
+  definition: "The RSA problem states that given n and C = M<sup>e</sup> mod N, it is computationally hard to find M"
+  chapter: "11"
+
+- term: oaep
+  definition: "OAEP (Optimal Asymmetric Encryption Padding) is a variation of RSA that introduces randomness"
+  chapter: "11"
+
+- term: hybrid encryption
+  definition: "Hybrid encryption is a scheme wherein you encrypt data under a randomly generated key, K, using symmetric encryption, and encrypt K using asymmetric encryption"
+  chapter: "11"
+
+- term: elgamal encryption
+  definition: "ElGamal encryption is public-key encryption where the ciphertext is (g<sup>r</sup> mod p, m &times; B<sup>r</sup> mod p) and the decryption is R<sup>-b</sup> &times; S mod p"
+  chapter: "11"
+
+- term: active attacks
+  definition: "An active attacker, commonly known as Attila, can send a spoofed broadcast message that appears to be from Bob, but contains something that Attilla generated, thus fooling Alice into thinking the message came from Bob"
+  chapter: "11"
+
+- term: session key
+  definition: "Session keys are the keys used to actually encrypt and authenticate the message"
+  chapter: "11"
+
+- term: digital signatures
+  definition: "Digital signatures are the asymmetric way of providing integrity/authenticity to data"
+  chapter: "12"
+
+- term: key generation
+  definition: "Key generation is a randomized algorithm that outputs a matching public key and private key"
+  chapter: "12"
+
+- term: signing
+  definition: "Signing is an algorithm that outputs a signature on the message, M, using the secret key"
+  chapter: "12"
+
+- term: verification
+  definition: "Verification is an algorithm that takes in the signature, message, and public key and returns true if the signature is a valid signature on the message, and false otherwise"
+  chapter: "12"
+
+- term: Euler's totient function of n
+  definition: "Euler's totient function of n is the number of positive integers less than n that share no common factors with n"
+  chapter: "12"
+
+- term: trust anchor
+  definition: "A trust anchor is someone that we implicitly trust"
+  chapter: "13"
+
+- term: trusted directory service
+  definition: "A trusted directory service is some organization that maintains an association between the name of each participant and their public key"
+  chapter: "13"
+
+- term: trust-on-first-use
+  definition: "Trust-on-first-use states that the first time you communicate, trust the public key that is used and warn the user if it changes in the future"
+  chapter: "13"
+
+- term: certificate
+  definition: "A certificate is a signed endorsement of someone’s public key"
+  chapter: "13"
+
+- term: digital certificates
+  definition: "Digital certificates are a way to represent an alleged association between a person's name and their public key, as attested by some certifying party"
+  chapter: "13"
+
+- term: certificate authority
+  definition: "A certificate authority (CA) is a party who issues certificates"
+  chapter: "13"
+
+- term: rainbow tables
+  definition: "A rainbow table is an algorithm for computing hashes that makes brute-force attacks easier"
+  chapter: "14"
+
+- term: salt
+  definition: "A salt is a random, public value that is designed to make brute-force attacks harder"
+  chapter: "14"
+
+- term: Password-based key derivation function 2
+  definition: "A password-based key derivation function 2, or PBKDF2, is a slow hash function"
+  chapter: "14"
+
+- term: offline attack
+  definition: "An offline attack is when the attacker performs all of the computations themselves"
+  chapter: "14"
+
+- term: online attack
+  definition: "An online attack is when the attacker interacts with a service"
+  chapter: "14"
+
+- term: snake oil security
+  definition: "Snake oil security, also known as snake oil cryptography, is when useless security products are advertised to uninformed buyers"
+  chapter: "14"
+
+- term: hash chain
+  definition: "A hash chain is a linked list where each node contains the has of the previous node"
+  chapter: "16"
+
+- term: append-only structure
+  definition: "An append-only structure is a structure wherein changing a node causes the hashes in all future nodes to change"
+  chapter: "16"
+
+- term: consensus
+  definition: "Consensus is a way to reach agreement on something as a group, without placing trust in any individual"
+  chapter: "16"
+
+- term: 51% attack
+  definition: "A 51% attack is when an attacker who controls 51% of mining power can effectively rewrite history and perform a forking attack"
+  chapter: "16"
+
+- term: forking attack
+  definition: "An attack where the attacker creates their own branch of the chain"
+  chapter: "16"
+
+- term: mining pools
+  definition: "A mining pool is a team of users mining together"
+  chapter: "16"
+
+- term: private blockchain
+  definition: "A private blockchain is when only blocks signed by trusted private keys are valid"
+  chapter: "16"
+
+- term: pseudonymity
+  definition: "Pseudonymity is when multiple actions can be linked to a single identity which is not your real identity"
+  chapter: "16"
+
+- term: anonymity
+  definition: "Anonymity is when actions cannot be linked to your real identity"
+  chapter: "16"
+
+- term: proof-of-work
+  definition: "Proof of work is when the blockchain only accepts blocks whose hashes start with a sequence of n 0s"
+  chapter: "16"
+
