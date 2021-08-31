@@ -682,7 +682,7 @@
   chapter: "22"
 
 - term: input sanitization
-  definition: "Input sanitization is a defense against XSS by checking for malicious input that might cause JavaScript to run, such as <script> tags"
+  definition: "Input sanitization is a defense against XSS by checking for malicious input that might cause JavaScript to run, such as &lt;script&gt; tags"
   chapter: "22"
 
 - term: html sanitization
@@ -748,4 +748,484 @@
 - term: captcha
   definition: "A CAPTCHA (Completely Automated Public Turing Test to tell Computers and Humans Apart) is a challenge that is easy for a human to solve but hard for a computer to solve"
   chapter: "24"
+
+- term: network
+  definition: "A network is a set of connected machines that can communicate with each other"
+  chapter: "25" 
+
+- term: internet
+  definition: "The internet is a global network of computers"
+  chapter: "25" 
+
+- term: protocol
+  definition: "A protocol is an agreement on how to communicate that specifies syntax and semantics"
+  chapter: "25" 
+
+- term: syntax
+  definition: "Syntax is how a communication is specified and structured (i.e. that format and order of messages)"
+  chapter: "25" 
+
+- term: semantics
+  definition: "Semantics is what a communication means (i.e. what actions have to be taken when sending and receiving messages)"
+  chapter: "25" 
+
+- term: osi model
+  definition: "The OSI (Open Systems Interconnection) model is a layered model of internet communication"
+  chapter: "25" 
+
+- term: physical layer
+  definition: "The physical layer is the first layer in the OSI model and it sends bits from one device to another over a physical link"
+  chapter: "25" 
+
+- term: link layer
+  definition: "The link layer is the second layer in the OSI model and it sends frames directly from one service to another"
+  chapter: "25" 
+
+- term: lan
+  definition: "LAN (Local Area Network) is a set of computers on a shared network that can directly address one another"
+  chapter: "25" 
+
+- term: ethernet
+  definition: "Ethernet is a common, layer 2 protocol that most endpoint devices use"
+  chapter: "25" 
+
+- term: mac
+  definition: "The MAC address is a 6-byte address that identifies a piece of network equipment"
+  chapter: "25" 
+
+- term: network layer
+  definition: "The network layer is the third layer in the OSI model and it sends packets from any device to another device and it allows packets to be routed across different devices to reach the destination"
+  chapter: "25" 
+
+- term: ip
+  definition: "IP (Internet Protocol) is the universal layer 3 protocol that all devices use to transmit data over the internet"
+  chapter: "25" 
+
+- term: ip address
+  definition: "An IP address is an address that identifies a device on the internet"
+  chapter: "25" 
+
+- term: reliability
+  definition: "Reliability ensures that packets are received correctly, or, if random errors occur, not at all"
+  chapter: "25" 
+
+- term: transport layer
+  definition: "Transport layer is the fourth layer in the OSI model and it provides the transportation of variable length data from any point to any other point"
+  chapter: "25" 
+
+- term: spoofing
+  definition: "Spoofing is lying about the identity of the sender"
+  chapter: "26" 
+
+- term: promiscuous mode
+  definition: "Most ethernet devices can enter promiscuous mode where it will receive all packets in a process known as packet sniffing"
+  chapter: "26" 
+
+- term: arp
+  definition: "ARP (Address Resolution Protocol) translates layer 3 IP addresses into layer 2 MAC addresses"
+  chapter: "26" 
+
+- term: race condition
+  definition: "A race condition is when two different machines are attempting to communicate with one machine that is expecting only one response so the requester will accept whichever response arrives first"
+  chapter: "26" 
+
+- term: switches
+  definition: "Modern wired Ethernet networks defend against ARP spoofing by using switches rather than hubs which keep track of the IP address to MAC address pairings"
+  chapter: "26" 
+
+- term: wifi
+  definition: "WiFi is a layer 2 protocol that wirelessly connects machines in a LAN"
+  chapter: "27" 
+
+- term: access point
+  definition: "An access point (AP) is a machine that will help you connect to the network"
+  chapter: "27" 
+
+- term: ssid
+  definition: "The SSID (Service Set Identifier) is the name of the WiFi network"
+  chapter: "27" 
+
+- term: wpa2
+  definition: "WPA2 (WiFi Protected Access 2) is a protocol for securing WiFi network communications with cryptography"
+  chapter: "27" 
+
+- term: psk
+  definition: "A PSK (Pre-Shared Key) is a key that is derived by applying a password-based key derivation function on the SSID and password"
+  chapter: "27" 
+
+- term: wpa2-enterprise
+  definition: "WPA2-Enterprise gives authorized users a unique username and password by having the client connect to a secure authentication server and provides its identity to that server by providing a username and password"
+  chapter: "27" 
+
+- term: dhcp
+  definition: "DHCP (Dynamic Host Configuration Protocol) gives the user a configuration when they first join the network"
+  chapter: "28" 
+
+- term: nat
+  definition: "NAT (Network Address Translation) allows multiple computers on a local network to share an IP address"
+  chapter: "28" 
+
+- term: subnet
+  definition: "A subnet is a group of addresses with a common prefix"
+  chapter: "29" 
+
+- term: autonomous systems
+  definition: "An autonomous system (AS) is comprised of one or more LANs and is uniquely identified by its ASN (autonomous system number)"
+  chapter: "29" 
+
+- term: bgp
+  definition: "BGP (Border Gateway Protocol) is the protocol for communicating between different Autonomous Systems"
+  chapter: "29" 
+
+- term: ip spoofing
+  definition: "IP spoofing is when malicious clients can send IP packets with source IP values set to a spoofed value"
+  chapter: "29" 
+
+- term: bgp hijacking
+  definition: "BGP hijacking is where malicious autonomous systems can lie and claim themselves to be responsible for a network which it isn’t"
+  chapter: "29" 
+
+- term: port
+  definition: "Ports help us distinguish between different applications on the same server"
+  chapter: "30" 
+
+- term: tcp
+  definition: "TCP (Transmission Control Protocol) is a protocol that is built on top of IP that provides a byte stream abstraction, ordering, and reliability"
+  chapter: "30" 
+
+- term: initial sequence numbers
+  definition: "Initial Sequence Numbers (ISNs) are different, random numbers for every connection that the client and server both agree upon"
+  chapter: "30" 
+
+- term: tcp hijacking
+  definition: "TCP hijacking is an attack on TCP where an attacker tampers with an existing session to modify or inject data into a connection"
+  chapter: "30" 
+
+- term: data injection
+  definition: "Data injection is a type of TCP hijacking attack where the attacker spoofs packets to inject malicious data into a connection"
+  chapter: "30" 
+
+- term: rst injection
+  definition: "RST injection is a type of TCP hijacking attack where the attacker spoofs an RST packet to forcibly terminate a connection"
+  chapter: "30" 
+
+- term: tcp spoofing
+  definition: "TCP spoofing is an attack on TCP where the attacker spoofs the TCP connection to appear to come from another source IP address"
+  chapter: "30" 
+
+- term: udp
+  definition: "UDP (User Datagram Protocol) is a protocol that is built on top of IP that does not have reliability or ordering guarantees, but adds ports"
+  chapter: "30" 
+
+- term: tls
+  definition: "TLS (Transport Layer Security) is a protocol that is built on top of TCP for creating a secure communications channel over the Internet"
+  chapter: "31" 
+
+- term: ssl
+  definition: "SSL (Secure Sockets Layer) is the old, deprecated version of TLS"
+  chapter: "31" 
+
+- term: end-to-end security
+  definition: "End to end security is a property that is provided by TLS wherein secure communications exist between the two endpoints with no need to trust intermediaries"
+  chapter: "31" 
+
+- term: https
+  definition: "HTTPS is the HTTP protocol run over TLS"
+  chapter: "31" 
+
+- term: ssl stripping
+  definition: "SSL stripping forces a user to use unencrypted HTTP instead of HTTPS"
+  chapter: "31" 
+
+- term: certificate pinning
+  definition: "Certificate pinning is when the browser restricts which CAs are allowed to issue a certificate for each website"
+  chapter: "31" 
+
+- term: certificate transparency
+  definition: "Certificate transparency are public logs provided by CAs"
+  chapter: "31" 
+
+- term: replay attack
+  definition: "A replay attack involves an attacker recording old messages and sending them to the server"
+  chapter: "31" 
+
+- term: dns
+  definition: "DNS (Domain Name System) is an internet protocol for translating human-readable domain names to IP addresses"
+  chapter: "32" 
+
+- term: name server
+  definition: "A name server is a server on the Internet that is responsible for answering DNS requests"
+  chapter: "32" 
+
+- term: stub resolver
+  definition: "A stub resolver is the resolver on your computer that only contacts the recursive resolver and receives the answer"
+  chapter: "32" 
+
+- term: recursive resolver
+  definition: "A recursive resolver is the resolver that makes the actual DNS queries"
+  chapter: "32" 
+
+- term: resource records
+  definition: "Resource Records (RR) is a name-value pair which is a part of the DNS payload and contains answer and name server type records"
+  chapter: "32" 
+
+- term: id number
+  definition: "The ID number is 16 bits and is part of the DNS payload and is used to associate queries with responses"
+  chapter: "32" 
+
+- term: counts
+  definition: "Counts store the number of records of each type in the DNS payload"
+  chapter: "32" 
+
+- term: cache poisoning attack
+  definition: "A cache poisoning attack is an attack that returns a malicious record to the client"
+  chapter: "32" 
+
+- term: bailiwick checking
+  definition: "Bailiwick checking is a DNS defense where the resolver only accepts records if they are in the name server’s zone"
+  chapter: "32" 
+
+- term: kaminsky attack
+  definition: "The Kaminsky Attack queries non-existent domains and puts the poisoned record in the additional section (which will still be cached), and lets the off-path attacker try repeatedly until succeeding"
+  chapter: "32" 
+
+- term: channel security
+  definition: "Channel security is securing the communication channel between two end hosts"
+  chapter: "33" 
+
+- term: object security
+  definition: "Object security is securing a piece of data (in transit or in storage)"
+  chapter: "33" 
+
+- term: downgrade attack
+  definition: "A downgrade attack is an attack wherein the attacker blocks the TLS connection, forcing the browser to fall back on ordinary DNS"
+  chapter: "33" 
+
+- term: dnssec
+  definition: "DNSSEC (DNS Security Extensions) is an extension of the DNS protocols that ensures integrity on the results"
+  chapter: "33" 
+
+- term: edns0
+  definition: "EDNS0 (Extension Mechanisms for DNS) is a protocol that adds the OPT pseudosection"
+  chapter: "33" 
+
+- term: rrset
+  definition: "RRSET (Resource Record Set) is a group of DNS records with the same name and type form"
+  chapter: "33" 
+
+- term: ksk
+  definition: "KSK (Key Signing Key) is used to sign only the zone-signing key"
+  chapter: "33" 
+
+- term: zsk
+  definition: "ZSK (Zone Signing Key) is aused to sign all other records"
+  chapter: "33" 
+
+- term: domain enumeration
+  definition: "Domain enumeration makes it easy for an attacker to find every single subdomain of a domain"
+  chapter: "33" 
+
+- term: dos
+  definition: "DoS (Denial of Service) is an attack that disrupts a network service, making the service unavailable for legitimate users"
+  chapter: "34" 
+
+- term: resource exhaustion
+  definition: "Resource exhaustion is wherein the attacker consumes all the limited resources so legitimate users can’t use them"
+  chapter: "34" 
+
+- term: amplification
+  definition: "Amplification exploits asymmetry between the attacker and the victim so that the attacker spends few resources but the victim has to spend a lot of resources, thus making DoS attacks easier for the attacker"
+  chapter: "34" 
+
+- term: bottleneck
+  definition: "A bottleneck is the part of the system with the least resources"
+  chapter: "34" 
+
+- term: application-level dos
+  definition: "Application level DoS targets the high-level application running on the end host by overwhelming the processing capacity of the service"
+  chapter: "34" 
+
+- term: content delivery network
+  definition: "Content delivery network is a service that allocates a huge amount of resources for you"
+  chapter: "34" 
+
+- term: algorithmic complexity attack
+  definition: "Algorithmic complexity attack is an attack that supplies inputs that trigger worst-case complexity of algorithms and data structures"
+  chapter: "34" 
+
+- term: network-level dos
+  definition: "Network-level DoS targets network level protocols to affect the victim’s internet access to affect the victim’s Internet access"
+  chapter: "34" 
+
+- term: dns amplification attack
+  definition: "DNS amplification attack is an attack that sends small spoofed requests to overwhelm the victim with large responses"
+  chapter: "34" 
+
+- term: packet filter
+  definition: "Packet filters discard any packets that are a part of the DoS attack" 
+  chapter: "34" 
+
+- term: ddos
+  definition: "DDoS (Distributed Denial of Service) attacks are a type of DoS attack where the attacker uses multiple systems to overwhelm the target system"
+  chapter: "34" 
+
+- term: botnet
+  definition: "A botnet is a collection of compromised computers controlled by the attacker"
+  chapter: "34" 
+
+- term: firewall
+  definition: "A firewall is used to enforce a specific kind of access control policy, one where insider users are permitted to connect to any network service desired, whereas external users are restricted"
+  chapter: "35" 
+
+- term: default-allow
+  definition: "A default-allow, or blacklist, policy is one wherein by default, every network service is permitted unless it has been specifically listed as denied"
+  chapter: "35" 
+
+- term: default-deny
+  definition: "A default-deny, or whitelist, policy is one wherein by default, every network service is denied to external users, unless it has been specifically listed as allowed"
+  chapter: "35" 
+
+- term: fails-open
+  definition: "A default-allow policy fails-open meaning that if any mistake is made, the result is likely to be some form of an expensive security failure"
+  chapter: "35" 
+
+- term: fails-closed
+  definition: "A default-deny policy fails closed meaning that if any mistake is made, then the result is the loss of functionality or availability, but not a security breach"
+  chapter: "35" 
+
+- term: stateful packet filter
+  definition: "A stateful packet filter is a router than checks each packet against the provided access control policy"
+  chapter: "35" 
+
+- term: stateless packet filters
+  definition: "Stateless packet filters tend to operate on the network level and generally only look at TCP, UDP, and IP headers"
+  chapter: "35" 
+
+- term: path traversal attack
+  definition: "A path traversal attack is an attack wherein unauthorized files are accessed on a remote server by exploiting Unix file path semantics"
+  chapter: "36" 
+
+- term: nids
+  definition: "NIDS (Network Intrusion Detection Systems) is a detector installed on the network, between the local network and the rest of the Internet"
+  chapter: "36" 
+
+- term: evasion attack
+  definition: "An evasion attack exploits inconsistencies and ambiguities to provide malicious inputs that are not detected by the NIDS"
+  chapter: "36" 
+
+- term: hids
+  definition: "HIDS (Host Based Intrusion Detection System) is a detector installed on each end system"
+  chapter: "36" 
+
+- term: logging
+  definition: "logging is a process wherein you analyze log files generated by end systems"
+  chapter: "36" 
+
+- term: false positive
+  definition: "A false positive is when the detector alerts when there is no attack"
+  chapter: "36" 
+
+- term: false negative
+  definition: "A false negative is when the detector fails to alert when there is an attack"
+  chapter: "36" 
+
+- term: false positive rate
+  definition: "False positive rate (FPR) is the probability the detector alerts, given there is no attack"
+  chapter: "36" 
+
+- term: false negative rate
+  definition: "False negative rate (FNR) is the probability the detector does not alert, given there is an attack"
+  chapter: "36" 
+
+- term: signature-based detection
+  definition: ‘Signature-based detection flags any activity that matches the structure of a known attack"
+  chapter: "36" 
+
+- term: blacklisting
+  definition: "Signature based detection is blacklisting wherein you keep a list of patterns that are not allowed, and alert if we see something on the list"
+  chapter: "36" 
+
+- term: specification-based detection
+  definition: "Specification based detection specifies allowed behavior and flags any behavior that isn’t allowed behavior"
+  chapter: "36" 
+
+- term: whitelisting
+  definition: "Specification-based detection is whitelisting, which keeps a list of allowed patterns, and alerts if we see something that is not on the list"
+  chapter: "36" 
+
+- term: anomaly-based detection
+  definition: "Anomaly based detection develops a model of what normal activity looks like and alerts on any activity that deviates from normal activity"
+  chapter: "36" 
+
+- term: vulnerability scanning
+  definition: "Vulnerability scanning uses a tool that proves your own system with a wide range of attacks (and fixes any successful attacks)"
+  chapter: "36" 
+
+- term: honeypot
+  definition: "Honeypot is a sacrificial system with no real purpose"
+  chapter: "36" 
+
+- term: forensics
+  definition: "Forensics is analyzing what happens after a successful attack"
+  chapter: "36" 
+
+- term: ips
+  definition: "Intrusion Prevention System (IPS) is an intrusion detection system that also blocks attacks"
+  chapter: "36" 
+
+- term: malware
+  definition: "Malware (also known as malcode or malicious software) is an attacker code running on victim computers"
+  chapter: "38" 
+
+- term: self-replicating code
+  definition: "Self-replicating code is a code snippet that outputs a copy of itself"
+  chapter: "38" 
+
+- term: virus
+  definition: "A virus is code that requires user action to propagate"
+  chapter: "38" 
+
+- term: worm
+  definition: "A worm is code that does not require user action to propagate"
+  chapter: "38" 
+
+- term: polymorphic code
+  definition: "Polymorphic code is code such that each time the virus propagates, it inserts an encrypted copy of the code"
+  chapter: "38" 
+
+- term: metamorphic code
+  definition: "Metamorphic code is code such that each time the virus propagates, it generates a semantically different version of the code"
+  chapter: "38" 
+
+- term: morris worm
+  definition: "The Morris Worm is considered the first internet worm and exploits multiple buffer overflows to guess common passwords to exploit common user accounts across different machines"
+  chapter: "38" 
+
+- term: rootkit
+  definition: "A rootkit is malcode in the operating system that hides its presence"
+  chapter: "38" 
+
+- term: proxy
+  definition: "A proxy is a third party that relays our Internet traffic"
+  chapter: "39" 
+
+- term: collusion
+  definition: "Collusion is when multiple proxies work together and share information"
+  chapter: "39" 
+
+- term: tor
+  definition: "Tor is a network that uses onion routing to enable anonymous communications"
+  chapter: "39" 
+
+- term: tor hidden services
+  definition: "Tor hidden services are websites that are only accessible through the Tor network"
+  chapter: "39" 
+
+- term: dark markets
+  definition: "Dark markets are marketplaces for buying and selling illegal goods"
+  chapter: "39" 
+
+- term: cybercrime forums
+  definition: "Cybercrime forums are websites for discussing illegal activity"
+  chapter: "39" 
 
