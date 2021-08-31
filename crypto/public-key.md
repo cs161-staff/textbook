@@ -215,7 +215,7 @@ computationally hard to find $$m$$. However, with the factorization of $$n$$
 _Under construction_
 
 For now, you can refer to [these notes from CS
-70](http://www.eecs70.org/static/notes/n7.pdf) for a detailed proof of RSA
+70](https://www.eecs70.org/assets/pdf/notes/n7.pdf) for a detailed proof of RSA
 encryption. For this class, you won't need to remember the proof of why RSA
 works. All you need to remember is that we use the public key to encrypt
 messages, we use the corresponding private key to decrypt messages, and an
