@@ -160,7 +160,7 @@ bar:
 ```
 
 To emulate the `add $0x4, %edx` instruction, we could move the value in EDX to
-EAX using the gadget in `foo` and then add 4 to EAX using the gadget in EDX! If
+EAX using the gadget in `foo` and then add 4 to EAX using the gadget in `bar`! If
 we set the first return address to `0x004005a1` and the second return address to
 `0x00400604`, we produce the desired result. Each time we jump to ROP gadget, we
 eventually execute the `ret` instruction and then pop the next return address
