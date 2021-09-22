@@ -177,8 +177,13 @@ so in both of these implementations it would be 256 bits of output. In this
 section, we'll denote the number of bits in the hash output as $$n$$.
 
 To construct the HMAC algorithm, we first start with a more general version,
-NMAC: $$\text{NMAC}(K_1, K_2, M) = H(K_1 || H(K_2 || M))$$ In words, NMAC
-concatenates $$K_2$$ and $$M$$, hashes the result, concatenates the result with
+NMAC: 
+
+$$
+\text{NMAC}(K_1, K_2, M) = H(K_1 || H(K_2 || M))
+$$ 
+
+In words, NMAC concatenates $$K_2$$ and $$M$$, hashes the result, concatenates the result with
 $$K_1$$, and then hashes that result.
 
 Note that NMAC takes two keys, $$K_1$$ and $$K_2$$, both of length $$n$$ (the
