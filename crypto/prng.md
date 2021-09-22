@@ -129,9 +129,6 @@ HMAC.
 
 ---
 
-TODO: I can't find a good way of making this look as good as it does in LaTeX.
-We could possibly just put a picture of it? ~NN
-
 **Algorithm 1** $$\text{Generate}(n)$$: Generate $$n$$ pseudorandom bits, with
 no additional true random input
 
