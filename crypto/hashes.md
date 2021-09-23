@@ -110,7 +110,7 @@ are secure, it takes $$2^{128}$$ operations to brute-force a 128 bit key and
 $$2^{128}$$ operations to generate a hash collision on a 256 bit hash function.
 For longer key lengths, however, we may relax the hash difficulty. For example,
 with 256b AES, the NSA uses SHA-384, not SHA-512, because, let's face it,
-$$2^{196}$$ operations is already a hugely impractical amount of computation.
+$$2^{192}$$ operations is already a hugely impractical amount of computation.
 
 ## 7.4. Lowest-hash scheme
 
