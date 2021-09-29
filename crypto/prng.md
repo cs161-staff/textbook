@@ -147,7 +147,7 @@ no additional true random input
 
 \\(K = \text{HMAC}(K, V \Vert \texttt{0x00})\\)
 
-\\(V = \text{HMAC}(K, V\\)
+\\(V = \text{HMAC}(K, V) \\)
 
 **return** \\(output[0:n]\\)
 
