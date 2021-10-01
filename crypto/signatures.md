@@ -179,7 +179,11 @@ The RSA signature scheme is defined by the following three algorithms:
   $$
 
 Theorem [1](#th:cubing) ensures the correctness of the verification algorithm,
-i.e., that\ $$\text{Verify}_n(M,\text{Sign}_d(M))=\text{true}$$.
+i.e., that
+
+$$
+\text{Verify}_n(M,\text{Sign}_d(M))=\text{true}
+$$.
 
 A quick reminder: in these notes we're developing the conceptual basis
 underlying MAC and digital signature algorithms that are widely used in
