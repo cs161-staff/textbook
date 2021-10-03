@@ -274,7 +274,7 @@ $$
 $$
 
 $$
-\{\text{David Wagner's public key is $$K_\text{daw}$$}\}_{K_\text{Napolitano\xspace}^{-1}}
+\{\text{David Wagner's public key is $K_\text{daw}$}\}_{K_\text{Napolitano\xspace}^{-1}}
 $$
 
 This is a simple example of a _certificate chain_: a sequence of certificates,
