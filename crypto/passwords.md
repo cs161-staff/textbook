@@ -388,7 +388,7 @@ to enter in a password $$w$$, hash it using a cryptographic hash function (e.g.,
 SHA256), use $$k=H(w)$$ as a symmetric key, and encrypt the file under $$k$$.
 Unfortunately, this has poor security. An attacker could try the $$2^{20}$$ most
 common passwords, hash each one, try decrypting under that key, and see if the
-decryption looks plausibly like ciphertext. Since SHA256 is fast, this attack
+decryption looks plausibly like plaintext. Since SHA256 is fast, this attack
 will be very fast, say one millisecond; and based upon the statistics mentioned
 above, this attack might succeed half of the time or so.
 
