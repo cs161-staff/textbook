@@ -336,19 +336,19 @@ been changed, this is a warning sign that the attacker has overwritten the
 address! The CPU notices this and safely crashes the program.
 
 As an example, suppose the rip of a function in a 64-bit system is
-`0x00000123456789000`. The address space for this architecture is 44 bits, which
-means the top 20 bits (5 bytes) are always 0 for every address. Instead of
-pushing this address directly on the stack, the CPU will first replace the 5
-unused bytes with a PAC. For example, if the PAC is `0xABCDE`,
-then the address pushed on the stack is `0xABCDE123456789000`.
+`0x0000001234567899`. The address space for this architecture is 40 bits, which
+means the top 24 bits (3 bytes) are always 0 for every address. Instead of
+pushing this address directly on the stack, the CPU will first replace the 3
+unused bytes with a PAC. For example, if the PAC is `0xABCDEF`,
+then the address pushed on the stack is `0xABCDEF1234567899`.
 
 This address (with the secret value inserted) is invalid, and dereferencing it
 will cause the program to crash. When the function returns and the program needs
 to start executing instructions at the rip, the CPU will read this address from
-the stack and check that the PAC `0xABCDE` is unchanged. If the PAC is
+the stack and check that the PAC `0xABCDEF` is unchanged. If the PAC is
 correct, then the CPU replaces the secret with the original unused bits to make
 the address valid again. Now the CPU can start executing instructions at the
-original rip `0x00000123456789000`.
+original rip `0x0000001234567899`.
 
 Now, an attacker trying to overwrite the rip would need to know the PAC in
 order to overwrite the rip with the address of some attacker shellcode. If the
