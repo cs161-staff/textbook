@@ -145,7 +145,7 @@ example of a GET request. Each line after the first line is a request header. In
 this example, there are two headers, the DNT header and the Host header. There
 are many HTTP headers defined in the HTTP spec which are used to convey various
 pieces of information, but we will only be covering a couple of them through
-this lab.
+this chapter.
 
 Here is another HTTP request:
 
