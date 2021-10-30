@@ -21,7 +21,7 @@ nav_order: 3
 ## 27.2. Networking background: WiFi
 
 Another implementation of the link layer is WiFi, which wirelessly connects
-machines in a LAN. Because it wireless connections over cellular networks, WiFi
+machines in a LAN. Because it uses wireless connections over cellular networks, WiFi
 has some differences from wired Ethernet, but these are out of scope for this
 class. For the purposes of this class, WiFi behaves mostly like Ethernet, with
 the same packet format and similar protocols like ARP for address translation.
@@ -135,7 +135,7 @@ This modified protocol is called **WPA2-Enterprise**. AirBears2 is an example of
 WPA2-Enterprise that you might be familiar with.
 
 Instead of using one WiFi password for all users, WPA2-Enterprise gives
-authorized a unique username and password. In WPA2-Enterprise, before the
+authorized users a unique username and password. In WPA2-Enterprise, before the
 handshake occurs, the client connects to a secure authentication server and
 proves its identity to that server by providing a username and password. (The
 connection to the authentication server is secured with TLS, which is covered in
