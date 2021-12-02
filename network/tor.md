@@ -120,7 +120,7 @@ Charlie are the three intermediaries, or proxies:
 - Frank decrypts this using his private key and sends $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ to Dan
 - Dan decrypts this using his private key and sends $$(M, Bob)_{KCharlie}$$ to Charlie
 - Charlie decrypts this using his private key and sends $$M$$ to Bob
-- For additional security, the message $$M$$ could also have been encrypted using $${PK_Bob}$$. 
+- For additional security, the message $$M$$ could also have been encrypted using $${PK_{Bob}}$$. 
 
 Note that this approach can be generalized to $$n$$ intermediaries, 
 and no one proxy knows both the sender and the recipient. In fact, 
