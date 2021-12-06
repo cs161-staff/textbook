@@ -184,8 +184,8 @@ numbers.
    acknowledgment number is set to the client's initial sequence number + 1.
 
 3. The client responds with an **ACK packet** (a packet with no data and the ACK
-   flag set). The sequence number is set to the client's initial sequence number
-   + 1, and the acknowledgement number is set to the server's initial sequence
+   flag set). The sequence number is set to the client's initial sequence number + 1 
+   and the acknowledgement number is set to the server's initial sequence
    number + 1.
 
 To end a connection, one side sends a FIN (a packet with the FIN flag set), and
