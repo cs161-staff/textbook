@@ -145,7 +145,7 @@ server presents both the client and the access point with a random **PMK
 the previous section, but it uses the PMK (unique for each user) in place of the
 PSK (same for all users) to derive the PTK.
 
-WPA-2 defends against the attacks from the previous section, because the PMK is
+WPA-2 Enterprise defends against the attacks from the previous section, because the PMK is
 created randomly by a third-party authentication server and sent over encrypted
 channels to both the AP and the client. However, note that WPA2-Enterprise is
 still vulnerable against another authenticated user who executes an ARP or DHCP
