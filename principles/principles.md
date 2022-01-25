@@ -40,7 +40,7 @@ can attack your entire network at the same time.
 fish-tank thermometer was hacked within the network. 
 
 Finally, be extremely vigilant when dealing with old code as the assumptions 
-that were originally made might no longer be valid and the thread model might 
+that were originally made might no longer be valid and the threat model might 
 have changed. When the Internet was first created, for example, it was mostly populated 
 by academics who (mostly) trusted one another. As such, several networking protocols 
 made the assumption that all other network participants could be trusted and were not 
