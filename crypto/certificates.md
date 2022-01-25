@@ -14,7 +14,7 @@ discusses notions like non-transitivity of trust.
 
 Note, there's material on cryptographic protocols commented out at the end.
 
-TODO: Cleanup -peyrin
+TODO: Cleanup -f
 {% endcomment %}
 
 # 13. Certificates
@@ -154,11 +154,11 @@ key is `0x092...3F`", signed using the private key that Jerry controls.
 In cryptographic protocol notation, the certificate would look like this:
 
 $$
-Encyption under a public key: \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{PK}
+\text{Encyption under a public key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{PK}
 $$
 
 $$
-Signing with private key: \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{SK_\text{Jerry}^{-1}}
+\text{Signing with private key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{SK_\text{Jerry}^{-1}}
 $$
 
 where here $$\{M\}_{PK}$$ denotes a digital signature on the message $$M$$
