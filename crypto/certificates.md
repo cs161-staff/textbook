@@ -154,11 +154,15 @@ key is `0x092...3F`", signed using the private key that Jerry controls.
 In cryptographic protocol notation, the certificate would look like this:
 
 $$
-\{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{K_\text{Jerry\xspace}^{-1}}
+Encyption under a public key: \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{PK}
 $$
 
-where here $$\{M\}_{K^{-1}}$$ denotes a digital signature on the message $$M$$
-using the private key $$K^{-1}$$. In this case, $$K_\text{Jerry\xspace}^{-1}$$
+$$
+Signing with private key: \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{SK_\text{Jerry}^{-1}}
+$$
+
+where here $$\{M\}_{PK}$$ denotes a digital signature on the message $$M$$
+using the private key $$SK^{-1}$$. In this case, $$SK^{-1}_\text{Jerry}$$
 is Jerry Brown's private key. This certificate is just some digital data: a
 sequence of bits. The certificate can be published and shared with anyone who
 wants to communicate securely with David.
@@ -270,11 +274,13 @@ issue certificates to UC employees. Napolitano might sign certificates for all
 UC employees. We get:
 
 $$
-\{\text{The University of California's public key is $K_\text{Napolitano\xspace}$}\}_{K_\text{Jerry\xspace}^{-1}}
+\{\text{The University of California's public key is $PK_\text{Napolitano}$}\}_{PK_\text{Jerry}}
+\{\text{The University of California's public key is $PK_\text{Napolitano}$}\}_{SK_\text{Jerry}^{-1}}
 $$
 
 $$
-\{\text{David Wagner's public key is $K_\text{daw}$}\}_{K_\text{Napolitano\xspace}^{-1}}
+\{\text{David Wagner's public key is $PK_\text{daw}$}\}_{PK_\text{Napolitano}}
+\{\text{David Wagner's public key is $PK_\text{daw}$}\}_{SK_\text{Napolitano}^{-1}}
 $$
 
 This is a simple example of a _certificate chain_: a sequence of certificates,
