@@ -420,7 +420,7 @@ how overwriting a single byte lets you start executing instructions at an
 arbitrary address in memory.
 
 ![Stack diagrams showing the exploitation of an off-by-one
-vulnerability](/assets/images/memory-safety/vulnerabilities/offbyone.png)
+vulnerability for the first return](/assets/images/memory-safety/vulnerabilities/offbyone1.png)
 
 **Step 1**: This is what normal execution during a function looks like.
 Consider reviewing the x86 section of the notes if you'd like a refresher. The
@@ -482,6 +482,9 @@ However, eventually, if a second function return happens, it will allow us to
 start executing instructions at an arbitrary location.  Let's walk through the
 same 3 instructions again, but this time with ebp incorrectly pointing in the
 buffer.
+
+![Stack diagrams showing the exploitation of an off-by-one
+vulnerability for the second return](/assets/images/memory-safety/vulnerabilities/offbyone2.png)
 
 **Step 6**: `mov %ebp, %esp`: esp now points where ebp is pointing, which is
 inside the buffer. At this point in normal execution, both ebp and esp think
