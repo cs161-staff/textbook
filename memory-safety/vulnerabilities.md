@@ -414,7 +414,7 @@ Consider a buffer whose bounds checks are off by one. This means we can write
 `n+1` bytes into a buffer of size `n`, overflowing the byte immediately after
 the buffer (but no more than that).
 
-This following two diagrams are from Section 10 of ["ASLR Smack & Laugh Reference" by
+The following two diagrams are from Section 10 of ["ASLR Smack & Laugh Reference" by
 Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf). It shows
 how overwriting a single byte lets you start executing instructions at an
 arbitrary address in memory.
