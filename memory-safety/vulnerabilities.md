@@ -288,13 +288,15 @@ security researchers have underestimated the opportunities for obscure and
 sophisticated attacks, only to later discover that the ability of attackers to
 find clever ways to exploit these bugs exceeded their imaginations. Attacks once
 thought to be esoteric to worry about are now considered easy and routinely
-mounted by attackers. The bottom line is this: _If your program has a buffer
+mounted by attackers. 
+
+The bottom line is this: _If your program has a buffer
 overflow bug, you should assume that the bug is exploitable and an attacker can
 take control of your program._
 
 ## 3.3. Format string vulnerabilities
 
-Let's look next at another type of vulnerability:
+Let's begin this section by walking through a normal printf call. Suppose we had the following piece of code:
 
 ```
 void vulnerable() {
@@ -305,40 +307,43 @@ void vulnerable() {
 }
 ```
 
-Do you see the bug? The last line should be `printf("%s", buf)`. If `buf`
-contains any `%` characters, `printf()` will look for non-existent arguments,
-and may crash or core-dump the program trying to chase missing pointers. But
-things can get much worse than that.
+The stack diagram for this function would look something like this:
 
-If the attacker can see what is printed, the attacker can mount several attacks:
+![Initial non vulnerable code with printf](/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png)
 
-- The attacker can learn the contents of the function's stack frame. (Supplying
-  the string `"%x:%x"` reveals the first two words of stack memory.)
-- The attacker can also learn the contents of any other part of memory, as well.
-  (Supplying the string `"%s"` treats the next word of stack memory as an
-  address, and prints the string found at that address. Supplying the string
-  `"%x:%s"` treats the next word of stack memory as an address, the word after
-  that as an address, and prints what is found at that string. To read the
-  contents of memory starting at a particular address, the attacker can find a
-  nearby place on the stack where that address is stored, and then supply just
-  enough `%x`'s to walk to this place followed by a `%s`. Many clever tricks are
-  possible, and the details are not terribly important for our purposes.) Thus,
-  an attacker can exploit a format string vulnerability to learn passwords,
-  cryptographic keys, or other secrets stored in the victim's address space.
-- The attacker can write any value to any address in the victim's memory. (Use
-  `%n` and many tricks; the details are beyond the scope of this writeup.) You
-  might want to ponder how this could be used for malicious code injection.
+When the `printf()` function executes, it looks for a format string modifier denoted by a “%” in its first argument located 4 bytes above the RIP of `printf()`. If it finds the modifier, it then looks 8 bytes above the RIP for the "actual" argument (i.e. what the format modifier will be acting upon).  
 
-Let's look at some more examples of format string vulnerabilities:
-- `printf("100% done!")` will use the `%d` to print 4 bytes on the stack, 8 bytes above the RIP 
-  of `printf`
-- `printf("100% stopped!")` will use the `%s` to print the bytes pointed to 
-by the address located 8 bytes above the RIP of `printf` up until the first 
-NULL byte.
+The behavior of the `printf()` function is generally controlled by the format modifier(s) that are passed into the function. The `printf()` function retrieves the parameters that are requested by the format string from the stack. Take, for example, the following line of code: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y, z);` The stack frame for this line of code would look like:
 
-The bottom line: _If your program has a format string bug, assume that the
-attacker can learn all secrets stored in memory, and assume that the attacker
-can take control of your program._
+![Not vulnerable printf statement](/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png)
+
+Remember that arguments to a function are pushed onto the stack in reverse order, which is why the address of the format string is at a lower address compared to the values of `x`, `y`, and `z`.  
+
+`printf()`'s internal pointer points to the location on the stack 8 bytes above the RIP of `printf()` due to the existence of at least one format string modifier. This internal pointer tells the function where to find the actual arguments that will be modified and eventually printed out. 
+
+A logical question you might be asking yourself might be, "Well, all this is well and good when everything works fine, but what happens when there is a mismatch in the number of format string modifiers in the first argument and number of additional arguments?" In other words, suppose our printf statement instead looked like this: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y);` Pay close attention to the fact that the format string asks for 3 arguments by having three `%d` modifiers, but we only pass in 2 arguments (i.e. `x` and `y`). 
+
+Surely the C compiler is smart enough to catch such a mistake, you might be thinking. Well, unfortunately you would be wrong. `printf()` is defined as a function with a variable number of arguments; what this means is that as long as `printf()` receives at least one argument, everything looks fine to the compiler! In order to actually spot the mismatch, the compiler would have to understand how the `printf()` function actually works and what format string modifiers are – however, compilers aren't that sophisticated and most of them simply do not perform this kind of analysis. 
+
+Ok, well, if the C compiler doesn't catch this type of error, what about the `printf()` function itself? `printf()` simply fetches arguments from the stack according to the number of format modifiers that are present. In cases of a mismatch, it will fetch some data from the stack that does not belong to the function call. 
+
+Take the same mismatched `printf()` example we had before: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y);` The `printf()` function's internal pointer will start off 8 bytes above the RIP (since it realizes that there is at least one format modifier present). Thus, the `printf()` function takes the value 8 bytes above the RIP and prints out whatever is located there; in other words, the first `%d` consumes the value located 8 bytes above the RIP of `printf()`. Once this happens, the `printf()` function locates the next format string modifier (the second `%d`), and moves its internal pointer 4 bytes up (so now, the internal pointer is pointing 12 bytes above the RIP of `printf()`), before printing out the value located there. Finally, the `printf()` function will locate the third format string modifier, and again move its internal pointer 4 bytes up (the internal pointer is now pointing 16 bytes above the RIP of `printf()`). However, we never actually passed in a third argument to the `printf()` function, so the value located 16 bytes above the RIP of `printf()` has nothing to do with the `printf()` function at all and is instead some value left over from the previous stack frame. Since the `printf()` function does not know this, however, it looks 16 bytes above the RIP of `printf()` and prints out the value located there. 
+
+Similar to how the `%d` format modifier simply makes the `printf()` function print the value located at the expected address, various format string modifiers have different uses. Here are a couple of examples that might be useful: 
+
+- %s → Treat the argument as an address and print the string at that address up until the first null byte
+
+- %n → Treat the argument as an address and write the number of characters that have been printed so far to that address
+
+- %c → Treat the argument as a value and print it out as a character
+
+- %x → Look at the stack and read the first variable after the format string
+
+- %[b]u → Print out [b] bytes starting from the argument 
+
+
+The bottom line: _If your program has a format string vulnerability, assume that the
+attacker can learn any value stored in memory and can take control of your program._
 
 ## 3.4. Integer conversion vulnerabilities
 
