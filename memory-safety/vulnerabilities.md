@@ -315,7 +315,7 @@ When the `printf()` function executes, it looks for a format string modifier den
 
 The behavior of the `printf()` function is generally controlled by the format modifier(s) that are passed into the function. The `printf()` function retrieves the parameters that are requested by the format string from the stack. Take, for example, the following line of code: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y, z);` The stack frame for this line of code would look like:
 
-![Not vulnerable printf statement](/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png)
+![Not vulnerable printf statement](/assets/images/memory-safety/vulnerabilities/printfnotvulnerable2.png)
 
 Remember that arguments to a function are pushed onto the stack in reverse order, which is why the address of the format string is at a lower address compared to the values of `x`, `y`, and `z`.  
 
