@@ -154,7 +154,7 @@ key is `0x092...3F`", signed using the private key that Jerry controls.
 In cryptographic protocol notation, the certificate would look like this:
 
 $$
-\text{Encyption under a public key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{PK}
+\text{Encryption under a public key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{PK}
 $$
 
 $$
