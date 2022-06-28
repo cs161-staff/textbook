@@ -7,7 +7,7 @@
   let toggleDark = () => {
     let setDark = jtd.getTheme() !== 'dark';
     jtd.setTheme(setDark ? 'dark' : 'default');
-    localStorage.setItem('darkMode', setDark);
+    localStorage.setItem('darkMode', String(setDark));
   };
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -19,7 +19,7 @@
     });
 
     /* Read local storage state. */
-    if (localStorage.getItem('darkMode')) {
+    if (localStorage.getItem('darkMode') === 'true') {
       toggleDark();
     }
   });
