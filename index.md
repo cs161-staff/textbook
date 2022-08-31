@@ -11,16 +11,6 @@ _Additional contributions by Noura Alomar, Sheqi Zhang, and [Shomil Jain](https:
 
 This is the textbook for [CS 161: Computer Security](https://cs161.org/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides a brief survey over common topics in computer security including memory safety, cryptography, web security, and network security.
 
-## PDF Copy
-
-A PDF copy of the textbook is available, divided into sections:
-
-* [Security Principles](/security-principles.pdf)
-* [Memory Safety](/memory-safety.pdf)
-* [Cryptography](/cryptography.pdf)
-* [Web Security](/web.pdf)
-* [Network Security](/network.pdf)
-
 ## Corrections
 
 As of the Fall 2021 semester, this textbook is still being actively maintained and updated. Please contact [cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information regarding corrections.
