@@ -274,12 +274,10 @@ issue certificates to UC employees. Napolitano might sign certificates for all
 UC employees. We get:
 
 $$
-\{\text{The University of California's public key is $PK_\text{Napolitano}$}\}_{PK_\text{Jerry}}
 \{\text{The University of California's public key is $PK_\text{Napolitano}$}\}_{SK_\text{Jerry}^{-1}}
 $$
 
 $$
-\{\text{David Wagner's public key is $PK_\text{daw}$}\}_{PK_\text{Napolitano}}
 \{\text{David Wagner's public key is $PK_\text{daw}$}\}_{SK_\text{Napolitano}^{-1}}
 $$
 
