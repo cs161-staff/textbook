@@ -1,5 +1,12 @@
 {
   "name": "@cs161/textbook",
   "version": "v0.0.0",
-  "private": "true"
+  "private": "true",
+  "scripts": {
+    "prettier": "prettier -w \"**/*.md\" \"**/*.html\" \"**/*.css\"",
+    "prettier:check": "prettier -c \"**/*.md\" \"**/*.html\" \"**/*.css\""
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
 }
