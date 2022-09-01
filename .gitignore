@@ -1,5 +1,9 @@
+# Jekyll stuff.
 _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+# Node stuff.
+node_modules
