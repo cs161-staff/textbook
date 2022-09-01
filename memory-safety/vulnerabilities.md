@@ -299,7 +299,7 @@ take control of your program._
 Let's begin this section by walking through a normal printf call. Suppose we had the following piece of code:
 
 ```
-void vulnerable() {
+void not_vulnerable() {
     char buf[8];
     if (fgets(buf, sizeof buf, stdin) == NULL)
         return;
