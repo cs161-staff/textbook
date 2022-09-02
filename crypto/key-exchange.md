@@ -119,39 +119,37 @@ The amazing thing is that Alice and Bob's conversation is entirely public, and
 from this public conversation, they both learn this secret value $$S$$---yet
 eavesdroppers who hear their entire conversation cannot learn $$S$$.
 
-As far as we know, there is no efficient algorithm to deduce $$S=g^{ab} \bmod
-p$$ from the values Eve sees, namely $$A=g^a \bmod p$$, $$B=g^b \bmod p$$,
-$$g$$, and $$p$$. The hardness of this problem is closely related to the
-discrete log problem discussed above. In particular, the fastest known
-algorithms for solving this problem take $$2^{cn^{1/3} (\log n)^{2/3}}$$ time,
-if $$p$$ is a $$n$$-bit prime. For $$n=2048$$, these algorithms are far too slow
-to allow reasonable attacks.
+As far as we know, there is no efficient algorithm to deduce
+$$S=g^{ab} \bmod p$$ from the values Eve sees, namely $$A=g^a \bmod p$$,
+$$B=g^b \bmod p$$, $$g$$, and $$p$$. The hardness of this problem is closely
+related to the discrete log problem discussed above. In particular, the fastest
+known algorithms for solving this problem take $$2^{cn^{1/3} (\log n)^{2/3}}$$
+time, if $$p$$ is a $$n$$-bit prime. For $$n=2048$$, these algorithms are far
+too slow to allow reasonable attacks.
 
-{% comment %}
-do we still need this paragraph? -peyrin sp21
-{% endcomment %}
+{% comment %} do we still need this paragraph? -peyrin sp21 {% endcomment %}
 
 Here is how this applies to secure communication among computers. In a computer
-network, each participant could pick a secret value $$x$$, compute $$X=g^x \bmod
-p$$, and publish $$X$$ for all time. Then any pair of participants who want to
-hold a conversation could look up each other's public value and use the
-Diffie-Hellman scheme to agree on a secret key known only to those two parties.
-This means that the work of picking $$p$$, $$g$$, $$x$$, and $$X$$ can be done
-in advance, and each time a new pair of parties want to communicate, they each
-perform only one modular exponentiation. Thus, this can be an efficient way to
-set up shared keys.
+network, each participant could pick a secret value $$x$$, compute
+$$X=g^x \bmodp$$, and publish $$X$$ for all time. Then any pair of participants
+who want to hold a conversation could look up each other's public value and use
+the Diffie-Hellman scheme to agree on a secret key known only to those two
+parties. This means that the work of picking $$p$$, $$g$$, $$x$$, and $$X$$ can
+be done in advance, and each time a new pair of parties want to communicate,
+they each perform only one modular exponentiation. Thus, this can be an
+efficient way to set up shared keys.
 
 Here is a summary of Diffie-Hellman key exchange:
 
 - **System parameters:** a 2048-bit prime $$p$$, a value $$g$$ in the range
   $$2\ldots p-2$$. Both are arbitrary, fixed, and public.
 
-- **Key agreement protocol:** Alice randomly picks $$a$$ in the range $$0\ldots
-  p-2$$ and sends $$A=g^a \bmod p$$ to Bob. Bob randomly picks $$b$$ in the
-  range $$0\ldots p-2$$ and sends $$B=g^b \bmod p$$ to Alice. Alice computes
-  $$K=B^a \bmod p$$. Bob computes $$K=A^b \bmod p$$. Alice and Bob both end up
-  with the same random secret key $$K$$, yet as far as we know no eavesdropper
-  can recover $$K$$ in any reasonable amount of time.
+- **Key agreement protocol:** Alice randomly picks $$a$$ in the range
+  $$0\ldots p-2$$ and sends $$A=g^a \bmod p$$ to Bob. Bob randomly picks $$b$$
+  in the range $$0\ldots p-2$$ and sends $$B=g^b \bmod p$$ to Alice. Alice
+  computes $$K=B^a \bmod p$$. Bob computes $$K=A^b \bmod p$$. Alice and Bob both
+  end up with the same random secret key $$K$$, yet as far as we know no
+  eavesdropper can recover $$K$$ in any reasonable amount of time.
 
 ## 10.4. Elliptic-curve Diffie-Hellman
 
@@ -173,8 +171,8 @@ Alice and Bob start with a publicly known point on the elliptic curve $$G$$.
 Alice chooses a secret integer $$a$$ and Bob chooses a secret integer $$b$$.
 
 Alice computes $$A = a \cdot G$$ (this is a point on the curve $$A$$, obtained
-by adding the point $$G$$ to itself $$a$$ times), and Bob computes $$B = b \cdot
-G$$. Alice sends $$A$$ to Bob, and Bob sends $$B$$ to Alice.
+by adding the point $$G$$ to itself $$a$$ times), and Bob computes
+$$B = b \cdot G$$. Alice sends $$A$$ to Bob, and Bob sends $$B$$ to Alice.
 
 Alice computes
 
@@ -190,8 +188,9 @@ $$
 
 Because of the properties of the elliptic curve, Alice and Bob will derive the
 same point $$S$$, so they now have a shared secret. Also, the elliptic-curve
-Diffie-Hellman problem states that given $$A = a \cdot G$$ and $$B = b \cdot
-G$$, there is no known efficient method for Eve to calculate $$S$$.
+Diffie-Hellman problem states that given $$A = a \cdot G$$ and
+$$B = b \cdot G$$, there is no known efficient method for Eve to calculate
+$$S$$.
 
 ## 10.5. Difficulty in Bits
 
@@ -223,8 +222,9 @@ they've agreed with a shared key, when they have actually generated two
 different keys that Mallory knows.
 
 The following figure demonstrates how an active attacker (Mallory) can agree on
-a key ($$K_1=g^{am} \pmod{p}$$) with Alice and another key ($$K_2=g^{bm}
-\pmod{p}$$) with Bob in order to man-in-the-middle (MITM) their communications.
+a key ($$K_1=g^{am} \pmod{p}$$) with Alice and another key
+($$K_2=g^{bm} \pmod{p}$$) with Bob in order to man-in-the-middle (MITM) their
+communications.
 
 ![Diagram of the Diffie-Hellman key exchange between Alice and Bob, with Mallory
 in the middle](/assets/images/crypto/key-exchange/diffie_mitm.png)
@@ -247,11 +247,12 @@ thinks the shared key is $$g^{mb} \pmod{p}$$. They no longer have the same
 shared secret.
 
 Even worse, Mallory knows both of these values too. Mallory intercepted Alice
-sending $$g^a \pmod{p}$$, which means Mallory knows the value of $$g^a
-\pmod{p}$$. She also knows her own chosen secret $$m$$. Thus she can calculate
-$$(g^a)^m = g^{am} \pmod{p}$$, which is what Alice thinks her shared secret is.
-Likewise, Mallory intercepted $$g^b \pmod{p}$$ from Bob and can calculate
-$$(g^b)^m = g^{bm} \pmod{p}$$, which is what Bob thinks his shared secret is.
+sending $$g^a \pmod{p}$$, which means Mallory knows the value of
+$$g^a \pmod{p}$$. She also knows her own chosen secret $$m$$. Thus she can
+calculate $$(g^a)^m = g^{am} \pmod{p}$$, which is what Alice thinks her shared
+secret is. Likewise, Mallory intercepted $$g^b \pmod{p}$$ from Bob and can
+calculate $$(g^b)^m = g^{bm} \pmod{p}$$, which is what Bob thinks his shared
+secret is.
 
 If Alice and Bob fall victim to this attack, Mallory can now decrypt any
 messages sent from Alice with Alice's key $$g^{ma} \pmod{p}$$, make any changes
@@ -269,22 +270,18 @@ as digital signatures. If the messages sent during the Diffie-Hellman exchange
 have integrity and authenticity, then Alice and Bob would be able to detect
 Mallory's tampering with the messages.
 
-{% comment %}
-To defend against this attack, Alice and Bob can sign the messages using their
-signing keys and then use the corresponding verification keys to verify that
-they are negotiating shared keys with the right party. If they do so, Mallory
-would not be able to intercept the communications since she does not have Alice
-and Bob’s signing keys. If Mallory signs messages with her signing key, however;
-Alice and Bob would be able to detect the attack and reject the messages sent by
-Mallory accordingly.
-{% endcomment %}
+{% comment %} To defend against this attack, Alice and Bob can sign the messages
+using their signing keys and then use the corresponding verification keys to
+verify that they are negotiating shared keys with the right party. If they do
+so, Mallory would not be able to intercept the communications since she does not
+have Alice and Bob’s signing keys. If Mallory signs messages with her signing
+key, however; Alice and Bob would be able to detect the attack and reject the
+messages sent by Mallory accordingly. {% endcomment %}
 
-{% comment %}
-TODO: Diffie-Hellman MITM attack (Noura) -peyrin
-{% endcomment %}
+{% comment %} TODO: Diffie-Hellman MITM attack (Noura) -peyrin {% endcomment %}
 
 [^1]:
     You don't need to worry about how to choose $$g$$, just know that it
-    satisfies some special number theory properties. In short, $$g$$ must satisfy
-    the following properties: $$1 < g < p-1$$, and there exists a $$k$$ where
-    $$g^k = a$$ for all $$1 \leq a \leq p-1$$.
+    satisfies some special number theory properties. In short, $$g$$ must
+    satisfy the following properties: $$1 < g < p-1$$, and there exists a $$k$$
+    where $$g^k = a$$ for all $$1 \leq a \leq p-1$$.

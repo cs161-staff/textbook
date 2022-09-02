@@ -21,10 +21,11 @@ nav_order: 3
 ## 27.2. Networking background: WiFi
 
 Another implementation of the link layer is WiFi, which wirelessly connects
-machines in a LAN. Because it uses wireless connections over cellular networks, WiFi
-has some differences from wired Ethernet, but these are out of scope for this
-class. For the purposes of this class, WiFi behaves mostly like Ethernet, with
-the same packet format and similar protocols like ARP for address translation.
+machines in a LAN. Because it uses wireless connections over cellular networks,
+WiFi has some differences from wired Ethernet, but these are out of scope for
+this class. For the purposes of this class, WiFi behaves mostly like Ethernet,
+with the same packet format and similar protocols like ARP for address
+translation.
 
 To join a WiFi network, your computer establishes a connection to the network's
 **AP (Access Point)**. Generally the AP is continuously broadcasting beacon
@@ -145,11 +146,11 @@ server presents both the client and the access point with a random **PMK
 the previous section, but it uses the PMK (unique for each user) in place of the
 PSK (same for all users) to derive the PTK.
 
-WPA-2 Enterprise defends against the attacks from the previous section, because the PMK is
-created randomly by a third-party authentication server and sent over encrypted
-channels to both the AP and the client. However, note that WPA2-Enterprise is
-still vulnerable against another authenticated user who executes an ARP or DHCP
-attack to become a man-in-the-middle.
+WPA-2 Enterprise defends against the attacks from the previous section, because
+the PMK is created randomly by a third-party authentication server and sent over
+encrypted channels to both the AP and the client. However, note that
+WPA2-Enterprise is still vulnerable against another authenticated user who
+executes an ARP or DHCP attack to become a man-in-the-middle.
 
 [^1]:
     By including the SSID, two different networks with the same password will

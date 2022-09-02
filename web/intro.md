@@ -96,8 +96,8 @@ where <code style="color: blue">http</code> is the protocol,
 <code style="color: red">k1=v1&amp;k2=v2</code> are the URL arguments, and
 <code style="color: blue">anchor</code> is the anchor.
 
-_Further reading:_ [What is a
-URL?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL)
+_Further reading:_
+[What is a URL?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL)
 
 ## 18.2. HTTP
 
@@ -122,8 +122,8 @@ detail in the next couple sections.
 The original version of HTTP, HTTP 1.1, is a text-based protocol, where each
 HTTP request and response contains a _header_ with some metadata about the
 request or response and a _payload_ with the actual contents of the request or
-response. HTTP2, a more recent version of HTTP, is a binary-encoded protocol
-for efficiency, but the same concepts apply.
+response. HTTP2, a more recent version of HTTP, is a binary-encoded protocol for
+efficiency, but the same concepts apply.
 
 For all requests, the server generates and sends a response. The response
 includes a series of headers and, in the payload, the body of the data

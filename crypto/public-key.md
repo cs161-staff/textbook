@@ -30,7 +30,7 @@ from there on.
 
 {% comment %}
 
-dropping this section, doesn't seem taught anymore  -peyrin sp21
+dropping this section, doesn't seem taught anymore -peyrin sp21
 
 The known methods for public-key cryptography tend to rely heavily upon number
 theory, so we begin with a brief number theory refresher, and then develop an
@@ -48,19 +48,19 @@ bits and a carry---and anything involving a constant number of bits takes
 $$O(1)$$ time. The overall time to add two $$n$$-bit integers is therefore
 $$O(n)$$, or linear in the bitlength of the integers. Multiplication and
 division take $$O(n^2)$$ time, i.e., quadratic time. Also recall that $$n$$, the
-number of bits it takes to represent an integer $$a$$ in binary, satisfies $$n
-\le \lceil \log_2 a \rceil$$.
+number of bits it takes to represent an integer $$a$$ in binary, satisfies
+$$n \le \lceil \log_2 a \rceil$$.
 
-Recall that $$a \bmod p$$ is the remainder of the number $$a$$ modulo $$p$$.
-For instance, $$37 \bmod 10 = 7$$.
+Recall that $$a \bmod p$$ is the remainder of the number $$a$$ modulo $$p$$. For
+instance, $$37 \bmod 10 = 7$$.
 
 Modular arithmetic can be implemented naturally using addition, multiplication,
 and division algorithms. To compute $$a \bmod p$$, simply return the remainder
 after dividing $$a$$ by $$p$$. By reducing all inputs and answers modulo $$p$$,
 modular addition, subtraction, and multiplication are easily performed. These
 operations can all be performed in $$O(\log^2 p)$$ time, since the numbers
-involved never grow beyond $$p$$ and therefore have size at most $$\lceil \log_2
-p \rceil$$ bits.
+involved never grow beyond $$p$$ and therefore have size at most
+$$\lceil \log_2 p \rceil$$ bits.
 
 ### Modular exponentiation
 
@@ -103,8 +103,8 @@ We could possibly just put a picture of it? ~NN
 
 **Algorithm 1** $$\text{ModExp1}(a, b, p)$$: modular exponentiation using
 repeated squaring. \
-**Require:** a modulus $$p$$, a positive integer $$a < p$$, and a positive
-exponent $$b$$ \
+**Require:** a modulus $$p$$, a positive integer $$a < p$$, and a positive exponent
+$$b$$ \
 **Ensure:** the return value is $$a^b \bmod p$$
 
 <div class="algorithm" markdown="1">
@@ -202,25 +202,25 @@ encryption schemes:
 
 - _RSA Hardness_: Suppose $$n=pq$$, i.e. $$n$$ is the product of two large
   primes $$p$$ and $$q$$. Given $$c = m^e \pmod{n}$$ and $$e$$, it is
-computationally hard to find $$m$$. However, with the factorization of $$n$$
-(i.e. $$p$$ or $$q$$), it becomes easy to find $$m$$.
+  computationally hard to find $$m$$. However, with the factorization of $$n$$
+  (i.e. $$p$$ or $$q$$), it becomes easy to find $$m$$.
 
 - _Discrete log problem_: Suppose $$p$$ is a large prime and $$g$$ is a
-  generator.  Given $$g$$, $$p$$, $$A = g^a \pmod{p}$$, and
-  $$B = g^b \pmod{p}$$, it is computationally hard to find $$g^{ab} \pmod{p}$$.
-  However, with $$a$$ or $$b$$, it becomes easy to find $$g^{ab} \pmod{p}$$.
+  generator. Given $$g$$, $$p$$, $$A = g^a \pmod{p}$$, and $$B = g^b \pmod{p}$$,
+  it is computationally hard to find $$g^{ab} \pmod{p}$$. However, with $$a$$ or
+  $$b$$, it becomes easy to find $$g^{ab} \pmod{p}$$.
 
 ## 11.3. RSA Encryption
 
 _Under construction_
 
-For now, you can refer to [these notes from CS
-70](https://www.eecs70.org/assets/pdf/notes/n7.pdf) for a detailed proof of RSA
-encryption. For this class, you won't need to remember the proof of why RSA
-works. All you need to remember is that we use the public key to encrypt
-messages, we use the corresponding private key to decrypt messages, and an
-attacker cannot break RSA encryption unless they can factor large primes, which
-is believed to be hard.
+For now, you can refer to
+[these notes from CS 70](https://www.eecs70.org/assets/pdf/notes/n7.pdf) for a
+detailed proof of RSA encryption. For this class, you won't need to remember the
+proof of why RSA works. All you need to remember is that we use the public key
+to encrypt messages, we use the corresponding private key to decrypt messages,
+and an attacker cannot break RSA encryption unless they can factor large primes,
+which is believed to be hard.
 
 There is a tricky flaw in the RSA scheme described in the CS 70 notes. The
 scheme is deterministic, so it is not IND-CPA secure. Sending the same message
@@ -261,7 +261,7 @@ of El Gamal encryption scheme. El Gamal encryption works as follows.
 The public system parameters are a large prime $$p$$ and a value $$g$$
 satisfying $$1<g<p-1$$. Bob chooses a random value $$b$$ (satisfying
 $$0 \le b \le p-2$$) and computes $$B=g^b \bmod p$$. Bob's public key is $$B$$,
-and his private key is $$b$$.  Bob publishes $$B$$ to the world, and keeps $$b$$
+and his private key is $$b$$. Bob publishes $$B$$ to the world, and keeps $$b$$
 secret.
 
 Now, suppose Alice has a message $$m$$ (in the range $$1\ldots p-1$$) she wants
@@ -312,16 +312,16 @@ exactly one key $$K$$ that is consistent with this hypothesis (i.e., exactly one
 value of $$K$$ satisfying $$S = m \times K \bmod p$$).
 
 Another way you can view El Gamal is using the discrete log trapdoor one-way
-function defined above: Alice encrypts the message with $$B^r = g^{br}
-\pmod{p}$$.  Given only $$g$$, $$p$$, $$R = g^r \pmod{p}$$, and $$B = g^b
-\pmod{p}$$, it is hard for an attacker to learn $$g^{-br} \pmod{p}$$ and decrypt
-the message. However, with Bob's secret key $$b$$, Bob can easily calculate
-$$g^{-br} \pmod{p}$$ and decrypt the message.
+function defined above: Alice encrypts the message with
+$$B^r = g^{br} \pmod{p}$$. Given only $$g$$, $$p$$, $$R = g^r \pmod{p}$$, and
+$$B = g^b \pmod{p}$$, it is hard for an attacker to learn $$g^{-br} \pmod{p}$$
+and decrypt the message. However, with Bob's secret key $$b$$, Bob can easily
+calculate $$g^{-br} \pmod{p}$$ and decrypt the message.
 
 Note that for technical reasons that we won't go into, this simplified El Gamal
 scheme is actually _not_ semantically secure. With some tweaks, the scheme can
-be made semantically secure. Interested readers can read more [at this
-link](http://crypto.stanford.edu/~dabo/abstracts/DDH.html).
+be made semantically secure. Interested readers can read more
+[at this link](http://crypto.stanford.edu/~dabo/abstracts/DDH.html).
 
 Here is a summary of El Gamal encryption:
 

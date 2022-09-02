@@ -4,9 +4,8 @@ parent: Cryptography
 nav_order: 2
 ---
 
-{% comment %}
-When updating, check w/ a crypto guru that AES is still well-described as
-basically having no known flaws. DAW confirmed this for 2013.
+{% comment %} When updating, check w/ a crypto guru that AES is still
+well-described as basically having no known flaws. DAW confirmed this for 2013.
 {% endcomment %}
 
 # 6. Symmetric-Key Encryption
@@ -18,29 +17,37 @@ else. Later we will see how Alice and Bob might securely exchange a shared
 secret key over an insecure communication channel, but for now you can assume
 that only Alice and Bob know the value of the secret key.
 
-For modern schemes, we are going to assume that all messages are bitstrings, which is a sequence of bits, 0 or 1 (e.g. `1101100101010101`). Text, images, and most other forms of communication can usually be converted into bitstrings before encryption, so this is a useful abstraction.
+For modern schemes, we are going to assume that all messages are bitstrings,
+which is a sequence of bits, 0 or 1 (e.g. `1101100101010101`). Text, images, and
+most other forms of communication can usually be converted into bitstrings
+before encryption, so this is a useful abstraction.
 
 ## 6.1. IND-CPA Security
 
-Recall from the previous chapter that confidentiality was defined to mean that an attacker cannot read our messages. This definition, while intuitive, is quite open-ended. If the
-attacker can read the first half of our message but not the second half, is that
-confidential? What if the attacker can deduce that our message starts with the
-words "Dear Bob?" It might also be the case that the attacker had some
-partial information about the message $$M$$ to begin with. Perhaps she knew that the last
-bit of $$M$$ is a $$0$$, or that $$90\%$$ of the bits of $$M$$ are $$1$$'s, or
-that $$M$$ is one of BUY! or SELL but does not know which.
+Recall from the previous chapter that confidentiality was defined to mean that
+an attacker cannot read our messages. This definition, while intuitive, is quite
+open-ended. If the attacker can read the first half of our message but not the
+second half, is that confidential? What if the attacker can deduce that our
+message starts with the words "Dear Bob?" It might also be the case that the
+attacker had some partial information about the message $$M$$ to begin with.
+Perhaps she knew that the last bit of $$M$$ is a $$0$$, or that $$90\%$$ of the
+bits of $$M$$ are $$1$$'s, or that $$M$$ is one of BUY! or SELL but does not
+know which.
 
-A more formal, rigorous definition of confidentiality is: the ciphertext $$C$$ should give the attacker no additional information about the message $$M$$. In other words, the
-attacker should not learn any new information about $$M$$ beyond what they
-already knew before seeing $$C$$ (seeing $$C$$ should not give the attacker any new information).
+A more formal, rigorous definition of confidentiality is: the ciphertext $$C$$
+should give the attacker no additional information about the message $$M$$. In
+other words, the attacker should not learn any new information about $$M$$
+beyond what they already knew before seeing $$C$$ (seeing $$C$$ should not give
+the attacker any new information).
 
 We can further formalize this definition by designing an experiment to test
 whether the attacker has learned any additional information. Consider the
-following experiment: Alice has encrypted and sent one of two messages, either $$M_0$$
-or $$M_1$$, and the attacker, Eve, has no idea which was sent. Eve tries to guess
-which was sent by looking at the ciphertext. If the encryption scheme is
-confidential, then Eve's probability of guessing which message was sent should be
-$$1/2$$, which is the same probability as if she had not intercepted the ciphertext at all, and was instead guessing at random.
+following experiment: Alice has encrypted and sent one of two messages, either
+$$M_0$$ or $$M_1$$, and the attacker, Eve, has no idea which was sent. Eve tries
+to guess which was sent by looking at the ciphertext. If the encryption scheme
+is confidential, then Eve's probability of guessing which message was sent
+should be $$1/2$$, which is the same probability as if she had not intercepted
+the ciphertext at all, and was instead guessing at random.
 
 We can adapt this experiment to different threat models by allowing Eve to
 perform further actions as an attacker. For example, Eve might be allowed to
@@ -52,11 +59,11 @@ Alice into decrypting some messages.
 
 In summary, our definition of confidentiality says that even if Eve can trick
 Alice into encrypting some messages, she still cannot distinguish whether Alice
-sent $$M_0$$ or $$M_1$$ in the experiment. This definition is known as 
-indistinguishability under chosen plaintext attack, or IND-CPA. We can
-use an experiment or game, played between the adversary Eve and the challenger
-Alice, to formally prove that a given encryption scheme is IND-CPA secure or
-show that it is not IND-CPA secure.
+sent $$M_0$$ or $$M_1$$ in the experiment. This definition is known as
+indistinguishability under chosen plaintext attack, or IND-CPA. We can use an
+experiment or game, played between the adversary Eve and the challenger Alice,
+to formally prove that a given encryption scheme is IND-CPA secure or show that
+it is not IND-CPA secure.
 
 The IND-CPA game works as follows:
 
@@ -138,10 +145,14 @@ probability.
 You might have noticed that in step 3, there is nothing preventing Eve from
 asking Alice for the encryption of $$M_0$$ or $$M_1$$ again. This is by design:
 it means any deterministic scheme is not IND-CPA secure, and it forces any
-IND-CPA secure scheme to be non-deterministic. Informally, a deterministic scheme is one that, given a particular input, will always produce the same output. For example, the Caesar Cipher that was seen in the previous chapter is a deterministic scheme since giving it the same input twice will always produce the same output (i.e. inputting “abcd” will always output “cdef” when we shift by 2). As we'll see later, deterministic
-schemes do leak information, so this game will correctly classify them as
-IND-CPA insecure. In a later section we'll also see how to win the IND-CPA game
-against a deterministic scheme.
+IND-CPA secure scheme to be non-deterministic. Informally, a deterministic
+scheme is one that, given a particular input, will always produce the same
+output. For example, the Caesar Cipher that was seen in the previous chapter is
+a deterministic scheme since giving it the same input twice will always produce
+the same output (i.e. inputting “abcd” will always output “cdef” when we shift
+by 2). As we'll see later, deterministic schemes do leak information, so this
+game will correctly classify them as IND-CPA insecure. In a later section we'll
+also see how to win the IND-CPA game against a deterministic scheme.
 
 {% comment %}
 
@@ -227,7 +238,9 @@ impractical for real-world use.
 
 In the one-time pad scheme, Alice and Bob share an $$n$$-bit secret key
 $$K = k_1 \cdots k_n$$ where the bits $$k_1, \ldots k_n$$ are picked uniformly
-at random (they are the outcomes of independent unbiased coin flips, meaning that to pick $$k_1$$ a coin is flipped and if it lands on heads, then $$k_1$$ is assigned 1, but if it lands on tails, $$k_1$$ is assigned 0).
+at random (they are the outcomes of independent unbiased coin flips, meaning
+that to pick $$k_1$$ a coin is flipped and if it lands on heads, then $$k_1$$ is
+assigned 1, but if it lands on tails, $$k_1$$ is assigned 0).
 
 Suppose Alice wishes to send the n-bit message $$M = m_1 \cdots m_n$$.
 
@@ -268,9 +281,9 @@ To sum up, the one-time pad is described by specifying three procedures:
 
 - Decryption algorithm: $$M = C \oplus K$$.
 
-Now let's prove that the one-time pad is IND-CPA secure. In other words, we want to
-show that in the IND-CPA game, the adversary Eve's probability of guessing which
-message was sent is $$1/2$$.
+Now let's prove that the one-time pad is IND-CPA secure. In other words, we want
+to show that in the IND-CPA game, the adversary Eve's probability of guessing
+which message was sent is $$1/2$$.
 
 Proof: For a fixed choice of plaintext $$M$$, every possible value of the
 ciphertext $$C$$ can be achieved by an appropriate and unique choice of the
@@ -303,12 +316,12 @@ $$
 The one time pad has a major drawback. As its name suggests, the shared key
 cannot be reused to transmit another message $$M'$$. If the key $$K$$ is reused
 to encrypt two messages $$M$$ and $$M'$$, then Eve can take the XOR of the two
-ciphertexts $$C = M \oplus K$$ and $$C' = M' \oplus K$$ to obtain $$C \oplus C'
-= M \oplus M'$$. This gives partial information about the two messages. In
-particular, if Eve happens to learn $$M$$, then she can deduce the other message
-$$M'$$. In other words, given $$M \oplus M'$$ and $$M$$, she can calculate
-$$M' = (M \oplus M') \oplus M$$. Actually, in this case, she can reconstruct the
-key $$K$$, too. Question: How?[^1]
+ciphertexts $$C = M \oplus K$$ and $$C' = M' \oplus K$$ to obtain
+$$C \oplus C' = M \oplus M'$$. This gives partial information about the two
+messages. In particular, if Eve happens to learn $$M$$, then she can deduce the
+other message $$M'$$. In other words, given $$M \oplus M'$$ and $$M$$, she can
+calculate $$M' = (M \oplus M') \oplus M$$. Actually, in this case, she can
+reconstruct the key $$K$$, too. Question: How?[^1]
 
 In practice, even if Eve does not know $$M$$ or $$M'$$, often there is enough
 redundancy in messages that merely knowing $$M \oplus M'$$ is enough to recover
@@ -357,12 +370,13 @@ secret key and use this single key to repeatedly encrypt and decrypt messages.
 The block cipher is a fundamental building block in implementing such a
 symmetric encryption scheme.
 
-Intuitively, a block cipher transforms a fixed-length, $$n$$-bit input into a fixed-length $$n$$-bit output. The block cipher has $$2^k$$ different settings for scrambling, so it
-also takes in a $$k$$-bit key as input to determine which scrambling setting
-should be used. Each key corresponds to a different scrambling setting. The
-idea is that an attacker who doesn't know the secret key won't know what mode of
-scrambling is being used, and thus won't be able to decrypt messages encrypted
-with the block cipher.
+Intuitively, a block cipher transforms a fixed-length, $$n$$-bit input into a
+fixed-length $$n$$-bit output. The block cipher has $$2^k$$ different settings
+for scrambling, so it also takes in a $$k$$-bit key as input to determine which
+scrambling setting should be used. Each key corresponds to a different
+scrambling setting. The idea is that an attacker who doesn't know the secret key
+won't know what mode of scrambling is being used, and thus won't be able to
+decrypt messages encrypted with the block cipher.
 
 A block cipher has two operations: encryption takes in an $$n$$-bit plaintext
 and a $$k$$-bit key as input and outputs an $$n$$-bit ciphertext. Decryption
@@ -372,26 +386,29 @@ input?[^3]
 
 Given a fixed scrambling setting (key), the block cipher encryption must map
 each of the $$2^n$$ possible plaintext inputs to a different ciphertext output.
-In other words, given a specific key, the block cipher encryption must be able to map every possible input to a unique output.
-If the block cipher mapped two plaintext inputs to the same ciphertext output,
-there would be no way to decrypt that ciphertext back into plaintext, since that
-ciphertext could correspond to multiple different plaintexts. This means that the block cipher must also be _deterministic_. Given the same input and key, the
-block cipher should always give the same output.
+In other words, given a specific key, the block cipher encryption must be able
+to map every possible input to a unique output. If the block cipher mapped two
+plaintext inputs to the same ciphertext output, there would be no way to decrypt
+that ciphertext back into plaintext, since that ciphertext could correspond to
+multiple different plaintexts. This means that the block cipher must also be
+_deterministic_. Given the same input and key, the block cipher should always
+give the same output.
 
 In mathematical notation, the block cipher can be described as follows. There is
 an encryption function $$E: \{0,1\}^k \times \{0,1\}^n \rightarrow \{0,1\}^n$$.
-This notation means we are mapping a $$k$$-bit input (the key) and an $$n$$-bit input (the plaintext message) to
-an $$n$$-bit output (the ciphertext). Once we fix the key $$K$$, we get a function mapping $$n$$
-bits to $$n$$ bits: $$E_K:\{0,1\}^n \rightarrow \{0,1\}^n$$ defined by
-$$E_K(M) = E(K, M)$$. $$E_K$$ is required to be a _permutation_ on the $$n$$-bit
-strings, in other words, it must be an invertible (bijective) function. The
-inverse mapping of this permutation is the decryption algorithm $$D_K$$.
-In other words, decryption is the reverse of encryption: $$D_K(E_K(M)) = M$$.
+This notation means we are mapping a $$k$$-bit input (the key) and an $$n$$-bit
+input (the plaintext message) to an $$n$$-bit output (the ciphertext). Once we
+fix the key $$K$$, we get a function mapping $$n$$ bits to $$n$$ bits:
+$$E_K:\{0,1\}^n \rightarrow \{0,1\}^n$$ defined by $$E_K(M) = E(K, M)$$. $$E_K$$
+is required to be a _permutation_ on the $$n$$-bit strings, in other words, it
+must be an invertible (bijective) function. The inverse mapping of this
+permutation is the decryption algorithm $$D_K$$. In other words, decryption is
+the reverse of encryption: $$D_K(E_K(M)) = M$$.
 
-The block cipher as defined above is a category of functions, meaning that there are many
-different implementations of a block cipher. Today, the most commonly used block
-cipher implementation is called Advanced Encryption Standard (AES). It was
-designed in 1998 by Joan Daemen and Vincent Rijmen, two researchers from
+The block cipher as defined above is a category of functions, meaning that there
+are many different implementations of a block cipher. Today, the most commonly
+used block cipher implementation is called Advanced Encryption Standard (AES).
+It was designed in 1998 by Joan Daemen and Vincent Rijmen, two researchers from
 Belgium, in response to a competition organized by NIST.[^4]
 
 AES uses a block length of $$n=128$$ bits and a key length of $$k=128$$ bits. It
@@ -403,8 +420,8 @@ software.
 
 Block ciphers, including AES, are not IND-CPA secure on their own because they
 are deterministic. In other words, encrypting the same message twice with the
-same key produces the same output twice. The strategy that an adversary, Eve, uses
-to break the security of AES is exactly the same as the strategy from the
+same key produces the same output twice. The strategy that an adversary, Eve,
+uses to break the security of AES is exactly the same as the strategy from the
 one-time pad with key reuse. Eve sends $$M_0$$ and $$M_1$$ to the challenger and
 receives either $$E(K, M_0)$$ or $$E(K, M_1)$$. She then queries the challenger
 for the encryption of $$M_0$$ and receives $$E(K, M_0)$$. If the two encryptions
@@ -551,7 +568,7 @@ $$
 and
 
 $$
-\Pr[\text{Gloria guesses correctly}]  = \frac{1}{2} \pm \frac{\Adv(\text{Gloria})}{2}.
+\Pr[\text{Gloria guesses correctly}] = \frac{1}{2} \pm \frac{\Adv(\text{Gloria})}{2}.
 $$
 
 So the advantage is just a rescaled version of the probability that Gloria
@@ -593,10 +610,11 @@ There are two main reasons AES by itself cannot be a practical IND-CPA secure
 encryption scheme. The first is that we'd like to encrypt arbitrarily long
 messages, but the block cipher only takes fixed-length inputs. The other is that
 if the same message is sent twice, the ciphertext in the two transmissions is
-the same with AES (i.e. it is deterministic). To fix these problems, the encryption algorithm can either be
-randomized or stateful---it either flips coins during its execution, or its
-operation depends upon some state information. The decryption algorithm, however, is
-neither randomized nor stateful.
+the same with AES (i.e. it is deterministic). To fix these problems, the
+encryption algorithm can either be randomized or stateful---it either flips
+coins during its execution, or its operation depends upon some state
+information. The decryption algorithm, however, is neither randomized nor
+stateful.
 
 There are several standard ways (or modes of operation) of building an
 encryption algorithm, using a block cipher:
@@ -624,9 +642,9 @@ operation](/assets/images/crypto/symmetric/ECB_decryption.png)
 applications. For each message the sender picks a random $$n$$-bit string,
 called the _initial vector_ or IV. Define $$C_0 = IV$$. The $$i^\textrm{th}$$
 ciphertext block is given by $$C_i = E_K(C_{i-1} \oplus M_i)$$. The ciphertext
-is the concatenation of the initial vector and these individual blocks: $$C = IV
-\cdot C_1 \cdot C_2 \cdots C_l$$. CBC mode has been proven to provide strong
-security guarantees on the privacy of the plaintext message (assuming the
+is the concatenation of the initial vector and these individual blocks:
+$$C = IV \cdot C_1 \cdot C_2 \cdots C_l$$. CBC mode has been proven to provide
+strong security guarantees on the privacy of the plaintext message (assuming the
 underlying block cipher is secure).
 
 - CBC mode encryption:
@@ -646,7 +664,13 @@ $$i^\textrm{th}$$ ciphertext block is given by
 $$C_i = E_K(C_{i-1}) \oplus M_i$$.
 
 - CFB mode encryption:
-  $$\begin{cases} C_0 = IV \\ C_i = E_K(C_{i-1}) \oplus P_i \end{cases}$$
+
+  $$
+  \begin{cases}
+    C_0 = IV \\
+    C_i = E_K(C_{i-1}) \oplus P_i
+  \end{cases}
+  $$
 
 - CFB mode decryption: $$P_i = E_K(C_{i-1}) \oplus C_i$$
 
@@ -676,9 +700,7 @@ from tampering); it's just easier to illustrate on OFB mode.
 
   $$
   \begin{cases}
-    Z_0 = IV \\
-    Z_i = E_K(Z_{i-1}) \\
-    C_i = M_i \oplus Z_i
+    Z*0 = IV \\ Z_i = E_K(Z*{i-1}) \\ C_i = M_i \oplus Z_i
   \end{cases}
   $$
 
@@ -804,20 +826,18 @@ Recall that CTR mode can be thought of as generating a one-time pad through
 block ciphers. If the pad is too long, you can just throw away the last few bits
 of the pad in both the encryption and decryption steps.
 
-{% comment %}
-Because AES block assume that the input into the block must be 128 bits long, we
-need to add some padding to the end of the message to make up for 128 bits when
-we want to send messages with length not equal to integer multiples of 128. A
-important tip of implement padding is you must include a padding in the end of
-the message, no matter what is the length of the message. Even if a message is
-128 bit long, which fixes perfectly to the AES block cipher, we need to add a
-padding after it (create a whole garbage block) so that nobody will be confused
-if a padding is attached. A typical bad padding is "1111...11" or "000..00"
-because it's hard to decide the beginning of the padding as the message could
-itself end with 1 or 0. A typical good padding is "10000...0," which uses 0 to
-flexibly make up for 128 bits and uses 1 to mark for the beginning of the
-garbage bits.
-{% endcomment %}
+{% comment %} Because AES block assume that the input into the block must be 128
+bits long, we need to add some padding to the end of the message to make up for
+128 bits when we want to send messages with length not equal to integer
+multiples of 128. A important tip of implement padding is you must include a
+padding in the end of the message, no matter what is the length of the message.
+Even if a message is 128 bit long, which fixes perfectly to the AES block
+cipher, we need to add a padding after it (create a whole garbage block) so that
+nobody will be confused if a padding is attached. A typical bad padding is
+"1111...11" or "000..00" because it's hard to decide the beginning of the
+padding as the message could itself end with 1 or 0. A typical good padding is
+"10000...0," which uses 0 to flexibly make up for 128 bits and uses 1 to mark
+for the beginning of the garbage bits. {% endcomment %}
 
 ## 6.9. Reusing IVs is insecure
 
@@ -841,8 +861,8 @@ reusing the IV on two different messages only reveals if two messages start with
 the same blocks, up until the first difference.
 
 Different modes have different tradeoffs between usability and security.
-Although proper use of CBC and CTR mode are both IND-CPA, insecure use of
-either mode (e.g. reusing the IV) breaks IND-CPA security, and the severity of
+Although proper use of CBC and CTR mode are both IND-CPA, insecure use of either
+mode (e.g. reusing the IV) breaks IND-CPA security, and the severity of
 information leakage is different in the two modes. In CBC mode, the information
 leakage is contained, but in CTR mode, the leakage is catastrophic (equivalent
 to reusing a one-time pad). On the other hand, CTR mode can be parallelized, but
@@ -855,7 +875,7 @@ based encryption schemes.
 
 [^2]:
     This is why the only primary users of one-time-pads are spies in the field.
-    Before the spy leaves, they obtain a large amount of key material.  Unlike
+    Before the spy leaves, they obtain a large amount of key material. Unlike
     the other encryption systems we'll see in these notes, a one-time pad can be
     processed entirely with pencil and paper. The spy then broadcasts messages
     encrypted with the one-time pad to send back to their home base. To

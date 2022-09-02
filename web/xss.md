@@ -13,10 +13,10 @@ malicious JavaScript.
 XSS attacks are powerful because they subvert the same-origin policy. Normally,
 an attacker can only run JavaScript on websites they control (such as
 `https://evil.com`), so their JavaScript cannot affect websites with origins
-different from `https://evil.com`. However, if the attacker can inject JavaScript
-into `https://google.com`, then when a user loads `https://google.com`, their
-browser will run the attacker's JavaScript with the origin of
-`https://google.com`.
+different from `https://evil.com`. However, if the attacker can inject
+JavaScript into `https://google.com`, then when a user loads
+`https://google.com`, their browser will run the attacker's JavaScript with the
+origin of `https://google.com`.
 
 XSS attacks allow malicious JavaScript to run in the user's browser with the
 same origin as a legitimate website. This allows the attacker to perform any
@@ -59,8 +59,9 @@ the returned webpage with search results will include something like
 </p>
 
 If Google does not properly check user input, an attacker could create a
-malicious URL `https://www.google.com/search?&q=<script>alert("XSS
-attack!")</script>`. When the victim loads this URL, Google will return
+malicious URL
+`https://www.google.com/search?&q=<script>alert("XSS attack!")</script>`. When
+the victim loads this URL, Google will return
 
 <p style="text-align: center">
   <code>
@@ -71,8 +72,8 @@ attack!")</script>`. When the victim loads this URL, Google will return
   </code>
 </p>
 
-The victim's browser will run the script and trigger a pop-up that says `XSS
-attack!`
+The victim's browser will run the script and trigger a pop-up that says
+`XSS attack!`
 
 ## 22.3. Defense: Sanitize Input
 
@@ -116,7 +117,7 @@ robust.
 ## 22.4. Defense: Content Security Policy
 
 Another XSS defense is using a content security policy (CSP) that specifies a
-list of allowed domains where scripts can be loaded from.  For example,
+list of allowed domains where scripts can be loaded from. For example,
 `cs161.org` might allow scripts that are loaded from `*.cs161.org` or
 `*.google.com` and disallow all other scripts, including any inline scripts that
 are injected by the attacker.
@@ -125,12 +126,12 @@ CSPs are defined by a web server and enforced by a browser. In the HTTP
 response, the server attaches a `Content-Security-Policy` header, and the
 browser checks any scripts against the header.
 
-If you enable CSP, you can no longer run *any* scripts that are embedded
+If you enable CSP, you can no longer run _any_ scripts that are embedded
 directly in the HTML document. You can only load external scripts specified by
 the `script` tag and an external URL. These scripts can only be fetched from the
 sites specified in the CSP. This prevents an attacker from directly injecting
 scripts into an HTML document or modifying the HTML document to fetch scripts
 from the attacker's domain.
 
-_Further reading:_ [OWASP Cheat Sheet on
-XSS](https://owasp.org/www-community/attacks/xss/)
+_Further reading:_
+[OWASP Cheat Sheet on XSS](https://owasp.org/www-community/attacks/xss/)

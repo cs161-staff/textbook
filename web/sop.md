@@ -73,5 +73,5 @@ JavaScript has a special function, `postMessage`, that allows webpages from
 different origins to communicate with each other. However, this function only
 allows very limited functionality.
 
-_Further reading:_ [Same-origin
-policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+_Further reading:_
+[Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)

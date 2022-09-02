@@ -16,23 +16,23 @@ to hear that buffer overflows are one of the most pervasive kind of
 implementation flaws around. However, buffer overflows are not unique to C, as
 C++ and Objective-C both suffer from these vulnerabilities as well.
 
-C is a low-level language, meaning that the programmer is always exposed to the 
-bare machine, one of the reasons why C is such a popular systems language. Furthermore, 
-C is also a very old language, meaning that there are several legacy systems, 
-which are old codebases written in C that are still maintained and updated. 
-A particular weakness that we will discuss is the absence of automatic
-bounds-checking for array or pointer accesses. For example, if the programmer
-declares an array `char buffer[4]`, C will not automatically throw an error if
-the programmer tries to access `buffer[5]`. It is the programmer's
+C is a low-level language, meaning that the programmer is always exposed to the
+bare machine, one of the reasons why C is such a popular systems language.
+Furthermore, C is also a very old language, meaning that there are several
+legacy systems, which are old codebases written in C that are still maintained
+and updated. A particular weakness that we will discuss is the absence of
+automatic bounds-checking for array or pointer accesses. For example, if the
+programmer declares an array `char buffer[4]`, C will not automatically throw an
+error if the programmer tries to access `buffer[5]`. It is the programmer's
 responsibility to carefully check that every memory access is in bounds. This
-can get difficult as your code gets more and more complicated (e.g. for loops, user inputs,
-multi-threaded programs).
+can get difficult as your code gets more and more complicated (e.g. for loops,
+user inputs, multi-threaded programs).
 
-It is through this absence of automatic bounds-checking that buffer overflows take 
-advantage of. A buffer overflow bug is one where the programmer fails to perform adequate
-bounds checks, triggering an out-of-bounds memory access that writes beyond the
-bounds of some memory region. Attackers can use these out-of-bounds memory
-accesses to corrupt the program's intended behavior.
+It is through this absence of automatic bounds-checking that buffer overflows
+take advantage of. A buffer overflow bug is one where the programmer fails to
+perform adequate bounds checks, triggering an out-of-bounds memory access that
+writes beyond the bounds of some memory region. Attackers can use these
+out-of-bounds memory accesses to corrupt the program's intended behavior.
 
 Let us start with a simple example.
 
@@ -55,12 +55,12 @@ Note that `char buf[8]` is defined outside of the function, so it is located in
 the static part of memory. Also note that each row of the diagram represents 4
 bytes, so `char buf[8]` takes up 2 rows.
 
-`gets(buf)` writes user input from lower addresses to higher
-addresses, starting at `buf`, and since there is no bounds checking, 
-the attacker can overwrite parts of memory at addresses higher than `buf`.
+`gets(buf)` writes user input from lower addresses to higher addresses, starting
+at `buf`, and since there is no bounds checking, the attacker can overwrite
+parts of memory at addresses higher than `buf`.
 
-To illustrate some of the dangers that this bug can cause, let's slightly 
-modify the example:
+To illustrate some of the dangers that this bug can cause, let's slightly modify
+the example:
 
 ```
 char buf[8];
@@ -72,14 +72,14 @@ void vulnerable() {
 
 Note that both `char buf[8]` and `authenticated` are defined outside of the
 function, so they are both located in the static part of memory. In C, static
-memory is filled in the order that variables are defined, so `authenticated` 
-is at a higher address in memory than `buf` (since static memory grows upward 
-and `buf` was defined first, `buf` is at a lower memory address).
+memory is filled in the order that variables are defined, so `authenticated` is
+at a higher address in memory than `buf` (since static memory grows upward and
+`buf` was defined first, `buf` is at a lower memory address).
 
 Imagine that elsewhere in the code, there is a login routine that sets the
 `authenticated` flag only if the user proves knowledge of the password.
 Unfortunately, the `authenticated` flag is stored in memory right after `buf`.
-Note that we use "after" here to mean "at a higher memory address". 
+Note that we use "after" here to mean "at a higher memory address".
 
 ![Two words of memory for buf overwritten and an authenticated above it
 overwritten](/assets/images/memory-safety/vulnerabilities/overflow2.png)
@@ -89,9 +89,9 @@ non-zero value), then this will set the `authenticated` flag to true, and the
 attacker will be able to gain access.
 
 The program above allows that to happen, because the `gets` function does no
-bounds-checking; it will write as much data to `buf` as is supplied to it by the user. In
-other words, the code above is _vulnerable_: an attacker who can control the
-input to the program can bypass the password checks.
+bounds-checking; it will write as much data to `buf` as is supplied to it by the
+user. In other words, the code above is _vulnerable_: an attacker who can
+control the input to the program can bypass the password checks.
 
 Now consider another variation:
 
@@ -151,8 +151,9 @@ effective methods of malicious code injection.
 One powerful method for exploiting buffer overrun vulnerabilities takes
 advantage of the way local variables are laid out on the stack.
 
-_Stack smashing_ attacks exploit the x86 function call convention. See [Chapter 2](https://textbook.cs161.org/memory-safety/x86.html) 
-for a refresher on how x86 function calls work.
+_Stack smashing_ attacks exploit the x86 function call convention. See
+[Chapter 2](https://textbook.cs161.org/memory-safety/x86.html) for a refresher
+on how x86 function calls work.
 
 Suppose the code looks like this:
 
@@ -163,8 +164,8 @@ void vulnerable() {
 }
 ```
 
-When `vulnerable()` is called, a stack frame is pushed onto the stack. The
-stack will look something like this:
+When `vulnerable()` is called, a stack frame is pushed onto the stack. The stack
+will look something like this:
 
 ![Two words of memory for buf overwritten and the rip and sfp above it
 overwritten](/assets/images/memory-safety/vulnerabilities/overflow4.png)
@@ -174,8 +175,8 @@ the sfp, and overwrite the rip. This is a _stack smashing_ attack.
 
 Note that even though we are on the stack, which "grows down," our input writes
 from lower addresses to higher addresses. The stack only grows down when we call
-a new function and need to allocate additional memory. When we call `gets`,
-user input is still written from lower addresses to higher addresses, just like
+a new function and need to allocate additional memory. When we call `gets`, user
+input is still written from lower addresses to higher addresses, just like
 before.
 
 Stack smashing can be used for malicious code injection. First, the attacker
@@ -233,10 +234,10 @@ input will overwrite the sfp, but we want to overwrite the rip. As before, we
 will need to write some garbage bytes to overwrite the sfp so that we can
 overwrite the rip afterwards. We need 4 bytes of garbage to overwrite the sfp.
 
-Finally, we overwrite the rip with the address of shellcode, as before.
-However, this time, the shellcode is located in the buffer, so we overwrite the
-rip with the address of `buf`. When the function returns, it will start
-executing instructions at `buf`, which causes the shellcode to execute.
+Finally, we overwrite the rip with the address of shellcode, as before. However,
+this time, the shellcode is located in the buffer, so we overwrite the rip with
+the address of `buf`. When the function returns, it will start executing
+instructions at `buf`, which causes the shellcode to execute.
 
 ![buf overwritten with shellcode, the sfp overwritten with 0xAAAA, and the rip
 overwritten with the address of
@@ -263,8 +264,7 @@ exploiting buffer overrun bugs. Stack smashing dates back to at least the late
 1980s, when the [Morris Worm](https://en.wikipedia.org/wiki/Morris_worm)
 exploited a buffer overflow vulnerability to infect thousands of computers.
 Buffer overflows gained wider attention in 1998 with the publication of
-["Smashing the Stack for Fun and Profit" by Aleph
-One](https://inst.eecs.berkeley.edu/~cs161/fa08/papers/stack_smashing.pdf).
+["Smashing the Stack for Fun and Profit" by Aleph One](https://inst.eecs.berkeley.edu/~cs161/fa08/papers/stack_smashing.pdf).
 
 Modern methods are considerably more sophisticated and powerful. These attacks
 may seem esoteric, but attackers have become highly skilled at exploiting them.
@@ -288,15 +288,16 @@ security researchers have underestimated the opportunities for obscure and
 sophisticated attacks, only to later discover that the ability of attackers to
 find clever ways to exploit these bugs exceeded their imaginations. Attacks once
 thought to be esoteric to worry about are now considered easy and routinely
-mounted by attackers. 
+mounted by attackers.
 
-The bottom line is this: _If your program has a buffer
-overflow bug, you should assume that the bug is exploitable and an attacker can
-take control of your program._
+The bottom line is this: _If your program has a buffer overflow bug, you should
+assume that the bug is exploitable and an attacker can take control of your
+program._
 
 ## 3.3. Format string vulnerabilities
 
-Let's begin this section by walking through a normal printf call. Suppose we had the following piece of code:
+Let's begin this section by walking through a normal printf call. Suppose we had
+the following piece of code:
 
 ```
 void not_vulnerable() {
@@ -311,39 +312,91 @@ The stack diagram for this function would look something like this:
 
 ![Initial non vulnerable code with printf](/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png)
 
-When the `printf()` function executes, it looks for a format string modifier denoted by a “%” in its first argument located 4 bytes above the RIP of `printf()`. If it finds the modifier, it then looks 8 bytes above the RIP for the "actual" argument (i.e. what the format modifier will be acting upon).  
+When the `printf()` function executes, it looks for a format string modifier
+denoted by a “%” in its first argument located 4 bytes above the RIP of
+`printf()`. If it finds the modifier, it then looks 8 bytes above the RIP for
+the "actual" argument (i.e. what the format modifier will be acting upon).
 
-The behavior of the `printf()` function is generally controlled by the format modifier(s) that are passed into the function. The `printf()` function retrieves the parameters that are requested by the format string from the stack. Take, for example, the following line of code: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y, z);` The stack frame for this line of code would look like:
+The behavior of the `printf()` function is generally controlled by the format
+modifier(s) that are passed into the function. The `printf()` function retrieves
+the parameters that are requested by the format string from the stack. Take, for
+example, the following line of code:
+`printf("x has the value %d, y has the value %d, z has the value %d \n", x, y, z);`
+The stack frame for this line of code would look like:
 
 ![Not vulnerable printf statement](/assets/images/memory-safety/vulnerabilities/printfnotvulnerable2.png)
 
-Remember that arguments to a function are pushed onto the stack in reverse order, which is why the address of the format string is at a lower address compared to the values of `x`, `y`, and `z`.  
+Remember that arguments to a function are pushed onto the stack in reverse
+order, which is why the address of the format string is at a lower address
+compared to the values of `x`, `y`, and `z`.
 
-`printf()`'s internal pointer points to the location on the stack 8 bytes above the RIP of `printf()` due to the existence of at least one format string modifier. This internal pointer tells the function where to find the actual arguments that will be modified and eventually printed out. 
+`printf()`'s internal pointer points to the location on the stack 8 bytes above
+the RIP of `printf()` due to the existence of at least one format string
+modifier. This internal pointer tells the function where to find the actual
+arguments that will be modified and eventually printed out.
 
-A logical question you might be asking yourself might be, "Well, all this is well and good when everything works fine, but what happens when there is a mismatch in the number of format string modifiers in the first argument and number of additional arguments?" In other words, suppose our printf statement instead looked like this: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y);` Pay close attention to the fact that the format string asks for 3 arguments by having three `%d` modifiers, but we only pass in 2 arguments (i.e. `x` and `y`). 
+A logical question you might be asking yourself might be, "Well, all this is
+well and good when everything works fine, but what happens when there is a
+mismatch in the number of format string modifiers in the first argument and
+number of additional arguments?" In other words, suppose our printf statement
+instead looked like this:
+`printf("x has the value %d, y has the value %d, z has the value %d \n", x, y);`
+Pay close attention to the fact that the format string asks for 3 arguments by
+having three `%d` modifiers, but we only pass in 2 arguments (i.e. `x` and `y`).
 
-Surely the C compiler is smart enough to catch such a mistake, you might be thinking. Well, unfortunately you would be wrong. `printf()` is defined as a function with a variable number of arguments; what this means is that as long as `printf()` receives at least one argument, everything looks fine to the compiler! In order to actually spot the mismatch, the compiler would have to understand how the `printf()` function actually works and what format string modifiers are – however, compilers aren't that sophisticated and most of them simply do not perform this kind of analysis. 
+Surely the C compiler is smart enough to catch such a mistake, you might be
+thinking. Well, unfortunately you would be wrong. `printf()` is defined as a
+function with a variable number of arguments; what this means is that as long as
+`printf()` receives at least one argument, everything looks fine to the
+compiler! In order to actually spot the mismatch, the compiler would have to
+understand how the `printf()` function actually works and what format string
+modifiers are – however, compilers aren't that sophisticated and most of them
+simply do not perform this kind of analysis.
 
-Ok, well, if the C compiler doesn't catch this type of error, what about the `printf()` function itself? `printf()` simply fetches arguments from the stack according to the number of format modifiers that are present. In cases of a mismatch, it will fetch some data from the stack that does not belong to the function call. 
+Ok, well, if the C compiler doesn't catch this type of error, what about the
+`printf()` function itself? `printf()` simply fetches arguments from the stack
+according to the number of format modifiers that are present. In cases of a
+mismatch, it will fetch some data from the stack that does not belong to the
+function call.
 
-Take the same mismatched `printf()` example we had before: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y);` The `printf()` function's internal pointer will start off 8 bytes above the RIP (since it realizes that there is at least one format modifier present). Thus, the `printf()` function takes the value 8 bytes above the RIP and prints out whatever is located there; in other words, the first `%d` consumes the value located 8 bytes above the RIP of `printf()`. Once this happens, the `printf()` function locates the next format string modifier (the second `%d`), and moves its internal pointer 4 bytes up (so now, the internal pointer is pointing 12 bytes above the RIP of `printf()`), before printing out the value located there. Finally, the `printf()` function will locate the third format string modifier, and again move its internal pointer 4 bytes up (the internal pointer is now pointing 16 bytes above the RIP of `printf()`). However, we never actually passed in a third argument to the `printf()` function, so the value located 16 bytes above the RIP of `printf()` has nothing to do with the `printf()` function at all and is instead some value left over from the previous stack frame. Since the `printf()` function does not know this, however, it looks 16 bytes above the RIP of `printf()` and prints out the value located there. 
+Take the same mismatched `printf()` example we had before:
+`printf("x has the value %d, y has the value %d, z has the value %d \n", x, y);`
+The `printf()` function's internal pointer will start off 8 bytes above the RIP
+(since it realizes that there is at least one format modifier present). Thus,
+the `printf()` function takes the value 8 bytes above the RIP and prints out
+whatever is located there; in other words, the first `%d` consumes the value
+located 8 bytes above the RIP of `printf()`. Once this happens, the `printf()`
+function locates the next format string modifier (the second `%d`), and moves
+its internal pointer 4 bytes up (so now, the internal pointer is pointing 12
+bytes above the RIP of `printf()`), before printing out the value located there.
+Finally, the `printf()` function will locate the third format string modifier,
+and again move its internal pointer 4 bytes up (the internal pointer is now
+pointing 16 bytes above the RIP of `printf()`). However, we never actually
+passed in a third argument to the `printf()` function, so the value located 16
+bytes above the RIP of `printf()` has nothing to do with the `printf()` function
+at all and is instead some value left over from the previous stack frame. Since
+the `printf()` function does not know this, however, it looks 16 bytes above the
+RIP of `printf()` and prints out the value located there.
 
-Similar to how the `%d` format modifier simply makes the `printf()` function print the value located at the expected address, various format string modifiers have different uses. Here are a couple of examples that might be useful: 
+Similar to how the `%d` format modifier simply makes the `printf()` function
+print the value located at the expected address, various format string modifiers
+have different uses. Here are a couple of examples that might be useful:
 
-- %s → Treat the argument as an address and print the string at that address up until the first null byte
+- %s → Treat the argument as an address and print the string at that address up
+  until the first null byte
 
-- %n → Treat the argument as an address and write the number of characters that have been printed so far to that address
+- %n → Treat the argument as an address and write the number of characters that
+  have been printed so far to that address
 
 - %c → Treat the argument as a value and print it out as a character
 
 - %x → Look at the stack and read the first variable after the format string
 
-- %[b]u → Print out [b] bytes starting from the argument 
+- %[b]u → Print out [b] bytes starting from the argument
 
-
-The bottom line: _If your program has a format string vulnerability, assume that the
-attacker can learn any value stored in memory and can take control of your program._
+The bottom line: _If your program has a format string vulnerability, assume that
+the attacker can learn any value stored in memory and can take control of your
+program._
 
 ## 3.4. Integer conversion vulnerabilities
 
@@ -381,7 +434,7 @@ and it will become a very large positive integer. Thus `memcpy()` will copy a
 huge amount of memory into `buf`, overflowing the buffer.
 
 Note that the C compiler won't warn about the type mismatch between `signed int`
-and `unsigned int`; it silently inserts an implicit cast.  This kind of bug can
+and `unsigned int`; it silently inserts an implicit cast. This kind of bug can
 be hard to spot. The above example is particularly nasty, because on the surface
 it appears that the programmer has applied the correct bounds checks, but they
 are flawed.
@@ -419,21 +472,21 @@ Consider a buffer whose bounds checks are off by one. This means we can write
 `n+1` bytes into a buffer of size `n`, overflowing the byte immediately after
 the buffer (but no more than that).
 
-This following diagram is from Section 10 of ["ASLR Smack & Laugh Reference" by
-Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf). It shows
-how overwriting a single byte lets you start executing instructions at an
-arbitrary address in memory.
+This following diagram is from Section 10 of
+["ASLR Smack & Laugh Reference" by Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf).
+It shows how overwriting a single byte lets you start executing instructions at
+an arbitrary address in memory.
 
 ![Stack diagrams showing the exploitation of an off-by-one
 vulnerability for the first return](/assets/images/memory-safety/vulnerabilities/offbyone1.png)
 
-**Step 1**: This is what normal execution during a function looks like.
-Consider reviewing the x86 section of the notes if you'd like a refresher. The
-stack has the rip (saved eip), sfp (saved ebp), and the local variable `buff`.
-The esp register points to the bottom of the stack. The ebp register points to
-the sfp at the top of the stack. The sfp (saved ebp) points to the ebp of the
-previous function, which is higher up in memory. The rip (saved eip) points to
-somewhere in the code section.
+**Step 1**: This is what normal execution during a function looks like. Consider
+reviewing the x86 section of the notes if you'd like a refresher. The stack has
+the rip (saved eip), sfp (saved ebp), and the local variable `buff`. The esp
+register points to the bottom of the stack. The ebp register points to the sfp
+at the top of the stack. The sfp (saved ebp) points to the ebp of the previous
+function, which is higher up in memory. The rip (saved eip) points to somewhere
+in the code section.
 
 **Step 2**: We overwrite all of `buff`, plus the byte immediately after `buff`,
 which is the least significant byte of the sfp directly above `buff`. (Remember
@@ -484,7 +537,7 @@ buffer).
 
 The key insight for this exploit is that one function return is not enough.
 However, eventually, if a second function return happens, it will allow us to
-start executing instructions at an arbitrary location.  Let's walk through the
+start executing instructions at an arbitrary location. Let's walk through the
 same 3 instructions again, but this time with ebp incorrectly pointing in the
 buffer.
 
@@ -535,9 +588,9 @@ second object to manipulate the interpretation of the first object.
 
 C++ vtable pointers are a classic example of a _heap overflow_. In C++, the
 programmer can declare an object on the heap. Storing an object requires storing
-a _vtable pointer_, a pointer to an array of pointers.  Each pointer in the
-array contains the address of one of that object's methods. The object's
-instance variables are stored directly above the vtable pointer.
+a _vtable pointer_, a pointer to an array of pointers. Each pointer in the array
+contains the address of one of that object's methods. The object's instance
+variables are stored directly above the vtable pointer.
 
 ![A diagram of a C++ object allocated in the heap, with its instance variables
 above its vtable](/assets/images/memory-safety/vulnerabilities/vtable.png)
@@ -553,12 +606,11 @@ write the address of some malicious code. Now, when the program calls a method
 on object `y`, it will try to look up the address of the method's code in `y`'s
 vtable. However, `y`'s vtable pointer has been overwritten to point to
 attacker-controlled memory, and the attacker has written the address of some
-malicious code at that memory.  This causes the program to start executing the
+malicious code at that memory. This causes the program to start executing the
 attacker's malicious code.
 
 This method of injection is very similar to stack smashing, where the attacker
 overwrites the rip to point to some malicious code. However, overwriting C++
 vtables requires overwriting a pointer to a pointer.
 
-[^1]:
-    You sometimes see variants on this like pwned, 0wned, ownzored, etc.
+[^1]: You sometimes see variants on this like pwned, 0wned, ownzored, etc.

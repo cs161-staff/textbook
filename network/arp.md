@@ -79,8 +79,8 @@ is `1.1.1.1`. The ARP protocol would follow three steps:
 If Bob is outside of the LAN, then the router would respond in step 2 with its
 MAC address.
 
-Any received ARP replies are always cached, even if no broadcast request (step
-1) was ever made.
+Any received ARP replies are always cached, even if no broadcast request
+(step 1) was ever made.
 
 ## 26.4. Attack: ARP Spoofing
 
@@ -114,11 +114,11 @@ broadcast to everyone.
 
 Higher-quality switches include **VLAN**s (Virtual Local Area Networks), which
 implement isolation by breaking the network into separate virtual networks.
-{% comment %}VLANs also have the ability to configure a mirror port, which
-sends a copy of all packets transmitted to a specific port for network
+{% comment %}VLANs also have the ability to configure a mirror port, which sends
+a copy of all packets transmitted to a specific port for network
 monitoring.{% endcomment %}
 
 [^1]: A: On-path
 [^2]:
-    A: Man-in-the-middle. She can receive messages from Alice, modify them,
-    then send them to Bob.
+    A: Man-in-the-middle. She can receive messages from Alice, modify them, then
+    send them to Bob.

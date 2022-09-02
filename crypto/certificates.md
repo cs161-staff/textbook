@@ -4,9 +4,8 @@ parent: Cryptography
 nav_order: 9
 ---
 
-{% comment %}
-TODO: next time, discuss OCSP, stapling, privacy exposure vs. "bad customer
-list" issue for CRLs
+{% comment %} TODO: next time, discuss OCSP, stapling, privacy exposure vs. "bad
+customer list" issue for CRLs
 
 Think about removing web-of-trust: it doesn't appear to have sufficient legs to
 be worth discussing. However, the current text is also useful because it
@@ -14,8 +13,7 @@ discusses notions like non-transitivity of trust.
 
 Note, there's material on cryptographic protocols commented out at the end.
 
-TODO: Cleanup -f
-{% endcomment %}
+TODO: Cleanup -f {% endcomment %}
 
 # 13. Certificates
 
@@ -161,11 +159,11 @@ $$
 \text{Signing with private key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{SK_\text{Jerry}^{-1}}
 $$
 
-where here $$\{M\}_{PK}$$ denotes a digital signature on the message $$M$$
-using the private key $$SK^{-1}$$. In this case, $$SK^{-1}_\text{Jerry}$$
-is Jerry Brown's private key. This certificate is just some digital data: a
-sequence of bits. The certificate can be published and shared with anyone who
-wants to communicate securely with David.
+where here $$\{M\}_{PK}$$ denotes a digital signature on the message $$M$$ using
+the private key $$SK^{-1}$$. In this case, $$SK^{-1}_\text{Jerry}$$ is Jerry
+Brown's private key. This certificate is just some digital data: a sequence of
+bits. The certificate can be published and shared with anyone who wants to
+communicate securely with David.
 
 If Alice wants to communicate securely with David, she can obtain a copy of this
 certificate. If Alice knows Jerry's public key, she can verify the signature on
@@ -368,8 +366,8 @@ system. There are two standard approaches to revocation:
   efficient than constantly re-issuing certificates with a short validity
   period.
 
-  However, revocation lists also pose some special challenges of their own.
-  What should clients do if they are unable to download a recent copy of the
+  However, revocation lists also pose some special challenges of their own. What
+  should clients do if they are unable to download a recent copy of the
   revocation list? If clients continue to use an old copy of the revocation
   list, then this creates an opportunity for an attacker who receives a bogus
   certificate to DoS the CA's revocation servers in order to prevent revocation
@@ -382,10 +380,9 @@ system. There are two standard approaches to revocation:
   Today, systems that use revocation lists typically ignore these
   denial-of-service risks and hope for the best.
 
-{% comment %}
-What do CAs do today, on the web? Modern browser do contain code[^3] to check
-revocation lists, if this is enabled by CAs. However, when last I checked, the
-popular CAs had not enabled revocation lists.
+{% comment %} What do CAs do today, on the web? Modern browser do contain
+code[^3] to check revocation lists, if this is enabled by CAs. However, when
+last I checked, the popular CAs had not enabled revocation lists.
 {% endcomment %}
 
 ## 13.7. Web of Trust
@@ -507,8 +504,7 @@ users to know anything about cryptography.
 
 {% comment %}
 
-[^3]:
-    See the Online Certificate Status Protocol (OCSP).
+[^3]: See the Online Certificate Status Protocol (OCSP).
 
 {% endcomment %}
 

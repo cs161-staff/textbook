@@ -50,8 +50,8 @@ the CAPTCHAs are inherently self defeating for those deploying the CAPTCHA.
 In some cases, it's necessary to provide an alternative, accessible CAPTCHA
 method, such as an audio-based spoken phrase that a human is required to
 transcribe. In this case, we've unintentionally opened up a new attack vector:
-attackers may now target the audio-based CAPTCHA, which may be easier to
-solve than the traditional image-based CAPTCHA.
+attackers may now target the audio-based CAPTCHA, which may be easier to solve
+than the traditional image-based CAPTCHA.
 
 If you search "crack CAPTCHA" on Google, you'll likely find many CAPTCHA solving
 services for as low as $0.10 cents per CAPTCHA. These services use humans to do

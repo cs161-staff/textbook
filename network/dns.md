@@ -100,8 +100,8 @@ level of the tree in query 5 and response
 
 4. The `.edu` name server to you: I don't know, but I can redirect you to
    another name server with more information. This name server is responsible
-for the `berkeley.edu` zone. It has human-readable domain name
-`adns1.berkeley.edu` and IP address `128.32.136.3`.
+   for the `berkeley.edu` zone. It has human-readable domain name
+   `adns1.berkeley.edu` and IP address `128.32.136.3`.
 
 5. You to the `berkeley.edu` name server: Please tell me the IP address of
    `eecs.berkeley.edu`.
@@ -188,12 +188,12 @@ The rest of the message contains the actual content of the DNS query/response.
 This content is always structured as a set of RRs, where each RR is a key-value
 pair with an associated type.
 
-For completeness, a DNS record key is formally defined as a 3-tuple `<Name,
-Class, Type>`, where `Name` is the actual key data, `Class` is always `IN` for
-Internet (except for special queries used to get information about DNS itself),
-and `Type` specifies the record type. A DNS record value contains `<TTL,
-Value>`, where `TTL` is the time-to-live (how long, in seconds, the record can
-be cached), and `Value` is the actual value data.
+For completeness, a DNS record key is formally defined as a 3-tuple
+`<Name, Class, Type>`, where `Name` is the actual key data, `Class` is always
+`IN` for Internet (except for special queries used to get information about DNS
+itself), and `Type` specifies the record type. A DNS record value contains
+`<TTL, Value>`, where `TTL` is the time-to-live (how long, in seconds, the
+record can be cached), and `Value` is the actual value data.
 
 There are two main types of records in DNS. **A type records** map domains to IP
 addresses. The key is a domain, and the value is an IP address. **NS type
@@ -208,15 +208,15 @@ records.
 ## 32.4. DNS Lookup
 
 Now, let's walk through a real DNS query for the IP address of
-`eecs.berkeley.edu`. You can try this at home with the [`dig`
-utility](<https://en.wikipedia.org/wiki/Dig_(command)>)--remember to set the
-`+norecurse` flag so you can unravel the recursion yourself.
+`eecs.berkeley.edu`. You can try this at home with the
+[`dig` utility](<https://en.wikipedia.org/wiki/Dig_(command)>)--remember to set
+the `+norecurse` flag so you can unravel the recursion yourself.
 
 Every DNS query begins with the root server. For redundancy, there are actually
-13 root servers located around the world. We can look up the [IP
-addresses](https://www.iana.org/domains/root/servers) of the root servers, which
-are public and well-known. In a real recursive resolver, these addresses are
-usually hardcoded.
+13 root servers located around the world. We can look up the
+[IP addresses](https://www.iana.org/domains/root/servers) of the root servers,
+which are public and well-known. In a real recursive resolver, these addresses
+are usually hardcoded.
 
 The first root server has domain `a.root-servers.net` and IP address
 `198.41.0.4`. We can use `dig` to send a DNS request to this address, asking for
@@ -379,8 +379,8 @@ cache, so no DNS queries are sent. Since off-path attackers must guess the ID
 field with a $$1/2^{16}$$ probability of success, and they only get a few tries
 per week, DNS was believed to be secure against off-path attackers, until Dan
 Kaminsky discovered a flaw in the DNS protocol in 2008. This attack was so
-severe that Kaminsky was awarded with a [Wikipedia
-article](https://en.wikipedia.org/wiki/Dan_Kaminsky).
+severe that Kaminsky was awarded with a
+[Wikipedia article](https://en.wikipedia.org/wiki/Dan_Kaminsky).
 
 ## 32.7. DNS Security: Kaminsky attack
 
@@ -424,7 +424,7 @@ load lots of nonexistent domains:
 ...
 ```
 
-This HTML snippet will cause the victim's browser to try and fetch images from\
+This HTML snippet will cause the victim's browser to try and fetch images from
 `http://fake001.berkeley.edu/image.jpg`,
 `http://fake002.berkeley.edu/image.jpg`, etc. To fetch these images, the browser
 will first make a DNS request for the domains `fake001.berkeley.edu`,
@@ -461,12 +461,11 @@ Sanity check: How much extra security does source port randomization provide
 against on-path attackers?[^3]
 
 [^1]:
-    A: MITM and on-path can read the ID field. Off-path must guess the ID
-    field.
+    A: MITM and on-path can read the ID field. Off-path must guess the ID field.
 
 [^2]:
-    Query `a.edu-servers.net`, whose location we know because of the records
-    in the additional section. Query for the IP address of `eecs.berkeley.edu`
-    just like before.
+    Query `a.edu-servers.net`, whose location we know because of the records in
+    the additional section. Query for the IP address of `eecs.berkeley.edu` just
+    like before.
 
 [^3]: A: None, on-path attackers can see the source port value.

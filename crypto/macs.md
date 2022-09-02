@@ -67,9 +67,9 @@ More generally, there will be no way for the adversary to modify the message and
 then make a corresponding modification to the tag to trick Bob into accepting
 the modified message: given $$M$$ and $$T=F(K,M)$$, an attacker who does not
 know the key $$K$$ should be unable to find a different message $$M'$$ and a tag
-$$T'$$ such that $$T'$$ is a valid tag on $$M'$$ (i.e., such that $$T' =
-F(K,M')$$). Secure MACs are designed to ensure that even small changes to the
-message make unpredictable changes to the tag, so that the adversary cannot
+$$T'$$ such that $$T'$$ is a valid tag on $$M'$$ (i.e., such that
+$$T' = F(K,M')$$). Secure MACs are designed to ensure that even small changes to
+the message make unpredictable changes to the tag, so that the adversary cannot
 guess the correct tag for their malicious message $$M'$$.
 
 Recall that MACs are deterministic--if Alice calculates $$F(K,M)$$ twice on the
@@ -84,11 +84,11 @@ communications and observes a number of messages and their corresponding tags:
 $$\langle M_1,T_1\rangle,\langle M_2,T_2\rangle,\dots,\langle M_n,T_n\rangle$$,
 where $$T_i=F(K,M_i)$$. Then Eve has no hope of finding some new message $$M'$$
 (such that $$M' \notin \{M_1,\dots,M_n\}$$) and a corresponding value $$T'$$
-such that $$T'$$ is the correct tag on $$M'$$ (i.e., such that $$T' =
-F(K,M')$$). The same is true even if Eve was able to choose the $$M_i$$'s. In
-other words, even though Eve may know some valid MACs $$\langle
-M_n,T_n\rangle$$, she still cannot generate valid MACs for messages she has
-never seen before.
+such that $$T'$$ is the correct tag on $$M'$$ (i.e., such that
+$$T' = F(K,M')$$). The same is true even if Eve was able to choose the
+$$M_i$$'s. In other words, even though Eve may know some valid MACs
+$$\langle M_n,T_n\rangle$$, she still cannot generate valid MACs for messages
+she has never seen before.
 
 Here is a formal security definition that captures both properties described
 above. We imagine a game played between Georgia (the adversary) and Reginald
@@ -137,7 +137,7 @@ of 128-bit blocks: $$M = P_1 || P_2 || ... || P_n$$. We set $$S_0 = 0$$ and
 compute
 
 $$
-S_i = \textrm{AES}_{K_1}(S_{i-1} \oplus P_i),\qquad
+S_i = \textrm{AES}_{K_1}(S*{i-1} \oplus P_i),\qquad
     \text{for $i=1,2,\dots,n$.}
 $$
 
@@ -177,14 +177,14 @@ so in both of these implementations it would be 256 bits of output. In this
 section, we'll denote the number of bits in the hash output as $$n$$.
 
 To construct the HMAC algorithm, we first start with a more general version,
-NMAC: 
+NMAC:
 
 $$
 \text{NMAC}(K_1, K_2, M) = H(K_1 || H(K_2 || M))
-$$ 
+$$
 
-In words, NMAC concatenates $$K_2$$ and $$M$$, hashes the result, concatenates the result with
-$$K_1$$, and then hashes that result.
+In words, NMAC concatenates $$K_2$$ and $$M$$, hashes the result, concatenates
+the result with $$K_1$$, and then hashes that result.
 
 Note that NMAC takes two keys, $$K_1$$ and $$K_2$$, both of length $$n$$ (the
 length of the hash output). If the underlying hash function $$H$$ is

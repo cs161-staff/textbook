@@ -113,9 +113,9 @@ old connections, which violates the security of those old TLS connections.
 On the other hand, if the attacker steals the private key of a server using DHE
 or ECDHE-based TLS, they have no way of discovering the PS values of old
 connections, because the secrets required to generate the PS ($$a$$, $$b$$)
-cannot be discovered using the data sent over the connection ($$g^a, g^b \bmod
-p$$).  Starting from TLS 1.3, RSA key exchanges are no longer allowed for this
-reason.
+cannot be discovered using the data sent over the connection
+($$g^a, g^b \bmod p$$). Starting from TLS 1.3, RSA key exchanges are no longer
+allowed for this reason.
 
 Now that both client and server have a shared PS, they will each use the PS and
 the random values $$R_B$$ and $$R_S$$ to derive a set of four shared symmetric

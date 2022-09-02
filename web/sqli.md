@@ -219,8 +219,8 @@ Thus, another malicious username and password is
   </span>
 </p>
 
-_Further reading:_ [SQL Injection Attacks by
-Example](http://www.unixwiz.net/techtips/sql-injection.html)
+_Further reading:_
+[SQL Injection Attacks by Example](http://www.unixwiz.net/techtips/sql-injection.html)
 
 ## 17.4. Defense: Escape Inputs
 
@@ -291,5 +291,5 @@ In practice, most modern SQL libraries support parameterized SQL and prepared
 statements. If the library you are using does not support parameterized SQL, it
 is probably best to switch to a different SQL library.
 
-_Further reading:_ [OWASP Cheat Sheet on SQL
-Injection](https://owasp.org/www-community/attacks/SQL_Injection)
+_Further reading:_
+[OWASP Cheat Sheet on SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)

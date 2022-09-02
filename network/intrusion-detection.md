@@ -190,8 +190,8 @@ useful, because we have to handle 10,000 false positives every day. This example
 shows that accurate detection is very challenging when the rate of attacks is
 extremely low, because even a very good detector will flag so many false
 positives that it becomes impractical to manually review every single false
-positive. For more information on this phenomenon, read about the [base rate
-fallacy](https://en.wikipedia.org/wiki/Base_rate_fallacy).
+positive. For more information on this phenomenon, read about the
+[base rate fallacy](https://en.wikipedia.org/wiki/Base_rate_fallacy).
 
 ## 36.6. Detection strategies
 

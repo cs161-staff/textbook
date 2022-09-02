@@ -63,10 +63,9 @@ on a request to
 because the URL domain ends in the cookie domain, and the URL path begins with
 the cookie path.
 
-Note that cookie policy uses a different set of rules than the same origin policy. This has caused problems in the past.
-{% comment %}
-Nick wrote: "has caused problems in the path." typo? -peyrin
-{% endcomment %}
+Note that cookie policy uses a different set of rules than the same origin
+policy. This has caused problems in the past. {% comment %} Nick wrote: "has
+caused problems in the path." typo? -peyrin {% endcomment %}
 
 ## 20.3. Cookie Policy: Setting Domain and Path
 

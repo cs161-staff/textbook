@@ -288,17 +288,15 @@ unpredictable each time. In short, the pRNG algorithm is:
 
 - Decryption: $$Dec(K, IV, C_2) = PRNG(K, IV) \oplus C_2$$
 
-{% comment %}
-Stream ciphers can be used to encrypt streams of bits by combining each bit in
-the plaintext message with the corresponding bit in a pseudorandom stream of
-bits generated using pesudorandom number generators (PRNGs). PRNGs used in
-streamciphers are seeded with keys to generate as many bits as needed that can
-be XORed with the corresponding plaintext bits to create a ciphtertext stream.
-For this reason, streamciphers can be used to encrypt messages of any length.
-Contrary to one-time pads (OTPs), keys can be resued in streamciphers since
-PRNGs can be seeded with random IVs that should not be resued across multiple
-encryptions.
-{% endcomment %}
+{% comment %} Stream ciphers can be used to encrypt streams of bits by combining
+each bit in the plaintext message with the corresponding bit in a pseudorandom
+stream of bits generated using pesudorandom number generators (PRNGs). PRNGs
+used in streamciphers are seeded with keys to generate as many bits as needed
+that can be XORed with the corresponding plaintext bits to create a ciphtertext
+stream. For this reason, streamciphers can be used to encrypt messages of any
+length. Contrary to one-time pads (OTPs), keys can be resued in streamciphers
+since PRNGs can be seeded with random IVs that should not be resued across
+multiple encryptions. {% endcomment %}
 
 AES-CTR is effectively a stream cipher. Although technically AES appears to be a
 pseudo-random permutation rather than a pseudo-random generator, in practice the

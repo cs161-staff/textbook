@@ -64,10 +64,10 @@ communication between processes. The header also contains a checksum
 
 TODO: This diagram can be better. ~NN
 
-| 16 bits | 16 bits |
-| :-----: | :-----: |
+|   16 bits   |     16 bits      |
+| :---------: | :--------------: |
 | Source port | Destination port |
-| Length | Checksum |
+|   Length    |     Checksum     |
 
 ## 30.4. Protocol: TCP
 
@@ -184,9 +184,9 @@ numbers.
    acknowledgment number is set to the client's initial sequence number + 1.
 
 3. The client responds with an **ACK packet** (a packet with no data and the ACK
-   flag set). The sequence number is set to the client's initial sequence number + 1 
-   and the acknowledgement number is set to the server's initial sequence
-   number + 1.
+   flag set). The sequence number is set to the client's initial sequence
+   number + 1 and the acknowledgement number is set to the server's initial
+   sequence number + 1.
 
 To end a connection, one side sends a FIN (a packet with the FIN flag set), and
 the other side replies with a FIN-ACK. This indicates that the side that sent

@@ -14,9 +14,9 @@ level. Understanding cryptography at a conceptual level will give you good
 intuition for how industrial systems use cryptography in practice.
 
 However, cryptography in practice is very tricky to get right. Actual real-world
-cryptographic implementations require great attention to detail and have hundreds of 
-possible pitfalls. For example, private information might leak out through
-various side-channels, random number generators might go wrong, and
+cryptographic implementations require great attention to detail and have
+hundreds of possible pitfalls. For example, private information might leak out
+through various side-channels, random number generators might go wrong, and
 cryptographic primitives might lose all security if you use them the wrong way.
 We won't have time to teach all of those details and pitfalls to you in CS 161,
 so you should never implement your own cryptography using the algorithms we
@@ -42,13 +42,13 @@ practice.
 ## 5.2. Brief History of Cryptography
 
 The word "cryptography" comes from the Latin roots _crypt_, meaning secret, and
-_graphia_, meaning writing. So cryptography is quite literally the study of how to
-write secret messages.
+_graphia_, meaning writing. So cryptography is quite literally the study of how
+to write secret messages.
 
 Schemes for sending secret messages go back to antiquity. 2,000 years ago,
 Julius Caesar employed what's today referred to as the "Caesar cypher," which
-consists of permuting the alphabet by shifting each letter forward by a
-fixed amount. For example, if Caesar used a shift by $$3$$ then the message
+consists of permuting the alphabet by shifting each letter forward by a fixed
+amount. For example, if Caesar used a shift by $$3$$ then the message
 "cryptography" would be encoded as "fubswrjudskb". With the development of the
 telegraph (electronic communication) during the 1800s, the need for encryption
 in military and diplomatic communications became particularly important. The
@@ -59,27 +59,31 @@ modern standards.
 The second phase of cryptography, the "mechanical era," was the result of a
 German project to create a mechanical device for encrypting messages in an
 unbreakable code. The resulting _Enigma_ machine was a remarkable feat of
-engineering. Even more remarkable was the massive British effort during World War II to
-break the code. The British success in breaking the Enigma code helped influence
-the course of the war, shortening it by about a year, according to most experts.
-There were three important factors in the breaking of the Enigma code. First,
-the British managed to obtain a replica of a working Enigma machine from Poland,
-which had cracked a simpler version of the code. Second, the Allies drew upon a
-great deal of brainpower, first with the Poles, who employed a large contingent
-of mathematicians to crack the structure, and then from the British, whose
-project included Alan Turing, one of the founding fathers of computer science.
-The third factor was the sheer scale of the code-breaking effort. The Germans
-figured that the Enigma was well-nigh uncrackable, but what they didn't figure
-on was the unprecedented level of commitment the British poured into breaking
-it, once codebreakers made enough initial progress to show the potential for
-success. At its peak, the British codebreaking organization employed over 10,000
-people, a level of effort that vastly exceeded anything the Germans had
-anticipated. They also developed electromechanical systems that could, in
-parallel, search an incredible number of possible keys until the right one was found.
+engineering. Even more remarkable was the massive British effort during World
+War II to break the code. The British success in breaking the Enigma code helped
+influence the course of the war, shortening it by about a year, according to
+most experts. There were three important factors in the breaking of the Enigma
+code. First, the British managed to obtain a replica of a working Enigma machine
+from Poland, which had cracked a simpler version of the code. Second, the Allies
+drew upon a great deal of brainpower, first with the Poles, who employed a large
+contingent of mathematicians to crack the structure, and then from the British,
+whose project included Alan Turing, one of the founding fathers of computer
+science. The third factor was the sheer scale of the code-breaking effort. The
+Germans figured that the Enigma was well-nigh uncrackable, but what they didn't
+figure on was the unprecedented level of commitment the British poured into
+breaking it, once codebreakers made enough initial progress to show the
+potential for success. At its peak, the British codebreaking organization
+employed over 10,000 people, a level of effort that vastly exceeded anything the
+Germans had anticipated. They also developed electromechanical systems that
+could, in parallel, search an incredible number of possible keys until the right
+one was found.
 
 Modern cryptography is distinguished by its reliance on mathematics and
 electronic computers. It has its early roots in the work of Claude Shannon
-following World War II. The analysis of the _one-time pad_ (discussed in the next chapter) is due to Shannon. The early 1970s saw the introduction of a standardized cryptosystem, DES, by the National Institute for Standards in Technology (NIST). DES answered the growing need for digital encryption
+following World War II. The analysis of the _one-time pad_ (discussed in the
+next chapter) is due to Shannon. The early 1970s saw the introduction of a
+standardized cryptosystem, DES, by the National Institute for Standards in
+Technology (NIST). DES answered the growing need for digital encryption
 standards in banking and other businesses. The decade starting in the late 1970s
 then saw an explosion of work on a computational theory of cryptography.
 
@@ -87,11 +91,12 @@ then saw an explosion of work on a computational theory of cryptography.
 
 Intuitively, we can see that the Caesar cypher is not secure (try all 26
 possible shifts and you'll get the original message back), but how can we prove
-that it is, in fact, insecure? To formally study cryptography, we will have to define a
-mathematically rigorous framework that lets us analyze the security of various
-cryptographic schemes.
+that it is, in fact, insecure? To formally study cryptography, we will have to
+define a mathematically rigorous framework that lets us analyze the security of
+various cryptographic schemes.
 
-The rest of this section defines some important terms that will appear throughout the unit.
+The rest of this section defines some important terms that will appear
+throughout the unit.
 
 ## 5.4. Definitions: Alice, Bob, Eve, and Mallory
 
@@ -131,17 +136,23 @@ achieve.
 
 _Confidentiality_ is the property that prevents adversaries from reading our
 private data. If a message is confidential, then an attacker does not know its
-contents. You can think about confidentiality like locking and unlocking a message in a lockbox. Alice uses a key to lock the message in a box and then sends the message (in the locked box) over the insecure channel to Bob. Eve can see the locked box, but cannot access the message inside since she does not have a key to open the box. When Bob receives the box, he is able to unlock it using the key and retrieve the message.
+contents. You can think about confidentiality like locking and unlocking a
+message in a lockbox. Alice uses a key to lock the message in a box and then
+sends the message (in the locked box) over the insecure channel to Bob. Eve can
+see the locked box, but cannot access the message inside since she does not have
+a key to open the box. When Bob receives the box, he is able to unlock it using
+the key and retrieve the message.
 
-Most cryptographic algorithms that guarantee confidentiality work as
-follows: Alice uses a key to _encrypt_ a message by changing it into a scrambled form that
-the attacker cannot read. She then sends this encrypted message over the
-insecure channel to Bob. When Bob receives the encrypted message, he uses the key to _decrypt_
-the message by changing it back into its original form. We sometimes call the
-message _plaintext_ when it is unencrypted and _ciphertext_ when it is
-encrypted. Even if the attacker can see the encrypted ciphertext, they should
-not be able to decrypt it back into the corresponding plaintext--only the
-intended recipient, Bob, should be able to decrypt the message.
+Most cryptographic algorithms that guarantee confidentiality work as follows:
+Alice uses a key to _encrypt_ a message by changing it into a scrambled form
+that the attacker cannot read. She then sends this encrypted message over the
+insecure channel to Bob. When Bob receives the encrypted message, he uses the
+key to _decrypt_ the message by changing it back into its original form. We
+sometimes call the message _plaintext_ when it is unencrypted and _ciphertext_
+when it is encrypted. Even if the attacker can see the encrypted ciphertext,
+they should not be able to decrypt it back into the corresponding
+plaintext--only the intended recipient, Bob, should be able to decrypt the
+message.
 
 _Integrity_ is the property that prevents adversaries from tampering with our
 private data. If a message has integrity, then an attacker cannot change its
@@ -151,12 +162,25 @@ _Authenticity_ is the property that lets us determine who created a given
 message. If a message has authenticity, then we can be sure that the message was
 written by the person who claims to have written it.
 
-You might be thinking that authenticity and integrity seem very closely related, and you would be correct; it makes sense that before you can prove that a message came from a particular person, you first have to prove that the message was not changed. In other words, before you can prove authenticity, you first have to be able to prove integrity. However, these are not identical properties and we will take a look at some edge cases as we delve further into the cryptographic unit.
+You might be thinking that authenticity and integrity seem very closely related,
+and you would be correct; it makes sense that before you can prove that a
+message came from a particular person, you first have to prove that the message
+was not changed. In other words, before you can prove authenticity, you first
+have to be able to prove integrity. However, these are not identical properties
+and we will take a look at some edge cases as we delve further into the
+cryptographic unit.
 
-You can think about cryptographic algorithms that ensure integrity and authenticity as adding a seal on the message that is being sent. Alice uses the key to add a special seal, like a piece of tape on the envelope, on the message. She then sends the sealed message over the unsecure channel. If Mallory tampers with the message, she will break the tape on the envelope, and therefore break the seal. Without the key, Mallory cannot create her own seal. When Bob receives the message, he checks that the seal is untampered before unsealing the envelope and revealing the message.
+You can think about cryptographic algorithms that ensure integrity and
+authenticity as adding a seal on the message that is being sent. Alice uses the
+key to add a special seal, like a piece of tape on the envelope, on the message.
+She then sends the sealed message over the unsecure channel. If Mallory tampers
+with the message, she will break the tape on the envelope, and therefore break
+the seal. Without the key, Mallory cannot create her own seal. When Bob receives
+the message, he checks that the seal is untampered before unsealing the envelope
+and revealing the message.
 
 Most cryptographic algorithms that guarantee integrity and authenticity work as
-follows: Alice generates a _tag_ or a _signature_ on a message.  She sends the
+follows: Alice generates a _tag_ or a _signature_ on a message. She sends the
 message with the tag to Bob. When Bob receives the message and the tag, he
 verifies that the tag is valid for the message that was sent. If the attacker
 modifies the message, the tag should no longer be valid, and Bob's verification
@@ -180,10 +204,10 @@ We will look at cryptographic primitives that provide confidentiality,
 integrity, and authentication in both the symmetric-key and asymmetric-key
 settings.
 
-| | Symmetric-key | Asymmetric-key |
-| | :--------------------------------------- | :--------------------------------------------------- |
-| Confidentiality | Block ciphers with chaining modes (e.g., AES-CBC) | Public-key encryption(e.g., El Gamal, RSA encryption) |
-| Integrity and authentication | MACs (e.g., AES-CBC-MAC) | Digital signatures (e.g., RSA signatures) |
+|                              | Symmetric-key                                     | Asymmetric-key                                        |
+| ---------------------------- | ------------------------------------------------- | ----------------------------------------------------- |
+| Confidentiality              | Block ciphers with chaining modes (e.g., AES-CBC) | Public-key encryption(e.g., El Gamal, RSA encryption) |
+| Integrity and authentication | MACs (e.g., AES-CBC-MAC)                          | Digital signatures (e.g., RSA signatures)             |
 
 In symmetric-key encryption, Alice uses her secret key to encrypt a message, and
 Bob uses the same secret key to decrypt the message.
@@ -191,15 +215,15 @@ Bob uses the same secret key to decrypt the message.
 In public-key encryption, Bob generates a matching public key and private key,
 and shares the public key with Alice (but does not share his private key with
 anyone). Alice can encrypt her message under Bob's public key, and then Bob will
-be able to decrypt using his private key.  If these schemes are secure, then no
+be able to decrypt using his private key. If these schemes are secure, then no
 one except Alice and Bob should be able to learn anything about the message
 Alice is sending.
 
 In the symmetric-key setting, _message authentication codes (MACs)_ provide
-integrity and authenticity. Alice uses the shared secret key to generate a MAC on her
-message, and Bob uses the same secret key to verify the MAC. If the MAC is valid,
-then Bob can be confident that no attacker modified the message, and the message
-actually came from Alice.
+integrity and authenticity. Alice uses the shared secret key to generate a MAC
+on her message, and Bob uses the same secret key to verify the MAC. If the MAC
+is valid, then Bob can be confident that no attacker modified the message, and
+the message actually came from Alice.
 
 In the asymmetric-key setting, _public-key signatures_ (also known as digital
 signatures) provide integrity and authenticity. Alice generates a matching
@@ -221,10 +245,10 @@ These primitives also have some useful applications unrelated to cryptography.
   resulting hash back to the original message but you can quickly verify that a
   message has a given hash.
 
-- Many cryptographic systems and problems need a lot of random bits.  To
-  generate these we use a _pseudo random number generator_, a process which
-  takes a small amount of true randomness and stretches it into a long sequence
-  that should be indistinguishable from actual random data.
+- Many cryptographic systems and problems need a lot of random bits. To generate
+  these we use a _pseudo random number generator_, a process which takes a small
+  amount of true randomness and stretches it into a long sequence that should be
+  indistinguishable from actual random data.
 
 - _Key exchange_ schemes (e.g. Diffie-Hellman key exchange) allow Alice and Bob
   to use an insecure communication channel to agree on a shared random secret
@@ -243,8 +267,8 @@ about security principles:
 > secret, and the system should be designed to make it easy to change keys that
 > are leaked (or suspected to be leaked). If your secrets are leaked, it is
 > usually a lot easier to change the key than to replace every instance of the
-> running software. (This principle is closely related to _Shannon's Maxim: Don't rely on
-> security through obscurity._)
+> running software. (This principle is closely related to _Shannon's Maxim:
+> Don't rely on security through obscurity._)
 
 Consistent with Kerckhoff's principle, we will assume that the attacker knows
 the encryption and decryption algorithms.[^1] The only information the attacker
@@ -257,8 +281,8 @@ possibilities about how much access an eavesdropping attacker Eve has to the
 insecure channel:
 
 1. Eve has managed to intercept a single encrypted message and wishes to recover
-   the plaintext (the original message). This is known as a
-   _ciphertext-only attack_.
+   the plaintext (the original message). This is known as a _ciphertext-only
+   attack_.
 
 2. Eve has intercepted an encrypted message and also already has some partial
    information about the plaintext, which helps with deducing the nature of the
@@ -274,17 +298,17 @@ insecure channel:
    she can still send the encryption repeatedly to carry out the attack.
 
 4. Eve can trick Alice to encrypt arbitrary messages of Eve's choice, for which
-   Eve can then observe the resulting ciphertexts. (This might happen if Eve
-   has access to the encryption system, or can generate external events that
-   will lead Alice to sending predictable messages in response.) At some other
-   point in time, Alice encrypts a message that is unknown to Eve; Eve
-   intercepts the encryption of Alice's message and aims to recover the message
-   given what Eve has observed about previous encryptions. This case is known as
-   a _chosen-plaintext attack_.
+   Eve can then observe the resulting ciphertexts. (This might happen if Eve has
+   access to the encryption system, or can generate external events that will
+   lead Alice to sending predictable messages in response.) At some other point
+   in time, Alice encrypts a message that is unknown to Eve; Eve intercepts the
+   encryption of Alice's message and aims to recover the message given what Eve
+   has observed about previous encryptions. This case is known as a
+   _chosen-plaintext attack_.
 
 5. Eve can trick Bob into decrypting some ciphertexts. Eve would like to use
    this to learn the decryption of some other ciphertext (different from the
-   ciphertexts Eve tricked Bob into decrypting).  This case is known as a
+   ciphertexts Eve tricked Bob into decrypting). This case is known as a
    _chosen-ciphertext attack_.
 
 6. A combination of the previous two cases: Eve can trick Alice into encrypting

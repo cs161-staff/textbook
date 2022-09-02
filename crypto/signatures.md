@@ -112,10 +112,10 @@ $$\varphi(pq)=(p-1)(q-1)$$._
 $$d$$ satisfying $$3d=1 \pmod{\varphi(pq)}$$, and this number $$d$$ can be
 efficiently computed given $$\varphi(pq)$$._
 
-Let's assume that $$p$$ and $$q$$ are two different odd primes, that $$p = 2
-\pmod 3$$ and $$q=2 \pmod 3$$, and that $$n=pq$$.[^1] Let $$d$$ be the positive
-integer promised to exist by Fact 3. As a consequence of Facts 2 and 3, we can
-efficiently compute $$d$$ given knowledge of $$p$$ and $$q$$.
+Let's assume that $$p$$ and $$q$$ are two different odd primes, that
+$$p = 2 \pmod 3$$ and $$q=2 \pmod 3$$, and that $$n=pq$$.[^1] Let $$d$$ be the
+positive integer promised to exist by Fact 3. As a consequence of Facts 2 and 3,
+we can efficiently compute $$d$$ given knowledge of $$p$$ and $$q$$.
 
 <a id="th:cubing" markdown="1"></a> **Theorem 1** _With notation as above,
 define functions $$F,G$$ by $$F(x)=x^3 \bmod n$$ and $$G(x)=x^d \bmod n$$. Then
@@ -132,25 +132,25 @@ The theorem follows.
 
 If the primes $$p,q$$ are chosen to be large enough---say, 1024-bit
 primes---then it is believed to be computationally infeasible to recover $$p$$
-and $$q$$ from $$n$$. In other words, in these circumstances it is believed
-hard to factor the integer $$n=pq$$. It is also believed to be hard to recover
-$$d$$ from $$n$$. And, given knowledge of only $$n$$ (but not $$d$$ or $$p,q$$),
-it is believed to be computationally infeasible to compute the function $$G$$.
-The security of RSA will rely upon this hardness assumption.
+and $$q$$ from $$n$$. In other words, in these circumstances it is believed hard
+to factor the integer $$n=pq$$. It is also believed to be hard to recover $$d$$
+from $$n$$. And, given knowledge of only $$n$$ (but not $$d$$ or $$p,q$$), it is
+believed to be computationally infeasible to compute the function $$G$$. The
+security of RSA will rely upon this hardness assumption.
 
 ## 12.4. RSA Signatures
 
 We're now ready to describe the RSA signature scheme. The idea is that the
 function $$F$$ defined in Theorem [1](#th:cubing) will be our trapdoor one-way
 function. The public key is the number $$n$$, and the private key is the number
-$$d$$. Given the public key $$n$$ and a number $$x$$, anyone can compute $$F(x)
-= x^3 \bmod n$$. As mentioned before, $$F$$ is (believed) one-way: given $$y =
-x^3 \bmod n$$, there is no known way to recover $$x$$ in any reasonable amount
-of computing time. However, we can see that the private key $$d$$ provides a
-trapdoor: given $$d$$ and $$y$$, we can compute $$x = G(y) = y^d \bmod n$$. The
-intuition underlying this trapdoor function is simple: anyone can cube a number
-modulo $$n$$, but computing cube roots modulo $$n$$ is believed to be hard if
-you don't know the factorization of $$n$$.
+$$d$$. Given the public key $$n$$ and a number $$x$$, anyone can compute
+$$F(x) = x^3 \bmod n$$. As mentioned before, $$F$$ is (believed) one-way: given
+$$y = x^3 \bmod n$$, there is no known way to recover $$x$$ in any reasonable
+amount of computing time. However, we can see that the private key $$d$$
+provides a trapdoor: given $$d$$ and $$y$$, we can compute
+$$x = G(y) = y^d \bmod n$$. The intuition underlying this trapdoor function is
+simple: anyone can cube a number modulo $$n$$, but computing cube roots modulo
+$$n$$ is believed to be hard if you don't know the factorization of $$n$$.
 
 We then apply this trapdoor one-way function to the basic approach outlined
 earlier. Thus, a signature on message $$M$$ is a value $$S$$ satisfying
@@ -162,9 +162,9 @@ $$
 The RSA signature scheme is defined by the following three algorithms:
 
 - **Key generation:** We can pick a pair of random 1024-bit primes $$p,q$$ that
-  are both $$2 \bmod 3$$. Then the public key is $$n=pq$$, and the private key is
-  the value of $$d$$ given by Fact 3 (it can be computed efficiently using the
-  extended Euclidean algorithm).
+  are both $$2 \bmod 3$$. Then the public key is $$n=pq$$, and the private key
+  is the value of $$d$$ given by Fact 3 (it can be computed efficiently using
+  the extended Euclidean algorithm).
 
 - **Signing:** The signing algorithm is given by
 
@@ -182,8 +182,8 @@ Theorem [1](#th:cubing) ensures the correctness of the verification algorithm,
 i.e., that
 
 $$
-\text{Verify}_n(M,\text{Sign}_d(M))=\text{true}
-$$.
+\text{Verify}_n(M,\text{Sign}_d(M))=\text{true}.
+$$
 
 A quick reminder: in these notes we're developing the conceptual basis
 underlying MAC and digital signature algorithms that are widely used in

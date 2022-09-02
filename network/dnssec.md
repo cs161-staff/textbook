@@ -45,8 +45,7 @@ anchor: every computer automatically assumes that the root server is honest and
 uncompromised. In real life, this is a safe assumption, because the
 organizations overseeing the Internet hold painstakingly formal ceremonies to
 ensure that the root server is uncompromised. (If you're interested, you can
-[read more about the root signing ceremony
-here](https://www.cloudflare.com/dns/dnssec/root-signing-ceremony/).)
+[read more about the root signing ceremony here](https://www.cloudflare.com/dns/dnssec/root-signing-ceremony/).)
 
 Given a trust anchor, we can now _delegate trust_ from the trust anchor to
 somebody else. If the root endorses Alice, then you can be sure that Alice is
@@ -229,8 +228,8 @@ KSK. The darker shade represents records signed with the ZSK.
 
 Verification would proceed as follows.
 
-- Light blue: Because of our trust anchor, we trust the KSK of the root (1).
-  The root's KSK signs its ZSK, so now we trust the root's ZSK (2-3).
+- Light blue: Because of our trust anchor, we trust the KSK of the root (1). The
+  root's KSK signs its ZSK, so now we trust the root's ZSK (2-3).
 
 - Dark blue: We trust the root's ZSK. The root's ZSK signs `.edu`'s KSK (4-5),
   so now we trust `.edu`'s KSK.
@@ -250,10 +249,10 @@ Verification would proceed as follows.
 ## 33.6. DNSSEC query walkthrough
 
 Now we're ready to see a full DNSSEC query in action. As before, you can try
-this at home with the [`dig`
-utility](<https://en.wikipedia.org/wiki/Dig_(command)>)--remember to set the
-`+norecurse` flag so you can unravel the recursion yourself, and remember to set
-the `+dnssec` flag to enable DNSSEC.
+this at home with the
+[`dig` utility](<https://en.wikipedia.org/wiki/Dig_(command)>)--remember to set
+the `+norecurse` flag so you can unravel the recursion yourself, and remember to
+set the `+dnssec` flag to enable DNSSEC.
 
 First, we query the root server for its public keys. Recall that the root's IP
 address, `198.41.0.4`, is publicly-known and hardcoded.

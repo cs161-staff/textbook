@@ -8,8 +8,8 @@ nav_order: 1
 
 To discuss network security, first we need to know how the network is designed.
 This section provides a (simplified) overview of the various Internet layers and
-how they interact. A video version of this section is available: see [Lecture
-11, Summer 2020](https://su20.cs161.org/lectures/11).
+how they interact. A video version of this section is available: see
+[Lecture 11, Summer 2020](https://su20.cs161.org/lectures/11).
 
 ## 25.1. Local Area Networks
 
@@ -61,19 +61,21 @@ example, a network can choose to use wired or wireless communication at Layer 1,
 and the Layer 1 implementation does not affect any protocols at the other
 layers.
 
-In total, there are 7 layers of the Internet, as defined by the [OSI 7-layer
-model](https://en.wikipedia.org/wiki/OSI_model). However, this model is a little
-outdated, so some layers are obsolete, and additional layers for security have
-been added since then. We will see these higher layers later.
+In total, there are 7 layers of the Internet, as defined by the
+[OSI 7-layer model](https://en.wikipedia.org/wiki/OSI_model). However, this
+model is a little outdated, so some layers are obsolete, and additional layers
+for security have been added since then. We will see these higher layers later.
 
-| 7 | Application |
-| 6.5 | Secure Transport |
-| 6 | _obsolete_ |
-| 5 | _obsolete_ |
-| 4 | Transport |
-| 3 | (Inter)Network |
-| 2 | Link |
-| 1 | Physical |
+| Layer | Name             |
+| ----- | ---------------- |
+| 7     | Application      |
+| 6.5   | Secure Transport |
+| 6     | _obsolete_       |
+| 5     | _obsolete_       |
+| 4     | Transport        |
+| 3     | (Inter)Network   |
+| 2     | Link             |
+| 1     | Physical         |
 
 ## 25.3. Protocols and Headers
 
