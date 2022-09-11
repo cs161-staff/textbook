@@ -2,12 +2,21 @@ name: Auto-Format Source
 
 on:
   workflow_dispatch:
+    inputs:
+      committer_name:
+        description: Git author name
+        required: true
+        type: string
+      committer_email:
+        description: Git author email
+        required: true
+        type: string
 
 env:
-  GIT_AUTHOR_NAME: CS 161 Textbook Formatter
-  GIT_COMMITTER_NAME: CS 161 Textbook Formatter
-  GIT_AUTHOR_EMAIL: cs161-staff@berkeley.edu
-  GIT_COMMITTER_EMAIL: cs161-staff@berkeley.edu
+  GIT_AUTHOR_NAME: ${{ inputs.committer_name }}
+  GIT_COMMITTER_NAME: ${{ inputs.committer_email }}
+  GIT_AUTHOR_EMAIL: ${{ inputs.committer_name }}
+  GIT_COMMITTER_EMAIL: ${{ inputs.committer_email }}
 
 jobs:
   ci:
