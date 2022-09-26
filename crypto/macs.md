@@ -50,7 +50,7 @@ How do we build secure MACs?
 
 There are a number of schemes out there, but one good one is AES-CMAC, an algorithm standardized by NIST. Instead of showing you AES-CMAC, we'll look at a related algorithm called AES-EMAC. AES-EMAC is a slightly simplified version of AES-CMAC that retains its essential character but differs in a few details.
 
-In AES-EMAC, the key $$K$$ is 256 bits, viewed as a pair of 128-bit AES keys: $$K=\langle K_1,K_2 \rangle$$. The message $$M$$ is decomposed into a sequence of 128-bit blocks: $$M = P_1 || P_2 || ... || P_n$$. We set $$S_0 = 0$$ and compute
+In AES-EMAC, the key $$K$$ is 256 bits, viewed as a pair of 128-bit AES keys: $$K=\langle K_1,K_2 \rangle$$. The message $$M$$ is decomposed into a sequence of 128-bit blocks: $$M = P_1 \Vert P_2 \Vert ... \Vert P_n$$. We set $$S_0 = 0$$ and compute
 
 $$
 S_i = \textrm{AES}_{K_1}(S*{i-1} \oplus P_i),\qquad
@@ -77,7 +77,7 @@ The output of HMAC is the same number of bits as the underlying hash function, s
 To construct the HMAC algorithm, we first start with a more general version, NMAC:
 
 $$
-\text{NMAC}(K_1, K_2, M) = H(K_1 || H(K_2 || M))
+\text{NMAC}(K_1, K_2, M) = H(K_1 \Vert H(K_2 \Vert M))
 $$
 
 In words, NMAC concatenates $$K_2$$ and $$M$$, hashes the result, concatenates the result with $$K_1$$, and then hashes that result.
@@ -87,7 +87,7 @@ Note that NMAC takes two keys, $$K_1$$ and $$K_2$$, both of length $$n$$ (the le
 HMAC is a more specific version of NMAC that only requires one key instead of two unrelated keys:
 
 $$
-\text{HMAC}(M,K) = H((K' \oplus opad) || H((K' \oplus ipad) || M ))
+\text{HMAC}(M,K) = H((K' \oplus opad) \Vert H((K' \oplus ipad) \Vert M ))
 $$
 
 The HMAC algorithm actually supports a variable-length key $$K$$. However, NMAC uses $$K_1$$ and $$K_2$$ that are the same length as the hash output $$n$$, so we first transform $$K$$ to be length $$n$$. If $$K$$ is shorter than $$n$$ bits, we can pad $$K$$ with zeros until it is $$n$$ bits. If $$K$$ is longer than $$n$$ bits, we can hash $$K$$ to make it $$n$$ bits. The transformed $$n$$-bit version of $$K$$ is now denoted as $$K'$$.
@@ -106,7 +106,7 @@ HMAC is also very efficient. The inner hash function call only needs to hash the
 
 A MAC does not guarantee confidentiality on the message $$M$$ to which it is applied. In the examples above, Alice and Bob have been exchanging non-encrypted plaintext messages with MACs attached to each message. The MACs provide integrity and authenticity, but they do nothing to hide the contents of the actual message. In general, MACs have no confidentiality guarantees--given $$F(K,M)$$, there is no guarantee that the attacker cannot learn something about $$M$$.
 
-As an example, we can construct a valid MAC that guarantees integrity but does not guarantee confidentiality. Consider the MAC function $$F'$$ defined as $$F'(K,M) = F(K,M) || M$$. In words, $$F'$$ contains a valid MAC of the message, concatenated with the message plaintext. Assuming $$F$$ is a valid MAC, then $$F'$$ is also valid MAC. An attacker who doesn't know $$K$$ won't be able to generate $$F'(K, M')$$ for the attacker's message $$M'$$, because they won't be able to generate $$F(K,M')$$, which is part of $$F'(K,M')$$. However, $$F'$$ does not provide any confidentiality on the message--in fact, it leaks the entire message!
+As an example, we can construct a valid MAC that guarantees integrity but does not guarantee confidentiality. Consider the MAC function $$F'$$ defined as $$F'(K,M) = F(K,M) \Vert M$$. In words, $$F'$$ contains a valid MAC of the message, concatenated with the message plaintext. Assuming $$F$$ is a valid MAC, then $$F'$$ is also valid MAC. An attacker who doesn't know $$K$$ won't be able to generate $$F'(K, M')$$ for the attacker's message $$M'$$, because they won't be able to generate $$F(K,M')$$, which is part of $$F'(K,M')$$. However, $$F'$$ does not provide any confidentiality on the message--in fact, it leaks the entire message!
 
 There is no notion of "reversing" or "decrypting" a MAC, because both Alice and Bob use the same algorithm to generate MACs. However, there is nothing that says a MAC algorithm can't be reversed if you know the key. For example, with AES-MAC it is clear that if the message is a single block, you can run the algorithm in reverse to go from the tag to the message. Depending on the particular MAC algorithm, this notion of reversing a MAC might also lead to leakage of the original message.
 
@@ -122,7 +122,7 @@ Suppose we have an IND-CPA secure encryption scheme $$\mathsf{Enc}$$ that guaran
 
 In the _encrypt-then-MAC_ approach, we first encrypt the plaintext, and then produce a MAC over the ciphertext. In other words, we send the two values $$\langle \mathsf{Enc}_{K_1}(M), \mathsf{MAC}_{K_2}(\mathsf{Enc}_{K_1}(M))\rangle$$. This approach guarantees _ciphertext integrity_--an attacker who tampers with the ciphertext will be detected by the MAC on the ciphertext. This means that we can detect that the attacker has tampered with the message without decrypting the modified ciphertext. Additionally, the original message is kept confidential since neither value leaks information about the plaintext. The MAC value might leak information about the ciphertext, but that's fine; we already know that the ciphertext doesn't leak anything about the plaintext.
 
-In the _MAC-then-encrypt_ approach, we first MAC the message, and then encrypt the message and the MAC together. In other words, we send the value $$\mathsf{Enc}_{K_1}(M || \mathsf{MAC}_{K_2}(M))$$. Although both the message and the MAC are kept confidential, this approach does not have ciphertext integrity, since only the original message was tagged. This means that we'll only detect if the message is tampered after we decrypt it. This may not be desirable in some applications, because you would be running the decryption algorithm on arbitrary attacker inputs.
+In the _MAC-then-encrypt_ approach, we first MAC the message, and then encrypt the message and the MAC together. In other words, we send the value $$\mathsf{Enc}_{K_1}(M \Vert \mathsf{MAC}_{K_2}(M))$$. Although both the message and the MAC are kept confidential, this approach does not have ciphertext integrity, since only the original message was tagged. This means that we'll only detect if the message is tampered after we decrypt it. This may not be desirable in some applications, because you would be running the decryption algorithm on arbitrary attacker inputs.
 
 Although both approaches are theoretically secure if applied correctly, in practice, the MAC-then-Encrypt approach has been attacked through side channel vectors. In a side channel attack, improper usage of a cryptographic scheme causes some information to leak through some other means besides the algorithm itself, such as the amount of computation time taken or the error messages returned. One example of this attack was a padding oracle attack against a particular TLS implementation using the MAC-then-encrypt approach. Because of the possibility of such attacks, encrypt-then-MAC is generally the better approach.
 
