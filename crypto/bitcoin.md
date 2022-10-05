@@ -69,12 +69,11 @@ Thus, the idea is to have each block have a list of the transactions that show w
 - $$TX_1$$ = $$PK_B$$ (Bob) sends $$PK_A$$ (Alice) 5$$B$$, and the money came from the initial budget. $$TX_1$$ signed with $$SK_B$$
 - $$TX_2$$ = $$PK_A$$ (Alice) sends $$PK_E$$ (Eve) 5$$B$$, and the money came from $$TX_1$$. $$TX_2$$ signed with $$SK_A$$
 
-So, to check a transaction, we follow four steps:
+So, to check a transaction, we follow three steps:
 
 1. Check that the signature on the transaction is verified using the $$PK$$ of the sender
 2. Check that the sender in this transaction was the receiver in some previous transaction
-3. Check that the sender in this transaction has not spent the money in some previous transaction
-4. Check that the sender has the appropriate amount of money
+3. Check that the sender in this transaction has not spent the money in some previous transaction (aka they have enough money left over)
 
 If we were checking $$TX_2$$, we first check that $$TX_2$$ was actually signed by Alice. Then, we check that Alice received some money in the past by checking the previous transactions. In $$TX_2$$, we see that Alice received the money from $$TX_1$$, and checking $$TX_1$$ verifies that Alice was the receiver. Next, we check that Alice has not spent the money earlier, so we scan the history of the blockchain and we don’t see anywhere where the money from $$TX_1$$ was used. Finally, we check that Alice has 5 $$B$$ by again checking $$TX_1$$ and seeing that she did receive 5 $$B$$ from Bob. At this point, we have verified that $$TX_2$$ is a valid transaction, and we thus append it to the blockchain ledger.
 
