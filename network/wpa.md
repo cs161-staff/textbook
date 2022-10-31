@@ -1,12 +1,12 @@
 ---
-title: 27. WPA
+title: 28. WPA
 parent: Network Security
-nav_order: 3
+nav_order: 4
 ---
 
-# 27. Wireless Local Networks: WPA2
+# 28. Wireless Local Networks: WPA2
 
-## 27.1. Cheat sheet
+## 28.1. Cheat sheet
 
 - Layer: Link (2)
 
@@ -16,7 +16,7 @@ nav_order: 3
 
 - Defense: WPA2-Enterprise
 
-## 27.2. Networking background: WiFi
+## 28.2. Networking background: WiFi
 
 Another implementation of the link layer is WiFi, which wirelessly connects machines in a LAN. Because it uses wireless connections over cellular networks, WiFi has some differences from wired Ethernet, but these are out of scope for this class. For the purposes of this class, WiFi behaves mostly like Ethernet, with the same packet format and similar protocols like ARP for address translation.
 
@@ -24,7 +24,7 @@ To join a WiFi network, your computer establishes a connection to the network's 
 
 If the network is configured without a password, your computer immediately joins the network, and all data is transmitted without encryption. This means that anybody else on the same network can see your traffic and inject packets, like in ARP spoofing.
 
-## 27.3. Protocol
+## 28.3. Protocol
 
 **WPA2-PSK (WiFi Protected Access: Pre-Shared Key)** is a protocol that enables secure communications over a WiFi network by encrypting messages with cryptography.
 
@@ -63,13 +63,13 @@ practice](/assets/images/network/wpa/wpa2-real.png)
 
 4. The client sends an ACK to indicate that it successfully received the GTK, as before.
 
-## 27.4. Attacks
+## 28.4. Attacks
 
 In the WPA2 handshake, everything except the GTK is sent unencrypted. Recall that the PTK is derived with the two nonces, the PSK, and the MAC addresses of both the access point and the client. This means that an on-path attacker who eavesdrops on the entire handshake can learn the nonces and the MAC addresses. If the attacker is part of the WiFi network (i.e. they know the WiFi password and generated the PSK), then they know everything necessary to derive the PTK. This attacker can decrypt all messages and eavesdrop on communications, and encrypt and inject messages.
 
 Even if the attacker isn't on the WiFi network (doesn't know the WiFi password and cannot generate the PSK), they can try to brute-force the WiFi password. For each guessed password, the attacker derives the PSK from that password, uses the PSK (and the other unencrypted information from the handshake) to derive the PTK, and checks if that PTK is consistent with the MICs. If the WiFi password is low-entropy, an attacker with enough compute power can brute-force the password and learn the PTK.
 
-## 27.5. Defenses: WPA2-Enterprise
+## 28.5. Defenses: WPA2-Enterprise
 
 The main problem leading to the attacks in the previous section is that every user on the network uses the same secrecy (the WiFi password) to derive private keys. To solve this, each user needs an different, unique source of secrecy. This modified protocol is called **WPA2-Enterprise**. AirBears2 is an example of WPA2-Enterprise that you might be familiar with.
 
