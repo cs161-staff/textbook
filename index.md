@@ -13,7 +13,7 @@ This is the textbook for [CS 161: Computer Security](https://cs161.org/) at [UC 
 
 ## Corrections
 
-As of the Fall 2021 semester, this textbook is still being actively maintained and updated. Please contact [cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information regarding corrections.
+As of the Spring 2023 semester, this textbook is still being actively maintained and updated. Please contact [cs161-staff@berkeley.edu](mailto:cs161-staff@berkeley.edu) for information regarding corrections.
 
 ## Source and Changelog
 
