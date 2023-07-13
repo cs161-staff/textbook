@@ -18,7 +18,7 @@ Application level DoS attacks tend to target the resources that an application u
 
 1. Identification: You must be able to distinguish requests from different users and require some method to identify or authenticate them (though this process might be expensive and itself vulnerable to DoS attacks)
 2. Isolation: You must ensure that one user’s actions do not affect another user’s experience
-3. Quotas: You must ensure that users can only access a certain proportion of resources. Possible implementations of this are that you could limit each user to 4 GB of RAM and 2 CPU cores or you could ensure that only trusted users can execute expensive requests. Another possible “defense” could include proof-of-work (like a CAPTCHA) wherein you force users to spend some resources in order to issue a request. The idea here is that the DoS attack becomes more expensive for the attacker as they have to now spend extra resources in order to succeed.
+3. Quotas: You must ensure that users can only access a certain proportion of resources. There are many possible implementations of this. One method to implement this is to place specific limits on each user such as limiting users to only 4 GB of RAM and 2 CPU cores. Another example of is to assign specific roles to users such that only trusted people can execute expensive requests. Another possible “defense” would include proof-of-work (like CAPTCHA) wherein you force users to spend some resources in order to issue a request. The idea here is that the DoS attack becomes more expensive for the attacker as they have to now spend extra resources in order to succeed.
 
 ## 34.3. SYN Flood Attacks
 
