@@ -110,7 +110,7 @@ Connections can also be unilaterally aborted. If one side sends a RST packet wit
 
 ## 30.5. Tradeoffs between TCP and UDP
 
-TCP is slower than UDP, because it requires a 3-way handshake at the start of each connection, and it will wait indefinitely for dropped packets to resent. However, TCP provides better correctness guarantees than UDP.
+TCP is slower than UDP, because it requires a 3-way handshake at the start of each connection, and it will wait indefinitely for dropped packets to be sent again. However, TCP provides better correctness guarantees than UDP.
 
 UDP is generally used when speed is a concern. For example, DNS requires extremely short response times, so it uses UDP instead of TCP at the transport layer. Video games and voice applications often use UDP because it is better to just miss a request than to stall everything waiting for a retransmission.
 
