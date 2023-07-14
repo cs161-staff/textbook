@@ -84,7 +84,7 @@ Writing a malicious input that creates a syntactically valid SQL query can be tr
 - `garbage` is a garbage input to the intended query so that it doesn't return anything.
 - `'` closes the opening quote from the intended query. Without this closing quote, the rest of our query would be treated as a string, not SQL code.
 - `;` ends the intended SQL query and lets us start a new SQL query.
-- `SELECT password FROM passwords WHERE username = "admin` is the malicious SQL query we want to execute. Note that we didn't add a closing quote to `"admin`, because the intended SQL query will automatically add a closing quote at the end of our input.
+- `SELECT password FROM passwords WHERE username = 'admin` is the malicious SQL query we want to execute. Note that we didn't add a closing quote to `'admin`, because the intended SQL query will automatically add a closing quote at the end of our input.
 
 Consider another vulnerable SQL query. This time, we have a `users` table that contains the `username` and `password` of every user.
 
