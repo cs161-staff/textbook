@@ -317,10 +317,16 @@ operation in dark mode](/assets/images/crypto/symmetric/CFB_decryption_invert.pn
 - OFB mode decryption: $$P_i = C_i \oplus Z_i$$
 
 ![Diagram of encryption for the OFB mode of
-operation](/assets/images/crypto/symmetric/OFB_encryption.png)
+operation in light mode](/assets/images/crypto/symmetric/OFB_encryption.png#gh-light-mode-only)
+
+![Diagram of encryption for the OFB mode of
+operation in dark mode](/assets/images/crypto/symmetric/OFB_encryption_invert.png#gh-dark-mode-only)
 
 ![Diagram of decryption for the OFB mode of
-operation](/assets/images/crypto/symmetric/OFB_decryption.png)
+operation in light mode](/assets/images/crypto/symmetric/OFB_decryption.png#gh-light-mode-only)
+
+![Diagram of decryption for the OFB mode of
+operation in dark mode](/assets/images/crypto/symmetric/OFB_decryption_invert.png#gh-dark-mode-only)
 
 **Counter (CTR) Mode**: In CTR mode, a counter is initialized to IV and repeatedly incremented and encrypted to obtain a sequence that can now be used as though they were the keys for a one-time pad: namely, $$Z_i = E_K(IV + i)$$ and $$C_i = Z_i \oplus M_i$$. In CTR mode, the IV is sometimes renamed the _nonce_. This is just a terminology difference--nonce and IV can be used interchangeably for the purposes of this class.
 
