@@ -32,12 +32,27 @@ The transport layer has 2 main protocols to choose from: TCP guarantees reliable
 
 The UDP header contains 16-bit source and destination port numbers to support communication between processes. The header also contains a checksum (non-cryptographic) to detect corrupted packets.
 
-TODO: This diagram can be better. ~NN
-
-|   16 bits   |     16 bits      |
-| :---------: | :--------------: |
-| Source port | Destination port |
-|   Length    |     Checksum     |
+<table>
+  <thead>
+    <tr>
+      <th>Offset</th>
+      <th>16 bits</th>
+      <th>16 bits</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">Source port</td>
+      <td style="text-align: center">Destination port</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">32</td>
+      <td style="text-align: center">Length</td>
+      <td style="text-align: center">Checksum</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 30.4. Protocol: TCP
 
@@ -45,29 +60,41 @@ TODO: This diagram can be better. ~NN
 
 Like UDP, the TCP header contains 16-bit source and destination port numbers to support communication between processes, and a checksum to detect corrupted packets. Additionally, a 32-bit **sequence number** and a 32-bit **acknowledgment (ACK) number** are used for keeping track of missing or out-of-order packets. Flags such as SYN, ACK, and FIN can be set in the header to indicate that the packet has some special meaning in the TCP protocol.
 
-TODO: This diagram can be better. ~NN
-
 <table>
   <thead>
     <tr>
+      <th>Offset</th>
       <th>16 bits</th>
       <th>16 bits</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td style="text-align: center">0</td>
       <td style="text-align: center">Source port</td>
       <td style="text-align: center">Destination port</td>
     </tr>
     <tr>
+      <td style="text-align: center">32</td>
       <td style="text-align: center" colspan="2">Sequence number</td>
     </tr>
     <tr>
+      <td style="text-align: center">64</td>
       <td style="text-align: center" colspan="2">Acknolwedgement number</td>
     </tr>
     <tr>
+      <td style="text-align: center">96</td>
       <td style="text-align: center">Flags</td>
+      <td style="text-align: center">Window Size</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">128</td>
       <td style="text-align: center">Checksum</td>
+      <td style="text-align: center">Urgent pointer</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">160</td>
+      <td style="text-align: center" colspan="2">Options</td>
     </tr>
   </tbody>
 </table>
