@@ -36,9 +36,9 @@ If a port is not specified, the port defaults to 80 for http and 443 for https. 
 
 In general, the origin of a webpage is defined by its URL. However, there are a few exceptions to this rule:
 
-- JavaScript runs with the origin of the page that loads it. For example, if you include `<script src="http://google.com/tracking.js></script>` on `http://cs161.org`, the script has the origin of `http://cs161.org`.
+- JavaScript runs with the origin of the page that loads it. For example, if you include `<script src="http://google.com/tracking.js"></script>` on `http://cs161.org`, the script has the origin of `http://cs161.org`.
 
-- Images have the origin of the page that it comes from. For example, if you include `<img src="http://google.com/logo.jpg>` on `http://cs161.org`, the image has the origin of `http://google.com`. The page that loads the image (`http://cs161.org`) only knows about the image's dimensions when loading it.
+- Images have the origin of the page that it comes from. For example, if you include `<img src="http://google.com/logo.jpg">` on `http://cs161.org`, the image has the origin of `http://google.com`. The page that loads the image (`http://cs161.org`) only knows about the image's dimensions when loading it.
 
 - Frames have the origin of the URL where the frame is retrieved from, not the origin of the website that loads it. For example, if you include `<iframe src="http://google.com"></iframe>` on `http://cs161.org`, the frame has the origin of `http://google.com`.
 
