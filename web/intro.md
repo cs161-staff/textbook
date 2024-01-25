@@ -92,7 +92,7 @@ Here, we have a couple more headers and a different request type: the POST reque
 
 ## 18.5. HTTP: GET vs. POST
 
-While there are quite a few methods for requests, the two types that we will focus on for this course are GET requests and POST requests. GET requests are are generally intended for "getting" information from the server. POST requests are intended for sending information to the server that somehow modifies its internal state, such as adding a comment in a forum or changing your password.
+While there are quite a few methods for requests, the two types that we will focus on for this course are GET requests and POST requests. GET requests are generally intended for "getting" information from the server. POST requests are intended for sending information to the server that somehow modifies its internal state, such as adding a comment in a forum or changing your password.
 
 In the original HTTP model, GET requests are not supposed to change any server state. However, modern web applications often change server state in response to GET requests in query parameters.
 
