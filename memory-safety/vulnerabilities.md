@@ -176,7 +176,7 @@ void not_vulnerable() {
 
 The stack diagram for this function would look something like this:
 
-![Initial non vulnerable code with printf](/assets/images/memory-safety/vulnerabilities/printfnotvulnerablenew.png)
+![Initial non vulnerable code with printf](/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png)
 
 When the `printf()` function executes, it looks for a format string modifier denoted by a “%” in its first argument located 4 bytes above the RIP of `printf()`. If it finds the modifier, it then looks 8 bytes above the RIP for the "actual" argument (i.e. what the format modifier will be acting upon).
 
