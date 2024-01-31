@@ -299,7 +299,7 @@ This response has the final answer `A` type record and a signature on the final 
 
 Remember that DNS is designed to be fast and lightweight. However, public-key cryptography is slow, because it requires math. As a result, name servers that support DNSSEC sign records _offline_--records are signed ahead of time, and the signatures saved in the server along with the records. When the server receives a DNS query, it can immediately return the saved signature without computing it.
 
-Offline signing works fine for existing domains, but what if we receive a request for a nonxistent domain? There are infinitely many nonexistent domains, so we cannot sign them all offline. However, we cannot sign requests for nonexistent domains _online_ either, because this is too slow. Also, online cryptography makes name servers vulnerable to an attack. Sanity check: what's the attack?[^3]
+Offline signing works fine for existing domains, but what if we receive a request for a nonexistent domain? There are infinitely many nonexistent domains, so we cannot sign them all offline. However, we cannot sign requests for nonexistent domains _online_ either, because this is too slow. Also, online cryptography makes name servers vulnerable to an attack. Sanity check: what's the attack?[^3]
 
 DNSSEC has a clever solution to this problem--instead of signing individual nonexistent domains, name servers pre-compute signatures on _ranges_ of nonexistent domains. Suppose we have a website with three subdomains:
 
