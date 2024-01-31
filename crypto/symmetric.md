@@ -20,7 +20,7 @@ A more formal, rigorous definition of confidentiality is: the ciphertext $$C$$ s
 
 We can further formalize this definition by designing an experiment to test whether the attacker has learned any additional information. Consider the following experiment: Alice has encrypted and sent one of two messages, either $$M_0$$ or $$M_1$$, and the attacker, Eve, has no idea which was sent. Eve tries to guess which was sent by looking at the ciphertext. If the encryption scheme is confidential, then Eve's probability of guessing which message was sent should be $$1/2$$, which is the same probability as if she had not intercepted the ciphertext at all, and was instead guessing at random.
 
-We can adapt this experiment to different threat models by allowing Eve to perform further actions as an attacker. For example, Eve might be allowed to trick Alice into encrypting some messages of Eve's choosing. Eve might also be allowed to trick Alice into decrypting some ciphertexts of Eve's choosing. In this class, we will be focusing on the chosen-plaintext attack model, which means Eve can trick Alice into encrypting some messages, but she cannot trick Alice into decrypting some messages.
+We can adapt this experiment to different threat models by allowing Eve to perform further actions as an attacker. For example, Eve might be allowed to trick Alice into encrypting some messages of Eve's choosing. Eve might also be allowed to trick Bob into decrypting some ciphertexts of Eve's choosing. In this class, we will be focusing on the chosen-plaintext attack model, which means Eve can trick Alice into encrypting some messages, but she cannot trick Alice into decrypting some messages.
 
 In summary, our definition of confidentiality says that even if Eve can trick Alice into encrypting some messages, she still cannot distinguish whether Alice sent $$M_0$$ or $$M_1$$ in the experiment. This definition is known as indistinguishability under chosen plaintext attack, or IND-CPA. We can use an experiment or game, played between the adversary Eve and the challenger Alice, to formally prove that a given encryption scheme is IND-CPA secure or show that it is not IND-CPA secure.
 
@@ -292,7 +292,7 @@ operation](/assets/images/crypto/symmetric/CFB_decryption.png)
 
   $$
   \begin{cases}
-    Z*0 = IV \\ Z_i = E_K(Z*{i-1}) \\ C_i = M_i \oplus Z_i
+    Z_0 = IV \\ Z_i = E_K(Z*{i-1}) \\ C_i = M_i \oplus Z_i
   \end{cases}
   $$
 
