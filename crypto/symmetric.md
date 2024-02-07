@@ -132,20 +132,7 @@ To sum up, the one-time pad is described by specifying three procedures:
 
 - Decryption algorithm: $$M = C \oplus K$$.
 
-Now let's prove that the one-time pad is IND-CPA secure. In other words, we want to show that in the IND-CPA game, the adversary Eve's probability of guessing which message was sent is $$1/2$$.
-
-Proof: For a fixed choice of plaintext $$M$$, every possible value of the ciphertext $$C$$ can be achieved by an appropriate and unique choice of the shared key $$K$$: namely $$K = M \oplus C$$. Since each such key value $$K$$ is equally likely, it follows that $$C$$ is also equally likely to be any $$n$$-bit string. Thus Eve sees a uniformly random $$n$$ bit string no matter what the plaintext message was, and thus gets no information about which of the two messages was encrypted.
-
-Here's another way to see that Eve's probability of guessing successfully is $$1/2$$. Suppose Eve observes the ciphertext $$C$$, and she knows that the message $$M$$ is either $$M_0$$ or $$M_1$$, but she does not know which. The probability space here has size $$2^{n+1}$$: it represents the $$2^n$$ choices for the $$n$$-bit key $$K$$, as well as the challenger's choice of whether to send $$M_0$$ or $$M_1$$. All $$2^{n+1}$$ choices are equally likely. We can assume the key $$K$$ is generated uniformly at random; then the challenger randomly chooses a bit $$b \in \{0,1\}$$, and Alice sends the encryption of $$M_b$$. So, if Eve observes that the ciphertext has some specific value $$C$$, what is the conditional probability that $$b=0$$ given her observation? It is:
-
-$$
-\begin{aligned}
-\Pr[b = 0 \mid \textrm{ciphertext} = C] &= \frac{\Pr[b = 0 \wedge \textrm{ciphertext} = C]}{\Pr[\textrm{ciphertext} = C]} \\
-&= \frac{\Pr[b = 0 \wedge K = M_0 \oplus C]}{\Pr[\textrm{ciphertext} = C]} \\
-&= \frac{1/2 \cdot 1/2^n}{1/2^n} \\
-&= \frac{1}{2}.
-\end{aligned}
-$$
+One-time pad is information-theoretically secure, in the sense that a ciphertext leaks precisely zero information about its plaintext. For a fixed choice of plaintext $$M$$, every possible value of the ciphertext $$C$$ can be achieved by an appropriate and unique choice of the shared key $$K$$: namely $$K = M \oplus C$$. Since each such key value $$K$$ is equally likely, it follows that $$C$$ is also equally likely to be any $$n$$-bit string. Thus the eavesdropper sees a uniformly random $$n$$ bit string no matter what the plaintext message was, presuming the key is randomly chosen and used only once.
 
 The one time pad has a major drawback. As its name suggests, the shared key cannot be reused to transmit another message $$M'$$. If the key $$K$$ is reused to encrypt two messages $$M$$ and $$M'$$, then Eve can take the XOR of the two ciphertexts $$C = M \oplus K$$ and $$C' = M' \oplus K$$ to obtain $$C \oplus C' = M \oplus M'$$. This gives partial information about the two messages. In particular, if Eve happens to learn $$M$$, then she can deduce the other message $$M'$$. In other words, given $$M \oplus M'$$ and $$M$$, she can calculate $$M' = (M \oplus M') \oplus M$$. Actually, in this case, she can reconstruct the key $$K$$, too. Question: How?[^1]
 
