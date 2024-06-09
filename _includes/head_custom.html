@@ -6,6 +6,7 @@
 <script>
   let toggleDark = () => {
     let setDark = jtd.getTheme() !== 'dark';
+    document.documentElement.setAttribute('data-theme', setDark ? 'dark' : 'default');
     jtd.setTheme(setDark ? 'dark' : 'default');
     localStorage.setItem('darkMode', String(setDark));
   };
@@ -20,7 +21,10 @@
 
     /* Read local storage state. */
     if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.setAttribute('data-theme', 'dark');
       toggleDark();
+    } else {
+      document.documentElement.setAttribute('data-theme', 'default');
     }
   });
 </script>
