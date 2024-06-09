@@ -64,7 +64,7 @@ As far as we know, there is no efficient algorithm to deduce $$S=g^{ab} \bmod p$
 
 {% comment %} do we still need this paragraph? -peyrin sp21 {% endcomment %}
 
-Here is how this applies to secure communication among computers. In a computer network, each participant could pick a secret value $$x$$, compute $$X=g^x \bmodp$$, and publish $$X$$ for all time. Then any pair of participants who want to hold a conversation could look up each other's public value and use the Diffie-Hellman scheme to agree on a secret key known only to those two parties. This means that the work of picking $$p$$, $$g$$, $$x$$, and $$X$$ can be done in advance, and each time a new pair of parties want to communicate, they each perform only one modular exponentiation. Thus, this can be an efficient way to set up shared keys.
+Here is how this applies to secure communication among computers. In a computer network, each participant could pick a secret value $$x$$, compute $$X=g^x \bmod p$$, and publish $$X$$ for all time. Then any pair of participants who want to hold a conversation could look up each other's public value and use the Diffie-Hellman scheme to agree on a secret key known only to those two parties. This means that the work of picking $$p$$, $$g$$, $$x$$, and $$X$$ can be done in advance, and each time a new pair of parties want to communicate, they each perform only one modular exponentiation. Thus, this can be an efficient way to set up shared keys.
 
 Here is a summary of Diffie-Hellman key exchange:
 

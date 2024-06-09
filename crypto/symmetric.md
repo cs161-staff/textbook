@@ -20,7 +20,7 @@ A more formal, rigorous definition of confidentiality is: the ciphertext $$C$$ s
 
 We can further formalize this definition by designing an experiment to test whether the attacker has learned any additional information. Consider the following experiment: Alice has encrypted and sent one of two messages, either $$M_0$$ or $$M_1$$, and the attacker, Eve, has no idea which was sent. Eve tries to guess which was sent by looking at the ciphertext. If the encryption scheme is confidential, then Eve's probability of guessing which message was sent should be $$1/2$$, which is the same probability as if she had not intercepted the ciphertext at all, and was instead guessing at random.
 
-We can adapt this experiment to different threat models by allowing Eve to perform further actions as an attacker. For example, Eve might be allowed to trick Alice into encrypting some messages of Eve's choosing. Eve might also be allowed to trick Alice into decrypting some ciphertexts of Eve's choosing. In this class, we will be focusing on the chosen-plaintext attack model, which means Eve can trick Alice into encrypting some messages, but she cannot trick Alice into decrypting some messages.
+We can adapt this experiment to different threat models by allowing Eve to perform further actions as an attacker. For example, Eve might be allowed to trick Alice into encrypting some messages of Eve's choosing. Eve might also be allowed to trick Bob into decrypting some ciphertexts of Eve's choosing. In this class, we will be focusing on the chosen-plaintext attack model, which means Eve can trick Alice into encrypting some messages, but she cannot trick Alice into decrypting some messages.
 
 In summary, our definition of confidentiality says that even if Eve can trick Alice into encrypting some messages, she still cannot distinguish whether Alice sent $$M_0$$ or $$M_1$$ in the experiment. This definition is known as indistinguishability under chosen plaintext attack, or IND-CPA. We can use an experiment or game, played between the adversary Eve and the challenger Alice, to formally prove that a given encryption scheme is IND-CPA secure or show that it is not IND-CPA secure.
 
@@ -249,17 +249,13 @@ There are several standard ways (or modes of operation) of building an encryptio
 
 - ECB mode decryption: $$M_i = D_K(C_i)$$
 
-![Diagram of encryption for the ECB mode of
-operation in light mode](/assets/images/crypto/symmetric/ECB_encryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/ECB_encryption.png" alt="Diagram of encryption for the ECB mode of operation in light mode" class="light-mode">
 
-![Diagram of encryption for the ECB mode of
-operation in dark mode](/assets/images/crypto/symmetric/ECB_encryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/ECB_encryption_invert.png" alt="Diagram of encryption for the ECB mode of operation in dark mode" class="dark-mode">
 
-![Diagram of decryption for the ECB mode of
-operation in light mode](/assets/images/crypto/symmetric/ECB_decryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/ECB_decryption.png" alt="Diagram of decryption for the ECB mode of operation in light mode" class="light-mode">
 
-![Diagram of decryption for the ECB mode of
-operation in dark mode](/assets/images/crypto/symmetric/ECB_decryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/ECB_decryption_invert.png" alt="Diagram of decryption for the ECB mode of operation in dark mode" class="dark-mode">
 
 **CBC Mode** (Cipher Block Chaining): This is a popular mode for commercial applications. For each message the sender picks a random $$n$$-bit string, called the _initial vector_ or IV. Define $$C_0 = IV$$. The $$i^\textrm{th}$$ ciphertext block is given by $$C_i = E_K(C_{i-1} \oplus M_i)$$. The ciphertext is the concatenation of the initial vector and these individual blocks: $$C = IV \cdot C_1 \cdot C_2 \cdots C_l$$. CBC mode has been proven to provide strong security guarantees on the privacy of the plaintext message (assuming the underlying block cipher is secure).
 
@@ -267,17 +263,13 @@ operation in dark mode](/assets/images/crypto/symmetric/ECB_decryption_invert.pn
 
 - CBC mode decryption: $$P_i = D_K(C_i) \oplus C_{i-1}$$
 
-![Diagram of encryption for the CBC mode of
-operation in light mode](/assets/images/crypto/symmetric/CBC_encryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/CBC_encryption.png" alt="Diagram of encryption for the CBC mode of operation in light mode" class="light-mode">
 
-![Diagram of encryption for the CBC mode of
-operation in dark mode](/assets/images/crypto/symmetric/CBC_encryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/CBC_encryption_invert.png" alt="Diagram of encryption for the CBC mode of operation in dark mode" class="dark-mode">
 
-![Diagram of decryption for the CBC mode of
-operation in light mode](/assets/images/crypto/symmetric/CBC_decryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/CBC_decryption.png" alt="Diagram of decryption for the CBC mode of operation in light mode" class="light-mode">
 
-![Diagram of decryption for the CBC mode of
-operation in dark mode](/assets/images/crypto/symmetric/CBC_decryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/CBC_decryption_invert.png" alt="Diagram of decryption for the CBC mode of operation in dark mode" class="dark-mode">
 
 **CFB Mode** (Ciphertext Feedback Mode): This is another popular mode with properties very similar to CBC mode. Again, $$C_0$$ is the IV. The $$i^\textrm{th}$$ ciphertext block is given by $$C_i = E_K(C_{i-1}) \oplus M_i$$.
 
@@ -292,17 +284,13 @@ operation in dark mode](/assets/images/crypto/symmetric/CBC_decryption_invert.pn
 
 - CFB mode decryption: $$P_i = E_K(C_{i-1}) \oplus C_i$$
 
-![Diagram of encryption for the CFB mode of
-operation in light mode](/assets/images/crypto/symmetric/CFB_encryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/CFB_encryption.png" alt="Diagram of encryption for the CFB mode of operation in light mode" class="light-mode">
 
-![Diagram of encryption for the CFB mode of
-operation in dark mode](/assets/images/crypto/symmetric/CFB_encryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/CFB_encryption_invert.png" alt="Diagram of encryption for the CFB mode of operation in dark mode" class="dark-mode">
 
-![Diagram of decryption for the CFB mode of
-operation in light mode](/assets/images/crypto/symmetric/CFB_decryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/CFB_decryption.png" alt="Diagram of decryption for the CFB mode of operation in light mode" class="light-mode">
 
-![Diagram of decryption for the CFB mode of
-operation in dark mode](/assets/images/crypto/symmetric/CFB_decryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/CFB_decryption_invert.png" alt="Diagram of decryption for the CFB mode of operation in dark mode" class="dark-mode">
 
 **OFB Mode** (Output Feedback Mode): In this mode, the initial vector IV is repeatedly encrypted to obtain a set of values $$Z_i$$ as follows: $$Z_0 = IV$$ and $$Z_i = E_K(Z_{i-1})$$. These values $$Z_i$$ are now used as though they were the key for a one-time pad, so that $$C_i = Z_i \oplus M_i$$. The ciphertext is the concatenation of the initial vector and these individual blocks: $$C = IV \cdot C_1 \cdot C_2 \cdots C_l$$. In OFB mode, it is very easy to tamper with ciphertexts. For instance, suppose that the adversary happens to know that the $$j^\textrm{th}$$ block of the message, $$M_j$$, specifies the amount of money being transferred to his account from the bank, and suppose he also knows that $$M_j = 100$$. Since he knows both $$M_j$$ and $$C_j$$, he can determine $$Z_j$$. He can then substitute any $$n$$-bit block in place of $$M_j$$ and get a new ciphertext $$C'_j$$ where the $$100$$ is replaced by any amount of his choice. This kind of tampering is also possible with other modes of operation as well (so don't be fooled into thinking that CBC mode is safe from tampering); it's just easier to illustrate on OFB mode.
 
@@ -310,23 +298,19 @@ operation in dark mode](/assets/images/crypto/symmetric/CFB_decryption_invert.pn
 
   $$
   \begin{cases}
-    Z*0 = IV \\ Z_i = E_K(Z*{i-1}) \\ C_i = M_i \oplus Z_i
+    Z_0 = IV \\ Z_i = E_K(Z*{i-1}) \\ C_i = M_i \oplus Z_i
   \end{cases}
   $$
 
 - OFB mode decryption: $$P_i = C_i \oplus Z_i$$
 
-![Diagram of encryption for the OFB mode of
-operation in light mode](/assets/images/crypto/symmetric/OFB_encryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/OFB_encryption.png" alt="Diagram of encryption for the OFB mode of operation in light mode" class="light-mode">
 
-![Diagram of encryption for the OFB mode of
-operation in dark mode](/assets/images/crypto/symmetric/OFB_encryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/OFB_encryption_invert.png" alt="Diagram of encryption for the OFB mode of operation in dark mode" class="dark-mode">
 
-![Diagram of decryption for the OFB mode of
-operation in light mode](/assets/images/crypto/symmetric/OFB_decryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/OFB_decryption.png" alt="Diagram of decryption for the OFB mode of operation in light mode" class="light-mode">
 
-![Diagram of decryption for the OFB mode of
-operation in dark mode](/assets/images/crypto/symmetric/OFB_decryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/OFB_decryption_invert.png" alt="Diagram of decryption for the OFB mode of operation in dark mode" class="dark-mode">
 
 **Counter (CTR) Mode**: In CTR mode, a counter is initialized to IV and repeatedly incremented and encrypted to obtain a sequence that can now be used as though they were the keys for a one-time pad: namely, $$Z_i = E_K(IV + i)$$ and $$C_i = Z_i \oplus M_i$$. In CTR mode, the IV is sometimes renamed the _nonce_. This is just a terminology difference--nonce and IV can be used interchangeably for the purposes of this class.
 
@@ -336,17 +320,13 @@ Note that in CTR and OFB modes, the decryption algorithm uses the block cipher _
 
 - CTR mode decryption: $$M_i = E_K(IV + i) \oplus C_i$$
 
-![Diagram of encryption for the CTR mode of
-operation in light mode](/assets/images/crypto/symmetric/CTR_encryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/CTR_encryption.png" alt="Diagram of encryption for the CTR mode of operation in light mode" class="light-mode">
 
-![Diagram of encryption for the CTR mode of
-operation in dark mode](/assets/images/crypto/symmetric/CTR_encryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/CTR_encryption_invert.png" alt="Diagram of encryption for the CTR mode of operation in dark mode" class="dark-mode">
 
-![Diagram of decryption for the CTR mode of
-operation in light mode](/assets/images/crypto/symmetric/CTR_decryption.png#gh-light-mode-only)
+<img src="/assets/images/crypto/symmetric/CTR_decryption.png" alt="Diagram of decryption for the CTR mode of operation in light mode" class="light-mode">
 
-![Diagram of decryption for the CTR mode of
-operation in dark mode](/assets/images/crypto/symmetric/CTR_decryption_invert.png#gh-dark-mode-only)
+<img src="/assets/images/crypto/symmetric/CTR_decryption_invert.png" alt="Diagram of decryption for the CTR mode of operation in dark mode" class="dark-mode">
 
 For the rest of these notes, we will focus on analyzing CBC and CTR modes. As an exercise, you can try performing similar analysis on the other modes as well.
 

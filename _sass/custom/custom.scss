@@ -7,3 +7,19 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.light-mode {
+  display: none;
+}
+
+.dark-mode {
+  display: none;
+}
+
+:root[data-theme="default"] .light-mode {
+  display: block;
+}
+
+:root[data-theme="dark"] .dark-mode {
+  display: block;
+}
