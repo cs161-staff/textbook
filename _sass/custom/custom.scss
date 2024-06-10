@@ -8,6 +8,6 @@
   margin-bottom: 0;
 }
 
-:root[data-theme="dark"] .invertible {
+:root[data-theme="dark"] img {
   filter: grayscale(50%) invert(100%) brightness(95%) hue-rotate(180deg) saturate(150%);
 }
