@@ -9,5 +9,5 @@
 }
 
 :root[data-theme="dark"] .invertible {
-  filter: grayscale(50%) invert(100%) brightness(95%) hue-rotate(180deg);
+  filter: grayscale(50%) invert(100%) brightness(95%) hue-rotate(180deg) saturate(150%);
 }
