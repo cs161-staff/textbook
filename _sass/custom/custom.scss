@@ -8,6 +8,69 @@
   margin-bottom: 0;
 }
 
+:root {
+  --blue-color-light: blue;
+  --blue-color-dark: #7EBDE7;
+  --green-color-light: green;
+  --green-color-dark: #54C985;
+  --red-color-light: red;
+  --red-color-dark: #FF9999;
+}
+
 :root[data-theme="dark"] img {
   filter: grayscale(50%) invert(100%) brightness(95%) hue-rotate(180deg) saturate(150%);
+}
+
+:root[data-theme="default"] a {
+  color: green;
+}
+
+:root[data-theme="dark"] a {
+  color: #7EBDE7;
+}
+
+:root[data-theme="dark"] .site-title {
+  color: #f5f6fa;
+}
+
+:root:not([data-theme="dark"]) {
+  --blue-color: var(--blue-color-light);
+  --green-color: var(--green-color-light);
+  --red-color: var(--red-color-light);
+}
+
+[data-theme="dark"] {
+  --blue-color: var(--blue-color-dark);
+  --green-color: var(--green-color-dark);
+  --red-color: var(--red-color-dark);
+}
+
+span code {
+  color: var(--blue-color);
+  color: var(--green-color);
+  color: var(--red-color);
+}
+
+code span[style*="color: blue"] {
+  color: var(--blue-color) !important;
+}
+
+code[style*="color: blue"] {
+  color: var(--blue-color) !important;
+}
+
+code span[style*="color: green"] {
+  color: var(--green-color) !important;
+}
+
+code[style*="color: green"] {
+  color: var(--green-color) !important;
+}
+
+code span[style*="color: red"] {
+  color: var(--red-color) !important;
+}
+
+code[style*="color: red"] {
+  color: var(--red-color) !important;
 }
