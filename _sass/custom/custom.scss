@@ -8,18 +8,6 @@
   margin-bottom: 0;
 }
 
-.light-mode {
-  display: none;
-}
-
-.dark-mode {
-  display: none;
-}
-
-:root[data-theme="default"] .light-mode {
-  display: block;
-}
-
-:root[data-theme="dark"] .dark-mode {
-  display: block;
+:root[data-theme="dark"] .invertible {
+  filter: grayscale(50%) invert(100%) brightness(95%) hue-rotate(180deg);
 }
