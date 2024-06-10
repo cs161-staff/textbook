@@ -32,7 +32,7 @@ The transport layer has 2 main protocols to choose from: TCP guarantees reliable
 
 The UDP header contains 16-bit source and destination port numbers to support communication between processes. The header also contains a checksum (non-cryptographic) to detect corrupted packets.
 
-![UDP header](/assets/images/network/transport/UDP.png)
+![UDP header](/assets/images/network/transport/UDP_header.png)
 
 ## 30.4. Protocol: TCP
 

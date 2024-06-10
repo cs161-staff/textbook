@@ -17,8 +17,12 @@
   --red-color-dark: #FF9999;
 }
 
+:root[data-theme="default"] img {
+  filter: brightness(50%);
+}
+
 :root[data-theme="dark"] img {
-  filter: grayscale(50%) invert(100%) brightness(95%) hue-rotate(180deg) saturate(150%);
+  filter: grayscale(50%) invert(100%) brightness(200%) hue-rotate(180deg) saturate(150%);
 }
 
 :root[data-theme="default"] a {
