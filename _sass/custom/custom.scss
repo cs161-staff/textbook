@@ -29,6 +29,10 @@
   color: #7EBDE7;
 }
 
+:root[data-theme="default"] .site-title {
+  color: #27262B;
+}
+
 :root[data-theme="dark"] .site-title {
   color: #f5f6fa;
 }
