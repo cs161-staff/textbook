@@ -17,36 +17,38 @@
   --red-color-dark: #FF9999;
 }
 
-:root[data-theme="dark"] img {
-  filter: invert(100%) brightness(100%) hue-rotate(175deg) saturate(100%);
-}
-
-:root[data-theme="default"] a {
-  color: #136719;
-}
-
-:root[data-theme="dark"] a {
-  color: #7EBDE7;
-}
-
-:root[data-theme="default"] .site-title {
-  color: #27262B;
-}
-
-:root[data-theme="dark"] .site-title {
-  color: #f5f6fa;
-}
-
-:root:not([data-theme="dark"]) {
+[data-theme="default"] {
   --blue-color: var(--blue-color-light);
   --green-color: var(--green-color-light);
   --red-color: var(--red-color-light);
+
+  a {
+    color: #136719;
+  }
+
+  .site-title {
+    color: #27262B;
+  }
+
 }
 
 [data-theme="dark"] {
   --blue-color: var(--blue-color-dark);
   --green-color: var(--green-color-dark);
   --red-color: var(--red-color-dark);
+
+  img {
+    filter: invert(100%) brightness(100%) hue-rotate(175deg) saturate(100%);
+  }
+
+  a {
+    color: #7EBDE7;
+  }
+  
+  .site-title {
+    color: #f5f6fa;
+  }
+
 }
 
 span code {
