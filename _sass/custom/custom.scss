@@ -8,11 +8,38 @@
   margin-bottom: 0;
 }
 
+@media (min-width: 50rem) {
+  .site-title {
+        font-size: 22px !important;
+  }
+
+  .main-header {
+    position: fixed;
+    flex-flow: row nowrap;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .search {
+    width: 620px !important;
+  }
+
+  .side-bar {
+    top: 0;
+    left: 0;
+  }
+
+  .main-content-wrap {
+    margin-top: 60px;
+    overflow-y: auto;
+  }
+}
+
 :root {
   --blue-color-light: blue;
-  --blue-color-dark: #7EBDE7;
+  --blue-color-dark: #00CAE0;
   --green-color-light: green;
-  --green-color-dark: #54C985;
+  --green-color-dark: #70CC00;
   --red-color-light: red;
   --red-color-dark: #FF9999;
 }
@@ -29,7 +56,6 @@
   .site-title {
     color: #27262B;
   }
-
 }
 
 [data-theme="dark"] {
@@ -48,7 +74,6 @@
   .site-title {
     color: #f5f6fa;
   }
-
 }
 
 span code {
