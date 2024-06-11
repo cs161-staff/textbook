@@ -32,7 +32,7 @@ The transport layer has 2 main protocols to choose from: TCP guarantees reliable
 
 The UDP header contains 16-bit source and destination port numbers to support communication between processes. The header also contains a checksum (non-cryptographic) to detect corrupted packets.
 
-![UDP header](/assets/images/network/transport/UDP_header.png)
+<img src="/assets/images/network/transport/UDP_header.png" alt="UDP header" width="60%">
 
 ## 30.4. Protocol: TCP
 
@@ -40,7 +40,7 @@ The UDP header contains 16-bit source and destination port numbers to support co
 
 Like UDP, the TCP header contains 16-bit source and destination port numbers to support communication between processes, and a checksum to detect corrupted packets. Additionally, a 32-bit **sequence number** and a 32-bit **acknowledgment (ACK) number** are used for keeping track of missing or out-of-order packets. Flags such as SYN, ACK, and FIN can be set in the header to indicate that the packet has some special meaning in the TCP protocol.
 
-![TCP Header](/assets/images/network/transport/TCP_header.png)
+<img src="/assets/images/network/transport/TCP_header.png" alt="TCP header" width="60%">
 
 A unique TCP connection is identified by a 5-tuple of (Client IP Address, Client Port, Server IP Address, Server Port, Protocol), where protocol is always TCP. In other words, a TCP connection is a sequence of back-and-forth communications between one port on one IP address, and another port on another IP address.
 

@@ -60,42 +60,7 @@ Congratulations, you now understand how DNS translates domains to IP addresses! 
 
 Since every website lookup must start with a DNS query, DNS is designed to be very lightweight and fast - it uses UDP (best-effort packets, no TCP handshakes) and has a fairly simple message format.
 
-TODO: This diagram can be better. ~NN
-
-<table>
-  <thead>
-    <tr>
-      <th>16 bits</th>
-      <th>16 bits</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">Identification</td>
-      <td style="text-align: center">Flags</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"># Questions</td>
-      <td style="text-align: center"># Answer RRs</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"># Authority RRs</td>
-      <td style="text-align: center"># Additional RRs</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Questions (variable # of RRs)</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Answers (variable # of RRs)</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Authority (variable # of RRs)</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Additional info (variable # of RRs)</td>
-    </tr>
-  </tbody>
-</table>
+<img src="/assets/images/network/dns/dns_packet.png" alt="DNS packet" width="60%">
 
 The first field is a 16 bit **identification field** that is randomly selected per query and used to match requests to responses. When a DNS query is sent, the ID field is filled with random bits. Since UDP is stateless, the DNS response must send back the same bits in the ID field so that the original query sender knows which DNS query the response corresponds to.
 
