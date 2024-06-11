@@ -14,13 +14,11 @@ The primary goal of the Internet is to move data from one location to another. A
 
 The first building block we need is something that moves data across space, such as bits on a wire, radio waves, carrier pigeons, etc. Using our first building block, we can connect a group of local machines in a **local area network (LAN)**.
 
-![Diagram of a LAN, where computers are directly
-interconnected](/assets/images/network/osi/lan.png)
+<img src="/assets/images/network/osi/lan.png" alt="Diagram of a LAN, where computers are directly interconnected" width="75%">
 
 Note that in a LAN, all machines are connected to all other machines. This allows any machine on the LAN to send and receive messages from any other machine on the same LAN. You can think of a LAN as an apartment complex, a local group of nearby apartments that are all connected. However, it would be infeasible to connect every machine in the world to every other machine in the world, so we introduce a **router** to connect multiple LANs.
 
-![Diagram of a WAN, where two LANs are connected by a
-router](/assets/images/network/osi/wan.png)
+<img src="/assets/images/network/osi/wan.png" alt="Diagram of a WAN, where two LANs are connected by a router" width="75%">
 
 A router is a machine that is connected to two or more LANs. If a machine wants to send a message to a machine on a different LAN, it sends the message to the router, which forwards the message to the second LAN. You can think of a router as a post office: to send a message somewhere outside of your local apartment complex, you'd take it to the post office, and they would forward your message to the other apartment complex.
 
@@ -51,9 +49,8 @@ Each layer has its own set of **protocols**, a set of agreements on how to commu
 
 To support protocols, messages are sent with a **header**, which is placed at the beginning of the message and contains some metadata such as the sender and recipient's identities, the length of the message, identification numbers, etc. You can think of headers as the envelope of a letter: it contains the information needed to deliver the letter, and appears before the actual letter.
 
-![A diagram of a network packet structure, with the link layer header first,
-then the IP header, then the transport layer header, then the application
-data](/assets/images/network/osi/headers.png)
+<img src="/assets/images/network/osi/headers.png" alt="A diagram of a network packet structure, with the link layer header first,
+then the IP header, then the transport layer header, then the application data" width="60%">
 
 Because multiple protocols across different layers are needed to send a message, we need multiple headers on each packet. Each message begins as regular human-readable text (the highest layer). As the message is being prepared to get sent, it is passed down the protocol stack to lower layers (similar to how C programs are passed to lower layers to translate C code to RISC-V to machine-readable bits). Each layer adds its own header to the top of the message provided from the layer directly above. When the message reaches the lowest layer, it now has multiple headers, starting with the header for the lowest layer first.
 
