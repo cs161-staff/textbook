@@ -265,7 +265,7 @@ Off-by-one errors are very common in programming: for example, you might acciden
 
 Consider a buffer whose bounds checks are off by one. This means we can write `n+1` bytes into a buffer of size `n`, overflowing the byte immediately after the buffer (but no more than that).
 
-The following two diagrams are from Section 10 of ["ASLR Smack & Laugh Reference" by Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf). It shows how overwriting a single byte lets you start executing instructions at an arbitrary address in memory.
+The following two diagrams are inspired by Section 10 of ["ASLR Smack & Laugh Reference" by Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf). They show how overwriting a single byte lets you start executing instructions at an arbitrary address in memory.
 
 ![Stack diagrams showing the exploitation of an off-by-one
 vulnerability for the first return](/assets/images/memory-safety/vulnerabilities/offbyone1.png)
