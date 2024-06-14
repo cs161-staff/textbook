@@ -32,6 +32,14 @@
 }
 
 [data-theme="dark"] {
+  a {
+    color: #7EBDE7 !important;
+  }
+  
+  .site-title {
+    color: #f5f6fa !important;
+  }
+  
   --blue-color: var(--blue-color-dark);
   --green-color: var(--green-color-dark);
   --red-color: var(--red-color-dark);
