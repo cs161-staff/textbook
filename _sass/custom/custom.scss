@@ -8,33 +8,6 @@
   margin-bottom: 0;
 }
 
-@media (min-width: 50rem) {
-  .site-title {
-        font-size: 22px !important;
-  }
-
-  .main-header {
-    position: fixed;
-    flex-flow: row nowrap;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .search {
-    width: 620px !important;
-  }
-
-  .side-bar {
-    top: 0;
-    left: 0;
-  }
-
-  .main-content-wrap {
-    margin-top: 60px;
-    overflow-y: auto;
-  }
-}
-
 :root {
   --blue-color-light: blue;
   --blue-color-dark: #00CAE0;
