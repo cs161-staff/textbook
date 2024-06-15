@@ -14,8 +14,7 @@ TLS relies on TCP to guarantee that messages are delivered reliably in the prope
 
 ## 31.1. TLS Handshake
 
-![Diagram of the first part of the TLS handshake, from the ClientHello to the
-server certificate presentation](/assets/images/network/tls/tls1.png)
+<img src="/assets/images/network/tls/tls1.png" alt="Diagram of the first part of the TLS handshake, from the ClientHello to the server certificate presentation" width="40%">
 
 Because it's built on top of TCP, the TLS handshake starts with a TCP handshake. This lets us abstract away the notion of best-effort, fixed-size packets and think in terms of reliable messages for the rest of the TLS protocol.
 
@@ -31,11 +30,9 @@ Sanity check: After the first two messages, can the client be certain that it is
 
 The next step in TLS is to generate a random **Premaster Secret** (**PS**) known to only the client and the server. The PS should be generated so that no eavesdropper can determine the PS based on the data sent over the connection, and no one except the client and the legitimate server have enough information to derive the PS.
 
-The first way to derive a shared PS is to encrypt it with RSA, show in the second arrow here:
+The first way to derive a shared PS is to encrypt it with RSA, shown in the last (blue) arrow here:
 
-![Diagram of the second part of the TLS handshake using RSA, from the server
-certificate presentation to the exchange of
-MACs](/assets/images/network/tls/tls2-rsa.png)
+<img src="/assets/images/network/tls/tls2-rsa.png" alt="Diagram of the second part of the TLS handshake using RSA, from the server certificate presentation to the exchange of MACs" width="40%">
 
 Here, the client generates the random PS, encrypts it with the server's public key, and sends it to the server, which decrypts using its private key.
 
@@ -43,11 +40,9 @@ Sanity check: How can the client be sure it's using the correct public key?[^2]
 
 We can verify that this method satisfies all the properties of a PS. Because it is encrypted when sent across the channel, no eavesdropper can decrypt and figure out its value. Also, only the legitimate server will be able to decrypt the PS (using its secret key), so only the client and the legitimate server will know the value of the PS.
 
-The second way to generate a PS is to use Diffie-Hellman key exchange, shown in the second (red) and third (blue) arrows here:
+The second way to generate a PS is to use Diffie-Hellman key exchange, shown in the fourth (red) and fifth (blue) arrows here:
 
-![Diagram of the second part of the TLS handshake using Diffie-Hellman, from the
-server certificate presentation to the exchange of
-MACS](/assets/images/network/tls/tls2-dh.png)
+<img src="/assets/images/network/tls/tls2-dh.png" alt="Diagram of the second part of the TLS handshake using Diffie-Hellman, from the server certificate presentation to the exchange of MACs" width="40%">
 
 The exchange looks just like classic Diffie-Hellman, except the server signs its half of the exchange with its secret key. The shared PS is the result of the key exchange, $$g^{ab} \bmod p$$.
 

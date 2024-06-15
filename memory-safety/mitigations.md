@@ -85,8 +85,7 @@ The stack canary uses the fact that many common stack smashing attacks involve o
 
 The stack canary is placed directly above the local variables and directly below the saved registers (sfp and rip):
 
-![A stack canary located between the sfp and the local variables of a given
-stack frame](/assets/images/memory-safety/mitigations/canary.png)
+<img src="/assets/images/memory-safety/mitigations/canary.png" alt="A stack canary located between the sfp and the local variables of a given stack frame" width="30%">
 
 Suppose an attacker wants to overflow a local variable to overwrite the rip on the stack, and the vulnerability only allows the attacker to write to consecutive, increasing addresses in memory. Then the attacker must overwrite the stack canary before overwriting the rip, since the rip is located above the buffer in the stack.
 

@@ -68,7 +68,7 @@ $$
 \text{Signing with private key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{SK_\text{Jerry}^{-1}}
 $$
 
-where here $$\{M\}_{PK}$$ denotes a digital signature on the message $$M$$ using the private key $$SK^{-1}$$. In this case, $$SK^{-1}_\text{Jerry}$$ is Jerry Brown's private key. This certificate is just some digital data: a sequence of bits. The certificate can be published and shared with anyone who wants to communicate securely with David.
+where here $$\{M\}_{SK^{-1}}$$ denotes a digital signature on the message $$M$$ using the private key $$SK^{-1}$$. In this case, $$SK^{-1}_\text{Jerry}$$ is Jerry Brown's private key. This certificate is just some digital data: a sequence of bits. The certificate can be published and shared with anyone who wants to communicate securely with David.
 
 If Alice wants to communicate securely with David, she can obtain a copy of this certificate. If Alice knows Jerry's public key, she can verify the signature on David's digital certificate. This gives her high confidence that indeed Jerry consented to the statement about the bit pattern of David's public key, because the valid signature required Jerry to decide to agree to apply his private key to the statement.
 

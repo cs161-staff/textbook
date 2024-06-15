@@ -24,10 +24,7 @@ DNS solves both of these problems by introducing a new idea: when you query a na
 
 DNS arranges all the name servers in a tree hierarchy based on their zones:
 
-![Diagram of an example DNS tree, with the root at the root, the top-level
-domains .edu, .org, and .com as the second level, and second-level domains such
-as berkeley.edu, cs161.org, and google.com at the third
-level](/assets/images/network/dns/dnstree.png)
+<img src="/assets/images/network/dns/dnstree.png" alt="Diagram of an example DNS tree, with the root at the root, the top-level domains .edu, .org, and .com as the second level, and second-level domains such as berkeley.edu, cs161.org, and google.com at the third level" width="75%">
 
 The **root server** at the top level of the tree has all domains in its zone (this zone is usually written as `.`). Name servers at lower levels of the tree have smaller, more specific zones. Each name server is only responsible for storing information about their children, except for the name servers at the bottom of the tree, which are responsible for storing the actual mappings from domain names to IP addresses.
 
@@ -63,42 +60,7 @@ Congratulations, you now understand how DNS translates domains to IP addresses! 
 
 Since every website lookup must start with a DNS query, DNS is designed to be very lightweight and fast - it uses UDP (best-effort packets, no TCP handshakes) and has a fairly simple message format.
 
-TODO: This diagram can be better. ~NN
-
-<table>
-  <thead>
-    <tr>
-      <th>16 bits</th>
-      <th>16 bits</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">Identification</td>
-      <td style="text-align: center">Flags</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"># Questions</td>
-      <td style="text-align: center"># Answer RRs</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"># Authority RRs</td>
-      <td style="text-align: center"># Additional RRs</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Questions (variable # of RRs)</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Answers (variable # of RRs)</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Authority (variable # of RRs)</td>
-    </tr>
-    <tr>
-      <td style="text-align: center" colspan="2">Additional info (variable # of RRs)</td>
-    </tr>
-  </tbody>
-</table>
+<img src="/assets/images/network/dns/dns_packet.png" alt="DNS packet" width="60%">
 
 The first field is a 16 bit **identification field** that is randomly selected per query and used to match requests to responses. When a DNS query is sent, the ID field is filled with random bits. Since UDP is stateless, the DNS response must send back the same bits in the ID field so that the original query sender knows which DNS query the response corresponds to.
 
@@ -266,10 +228,7 @@ The Kaminsky attack allows on-path attackers to race until their fake response a
 
 Recall that UDP is a transport-layer protocol like TCP, so a UDP packet requires a source port and destination port. The destination port must be well-known and constant (in practice, it is always 53), so everyone can send UDP packets to the correct port on the name server. However, DNS doesn't specify what source port the resolver uses to send queries, so source port randomization uses a random 16-bit source port for each query. The name server must send the response packet back to the correct source port of the resolver, so it must include the source port number in the destination port field of the response. Now, an attacker must guess the 16-bit ID field and the 16-bit source port in order to successfully forge a response packet. This decreases an off-path attacker's probability of success to $$1/2^{32}$$, which is much harder, but certainly not impossible.
 
-![Diagram of source port randomization in use. The query's source port is
-randomized, and the destination port is 53. The response's source port is 53,
-and the destination port is the same randomized
-value](/assets/images/network/dns/source-port-randomization.png)
+<img src="/assets/images/network/dns/source-port-randomization.png" alt="Diagram of source port randomization in use. The query's source port is randomized, and the destination port is 53. The response's source port is 53, and the destination port is the same randomized value" width="60%">
 
 Sanity check: How much extra security does source port randomization provide against on-path attackers?[^3]
 

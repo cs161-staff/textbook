@@ -70,7 +70,7 @@ Here is a summary of Diffie-Hellman key exchange:
 
 - **System parameters:** a 2048-bit prime $$p$$, a value $$g$$ in the range $$2\ldots p-2$$. Both are arbitrary, fixed, and public.
 
-- **Key agreement protocol:** Alice randomly picks $$a$$ in the range $$0\ldots p-2$$ and sends $$A=g^a \bmod p$$ to Bob. Bob randomly picks $$b$$ in the range $$0\ldots p-2$$ and sends $$B=g^b \bmod p$$ to Alice. Alice computes $$K=B^a \bmod p$$. Bob computes $$K=A^b \bmod p$$. Alice and Bob both end up with the same random secret key $$K$$, yet as far as we know no eavesdropper can recover $$K$$ in any reasonable amount of time.
+- **Key agreement protocol:** Alice randomly picks $$a$$ in the range $$1\ldots p-2$$ and sends $$A=g^a \bmod p$$ to Bob. Bob randomly picks $$b$$ in the range $$1\ldots p-2$$ and sends $$B=g^b \bmod p$$ to Alice. Alice computes $$K=B^a \bmod p$$. Bob computes $$K=A^b \bmod p$$. Alice and Bob both end up with the same random secret key $$K$$, yet as far as we know no eavesdropper can recover $$K$$ in any reasonable amount of time.
 
 ## 10.4. Elliptic-curve Diffie-Hellman
 

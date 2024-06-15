@@ -12,13 +12,13 @@ Every resource (webpage, image, PDF, etc.) on the web is identified by a URL (Un
 
 <p style="text-align: center">
   <code>
-    <span style="color: dodgerblue">http</span
+    <span style="color: blue">http</span
     >://<span style="color: green">www.example.com</span
     ><span style="color: red">/index.html</span>
   </code>
 </p>
 
-The first mandatory part is the _protocol_, located before in the URL. In the example above, the protocol is <code style="color: dodgerblue">http</code>. The protocol tells your browser how to retrieve the resource. In this class, the only two protocols you need to know are HTTP, which we will cover in the next section, and HTTPS, which is a secure version of HTTP using TLS (refer to the networking unit for more details). Other protocols include `git+ssh://`, which fetches a git archive over an encrypted tunnel using `ssh`, or `ftp://`, which uses the old FTP (File Transfer Protocol) to fetch data.
+The first mandatory part is the _protocol_, located before in the URL. In the example above, the protocol is <code style="color: blue">http</code>. The protocol tells your browser how to retrieve the resource. In this class, the only two protocols you need to know are HTTP, which we will cover in the next section, and HTTPS, which is a secure version of HTTP using TLS (refer to the networking unit for more details). Other protocols include `git+ssh://`, which fetches a git archive over an encrypted tunnel using `ssh`, or `ftp://`, which uses the old FTP (File Transfer Protocol) to fetch data.
 
 The second mandatory part is the _location_, located after but before the next forward slash in the URL. In the example above, the location is <code style="color: green">www.example.com</code>. This tells your browser which web server to contact to retrieve the resource.
 
@@ -38,17 +38,17 @@ In summary, a URL with all elements present may look like this:
 
 <p style="text-align: center">
   <code>
-    <span style="color: dodgerblue">http://</span
+    <span style="color: blue">http://</span
     ><span style="color: red">evanbot@</span
-    ><span style="color: dodgerblue">www.cs161.org</span
+    ><span style="color: blue">www.cs161.org</span
     ><span style="color: red">:161</span
-    ><span style="color: dodgerblue">/whoami</span
+    ><span style="color: blue">/whoami</span
     ><span style="color: red">?k1=v1&amp;k2=v2</span
-    ><span style="color: dodgerblue">#anchor</span>
+    ><span style="color: blue">#anchor</span>
   </code>
 </p>
 
-where <code style="color: dodgerblue">http</code> is the protocol, <code style="color: red">evanbot</code> is the username, <code style="color: dodgerblue">www.cs161.org</code> is the computer location (domain), <code style="color: red">161</code> is the port, <code style="color: dodgerblue">/whoami</code> is the path, <code style="color: red">k1=v1&amp;k2=v2</code> are the URL arguments, and <code style="color: dodgerblue">anchor</code> is the anchor.
+where <code style="color: blue">http</code> is the protocol, <code style="color: red">evanbot</code> is the username, <code style="color: blue">www.cs161.org</code> is the computer location (domain), <code style="color: red">161</code> is the port, <code style="color: blue">/whoami</code> is the path, <code style="color: red">k1=v1&amp;k2=v2</code> are the URL arguments, and <code style="color: blue">anchor</code> is the anchor.
 
 _Further reading:_ [What is a URL?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL)
 

@@ -34,7 +34,7 @@ When a computer (client) wants to connect to a network protected with WPA2-PSK, 
 
 To give each user a unique encryption key, after both the client and the access point independently derive the PSK, they participate in a handshake to generate shared encryption keys.
 
-![Diagram of the WPA2 handshake](/assets/images/network/wpa/wpa2.png)
+<img src="/assets/images/network/wpa/wpa2.png" alt="Diagram of the WPA2 handshake" width="45%">
 
 1. The client and the access point exchange random nonces, the ANonce and the SNonce. The nonces ensure that different keys will be generated during each handshake. The nonces are sent without any encryption.
 
@@ -52,8 +52,7 @@ The GTK is used for messages broadcast to the entire network (i.e. sent to the b
 
 In practice, the handshake is optimized into a 4-way handshake, requiring only 4 messages to be exchanged between the client and the access point.
 
-![Diagram of the optimized WPA2 handshake used in
-practice](/assets/images/network/wpa/wpa2-real.png)
+<img src="/assets/images/network/wpa/wpa2-real.png" alt="Diagram of the optimized WPA2 handshake used in practice" width="45%">
 
 1. The access point sends the ANonce, as before.
 

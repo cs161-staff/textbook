@@ -7,3 +7,128 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+:root {
+  --blue-color-light: blue;
+  --blue-color-dark: #00CAE0;
+  --green-color-light: green;
+  --green-color-dark: #70CC00;
+  --red-color-light: red;
+  --red-color-dark: #FF9999;
+}
+
+[data-theme="default"] {
+  --blue-color: var(--blue-color-light);
+  --green-color: var(--green-color-light);
+  --red-color: var(--red-color-light);
+
+  a {
+    color: #136719;
+  }
+
+  .site-title {
+    color: #27262B;
+  }
+}
+
+[data-theme="dark"] {
+  a {
+    color: #7EBDE7 !important;
+  }
+  
+  .site-title {
+    color: #f5f6fa !important;
+  }
+  
+  --blue-color: var(--blue-color-dark);
+  --green-color: var(--green-color-dark);
+  --red-color: var(--red-color-dark);
+
+  img {
+    filter: invert(100%) brightness(100%) hue-rotate(175deg) saturate(100%);
+  }
+  
+  .site-title {
+    color: #f5f6fa;
+  }
+}
+
+span code {
+  color: var(--blue-color);
+  color: var(--green-color);
+  color: var(--red-color);
+}
+
+code span[style*="color: blue"] {
+  color: var(--blue-color) !important;
+}
+
+code[style*="color: blue"] {
+  color: var(--blue-color) !important;
+}
+
+code span[style*="color: green"] {
+  color: var(--green-color) !important;
+}
+
+code[style*="color: green"] {
+  color: var(--green-color) !important;
+}
+
+code span[style*="color: red"] {
+  color: var(--red-color) !important;
+}
+
+code[style*="color: red"] {
+  color: var(--red-color) !important;
+}
+
+// Begin UCB header fixes
+
+// If width of display is less than content-width, header is invisible
+// so no extra CSS is needed
+
+// If width of display is at least content width:
+@media (min-width: $content-width) {
+  .main-header {
+    position: fixed;  // Sticky header (stays on top as you scroll)
+    top: 0;           // Forces header on top of page
+    z-index: 1000;    // Forces header drawn on top of everything else
+  }
+
+  // Forces site title in sidebar to be flush with header
+  .side-bar {
+    top: 0;
+    left: 0;
+  }
+
+  // Add whitespace between header and start of content (site title, logo)
+  .main-content-wrap {
+    margin-top: 60px;
+  }
+
+  // Make the site title in the sidebar smaller
+  .site-title {
+    font-size: 19px !important;
+  }
+
+  // Header width should be all of display, minus sidebar
+  // Seems like JTD fixes sidebar to 15.5rem in this layout (might be wrong tho)
+  .main-header {
+    width: calc(100% - 15.5rem);
+  }
+}
+
+// If width of display is at least content+nav width
+// (i.e. whitespace on either side of site):
+@media (min-width: $content-width + $nav-width) {
+  // Set default site title in sidebar font size
+  .site-title {
+    font-size: 24px !important;
+  }
+
+  // Header should match content width (e.g. in wider.scss)
+  .main-header {
+    width: $content-width;
+  }
+}
