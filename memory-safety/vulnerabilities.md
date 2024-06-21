@@ -158,7 +158,7 @@ Let's begin this section by walking through a normal printf call. Suppose we had
 ```
 void not_vulnerable() {
     char buf[8];
-    if (fgets(buf, sizeof buf, stdin) == NULL)
+    if (fgets(buf, sizeof(buf), stdin) == NULL)
         return;
     printf(buf);
 }
@@ -167,6 +167,8 @@ void not_vulnerable() {
 The stack diagram for this function would look something like this:
 
 <img src="/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png" alt="Initial non vulnerable code with printf" width="35%">
+
+This is commonly another way we choose to represent a stack diagram, where each separate value or variable takes up one row and we dictate how many bytes it takes up in brackets to the left. For instance, the `[8] char buf` means that the `buf` character array takes up 8 bytes.
 
 When the `printf()` function executes, it looks for a format string modifier denoted by a “%” in its first argument located 4 bytes above the RIP of `printf()`. If it finds the modifier, it then looks 8 bytes above the RIP for the "actual" argument (i.e. what the format modifier will be acting upon).
 
