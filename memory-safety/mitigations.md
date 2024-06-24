@@ -38,7 +38,7 @@ Modern systems separate memory into _pages_ in order to support virtual memory (
 
 This defense stops the stack smashing attack in the previous section where the attacker wrote machine code into memory. Because the attacker wrote machine code to a page in memory, that page cannot be executed as machine instructions, so the attack no longer works.
 
-This defense has several names in practice, including W\^X (Write XOR Execute), DEP (Data Execution Prevention), and the NX bit (no-execute bit).
+This defense has several names in practice, including W^X (Write XOR Execute), DEP (Data Execution Prevention), and the NX bit (no-execute bit).
 
 ## 4.6. Subverting non-executable pages: Return into libc
 
