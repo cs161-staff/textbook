@@ -14,7 +14,7 @@ TLS relies on TCP to guarantee that messages are delivered reliably in the prope
 
 ## 31.1. TLS Handshake
 
-<img src="/assets/images/network/tls/tls1.png" alt="Diagram of the first part of the TLS handshake, from the ClientHello to the server certificate presentation" width="40%">
+<img src="/assets/images/network/tls/tls1.png" alt="Diagram of the first part of the TLS handshake, from the ClientHello to the server certificate presentation" width="75%">
 
 Because it's built on top of TCP, the TLS handshake starts with a TCP handshake. This lets us abstract away the notion of best-effort, fixed-size packets and think in terms of reliable messages for the rest of the TLS protocol.
 
