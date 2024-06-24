@@ -30,7 +30,7 @@ Sanity check: After the first two messages, can the client be certain that it is
 
 The next step in TLS is to generate a random **Premaster Secret** (**PS**) known to only the client and the server. The PS should be generated so that no eavesdropper can determine the PS based on the data sent over the connection, and no one except the client and the legitimate server have enough information to derive the PS.
 
-The first way to derive a shared PS is to encrypt it with RSA, shown in the last (blue) arrow here:
+The first way to derive a shared PS is to encrypt it with RSA, shown in the last (blue) arrow here that depicts $$\{PS\}_{K_{server}}$$:
 
 <img src="/assets/images/network/tls/tls2-rsa.png" alt="Diagram of the second part of the TLS handshake using RSA, from the server certificate presentation to the exchange of MACs" width="40%">
 
@@ -40,7 +40,7 @@ Sanity check: How can the client be sure it's using the correct public key?[^2]
 
 We can verify that this method satisfies all the properties of a PS. Because it is encrypted when sent across the channel, no eavesdropper can decrypt and figure out its value. Also, only the legitimate server will be able to decrypt the PS (using its secret key), so only the client and the legitimate server will know the value of the PS.
 
-The second way to generate a PS is to use Diffie-Hellman key exchange, shown in the fourth (red) and fifth (blue) arrows here:
+The second way to generate a PS is to use Diffie-Hellman key exchange, shown in the fourth (red) and fifth (blue) arrows here that depict $$\{g^a \bmod p\}_{K^{-1}_{server}}$$ and $$g^b \bmod p$$ respectively:
 
 <img src="/assets/images/network/tls/tls2-dh.png" alt="Diagram of the second part of the TLS handshake using Diffie-Hellman, from the server certificate presentation to the exchange of MACs" width="40%">
 
