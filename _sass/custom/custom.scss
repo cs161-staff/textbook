@@ -107,6 +107,10 @@ code[style*="color: red"] {
     margin-top: 60px;
   }
 
+  h1, h2, h3 {
+    scroll-margin-top: 60px;
+  }
+
   // Make the site title in the sidebar smaller
   .site-title {
     font-size: 19px !important;
