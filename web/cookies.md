@@ -2,6 +2,7 @@
 title: 20. Cookies and Session Management
 parent: Web Security
 nav_order: 4
+layout: page
 ---
 
 # 20. Cookies and Session Management

@@ -2,6 +2,7 @@
 title: 23. UI Attacks
 parent: Web Security
 nav_order: 7
+layout: page
 ---
 
 # 23. Clickjacking/User Interface (UI) Attacks

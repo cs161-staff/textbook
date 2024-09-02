@@ -2,6 +2,7 @@
 title: 32. DNS
 parent: Network Security
 nav_order: 8
+layout: page
 ---
 
 # 32. DNS

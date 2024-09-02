@@ -2,6 +2,7 @@
 title: 5. Introduction to Cryptography
 parent: Cryptography
 nav_order: 1
+layout: page
 ---
 
 # 5. Introduction to Cryptography

@@ -2,6 +2,7 @@
 title: 31. TLS
 parent: Network Security
 nav_order: 7
+layout: page
 ---
 
 # 31. TLS

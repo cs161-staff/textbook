@@ -2,6 +2,7 @@
 title: 22. Cross-Site Scripting (XSS)
 parent: Web Security
 nav_order: 6
+layout: page
 ---
 
 # 22. Cross-Site Scripting (XSS)

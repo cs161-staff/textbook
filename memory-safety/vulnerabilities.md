@@ -2,6 +2,7 @@
 title: 3. Memory Safety Vulnerabilities
 parent: Memory Safety
 nav_order: 2
+layout: page
 ---
 
 # 3. Memory Safety Vulnerabilities

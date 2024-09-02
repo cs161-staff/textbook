@@ -2,6 +2,7 @@
 title: 17. SQL Injection
 parent: Web Security
 nav_order: 1
+layout: page
 ---
 
 # 17. SQL Injection

@@ -2,6 +2,7 @@
 title: 35. Firewalls
 parent: Network Security
 nav_order: 11
+layout: page
 ---
 
 # 35. Firewalls

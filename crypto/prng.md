@@ -2,6 +2,7 @@
 title: 9. Pseudorandom Number Generators
 parent: Cryptography
 nav_order: 5
+layout: page
 ---
 
 # 9. Pseudorandom Number Generators

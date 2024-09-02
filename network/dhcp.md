@@ -2,6 +2,7 @@
 title: 27. DHCP
 parent: Network Security
 nav_order: 3
+layout: page
 ---
 
 # 27. DHCP

@@ -2,6 +2,7 @@
 title: 10. Diffie-Hellman Key Exchange
 parent: Cryptography
 nav_order: 6
+layout: page
 ---
 
 # 10. Diffie-Hellman key exchange

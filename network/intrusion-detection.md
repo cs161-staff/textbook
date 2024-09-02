@@ -2,6 +2,7 @@
 title: 36. Intrusion Detection
 parent: Network Security
 nav_order: 12
+layout: page
 ---
 
 # 36. Intrusion Detection

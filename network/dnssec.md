@@ -2,6 +2,7 @@
 title: 33. DNSSEC
 parent: Network Security
 nav_order: 9
+layout: page
 ---
 
 # 33. DNSSEC

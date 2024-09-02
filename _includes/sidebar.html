@@ -1,0 +1,42 @@
+{%- comment -%} This file is from Just the Docs v0.8.2 remote:
+https://github.com/just-the-docs/just-the-docs/blob/15a0b6e91b687bc2a8fdf8345c8e1cc3baa7b2d8/_includes/components/sidebar.html
+I've copied it into this repo and inserted some hacks to enable displaying
+anchors and scrollspy in the sidebar. ~peyrin, June 2024 {%- endcomment -%} {%-
+comment -%} Include as: {%- include components/sidebar.html -%} Depends on:
+page(?), site. Results in: HTML for the side bar. Includes: title.html,
+components/site_nav.html, nav_footer_custom.html Overwrites: nav_footer_custom.
+Should not be cached, because nav_footer_custom.html might depend on page. {%-
+endcomment -%}
+
+<div class="side-bar">
+  <div class="site-header" role="banner">
+    <a href="{{ '/' | relative_url }}" class="site-title lh-tight"
+      >{% include title.html %}</a
+    >
+    <button
+      id="menu-button"
+      class="site-button btn-reset"
+      aria-label="Toggle menu"
+      aria-pressed="false"
+    >
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+        <use xlink:href="#svg-menu"></use>
+      </svg>
+    </button>
+  </div>
+
+  {%- comment -%} The caching here is messing with nav.html being able to fetch
+  the current page. My lazy solution is to say "include" instead of
+  "include_cached", though a more robust solution for really large websites
+  would pass in the page url as a parameter. I've never noticed a performance
+  impact for Berkeley CS sized websites though (<100 pages in the navbar). {%-
+  endcomment -%} {% include components/site_nav.html %} {% capture
+  nav_footer_custom %} {%- include nav_footer_custom.html -%} {% endcapture %}
+  {% if nav_footer_custom != "" %} {{ nav_footer_custom }} {% else %}
+  <footer class="site-footer">
+    This site uses
+    <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>,
+    a documentation theme for Jekyll.
+  </footer>
+  {% endif %}
+</div>

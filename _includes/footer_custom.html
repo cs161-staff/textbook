@@ -1,0 +1,46 @@
+<script>
+  (function () {
+    var navList = document.querySelector('.aux-nav-list');
+    if (!navList || !navList.firstElementChild) return;
+    var darkToggle = navList.firstElementChild;
+    darkToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleDark();
+    });
+  })();
+</script>
+
+<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+<script>
+  // adapted from https://stackoverflow.com/a/48078807/1217368
+  // Waiting for https://github.com/just-the-docs/just-the-docs/pull/945
+  $(document).ready(function () {
+    $('pre.highlight').each(function (i) {
+      // create an id for the current code section
+      var currentId = 'codeBlock' + i;
+
+      // find the code section and add the id to it
+      var codeSection = $(this).find('code');
+      codeSection.attr('id', currentId);
+    });
+  });
+</script>
+
+<script src="{{ '/assets/js/tocbot.min.js' | relative_url }}"></script>
+<script>
+  // Tries to mirror the HTML TOC
+  tocbot.init({
+    tocSelector: '.js-toc',
+    contentSelector: '.main-content',
+    headingSelector: 'h2, h3',
+    ignoreSelector: '.no_toc',
+    hasInnerContainers: true,
+    linkClass: 'nav-list-link',
+    activeLinkClass: 'active',
+    listClass: 'nav-list',
+    listItemClass: 'nav-list-item',
+    activeListItemClass: 'active',
+    collapseDepth: 3,
+    scrollSmooth: false,
+  });
+</script>

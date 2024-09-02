@@ -2,6 +2,7 @@
 title: 37. Abusing Intrusion Detection
 parent: Network Security
 nav_order: 13
+layout: page
 ---
 
 # 37. Abusing Intrusion Detection
