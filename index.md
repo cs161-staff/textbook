@@ -13,7 +13,7 @@ This is the textbook for [CS 161: Computer Security](https://cs161.org/) at [UC 
 
 ## Corrections
 
-As of the Summer 2024 semester, this textbook is still being actively maintained and updated.
+As of the Fall 2024 semester, this textbook is still being actively maintained and updated.
 
 If you see any parts that needs to be corrected, please open a Github issue [here](https://github.com/cs161-staff/textbook/issues).
 

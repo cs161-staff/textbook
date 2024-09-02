@@ -16,7 +16,7 @@ It is through this absence of automatic bounds-checking that buffer overflows ta
 
 Let us start with a simple example.
 
-```
+```c
 char buf[8];
 void vulnerable() {
     gets(buf);
@@ -33,7 +33,7 @@ Note that `char buf[8]` is defined outside of the function, so it is located in 
 
 To illustrate some of the dangers that this bug can cause, let's slightly modify the example:
 
-```
+```c
 char buf[8];
 int authenticated = 0;
 void vulnerable() {
@@ -53,7 +53,7 @@ The program above allows that to happen, because the `gets` function does no bou
 
 Now consider another variation:
 
-```
+```c
 char buf[8];
 int (*fnptr)();
 void vulnerable() {
@@ -87,7 +87,7 @@ _Stack smashing_ attacks exploit the x86 function call convention. See [Chapter 
 
 Suppose the code looks like this:
 
-```
+```c
 void vulnerable() {
     char buf[8];
     gets(buf);
@@ -155,7 +155,7 @@ The bottom line is this: _If your program has a buffer overflow bug, you should 
 
 Let's begin this section by walking through a normal printf call. Suppose we had the following piece of code:
 
-```
+```c
 void not_vulnerable() {
     char buf[8];
     if (fgets(buf, sizeof(buf), stdin) == NULL)
@@ -206,7 +206,7 @@ The bottom line: _If your program has a format string vulnerability, assume that
 
 What's wrong with this code?
 
-```
+```c
 char buf[8];
 void vulnerable() {
     int len = read_int_from_network();
@@ -221,13 +221,13 @@ void vulnerable() {
 
 Here's a hint. The function definition for `memcpy()` is:
 
-```
+```c
 void *memcpy(void *dest, const void *src, size_t n);
 ```
 
 And the definition of `size_t` is:
 
-```
+```c
 typedef unsigned int size_t;
 ```
 
@@ -237,7 +237,7 @@ Note that the C compiler won't warn about the type mismatch between `signed int`
 
 Here is another example. What's wrong with this code?
 
-```
+```c
 void vulnerable() {
     size_t len;
     char *buf;

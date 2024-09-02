@@ -72,7 +72,7 @@ All DNSSEC cryptographic records additionally include some (uninteresting) metad
 
 You might have noticed that the number of additional records is always 1 more than the actual number of additional records that appear in the response. For example, consider the final query in our regular DNS query walkthrough:
 
-```
+```shell
 $ dig +norecurse eecs.berkeley.edu @128.32.136.3
 
 ;; Got answer:
@@ -132,7 +132,7 @@ Now we're ready to see a full DNSSEC query in action. As before, you can try thi
 
 First, we query the root server for its public keys. Recall that the root's IP address, `198.41.0.4`, is publicly-known and hardcoded.
 
-```
+```shell
 $ dig +norecurse +dnssec DNSKEY . @198.41.0.4
 
 ;; Got answer:
@@ -157,7 +157,7 @@ Because we implicitly trust the root's KSK (trust anchor), and the root's KSK si
 
 Next, we query the root server for the IP address of `eecs.berkeley.edu`.
 
-```
+```shell
 $ dig +norecurse +dnssec eecs.berkeley.edu @198.41.0.4
 
 ;; Got answer:
@@ -188,7 +188,7 @@ DNSSEC doesn't remove any records compared to regular DNS--the question, answer 
 
 Next, we query the `.edu` name server for its public keys.
 
-```
+```shell
 $ dig +norecurse +dnssec DNSKEY edu. @192.5.6.30
 
 ;; Got answer:
@@ -213,7 +213,7 @@ Because we trust the `.edu` name server's KSK (from the previous step), and the 
 
 Next, we query the `.edu` name server for the IP address of `eecs.berkeley.edu`.
 
-```
+```shell
 $ dig +norecurse +dnssec eecs.berkeley.edu @192.5.6.30
 
 ;; Got answer:
@@ -245,7 +245,7 @@ In addition, the response has a `DS` type record and an `RRSIG` signature on the
 
 Next, we query the `berkeley.edu` name server for its public keys.
 
-```
+```shell
 $ dig +norecurse +dnssec DNSKEY berkeley.edu @128.32.136.3
 
 ;; Got answer:
@@ -270,7 +270,7 @@ Because we trust the `berkeley.edu` name server's KSK (from the previous step), 
 
 Finally, we query the `berkeley.edu` name server for the IP address of `eecs.berkeley.edu`.
 
-```
+```shell
 $ dig +norecurse +dnssec eecs.berkeley.edu @128.32.136.3
 
 ;; Got answer:
@@ -297,7 +297,7 @@ Offline signing works fine for existing domains, but what if we receive a reques
 
 DNSSEC has a clever solution to this problem--instead of signing individual nonexistent domains, name servers pre-compute signatures on _ranges_ of nonexistent domains. Suppose we have a website with three subdomains:
 
-```
+```shell
 b.example.com
 l.example.com
 q.example.com
@@ -317,7 +317,7 @@ NSEC records have a slight vulnerability - notice that every time we query for a
 
 Some argue that this is not really a vulnerability, because hiding a domain name like `admin.example.com` is relying on security through obscurity. Nevertheless, an attempt to fix this was implemented as **NSEC3**, which simply uses the hashes of every domain name instead of the actual domain name.
 
-```
+```shell
 372fbe338b9f3bb6f857352bc4c6a49721d6066f (l.example.com)
 6898bc7daf3054daae05e8763153ee1506e809d5 (q.example.com)
 f96a6ec2fb6efbe43002f4cbf124f90879424d79 (b.example.com)

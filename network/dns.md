@@ -86,7 +86,7 @@ Every DNS query begins with the root server. For redundancy, there are actually 
 
 The first root server has domain `a.root-servers.net` and IP address `198.41.0.4`. We can use `dig` to send a DNS request to this address, asking for the IP address of `eecs.berkeley.edu`.
 
-```
+```shell
 $ dig +norecurse eecs.berkeley.edu @198.41.0.4
 
 ;; Got answer:
@@ -125,7 +125,7 @@ For completeness: `172800` is the TTL (time-to-live) for each record, set at 172
 
 Sanity check: What name server do we query next? How do we know where that name server is located? What do we query that name server for?[^2]
 
-```
+```shell
 $$ dig +norecurse eecs.berkeley.edu @192.5.6.30
 
 ;; Got answer:
@@ -149,7 +149,7 @@ adns3.berkeley.edu.  172800   IN   A    192.107.102.142
 
 The next query also has an empty answer section, with `NS` records in the authority section and `A` records in the additional section which give us the domains and IP addresses of name servers responsible for the `berkeley.edu` zone.
 
-```
+```shell
 $ dig +norecurse eecs.berkeley.edu @128.32.136.3
 
 ;; Got answer:
@@ -173,7 +173,7 @@ DNS is insecure against a malicious name server. For example, if a `berkeley.edu
 
 However, a more dangerous exploit is using the additional section to poison the cache with even more malicious IP addresses. For example, this malicious DNS response would cause the resolver to associate `google.com` with an attacker-owned IP address `6.6.6.6`.
 
-```
+```shell
 $ dig +norecurse eecs.berkeley.edu @192.5.6.30
 
 ...
@@ -197,7 +197,7 @@ The Kaminsky attack relies on querying for nonexistent domains. Remember that th
 
 An attacker can now include malicious additional records in the fake response for the nonexistent `fake161.berkeley.edu`:
 
-```
+```shell
 $$ dig fake161.berkeley.edu
 
 ;; Got answer:
@@ -215,7 +215,7 @@ If the fake response arrives first, the resolver will cache the malicious additi
 
 Now that the attacker can try as many times as they want, all that's left is to force a victim to make thousands of DNS queries for nonexistent domains. This can be achieved by tricking the victim into visiting a website that tries to load lots of nonexistent domains:
 
-```
+```shell
 <img src="http://fake001.berkeley.edu/image.jpg"/>
 <img src="http://fake002.berkeley.edu/image.jpg"/>
 <img src="http://fake003.berkeley.edu/image.jpg"/>
