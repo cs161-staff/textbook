@@ -25,7 +25,7 @@ For security and functionality reasons, we don't want the browser to send every 
 
 The browser sends a cookie to a given URL if the cookie's `Domain` attribute is a domain-suffix of the URL domain, and the cookie's `Path` attribute is a prefix of the URL path. In other words, the URL domain should end in the cookie's `Domain` attribute, and the URL path should begin with the cookie's `Path` attribute.
 
-For example, a cookie with <code>Domain=<span style="color: red">example.com</span></code> and <code>Path=<span style="color: green">/some/path</span></code> will be included on a request to <code>http://foo.<span style="color: red">example.com</span><span style="color: green">/some/path</span>/index.html</code>, because the URL domain ends in the cookie domain, and the URL path begins with the cookie path.
+For example, a cookie with <code>Domain=<span class="red">example.com</span></code> and <code>Path=<span class="green">/some/path</span></code> will be included on a request to <code>http://foo.<span class="red">example.com</span><span class="green">/some/path</span>/index.html</code>, because the URL domain ends in the cookie domain, and the URL path begins with the cookie path.
 
 Note that cookie policy uses a different set of rules than the same origin policy. This has caused problems in the past. {% comment %} Nick wrote: "has caused problems in the path." typo? -peyrin {% endcomment %}
 

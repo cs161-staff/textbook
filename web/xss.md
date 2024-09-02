@@ -33,7 +33,7 @@ In a reflected XSS attack, the attacker finds a vulnerable webpage where the ser
 A classic example of reflected XSS is a Google search. When you make an HTTP GET request for a Google search, such as `https://www.google.com/search?&q=cs161`, the returned webpage with search results will include something like
 
 <p style="text-align: center">
-  <code>You searched for: <span style="color: red">cs161</span></code>
+  <code>You searched for: <span class="red">cs161</span></code>
 </p>
 
 If Google does not properly check user input, an attacker could create a malicious URL `https://www.google.com/search?&q=<script>alert("XSS attack!")</script>`. When the victim loads this URL, Google will return
@@ -41,7 +41,7 @@ If Google does not properly check user input, an attacker could create a malicio
 <p style="text-align: center">
   <code>
     You searched for:
-    <span style="color: red"
+    <span class="red"
       >&lt;script&gt;alert(&quot;XSS attack!&quot;)&lt;/script&gt;</span
     >
   </code>
