@@ -11,18 +11,18 @@ layout: page
 
 SQL injection is a special case of a more broad category of attacks called code injections.
 
-As an example, consider a calculator website that accepts user input and calls `eval` in Python in the server backend to perform the calculation. For example, if a user types <code style="color: red">2+3</code> into the website, the server will run <code>eval('<span style="color: red">2+3</span>')</code> and return the result to the user.
+As an example, consider a calculator website that accepts user input and calls `eval` in Python in the server backend to perform the calculation. For example, if a user types <code class="red">2+3</code> into the website, the server will run <code>eval('<span class="red">2+3</span>')</code> and return the result to the user.
 
 If the web server is not careful about checking user input, an attacker could provide a malicious input like
 
 <p style="text-align: center">
-  <code style="color: red">2+3"); os.system("rm -rf /</code>
+  <code class="red">2+3"); os.system("rm -rf /</code>
 </p>
 
 When the web server plugs this into the `eval` function, the result looks like
 
 <p style="text-align: center">
-  <code>eval("<span style="color: red">2+3"); os.system("rm *.*</span>")</code>
+  <code>eval("<span class="red">2+3"); os.system("rm *.*</span>")</code>
 </p>
 
 If interpreted as code, this statement causes the web server to delete all its files!
@@ -45,7 +45,7 @@ A user can make an HTTP GET request for a course rating through a URL:
 
 <p style="text-align: center">
   <code>
-    http://www.berkeley.edu/evals?course=<span style="color: red"
+    http://www.berkeley.edu/evals?course=<span class="red"
     >cs61a</span>
   </code>
 </p>
@@ -54,7 +54,7 @@ To process this request, the server performs a SQL query to look up the rating c
 
 <p style="text-align: center">
   <code>
-    SELECT rating FROM evals WHERE course = '<span style="color: red"
+    SELECT rating FROM evals WHERE course = '<span class="red"
     >cs61a</span>'
   </code>
 </p>
@@ -62,7 +62,7 @@ To process this request, the server performs a SQL query to look up the rating c
 Just like the code injection example, if the server does not properly check user input, an attacker could create a special input that allows arbitrary SQL code to be run. Consider the following malicious input:
 
 <p style="text-align: center">
-  <code style="color: red">
+  <code class="red">
     garbage'; SELECT password FROM passwords WHERE username = 'admin
   </code>
 </p>
@@ -71,7 +71,7 @@ When the web server plugs this into the SQL query, the resulting query looks lik
 
 <p style="text-align: center">
   <code>
-    SELECT rating FROM evals WHERE course = '<span style="color: red"
+    SELECT rating FROM evals WHERE course = '<span class="red"
     >garbage'; SELECT * FROM passwords WHERE username = 'admin</span>'
   </code>
 </p>
@@ -93,8 +93,8 @@ When the web server receives a login request, it creates a SQL query by plugging
 
 <p style="text-align: center">
   <code>
-    SELECT username FROM users WHERE username = '<span style="color: red"
-    >alice</span>' AND password = '<span style="color: red">password123</span>'
+    SELECT username FROM users WHERE username = '<span class="red"
+    >alice</span>' AND password = '<span class="red">password123</span>'
   </code>
 </p>
 
@@ -107,8 +107,8 @@ First, in the username field, we should add a dummy username and a quote to end 
 <p style="text-align: center">
   <code>
     SELECT username FROM users WHERE username =
-    '<span style="color: red">alice'</span>' AND password =
-    '<span style="color: red">password123</span>'
+    '<span class="red">alice'</span>' AND password =
+    '<span class="red">password123</span>'
   </code>
 </p>
 
@@ -117,8 +117,8 @@ Next, we need to add some SQL syntax so that this query returns more than 0 rows
 <p style="text-align: center">
   <code>
     SELECT username FROM users WHERE username =
-    '<span style="color: red">alice' OR 1=1</span>' AND password =
-    '<span style="color: red">_____</span>'
+    '<span class="red">alice' OR 1=1</span>' AND password =
+    '<span class="red">_____</span>'
   </code>
 </p>
 
@@ -127,9 +127,9 @@ Next, we have to add some SQL so that the rest of the query doesn't throw a synt
 <p style="text-align: center">
   <code>
     SELECT username FROM users WHERE username =
-    '<span style="color: red"
+    '<span class="red"
       >alice' OR 1=1; SELECT username FROM users WHERE username = 'alice</span
-    >' AND password = '<span style="color: red">_____</span>'
+    >' AND password = '<span class="red">_____</span>'
   </code>
 </p>
 
@@ -138,9 +138,9 @@ The second query might not return anything, but the first query will return a no
 <p style="text-align: center">
   <code>
     SELECT username FROM users WHERE username =
-    '<span style="color: red"
+    '<span class="red"
       >alice' OR 1=1; SELECT username FROM users WHERE username = 'alice</span
-    >' AND password = '<span style="color: red">garbage</span>'
+    >' AND password = '<span class="red">garbage</span>'
   </code>
 </p>
 
@@ -149,11 +149,11 @@ Thus, our malicious username and password should be
 <p style="text-align: center">
   <span style="display: inline-block; text-align: left">
     username =
-    <code style="color: red">
+    <code class="red">
       alice' OR 1=1; SELECT username FROM users WHERE username = 'alice
     </code>
     <br />
-    password = <code style="color: red">garbage</code>
+    password = <code class="red">garbage</code>
   </span>
 </p>
 
@@ -164,9 +164,9 @@ In our previous example, we can instead start a comment to ignore parts of the q
 <p style="text-align: center">
   <code>
     SELECT username FROM users WHERE username =
-    '<span style="color: red">alice' OR 1=1--</span
+    '<span class="red">alice' OR 1=1--</span
     ><span style="opacity: 0.5"
-      >' AND password = '<span style="color: red">garbage</span>'</span
+      >' AND password = '<span class="red">garbage</span>'</span
     >
   </code>
 </p>
@@ -175,9 +175,9 @@ Thus, another malicious username and password is
 
 <p style="text-align: center">
   <span style="display: inline-block; text-align: left">
-    username = <code style="color: red">alice' OR 1=1--</code>
+    username = <code class="red">alice' OR 1=1--</code>
     <br />
-    password = <code style="color: red">garbage</code>
+    password = <code class="red">garbage</code>
   </span>
 </p>
 
@@ -196,8 +196,8 @@ For example, in the previous exploit, if the server replaces all instances of th
 <p style="text-align: center">
   <code>
     SELECT username FROM users WHERE username =
-    '<span style="color: red">alice\' OR 1=1\-\-</span>' AND password =
-    '<span style="color: red">garbage</span>'
+    '<span class="red">alice\' OR 1=1\-\-</span>' AND password =
+    '<span class="red">garbage</span>'
   </code>
 </p>
 

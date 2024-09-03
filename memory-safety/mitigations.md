@@ -53,7 +53,7 @@ Some of these library functions may take arguments. For example, `execv` takes a
 
 We can take this idea of returning to already-loaded code and extend it further to now execute arbitrary code. Return-oriented programming is a technique that overwrites a chain of return addresses starting at the RIP in order to execute a series of "ROP gadgets" which are equivalent to the desired malicious code. Essentially, we are constructing a custom shellcode using pieces of code that already exist in memory. Instead of executing an existing function, like we did in "Return to libc", with ROP you can execute your own code by simply executing different pieces of different code. For example, imagine we want to add 4 to the value currently in the EDX register as part of a larger program. In loaded memory, we have the following functions:
 
-```
+```shell
 foo:
     ...
     0x4005a1 <foo+33> mov %edx, %eax
