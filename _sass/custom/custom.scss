@@ -203,3 +203,11 @@ h2.text-delta + ul a, #markdown-toc a {
   padding: 0.75rem !important;
   text-decoration: none;
 }
+
+.anchor-heading {
+  padding: 0.85rem !important;
+  min-height: 2.75rem !important;
+  min-width: 2.75rem !important;
+  margin-left: -0.6rem !important;
+  margin-top: -0.7rem !important;
+}
