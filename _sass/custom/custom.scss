@@ -135,6 +135,10 @@ code[style*="color: red"] {
     justify-content: flex-end;
   }
 
+  .content {
+    max-width: 75%
+  }
+
   .content-nav {
       margin: 0 0 2rem;
       padding: 0;
@@ -180,6 +184,14 @@ code[style*="color: red"] {
 @media print {
   .content-nav {
       display: none;
+  }
+  .content {
+    width: 100%;
+    max-width: 100%;
+  }
+  .main {
+    margin: 0 !important;
+    max-width: 100%;
   }
 }
 
