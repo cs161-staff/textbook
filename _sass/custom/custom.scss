@@ -91,7 +91,7 @@ code[style*="color: red"] {
   }
 
   .content {
-    overflow-x: auto;
+    max-width: 75%
   }
 
   .content-nav {
@@ -139,6 +139,14 @@ code[style*="color: red"] {
 @media print {
   .content-nav {
       display: none;
+  }
+  .content {
+    width: 100%;
+    max-width: 100%;
+  }
+  .main {
+    margin: 0 !important;
+    max-width: 100%;
   }
 }
 
