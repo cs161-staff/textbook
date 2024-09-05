@@ -2,6 +2,7 @@
 title: 14. Passwords
 parent: Cryptography
 nav_order: 10
+layout: page
 ---
 
 # 14. Passwords

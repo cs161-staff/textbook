@@ -2,6 +2,7 @@
 title: 12. Digital Signatures
 parent: Cryptography
 nav_order: 8
+layout: page
 ---
 
 # 12. Digital Signatures

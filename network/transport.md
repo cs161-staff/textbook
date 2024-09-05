@@ -2,6 +2,7 @@
 title: 30. TCP and UDP
 parent: Network Security
 nav_order: 6
+layout: page
 ---
 
 # 30. Transport Layer: TCP, UDP

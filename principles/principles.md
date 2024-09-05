@@ -2,6 +2,7 @@
 title: 1. Security Principles
 parent: Security Principles
 nav_order: 1
+layout: page
 ---
 
 # 1. Security Principles

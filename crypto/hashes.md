@@ -2,6 +2,7 @@
 title: 7. Cryptographic Hashes
 parent: Cryptography
 nav_order: 3
+layout: page
 ---
 
 # 7. Cryptographic Hashes

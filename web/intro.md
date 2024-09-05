@@ -2,6 +2,7 @@
 title: 18. Introduction to the Web
 parent: Web Security
 nav_order: 2
+layout: page
 ---
 
 # 18. Introduction to the Web

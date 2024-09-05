@@ -2,6 +2,7 @@
 title: 28. WPA
 parent: Network Security
 nav_order: 4
+layout: page
 ---
 
 # 28. Wireless Local Networks: WPA2

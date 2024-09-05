@@ -38,6 +38,12 @@ code[style*="color: red"] {
   color: var(--red-color) !important;
 }
 
+@media (max-width: $content-width) {
+  .content-nav {
+    display: none;
+  }
+}
+
 // Begin UCB header fixes
 
 // If width of display is less than content-width, header is invisible
@@ -76,6 +82,72 @@ code[style*="color: red"] {
   .main-header {
     width: calc(100% - 15.5rem);
   }
+
+  // Begin Right nav scroll
+  .page {
+    display: flex;
+    flex-direction: row-reverse; // put nav on right
+    justify-content: flex-end;
+  }
+
+  .content {
+    max-width: 75%
+  }
+
+  .content-nav {
+      margin: 0 0 2rem;
+      padding: 0;
+      position: sticky;
+      float: right;
+      top: 6em;
+      flex: 0 0 25%;
+      max-width: 25%;
+      max-height: calc(100vh - 2em);
+      height: 100%;
+      overflow-y: auto;
+      font-size: 0.9em;
+      line-height: 1.8;
+
+    .nav-list-link {
+      text-decoration: none;
+      padding-right: 1em !important;
+      line-height: 1.4rem !important;
+    }
+
+    .nav-list .nav-list-item .nav-list-link {
+      min-height: 1.8rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 15px;
+      list-style: none;
+      list-style-type: none;
+
+      li::before {
+        display: none;
+      }
+
+      ul {
+        border-left: none;
+      }
+    }
+  }
+  // End Right Nav scroll
+}
+
+@media print {
+  .content-nav {
+      display: none;
+  }
+  .content {
+    width: 100%;
+    max-width: 100%;
+  }
+  .main {
+    margin: 0 !important;
+    max-width: 100%;
+  }
 }
 
 // If width of display is at least content+nav width
@@ -89,6 +161,18 @@ code[style*="color: red"] {
   // Header should match content width (e.g. in wider.scss)
   .main-header {
     width: $content-width;
+  }
+}
+
+.content-nav .nav-list .nav-list-item .nav-list-link {
+  padding-top: 0.7rem !important;
+  padding-bottom: 0.7rem !important;
+  text-decoration: none;
+}
+
+@media (max-width: $content-width) {
+  .content-nav {
+    display: none;
   }
 }
 
@@ -118,4 +202,12 @@ li a,
 h2.text-delta + ul a, #markdown-toc a {
   padding: 0.75rem !important;
   text-decoration: none;
+}
+
+.anchor-heading {
+  padding: 0.85rem !important;
+  min-height: 2.75rem !important;
+  min-width: 2.75rem !important;
+  margin-left: -0.6rem !important;
+  margin-top: -0.7rem !important;
 }

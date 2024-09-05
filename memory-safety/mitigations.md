@@ -2,6 +2,7 @@
 title: 4. Mitigating Memory-Safety Vulnerabilities
 parent: Memory Safety
 nav_order: 3
+layout: page
 ---
 
 # 4. Mitigating Memory-Safety Vulnerabilities

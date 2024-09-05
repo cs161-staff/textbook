@@ -1,0 +1,21 @@
+{%- unless include.node.nav_exclude or include.node.released == false and
+jekyll.environment != "debug" -%} {%- assign include.node_url_size =
+include.node.url | size -%} {%- assign url_size = include.node.url | size -%}
+{%- assign prefix = page.url | slice: 0, url_size -%}
+<li class="nav-list-item {% if include.node.url == prefix %} active{% endif %}">
+  <a
+    href="{{ include.node.url | relative_url }}"
+    class="nav-list-link{% if page.url == include.node.url %} active{% endif %}"
+    >{{ include.node.title }}</a
+  >
+  {%- if include.node.has_children and include.depth <= site.max_nav_depth -%}
+  {%- if include.node.child_nav_order == 'desc' -%} {%- assign children_list =
+  pages_list | where: "parent", include.node.title | reverse -%} {%- else -%}
+  {%- assign children_list = pages_list | where: "parent", include.node.title
+  -%} {%- endif -%} {%- assign children_depth = include.depth | plus:1 -%}
+  <ul class="nav-list child">
+    {%- for child in children_list -%} {%- include nav_list.html node=child
+    depth=children_depth -%} {%- endfor -%}
+  </ul>
+  {%- endif -%} {%- endunless -%}
+</li>

@@ -2,6 +2,7 @@
 title: 11. Public-Key Encryption
 parent: Cryptography
 nav_order: 7
+layout: page
 ---
 
 # 11. Public-Key (Asymmetric) Encryption

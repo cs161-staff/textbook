@@ -2,6 +2,7 @@
 title: 29. BGP
 parent: Network Security
 nav_order: 5
+layout: page
 ---
 
 # 29. IP Routing: BGP
