@@ -39,7 +39,7 @@ jobs:
 
       - name: Convert HTML to PDF and merge them
         run: |
-          site_folder="_site"
+          site_folder="$PWD/_site"
           output_folder="pdf_output"
           combined_pdf="textbook_full.pdf"
 
@@ -49,49 +49,6 @@ jobs:
             "index.html"
             "principles/index.html"
             "principles/principles.html"
-            "memory-safety/index.html"
-            "memory-safety/x86.html"
-            "memory-safety/vulnerabilities.html"
-            "memory-safety/mitigations.html"
-            "crypto/index.html"
-            "crypto/intro.html"
-            "crypto/symmetric.html"
-            "crypto/hashes.html"
-            "crypto/macs.html"
-            "crypto/prng.html"
-            "crypto/key-exchange.html"
-            "crypto/public-key.html"
-            "crypto/signatures.html"
-            "crypto/certificates.html"
-            "crypto/passwords.html"
-            "crypto/case-studies.html"
-            "crypto/bitcoin.html"
-            "web/index.html"
-            "web/sqli.html"
-            "web/intro.html"
-            "web/sop.html"
-            "web/cookies.html"
-            "web/csrf.html"
-            "web/xss.html"
-            "web/ui-attacks.html"
-            "web/captchas.html"
-            "network/index.html"
-            "network/intro.html"
-            "network/arp.html"
-            "network/dhcp.html"
-            "network/wpa.html"
-            "network/bgp.html"
-            "network/transport.html"
-            "network/tls.html"
-            "network/dns.html"
-            "network/dnssec.html"
-            "network/dos.html"
-            "network/firewalls.html"
-            "network/intrusion-detection.html"
-            "network/abusing-instrusion-detection.html"
-            "network/malware.html"
-            "network/tor.html"
-            "glossary.html"
           )
 
           for html_file in "${file_list[@]}"; do
@@ -105,16 +62,16 @@ jobs:
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3
         with:
-          name: site-pdf
-          path: textbook_full.pdf
+          name: textbook-full
+          path: $PWD/textbook_full.pdf
 
       - name: Commit and push changes only on push
         if: github.event_name == 'push'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
-          git add combined_output.pdf
-          git commit -m "Update PDF document on site"
+          git add textbook_full.pdf
+          git commit -m "Update full PDF of textbook on site"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
