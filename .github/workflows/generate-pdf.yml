@@ -41,9 +41,6 @@ jobs:
         run: |
           sudo apt-get install -y poppler-utils
 
-      - name: List files in _site
-        run: ls -l _site
-
       - name: Convert HTML to PDF and merge them
         run: |
           site_folder="_site"
@@ -56,6 +53,49 @@ jobs:
             "index.html"
             "principles/index.html"
             "principles/principles.html"
+            "memory-safety/index.html"
+            "memory-safety/x86.html"
+            "memory-safety/vulnerabilities.html"
+            "memory-safety/mitigations.html"
+            "crypto/index.html"
+            "crypto/intro.html"
+            "crypto/symmetric.html"
+            "crypto/hashes.html"
+            "crypto/macs.html"
+            "crypto/prng.html"
+            "crypto/key-exchange.html"
+            "crypto/public-key.html"
+            "crypto/signatures.html"
+            "crypto/certificates.html"
+            "crypto/passwords.html"
+            "crypto/case-studies.html"
+            "crypto/bitcoin.html"
+            "web/index.html"
+            "web/sqli.html"
+            "web/intro.html"
+            "web/sop.html"
+            "web/cookies.html"
+            "web/csrf.html"
+            "web/xss.html"
+            "web/ui-attacks.html"
+            "web/captchas.html"
+            "network/index.html"
+            "network/intro.html"
+            "network/arp.html"
+            "network/dhcp.html"
+            "network/wpa.html"
+            "network/bgp.html"
+            "network/transport.html"
+            "network/tls.html"
+            "network/dns.html"
+            "network/dnssec.html"
+            "network/dos.html"
+            "network/firewalls.html"
+            "network/intrusion-detection.html"
+            "network/abusing-instrusion-detection.html"
+            "network/malware.html"
+            "network/tor.html"
+            "glossary.html"
           )
 
           for html_file in "${file_list[@]}"; do
@@ -66,7 +106,7 @@ jobs:
 
             if [ -f "$full_path" ]; then
               echo "Generating PDF for $html_file"
-              google-chrome --headless --disable-gpu --disable-software-rasterizer --no-sandbox --no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
+              google-chrome --headless --disable-gpu -no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
             else
               echo "Error: File $full_path not found!" >&2
               exit 1
