@@ -100,7 +100,7 @@ jobs:
 
           for html_file in "${file_list[@]}"; do
             full_path="$site_folder/$html_file"
-            output_pdf="$output_folder/$(basename "$html_file" .html).pdf"
+            output_pdf="$output_folder/$(echo "$html_file" | sed 's/\//_/g').pdf"
 
             echo "$output_pdf"
 
