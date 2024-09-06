@@ -92,7 +92,7 @@ jobs:
             "network/dos.html"
             "network/firewalls.html"
             "network/intrusion-detection.html"
-            "network/abusing-instrusion-detection.html"
+            "network/abusing-intrusion-detection.html"
             "network/malware.html"
             "network/tor.html"
             "glossary.html"
