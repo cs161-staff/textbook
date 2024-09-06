@@ -113,7 +113,54 @@ jobs:
             fi
           done
 
-          pdfunite "$output_folder"/*.pdf "$PWD/$combined_pdf"
+          pdfunite \
+            "pdf_output/index.html.pdf" \
+            "pdf_output/principles_index.html.pdf" \
+            "pdf_output/principles_principles.html.pdf" \
+            "pdf_output/memory-safety_index.html.pdf" \
+            "pdf_output/memory-safety_x86.html.pdf" \
+            "pdf_output/memory-safety_vulnerabilities.html.pdf" \
+            "pdf_output/memory-safety_mitigations.html.pdf" \
+            "pdf_output/crypto_index.html.pdf" \
+            "pdf_output/crypto_intro.html.pdf" \
+            "pdf_output/crypto_symmetric.html.pdf" \
+            "pdf_output/crypto_hashes.html.pdf" \
+            "pdf_output/crypto_macs.html.pdf" \
+            "pdf_output/crypto_prng.html.pdf" \
+            "pdf_output/crypto_key-exchange.html.pdf" \
+            "pdf_output/crypto_public-key.html.pdf" \
+            "pdf_output/crypto_signatures.html.pdf" \
+            "pdf_output/crypto_certificates.html.pdf" \
+            "pdf_output/crypto_passwords.html.pdf" \
+            "pdf_output/crypto_case-studies.html.pdf" \
+            "pdf_output/crypto_bitcoin.html.pdf" \
+            "pdf_output/web_index.html.pdf" \
+            "pdf_output/web_sqli.html.pdf" \
+            "pdf_output/web_intro.html.pdf" \
+            "pdf_output/web_sop.html.pdf" \
+            "pdf_output/web_cookies.html.pdf" \
+            "pdf_output/web_csrf.html.pdf" \
+            "pdf_output/web_xss.html.pdf" \
+            "pdf_output/web_ui-attacks.html.pdf" \
+            "pdf_output/web_captchas.html.pdf" \
+            "pdf_output/network_index.html.pdf" \
+            "pdf_output/network_intro.html.pdf" \
+            "pdf_output/network_arp.html.pdf" \
+            "pdf_output/network_dhcp.html.pdf" \
+            "pdf_output/network_wpa.html.pdf" \
+            "pdf_output/network_bgp.html.pdf" \
+            "pdf_output/network_transport.html.pdf" \
+            "pdf_output/network_tls.html.pdf" \
+            "pdf_output/network_dns.html.pdf" \
+            "pdf_output/network_dnssec.html.pdf" \
+            "pdf_output/network_dos.html.pdf" \
+            "pdf_output/network_firewalls.html.pdf" \
+            "pdf_output/network_intrusion-detection.html.pdf" \
+            "pdf_output/network_abusing-intrusion-detection.html.pdf" \
+            "pdf_output/network_malware.html.pdf" \
+            "pdf_output/network_tor.html.pdf" \
+            "pdf_output/glossary.html.pdf" \
+            "$PWD/$combined_pdf"
 
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3
