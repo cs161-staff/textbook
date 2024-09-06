@@ -97,7 +97,7 @@ jobs:
           for html_file in "${file_list[@]}"; do
             full_path="$site_folder/$html_file"
             output_pdf="$output_folder/$(basename "$html_file" .html).pdf"
-            google-chrome --headless --no-sandbox --no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
+            google-chrome --headless --disable-gpu --disable-software-rasterizer --no-sandbox --no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
           done
 
           pdfunite "$output_folder"/*.pdf "$site_folder/$combined_pdf"
