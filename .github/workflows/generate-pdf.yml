@@ -41,7 +41,7 @@ jobs:
         run: |
           site_folder="_site"
           output_folder="pdf_output"
-          combined_pdf="combined_output.pdf"
+          combined_pdf="textbook_full.pdf"
 
           mkdir -p "$output_folder"
 
@@ -100,7 +100,7 @@ jobs:
             google-chrome --headless --disable-gpu --disable-software-rasterizer --no-sandbox --no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
           done
 
-          pdfunite "$output_folder"/*.pdf "$site_folder/$combined_pdf"
+          pdfunite "$output_folder"/*.pdf "$PWD/$combined_pdf"
 
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3
