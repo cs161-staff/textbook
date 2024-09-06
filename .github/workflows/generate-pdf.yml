@@ -39,7 +39,7 @@ jobs:
 
       - name: Convert HTML to PDF and merge them
         run: |
-          site_folder="$PWD/_site"
+          site_folder="_site"
           output_folder="pdf_output"
           combined_pdf="textbook_full.pdf"
 
@@ -54,7 +54,16 @@ jobs:
           for html_file in "${file_list[@]}"; do
             full_path="$site_folder/$html_file"
             output_pdf="$output_folder/$(basename "$html_file" .html).pdf"
-            google-chrome --headless --disable-gpu --disable-software-rasterizer --no-sandbox --no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
+
+            echo "file://$PWD/$full_path"
+
+            if [ -f "$full_path" ]; then
+              echo "Generating PDF for $html_file"
+              google-chrome --headless --disable-gpu --disable-software-rasterizer --no-sandbox --no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
+            else
+              echo "Error: File $full_path not found!" >&2
+              exit 1
+            fi
           done
 
           pdfunite "$output_folder"/*.pdf "$PWD/$combined_pdf"
@@ -63,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: textbook-full
-          path: $PWD/textbook_full.pdf
+          path: textbook_full.pdf
 
       - name: Commit and push changes only on push
         if: github.event_name == 'push'
