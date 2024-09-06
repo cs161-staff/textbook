@@ -37,6 +37,9 @@ jobs:
         run: |
           sudo apt-get install -y poppler-utils
 
+      - name: List files in _site
+        run: ls -l _site
+
       - name: Convert HTML to PDF and merge them
         run: |
           site_folder="_site"
