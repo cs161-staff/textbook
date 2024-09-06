@@ -25,6 +25,10 @@ jobs:
       - name: Install Jekyll dependencies
         run: |
           bundle install
+      
+      - name: Build Jekyll site
+        run: |
+          bundle exec jekyll build
 
       - name: Install Google Chrome
         run: |
