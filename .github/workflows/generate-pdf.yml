@@ -77,7 +77,7 @@ jobs:
           )
           for md_file in "${file_list[@]}"; do
             pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g' | sed 's/.md//g').pdf"
-            python3 generate-pdf-edits.py "$md_file" | pandoc -V geometry:margin=1in --pdf-engine=pdflatex -o "$pdf_file_name"
+            python3 generate-pdf-edits.py "$md_file" | pandoc -V geometry:margin=1in --pdf-engine=pdflatex -o "$pdf_file_name" --template=generate-pdf.tex
 
             if [ ! -f "$pdf_file_name" ]; then
               echo "Error: PDF file $pdf_file_name not created!" >&2
@@ -130,7 +130,13 @@ jobs:
             "pdf_output/network_abusing-intrusion-detection.pdf" \
             "pdf_output/network_malware.pdf" \
             "pdf_output/network_tor.pdf" \
-            "textbook_full.pdf"
+            "textbook_full_tmp.pdf"
+
+      - name: Install pdfjam
+        run: sudo apt-get install -y pdfjam
+
+      - name: Inject page numbers back into the pdf
+        run: pdfjam --pagecommand '\thispagestyle{plain}' --outfile textbook_full.pdf textbook_full_tmp.pdf
 
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3
