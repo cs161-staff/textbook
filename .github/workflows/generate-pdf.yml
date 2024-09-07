@@ -30,6 +30,11 @@ jobs:
         run: |
           sudo apt-get install -y pandoc
 
+      - name: Install LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          texlive: full
+
       - name: Generate PDFs from the textbook Markdown files
         run: |
           mkdir -p pdf_output
