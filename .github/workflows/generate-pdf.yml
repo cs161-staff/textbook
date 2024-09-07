@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: textbook-full
-          path: textbook_full.pdf
+          path: vulnerabilities.pdf
 
       - name: Commit and push changes only on push
         if: github.event_name == 'push'
