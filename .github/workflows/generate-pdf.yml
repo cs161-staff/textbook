@@ -145,7 +145,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
-          git checkout -b update-textbook-full-pdf-$(date +%s)
+          git checkout -b update-textbook-full-pdf
           git add textbook_full.pdf
           git commit -m "Update PDF of textbook on site after a merge to main"
           git push origin HEAD
@@ -158,7 +158,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update PDF of textbook on site"
-          branch: update-textbook-full-pdf-$(date +%s)
+          branch: update-textbook-full-pdf
           title: "Update full PDF of textbook"
           body: "This PR updates the full PDF of the textbook."
           base: main
