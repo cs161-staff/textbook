@@ -10,6 +10,7 @@ def adjust_images(input_file):
 
     content = content.replace('{% comment %}', '<!--')
     content = content.replace('{% endcomment %}', '-->')
+    content = content.replace('.svg', '.png')
 
     # Define a regular expression to match the HTML-style image pattern
     pattern = r'<img\s+src="(/[^"]+)"\s+alt="([^"]*)"(?:\s+width="([^"]*)")?[^>]*>'
