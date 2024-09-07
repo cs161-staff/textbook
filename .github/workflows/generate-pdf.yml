@@ -134,15 +134,16 @@ jobs:
       - name: Inject page numbers back into the pdf
         run: pdfjam --pagecommand '\pagestyle{plain}' --outfile textbook_full.pdf textbook_full.pdf
 
-      - name: Remove temporary files
+      - name: Remove temporary files, make temporary copy to upload as artifact
         run: |
           rm -rf pdf_output
+          cp textbook_full.pdf textbook_full_cpy.pdf
 
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v4
         with:
-          name: textbook-full
-          path: textbook_full.pdf
+          name: textbook-full-copy
+          path: textbook_full_cpy.pdf
 
       - name: Commit changes to a new branch
         if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
