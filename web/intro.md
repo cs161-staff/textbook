@@ -3,6 +3,8 @@ title: 18. Introduction to the Web
 parent: Web Security
 nav_order: 2
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 18. Introduction to the Web

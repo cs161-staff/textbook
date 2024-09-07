@@ -3,6 +3,8 @@ title: 20. Cookies and Session Management
 parent: Web Security
 nav_order: 4
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 20. Cookies and Session Management

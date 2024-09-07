@@ -3,6 +3,8 @@ title: 10. Diffie-Hellman Key Exchange
 parent: Cryptography
 nav_order: 6
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 10. Diffie-Hellman key exchange
@@ -45,15 +47,11 @@ Then, Alice picks a secret value $$a$$ at random from the set $$\{0,1,\dots,p-2\
 
 Now Alice announces the value $$A$$ (keeping $$a$$ secret), and Bob announces $$B$$ (keeping $$b$$ secret). Alice uses her knowledge of $$B$$ and $$a$$ to compute
 
-$$
-S = B^a = (g^b)^a = g^{ba} \pmod p.
-$$
+$$S = B^a = (g^b)^a = g^{ba} \pmod p.$$
 
 Symmetrically, Bob uses his knowledge of $$A$$ and $$b$$ to compute
 
-$$
-S = A^b = (g^a)^b = g^{ab} \pmod p.
-$$
+$$S = A^b = (g^a)^b = g^{ab} \pmod p.$$
 
 Note that $$g^{ba} = g^{ab} \pmod{p}$$, so both Alice and Bob end up with the same result, $$S$$.
 
@@ -85,15 +83,11 @@ Alice computes $$A = a \cdot G$$ (this is a point on the curve $$A$$, obtained b
 
 Alice computes
 
-$$
-S = a \cdot B = a \cdot b \cdot G
-$$
+$$S = a \cdot B = a \cdot b \cdot G$$
 
 and Bob computes
 
-$$
-S = b \cdot A = b \cdot a \cdot G
-$$
+$$S = b \cdot A = b \cdot a \cdot G$$
 
 Because of the properties of the elliptic curve, Alice and Bob will derive the same point $$S$$, so they now have a shared secret. Also, the elliptic-curve Diffie-Hellman problem states that given $$A = a \cdot G$$ and $$B = b \cdot G$$, there is no known efficient method for Eve to calculate $$S$$.
 
@@ -111,8 +105,7 @@ It turns out the Diffie-Hellman key exchange protocol is only secure against a p
 
 The following figure demonstrates how an active attacker (Mallory) can agree on a key ($$K_1=g^{am} \pmod{p}$$) with Alice and another key ($$K_2=g^{bm} \pmod{p}$$) with Bob in order to man-in-the-middle (MITM) their communications.
 
-![Diagram of the Diffie-Hellman key exchange between Alice and Bob, with Mallory
-in the middle](/assets/images/crypto/key-exchange/diffie_mitm.png)
+<img src="/assets/images/crypto/key-exchange/diffie_mitm.png" alt="Diagram of the Diffie-Hellman key exchange between Alice and Bob, with Mallory in the middle" />
 
 When Alice sends $$g^a \pmod{p}$$ to Bob, Mallory intercepts the message and replaces it with $$g^m \pmod{p}$$, where $$m$$ is Mallory's secret. Bob now receives $$g^m \pmod{p}$$ instead of $$g^a \pmod{p}$$. Now, when Bob wants to calculate his shared key, he will calculate $$K = A^b \pmod{p}$$, where $$A$$ is the value he received from Alice. Since he received a tampered value from Mallory, Bob will actually calculate $$K = (g^m)^b = g^{mb} \pmod{p}$$.
 

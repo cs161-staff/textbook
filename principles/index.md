@@ -2,6 +2,8 @@
 title: Security Principles
 nav_order: 1
 has_children: true
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # Security Principles

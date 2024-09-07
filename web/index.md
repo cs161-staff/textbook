@@ -2,6 +2,8 @@
 title: Web Security
 nav_order: 4
 has_children: true
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # Web Security

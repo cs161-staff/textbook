@@ -3,6 +3,8 @@ title: 28. WPA
 parent: Network Security
 nav_order: 4
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 28. Wireless Local Networks: WPA2

@@ -3,6 +3,8 @@ title: 16. Bitcoin
 parent: Cryptography
 nav_order: 12
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 {% comment %} Draft I found in the fa19 repo. Incomplete and not sure if it ever was finished. We should finish it this semester -peyrin sp21
@@ -106,10 +108,12 @@ Note that each block contains the hash of the previous block, which in turn cont
 
 Another way to see this is to write out the hashes. For example:
 
-$$\text{Block 4} = m_4, H(\text{Block 3})$$  
-    $$= m_4, H(m_3, H(\text{Block 2}))$$  
-    $$ = m_4, H(m_3, H(m_2, H(\text{Block 1})))$$  
-    $$= m_4, H(m_3, H(m_2, H(m_1)))$$
+$$\begin{aligned}
+\text{Block 4} &= m_4, H(\text{Block 3}) \\
+&= m_4, H(m_3, H(\text{Block 2})) \\
+&= m_4, H(m_3, H(m_2, H(\text{Block 1}))) \\
+&= m_4, H(m_3, H(m_2, H(m_1)))
+\end{aligned}$$
 
 Note that Block 4 contains a digest of all the messages so far, namely $$m_1, m_2, m_3, m_4$$.
 
@@ -164,3 +168,4 @@ Spending Bitcoin is in many ways analogous to simply writing a check. If the add
 [^1]: Created by Nick Weaver by simply generating a large number of random private keys until random luck generated one with the "FuckBTC" prefix
 
 {% endcomment %}
+

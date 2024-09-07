@@ -3,6 +3,8 @@ title: 29. BGP
 parent: Network Security
 nav_order: 5
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 29. IP Routing: BGP

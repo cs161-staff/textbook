@@ -137,7 +137,7 @@ code[style*="color: red"] {
 }
 
 @media print {
-  .content-nav {
+  .content-nav, .site-header, .breadcrumb-nav-list  {
       display: none;
   }
   .content {

@@ -3,6 +3,8 @@ title: 34. Denial-of-Service (DoS)
 parent: Network Security
 nav_order: 10
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 34. Denial-of-Service (DoS)

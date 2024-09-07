@@ -3,6 +3,8 @@ title: 24. CAPTCHAs
 parent: Web Security
 nav_order: 8
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 24. CAPTCHAs
