@@ -181,7 +181,7 @@ There is no proof that AES is computationally indistinguishable from random, but
 
 Thus AES behaves very differently than the one-time pad. Even given a very large number of plaintext/ciphertext pairs, there appears to be no effective way to decrypt any new ciphertexts. We can leverage this property to build symmetric-key encryption schemes where there is no effective way to decrypt _any_ ciphertext, even if it's the encryption of a message we've seen before.
 
-{% comment %}
+<!--
 
 removed advantage stuff since I don't think we cover it anymore -peyrin sp21
 
@@ -215,7 +215,7 @@ So the advantage is just a rescaled version of the probability that Gloria guess
 
 We often use the advantage to measure how "similar" (or "distinguishable") two things are. If Eve has advantage at most $$\epsilon$$ of guessing whether she is interacting with a type-I or type-II box, for some small $$\epsilon$$, then it follows that type-I boxes are basically indistinguishable from type-II boxes: e.g., any place where a type-II box is secure, a type-I box will also be secure. We will often compare a real scheme to an ideal (but unimplementable) model of what the scheme ought achieve; if Eve's advantage at distinguishing these two is guaranteed to be small, then the real scheme is just as good as the idealization.
 
-{% endcomment %}
+-->
 
 ## 6.6. Block Cipher Modes of Operation
 
