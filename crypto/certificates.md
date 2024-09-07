@@ -186,7 +186,7 @@ Another design principle: "Users shouldn't have to understand cryptography to us
 
 {% endcomment %}
 
-<!--{% comment %}
+{% comment %}
 
 ## Cryptographic Protocols
 
@@ -266,4 +266,4 @@ Kerberos, a widely used authentication system, is based upon this protocol.
 
 The Needham-Schroeder protocol is a classic example of the subtlety of cryptographic protocols. The original 1978 paper by Needham and Schroeder actually included two protocols: a symmetric-key version (shown above), and a public-key version (not shown here). As mentioned before, Denning and Sacco discovered an attack on the symmetric-key version in 1981. It was not until 1995 that researchers first discovered that the public-key version is also secure: Gavin Lowe found a subtle man-in-the-middle attack. This discovery motivated a great deal of advanced research into the design and analysis of cryptographic protocols.
 
-{% endcomment %}-->
+{% endcomment %}

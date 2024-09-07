@@ -19,6 +19,11 @@ jobs:
       - name: Install Pandoc
         run: sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils
 
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
       - name: Generate PDFs from the textbook Markdown files
         run: |
           mkdir -p pdf_output
@@ -40,7 +45,7 @@ jobs:
           )
           for md_file in "${file_list[@]}"; do
             pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g').pdf"
-            pandoc "$md_file" -V geometry:margin=1in --pdf-engine=pdflatex -o "$pdf_file_name"
+            python3 fix-image-paths.py "$md_file" | pandoc -V geometry:margin=1in --pdf-engine=pdflatex -o "$pdf_file_name"
 
             if [ ! -f "$pdf_file_name" ]; then
               echo "Error: PDF file $pdf_file_name not created!" >&2
