@@ -29,6 +29,35 @@ jobs:
           mkdir -p pdf_output
           
           file_list=(
+            "index.md"
+            "principles/index.md"
+            "principles/principles.md"
+            "memory-safety/index.md"
+            "memory-safety/x86.md"
+            "memory-safety/vulnerabilities.md"
+            "memory-safety/mitigations.md"
+            "crypto/index.md"
+            "crypto/intro.md"
+            "crypto/symmetric.md"
+            "crypto/hashes.md"
+            "crypto/macs.md"
+            "crypto/prng.md"
+            "crypto/key-exchange.md"
+            "crypto/public-key.md"
+            "crypto/signatures.md"
+            "crypto/certificates.md"
+            "crypto/passwords.md"
+            "crypto/case-studies.md"
+            "crypto/bitcoin.md"
+            "web/index.md"
+            "web/sqli.md"
+            "web/intro.md"
+            "web/sop.md"
+            "web/cookies.md"
+            "web/csrf.md"
+            "web/xss.md"
+            "web/ui-attacks.md"
+            "web/captchas.md"
             "network/index.md"
             "network/intro.md"
             "network/arp.md"
@@ -45,10 +74,9 @@ jobs:
             "network/abusing-intrusion-detection.md"
             "network/malware.md"
             "network/tor.md"
-            "glossary.md"
           )
           for md_file in "${file_list[@]}"; do
-            pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g').pdf"
+            pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g' | sed 's/.md//g').pdf"
             python3 generate-pdf-edits.py "$md_file" | pandoc -V geometry:margin=1in --pdf-engine=pdflatex -o "$pdf_file_name"
 
             if [ ! -f "$pdf_file_name" ]; then
@@ -57,23 +85,51 @@ jobs:
             fi
           done
           pdfunite \
-            "pdf_output/network_index.md.pdf" \
-            "pdf_output/network_intro.md.pdf" \
-            "pdf_output/network_arp.md.pdf" \
-            "pdf_output/network_dhcp.md.pdf" \
-            "pdf_output/network_wpa.md.pdf" \
-            "pdf_output/network_bgp.md.pdf" \
-            "pdf_output/network_transport.md.pdf" \
-            "pdf_output/network_tls.md.pdf" \
-            "pdf_output/network_dns.md.pdf" \
-            "pdf_output/network_dnssec.md.pdf" \
-            "pdf_output/network_dos.md.pdf" \
-            "pdf_output/network_firewalls.md.pdf" \
-            "pdf_output/network_intrusion-detection.md.pdf" \
-            "pdf_output/network_abusing-intrusion-detection.md.pdf" \
-            "pdf_output/network_malware.md.pdf" \
-            "pdf_output/network_tor.md.pdf" \
-            "pdf_output/glossary.md.pdf" \
+            "pdf_output/index.pdf" \
+            "pdf_output/principles_index.pdf" \
+            "pdf_output/principles_principles.pdf" \
+            "pdf_output/memory-safety_index.pdf" \
+            "pdf_output/memory-safety_x86.pdf" \
+            "pdf_output/memory-safety_vulnerabilities.pdf" \
+            "pdf_output/memory-safety_mitigations.pdf" \
+            "pdf_output/crypto_index.pdf" \
+            "pdf_output/crypto_intro.pdf" \
+            "pdf_output/crypto_symmetric.pdf" \
+            "pdf_output/crypto_hashes.pdf" \
+            "pdf_output/crypto_macs.pdf" \
+            "pdf_output/crypto_prng.pdf" \
+            "pdf_output/crypto_key-exchange.pdf" \
+            "pdf_output/crypto_public-key.pdf" \
+            "pdf_output/crypto_signatures.pdf" \
+            "pdf_output/crypto_certificates.pdf" \
+            "pdf_output/crypto_passwords.pdf" \
+            "pdf_output/crypto_case-studies.pdf" \
+            "pdf_output/crypto_bitcoin.pdf" \
+            "pdf_output/web_index.pdf" \
+            "pdf_output/web_sqli.pdf" \
+            "pdf_output/web_intro.pdf" \
+            "pdf_output/web_sop.pdf" \
+            "pdf_output/web_cookies.pdf" \
+            "pdf_output/web_csrf.pdf" \
+            "pdf_output/web_xss.pdf" \
+            "pdf_output/web_ui-attacks.pdf" \
+            "pdf_output/web_captchas.pdf" \
+            "pdf_output/network_index.pdf" \
+            "pdf_output/network_intro.pdf" \
+            "pdf_output/network_arp.pdf" \
+            "pdf_output/network_dhcp.pdf" \
+            "pdf_output/network_wpa.pdf" \
+            "pdf_output/network_bgp.pdf" \
+            "pdf_output/network_transport.pdf" \
+            "pdf_output/network_tls.pdf" \
+            "pdf_output/network_dns.pdf" \
+            "pdf_output/network_dnssec.pdf" \
+            "pdf_output/network_dos.pdf" \
+            "pdf_output/network_firewalls.pdf" \
+            "pdf_output/network_intrusion-detection.pdf" \
+            "pdf_output/network_abusing-intrusion-detection.pdf" \
+            "pdf_output/network_malware.pdf" \
+            "pdf_output/network_tor.pdf" \
             "textbook_full.pdf"
 
       - name: Upload PDF to site
