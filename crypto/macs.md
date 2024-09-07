@@ -53,10 +53,8 @@ There are a number of schemes out there, but one good one is AES-CMAC, an algori
 
 In AES-EMAC, the key $$K$$ is 256 bits, viewed as a pair of 128-bit AES keys: $$K=\langle K_1,K_2 \rangle$$. The message $$M$$ is decomposed into a sequence of 128-bit blocks: $$M = P_1 \Vert P_2 \Vert ... \Vert P_n$$. We set $$S_0 = 0$$ and compute
 
-$$
-S_i = \textrm{AES}_{K_1}(S_{i-1} \oplus P_i),\qquad
-    \text{for $i=1,2,\dots,n$.}
-$$
+$$S_i = \textrm{AES}_{K_1}(S_{i-1} \oplus P_i),\qquad
+    \text{for $i=1,2,\dots,n$.}$$
 
 Finally we compute $$T = \textrm{AES}_{K_2}(S_n)$$; $$T$$ is the tag for message $$M$$. Here is what it looks like:
 
