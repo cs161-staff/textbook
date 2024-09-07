@@ -16,7 +16,7 @@ This is the textbook for [CS 161: Computer Security](https://cs161.org/) at [UC 
 ## PDF Version
 [These notes are available as a PDF.](https://textbook.cs161.org/textbook_full.pdf)
 
-This PDF is automatically generated each time there is a [correction](#corrections) made to the website. This means that it is _completely possible_ for a downloaded copy to be not up-to-date. If your desired mode of the textbook is in PDF form, we recommend you regularly redownload if there are corrections being made.
+This PDF is automatically generated each time there is a [correction](#corrections) made to the website. This means that it is _completely possible_ for a downloaded copy to be not up-to-date. If your desired mode of the textbook is in PDF form, we recommend you regularly redownload in cases there were recent corrections made.
 
 ## Corrections
 

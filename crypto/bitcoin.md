@@ -115,3 +115,57 @@ $$\begin{aligned}
 &= m_4, H(m_3, H(m_2, H(m_1)))
 \end{aligned}$$
 
+Note that Block 4 contains a digest of all the messages so far, namely $$m_1, m_2, m_3, m_4$$.
+
+## 16.7. Properties of Hash Chains
+
+Assume that Alice is given the $$H(\text{Block } i)$$ from a trusted source, but she downloads blocks 1 through $$i$$ from an untrusted source. Only using the $$H(\text{Block } i)$$, Alice can verify that the blocks she downloaded from the untrusted source are not compromised by recomputing the hashes of each block, checking that they match the hash in the next block, and so on, until the last block, which she checks against the hash she received from the trusted source. Let’s walk through an example:
+
+Say Alice received the $$H(\text{Block 4})$$ from somewhere she trusts and then fetches the entire blockchain from a compromised server (so she downloads blocks 1 through 4). Can an attacker give Alice an incorrect chain, say with block 2 being incorrect, without her detecting it? No! Since we use cryptographic hashes, which are collision resistant, two different blocks cannot hash to the same value. Say that block 2 is incorrect and Alice instead received block $$2'$$, then $$H(\text{Block } 2')$$ $$\neq$$ $$H(\text{Block 2})$$. Since block 3 includes the hash of block $$2'$$, block 3 will also be incorrect, so the third block that Alice received is block $$3'$$ $$\neq$$ block 3. So, $$H(\text{Block } 3')$$ $$\neq$$ $$H(\text{Block 3})$$. Then, since block 4 includes the hash of block $$3'$$, block 4 will also be incorrect, so the fourth block that Alice received is block $$4'$$ $$\neq$$ block 4. So, $$H(\text{Block } 4')$$ $$\neq$$ $$H(\text{Block 4})$$. Since Alice received H(block 4) from a trusted source, and it does not match up with $$H(\text{Block} 4')$$, Alice is able to detect misbehavior. On the other hand, if the $$H(\text{Block } 4')$$ did match $$H(\text{Block 4})$$, then the blockchain that Alice downloaded is correct, and we have no misbehavior.
+
+So, perhaps the most important property in a hash chain is that if you get the hash of the latest block from a trusted source, then you can verify that all of the previous history is correct.
+
+## 16.8. Consensus in Bitcoin
+
+In Bitcoin, every participant in the network stores the entire blockchain (and thus all of its history) since we don’t utilize a centralized server. When someone wants to create a new transaction, they broadcast that transaction to everyone, and each user on the network has to check the transaction. If the transaction is correct, they will append it to their local blockchain.
+
+The issue is that some users might be malicious, meaning that they might not append certain transactions or might not check certain transactions correctly or might replay certain transactions or might allow invalid transactions. Bitcoin, however, assumes that the majority of users are honest.
+
+Perhaps one of the biggest issues is forks, which are essentially different versions of the blockchain that exist at the same time. For example, say that Mallory bought a house from Bob for 500 $$B$$, and this transaction is appended to the ledger. Mallory can then try “go back in time” and start the blockchain from just before this transaction was added to it, and can start appending new transaction entries from there. If Mallory can get other users to accept this new forked chain, she can get her 500 $$B$$ back!
+
+This means that we need a way for all users to agree on the content of the blockchain: _consensus via proof of work_.
+
+## 16.9. Consensus via Proof of Work
+
+In Bitcoin, while every user locally stores the entire blockchain, not every user can add a block. This special privilege is reserved for certain users, known as _miners_, who can only add a block if they have a valid proof of work. A miner validates transactions before solving a _proof of work_, which, if completed before any other miner, allows the miner to append the block to the blockchain. The proof of work is a computational puzzle that takes the hash of the current block concatenated with a random number. This random number can be incremented so that the hash changes, until the proof of work is solved. The proof of work is considered solved when the resulting hash starts with $$N$$ zero bits, where the value of $$N$$ (e.g. 33) is determined by the Bitcoin algorithm.
+
+Miners then broadcast blocks with their proof of work. All honest miners listen for such blocks, check the blocks for correctness, and _accept the longest correct chain_. If a miner appends a block with some incorrect transaction, the block is ignored. The key idea for consensus is that everyone will always prefer the longest correct chain. Thus, if multiple miners append blocks at the same time, consensus is gained by the longest correct chain, and the rest of the “versions” are discarded. When two different miners at the same time solve a proof of work and append two different blocks, thus forking the network, the next miner that appends onto one of these chains invalidates the other chain.
+
+Say for example that an honest miner $$M_1$$ stores the current local blockchain $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$, and hears about transaction $$T$$. $$M_1$$ checks $$T$$, then tries to mine (solve for the proof of work) for a new block $$b_4$$ to now include transaction $$T$$. However, if miner $$M_2$$ mines $$b_4$$ first, $$M_2$$ will broadcast $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4$$. $$M_1$$ checks $$b_4$$, accepts it, gives up mining block 4, then starts to mine for block 5. $$M_1$$ now has the blockchain $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4$$ stored locally and has started to mine $$b_5$$. However, if $$M_1$$ hears miner 3 broadcasts $$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4’$$&rarr;$$b_5’$$, $$M_1$$ will discard the shorter blockchain ($$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4$$) in favor of the longer one ($$b_1$$&rarr;$$b_2$$&rarr;$$b_3$$&rarr;$$b_4’$$&rarr;$$b_5’$$). By always accepting the longest blockchain, all the miners are ensured to have the same blockchain view.
+
+Remember that Bitcoin assumes that more than half of the users are honest, meaning that more than half of the computing power is in the hands of honest miners, thus ensuring that honest miners will always have an advantage to mine the longest chain. Going back to the example about forks that prompted this discussion, if proof of consensus is implemented, Mallory cannot fork the blockchain since she does not have >50% of the computing power in the world. Since the longest chain is always taken as the accepted, Mallory’s forked chain will be shorter unless she can mine new entries faster than the aggregate mining power of everyone else in the world.
+
+Go forth and mine!
+
+{% comment %}
+
+Below is from Nick in fa19 I think? -peyrin
+
+I don't think this needs to go in the notes, it can be something that is just said in a blue lecture slide ~fuzail
+
+## Editorial: Practical problems with Bitcoin
+
+Bitcoin and other cryptocurrencies are very interesting from both a social and technical viewpoint. Yet interesting does not necessarily mean \"good\". Bitcoin technologically is a fairly simple idea: combining a public ledger with proof of work. Yet it is a remarkably poor currency, a horrid store of value, and surrounded by a community best described as "Bat Shit Insane".
+
+There are also a lot of rather obscure details in Bitcoin itself, such as the particular signature scheme and the use of double-hashing when a single hash would suffice. We will skip over some of those details and present things at a slightly higher level.
+
+## The Bitcoin Public Ledger
+
+A Bitcoin "wallet" does not actually store Bitcoin. Instead it simply contains a set of one or more private keys. The hash of the corresponding public key (with suitable checksumming to prevent some typos) is the corresponding "address" where others can send payment. For example, this public address 1FuckBTCqwBQexxs9jiuWTiZeoKfSo9Vyi[^1] has a corresponding private key.
+
+Spending Bitcoin is in many ways analogous to simply writing a check. If the address 1FuckBTC\... wants to send .052 Bitcoin to 1Ross5\..., the person who controls 1FuckBTC simply signs a message to the effect of "conduct this payment". The resulting hash <https://blockchain.info/tx/d6b24ab29fa8e8f2c43bb07a3437538507776a671d9301368b1a7a32107b7139?show_adv=true>d6b24ab29fa8e8f2c43bb07a3437538507776a671d9301368b1a7a32107b7139
+
+[^1]: Created by Nick Weaver by simply generating a large number of random private keys until random luck generated one with the "FuckBTC" prefix
+
+{% endcomment %}
+
