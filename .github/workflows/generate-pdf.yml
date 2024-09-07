@@ -82,7 +82,7 @@ jobs:
           for md_file in "${file_list[@]}"; do
             pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g').pdf"
 
-            python3 fix-image-paths.py "$md_file" | pandoc -V geometry:margin=1in -o "$pdf_file"
+            python3 fix-image-paths.py "$md_file" | pandoc -V geometry:margin=1in -o "$pdf_file_name"
 
             if [ ! -f "$pdf_file" ]; then
               echo "Error: PDF file $pdf_file not created!" >&2
