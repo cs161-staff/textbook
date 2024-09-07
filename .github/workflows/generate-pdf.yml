@@ -24,6 +24,7 @@ jobs:
       - name: Install Pandoc and PDF tools
         run: |
           sudo apt-get update
+          sudo apt-get install -y texlive
           sudo apt-get install -y pandoc poppler-utils
 
       - name: Generate PDFs from the textbook Markdown files
