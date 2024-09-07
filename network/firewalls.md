@@ -59,8 +59,8 @@ A stateful packet filter is a router that checks each packet against the provide
 Typically, rules specify which connections are allowed. The rule can list the protocol (tcp or udp), the initiator’s IP address (the machine that initiated the connection), the initiator’s port number, the recipient’s IP address (the machine that the connection is directed to), and the recipient’s port number. A rule can use wildcards, denoted by the symbol $$*$$, for any of these. Each rule also specifies what action to take for matching connections; typical values might be ALLOW or DROP.
 
 For example, take the following ruleset:  
-allow tcp $$* : *$$ &rarr; $$ 1.2.3.4:25$$  
-drop $$*$$ &nbsp; $$* : *$$ &rarr; $$* : *$$
+allow tcp $$* : *$$  $$\rightarrow$$  $$ 1.2.3.4:25$$  
+drop $$*$$ &nbsp; $$* : *$$  $$\rightarrow$$  $$* : *$$
 
 This ruleset allows anyone to open a TCP connection to port 25 on machine 1.2.3.4, but blocks all other connections.
 
