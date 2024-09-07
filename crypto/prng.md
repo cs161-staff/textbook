@@ -125,8 +125,6 @@ Finally, if we want to generate pseudorandom output and add entropy at the same 
 
 &nbsp; **return** $$\text{output}[0:n]$$
 
-</div>
-
 ---
 
 The specific design decisions of HMAC-DRBG, such as why it uses `0x00` and `0x01`, are not so important. The main takeaway is that because HMAC output is indistinguishable from random, the output of HMAC-DRBG (which is essentially lots of HMAC outputs) is also indistinguishable from random.

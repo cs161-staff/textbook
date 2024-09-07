@@ -61,13 +61,9 @@ Let's look at an example. As a professor at UC Berkeley, David Wagner is an empl
 
 In cryptographic protocol notation, the certificate would look like this:
 
-$$
-\text{Encryption under a public key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{PK}
-$$
+$$\text{Encryption under a public key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{PK}$$
 
-$$
-\text{Signing with private key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{SK_\text{Jerry}^{-1}}
-$$
+$$\text{Signing with private key: } \{\text{David Wagner's public key is }\texttt{0x092...3F}\}_{SK_\text{Jerry}^{-1}}$$
 
 where here $$\{M\}_{SK^{-1}}$$ denotes a digital signature on the message $$M$$ using the private key $$SK^{-1}$$. In this case, $$SK^{-1}_\text{Jerry}$$ is Jerry Brown's private key. This certificate is just some digital data: a sequence of bits. The certificate can be published and shared with anyone who wants to communicate securely with David.
 
@@ -99,13 +95,9 @@ Above we looked at an example where Jerry Brown could sign certificates attestin
 
 A more scalable approach is to establish a hierarchy of responsibility. Jerry might issue certificates to the heads of each of the major state agencies. For instance, Jerry might issue a certificate for the University of California, delegating to UC President Janet Napolitano the responsibility and authority to issue certificates to UC employees. Napolitano might sign certificates for all UC employees. We get:
 
-$$
-\{\text{The University of California's public key is $PK_\text{Napolitano}$}\}_{SK_\text{Jerry}^{-1}}
-$$
+$$\{\text{The University of California's public key is $PK_\text{Napolitano}$}\}_{SK_\text{Jerry}^{-1}}$$
 
-$$
-\{\text{David Wagner's public key is $PK_\text{daw}$}\}_{SK_\text{Napolitano}^{-1}}
-$$
+$$\{\text{David Wagner's public key is $PK_\text{daw}$}\}_{SK_\text{Napolitano}^{-1}}$$
 
 This is a simple example of a _certificate chain_: a sequence of certificates, each of which authenticates the public key of the party who has signed the next certificate in the chain.
 
@@ -194,7 +186,7 @@ Another design principle: "Users shouldn't have to understand cryptography to us
 
 {% endcomment %}
 
-{% comment %}
+<!--{% comment %}
 
 ## Cryptographic Protocols
 
@@ -274,4 +266,4 @@ Kerberos, a widely used authentication system, is based upon this protocol.
 
 The Needham-Schroeder protocol is a classic example of the subtlety of cryptographic protocols. The original 1978 paper by Needham and Schroeder actually included two protocols: a symmetric-key version (shown above), and a public-key version (not shown here). As mentioned before, Denning and Sacco discovered an attack on the symmetric-key version in 1981. It was not until 1995 that researchers first discovered that the public-key version is also secure: Gavin Lowe found a subtle man-in-the-middle attack. This discovery motivated a great deal of advanced research into the design and analysis of cryptographic protocols.
 
-{% endcomment %}
+{% endcomment %}-->
