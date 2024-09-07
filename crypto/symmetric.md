@@ -3,6 +3,8 @@ title: 6. Symmetric-Key Cryptography
 parent: Cryptography
 nav_order: 2
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 {% comment %} When updating, check w/ a crypto guru that AES is still well-described as basically having no known flaws. DAW confirmed this for 2013. {% endcomment %}

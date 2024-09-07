@@ -3,6 +3,8 @@ title: 31. TLS
 parent: Network Security
 nav_order: 7
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 31. TLS

@@ -3,6 +3,8 @@ title: 12. Digital Signatures
 parent: Cryptography
 nav_order: 8
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 12. Digital Signatures

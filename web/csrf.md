@@ -3,6 +3,8 @@ title: 21. Cross-Site Request Forgery (CSRF)
 parent: Web Security
 nav_order: 5
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 21. Cross-Site Request Forgery (CSRF)

@@ -3,6 +3,8 @@ title: 39. Anonymity and Tor
 parent: Network Security
 nav_order: 15
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 {% comment %}

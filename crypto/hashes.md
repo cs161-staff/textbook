@@ -3,6 +3,8 @@ title: 7. Cryptographic Hashes
 parent: Cryptography
 nav_order: 3
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 7. Cryptographic Hashes

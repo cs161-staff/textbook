@@ -3,6 +3,8 @@ title: 3. Memory Safety Vulnerabilities
 parent: Memory Safety
 nav_order: 2
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 3. Memory Safety Vulnerabilities

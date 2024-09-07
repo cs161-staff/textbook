@@ -3,6 +3,8 @@ title: 14. Passwords
 parent: Cryptography
 nav_order: 10
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 14. Passwords

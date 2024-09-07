@@ -3,6 +3,8 @@ title: 13. Certificates
 parent: Cryptography
 nav_order: 9
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 {% comment %} TODO: next time, discuss OCSP, stapling, privacy exposure vs. "bad customer list" issue for CRLs

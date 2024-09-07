@@ -3,6 +3,8 @@ title: 35. Firewalls
 parent: Network Security
 nav_order: 11
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 35. Firewalls

@@ -3,6 +3,8 @@ title: 11. Public-Key Encryption
 parent: Cryptography
 nav_order: 7
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 11. Public-Key (Asymmetric) Encryption

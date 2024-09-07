@@ -3,6 +3,8 @@ title: 8. Message Authentication Codes (MACs)
 parent: Cryptography
 nav_order: 4
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 8. Message Authentication Codes (MACs)

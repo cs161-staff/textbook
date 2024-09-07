@@ -3,6 +3,8 @@ title: 16. Bitcoin
 parent: Cryptography
 nav_order: 12
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 {% comment %} Draft I found in the fa19 repo. Incomplete and not sure if it ever was finished. We should finish it this semester -peyrin sp21

@@ -3,6 +3,8 @@ title: 26. ARP
 parent: Network Security
 nav_order: 2
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 26. Wired Local Networks: ARP

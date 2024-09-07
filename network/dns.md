@@ -3,6 +3,8 @@ title: 32. DNS
 parent: Network Security
 nav_order: 8
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 32. DNS

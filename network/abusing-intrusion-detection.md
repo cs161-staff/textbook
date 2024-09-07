@@ -3,6 +3,8 @@ title: 37. Abusing Intrusion Detection
 parent: Network Security
 nav_order: 13
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 37. Abusing Intrusion Detection

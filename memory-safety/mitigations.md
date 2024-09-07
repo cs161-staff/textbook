@@ -3,6 +3,8 @@ title: 4. Mitigating Memory-Safety Vulnerabilities
 parent: Memory Safety
 nav_order: 3
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 4. Mitigating Memory-Safety Vulnerabilities

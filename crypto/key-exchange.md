@@ -3,6 +3,8 @@ title: 10. Diffie-Hellman Key Exchange
 parent: Cryptography
 nav_order: 6
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 10. Diffie-Hellman key exchange
