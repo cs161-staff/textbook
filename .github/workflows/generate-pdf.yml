@@ -17,11 +17,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Pandoc
-        run: sudo apt-get install -y pandoc
+        run: sudo apt-get install -y pandoc texlive texlive-latex-extra
 
       - name: Generate PDFs from the textbook Markdown files
         run: |
-          pandoc memory-safety/vulnerabilities.md -V geometry:margin=1in -o vulnerabilities.pdf
+          pandoc memory-safety/vulnerabilities.md -V geometry:margin=1in --pdf-engine=pdflatex -o vulnerabilities.pdf
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3
         with:
