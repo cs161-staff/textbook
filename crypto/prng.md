@@ -105,9 +105,6 @@ Finally, if we want to generate pseudorandom output and add entropy at the same 
 
 **Algorithm 3** $$\text{Generate}(n)$$: Generate $$n$$ pseudorandom bits, with additional true random input $$s$$.
 
-<!-- prettier-ignore -->
-<div class="algorithm" markdown="1">
-
 &nbsp; $$\text{output} = \texttt{`'}$$
 
 &nbsp;  **while** $$\text{len}(\text{output}) < n$$ **do**
