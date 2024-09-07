@@ -16,9 +16,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Pandoc
-        run: sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils
-
+      - name: Install Pandoc, Latex necessities
+        run: sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils texlive-extra-utils
       - name: Install Python
         uses: actions/setup-python@v4
         with:
@@ -132,11 +131,8 @@ jobs:
             "pdf_output/network_tor.pdf" \
             "textbook_full_tmp.pdf"
 
-      - name: Install pdfjam
-        run: sudo apt-get install -y pdfjam
-
       - name: Inject page numbers back into the pdf
-        run: pdfjam --pagecommand '\thispagestyle{plain}' --outfile textbook_full.pdf textbook_full_tmp.pdf
+        run: pdfjam --pagecommand '\pagestyle{plain}' --outfile textbook_full.pdf textbook_full_tmp.pdf
 
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3
