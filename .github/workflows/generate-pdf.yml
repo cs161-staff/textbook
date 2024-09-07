@@ -16,151 +16,128 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          ruby-version: 3.1
-          bundler-cache: true
-
-      - name: Install Jekyll dependencies
-        run: |
-          bundle install
+          python-version: 3.10
       
-      - name: Build Jekyll site
+      - name: Install Pandoc and PDF tools
         run: |
-          bundle exec jekyll build
-
-      - name: Install Google Chrome
-        run: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt-get update
-          sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
-          rm google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y pandoc poppler-utils
 
-      - name: Install PDF tools (poppler for pdfunite)
+      - name: Generate PDFs from the textbook Markdown files
         run: |
-          sudo apt-get install -y poppler-utils
-
-      - name: Convert HTML to PDF and merge them
-        run: |
-          site_folder="_site"
-          output_folder="pdf_output"
-          combined_pdf="textbook_full.pdf"
-
-          mkdir -p "$output_folder"
+          mkdir -p pdf_output
 
           file_list=(
-            "index.html"
-            "principles/index.html"
-            "principles/principles.html"
-            "memory-safety/index.html"
-            "memory-safety/x86.html"
-            "memory-safety/vulnerabilities.html"
-            "memory-safety/mitigations.html"
-            "crypto/index.html"
-            "crypto/intro.html"
-            "crypto/symmetric.html"
-            "crypto/hashes.html"
-            "crypto/macs.html"
-            "crypto/prng.html"
-            "crypto/key-exchange.html"
-            "crypto/public-key.html"
-            "crypto/signatures.html"
-            "crypto/certificates.html"
-            "crypto/passwords.html"
-            "crypto/case-studies.html"
-            "crypto/bitcoin.html"
-            "web/index.html"
-            "web/sqli.html"
-            "web/intro.html"
-            "web/sop.html"
-            "web/cookies.html"
-            "web/csrf.html"
-            "web/xss.html"
-            "web/ui-attacks.html"
-            "web/captchas.html"
-            "network/index.html"
-            "network/intro.html"
-            "network/arp.html"
-            "network/dhcp.html"
-            "network/wpa.html"
-            "network/bgp.html"
-            "network/transport.html"
-            "network/tls.html"
-            "network/dns.html"
-            "network/dnssec.html"
-            "network/dos.html"
-            "network/firewalls.html"
-            "network/intrusion-detection.html"
-            "network/abusing-intrusion-detection.html"
-            "network/malware.html"
-            "network/tor.html"
-            "glossary.html"
+            "index.md"
+            "principles/index.md"
+            "principles/principles.md"
+            "memory-safety/index.md"
+            "memory-safety/x86.md"
+            "memory-safety/vulnerabilities.md"
+            "memory-safety/mitigations.md"
+            "crypto/index.md"
+            "crypto/intro.md"
+            "crypto/symmetric.md"
+            "crypto/hashes.md"
+            "crypto/macs.md"
+            "crypto/prng.md"
+            "crypto/key-exchange.md"
+            "crypto/public-key.md"
+            "crypto/signatures.md"
+            "crypto/certificates.md"
+            "crypto/passwords.md"
+            "crypto/case-studies.md"
+            "crypto/bitcoin.md"
+            "web/index.md"
+            "web/sqli.md"
+            "web/intro.md"
+            "web/sop.md"
+            "web/cookies.md"
+            "web/csrf.md"
+            "web/xss.md"
+            "web/ui-attacks.md"
+            "web/captchas.md"
+            "network/index.md"
+            "network/intro.md"
+            "network/arp.md"
+            "network/dhcp.md"
+            "network/wpa.md"
+            "network/bgp.md"
+            "network/transport.md"
+            "network/tls.md"
+            "network/dns.md"
+            "network/dnssec.md"
+            "network/dos.md"
+            "network/firewalls.md"
+            "network/intrusion-detection.md"
+            "network/abusing-intrusion-detection.md"
+            "network/malware.md"
+            "network/tor.md"
+            "glossary.md"
           )
 
-          for html_file in "${file_list[@]}"; do
-            full_path="$site_folder/$html_file"
-            output_pdf="$output_folder/$(echo "$html_file" | sed 's/\//_/g').pdf"
+          for md_file in "${file_list[@]}"; do
+            pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g').pdf"
 
-            echo "$output_pdf"
+            python3 fix-image-paths.py "$md_file" | pandoc -V geometry:margin=1in -o "$pdf_file"
 
-            if [ -f "$full_path" ]; then
-              echo "Generating PDF for $html_file"
-              google-chrome --headless --disable-gpu -no-pdf-header-footer --print-to-pdf="$output_pdf" "file://$PWD/$full_path"
-            else
-              echo "Error: File $full_path not found!" >&2
+            if [ ! -f "$pdf_file" ]; then
+              echo "Error: PDF file $pdf_file not created!" >&2
               exit 1
             fi
           done
 
           pdfunite \
-            "pdf_output/index.html.pdf" \
-            "pdf_output/principles_index.html.pdf" \
-            "pdf_output/principles_principles.html.pdf" \
-            "pdf_output/memory-safety_index.html.pdf" \
-            "pdf_output/memory-safety_x86.html.pdf" \
-            "pdf_output/memory-safety_vulnerabilities.html.pdf" \
-            "pdf_output/memory-safety_mitigations.html.pdf" \
-            "pdf_output/crypto_index.html.pdf" \
-            "pdf_output/crypto_intro.html.pdf" \
-            "pdf_output/crypto_symmetric.html.pdf" \
-            "pdf_output/crypto_hashes.html.pdf" \
-            "pdf_output/crypto_macs.html.pdf" \
-            "pdf_output/crypto_prng.html.pdf" \
-            "pdf_output/crypto_key-exchange.html.pdf" \
-            "pdf_output/crypto_public-key.html.pdf" \
-            "pdf_output/crypto_signatures.html.pdf" \
-            "pdf_output/crypto_certificates.html.pdf" \
-            "pdf_output/crypto_passwords.html.pdf" \
-            "pdf_output/crypto_case-studies.html.pdf" \
-            "pdf_output/crypto_bitcoin.html.pdf" \
-            "pdf_output/web_index.html.pdf" \
-            "pdf_output/web_sqli.html.pdf" \
-            "pdf_output/web_intro.html.pdf" \
-            "pdf_output/web_sop.html.pdf" \
-            "pdf_output/web_cookies.html.pdf" \
-            "pdf_output/web_csrf.html.pdf" \
-            "pdf_output/web_xss.html.pdf" \
-            "pdf_output/web_ui-attacks.html.pdf" \
-            "pdf_output/web_captchas.html.pdf" \
-            "pdf_output/network_index.html.pdf" \
-            "pdf_output/network_intro.html.pdf" \
-            "pdf_output/network_arp.html.pdf" \
-            "pdf_output/network_dhcp.html.pdf" \
-            "pdf_output/network_wpa.html.pdf" \
-            "pdf_output/network_bgp.html.pdf" \
-            "pdf_output/network_transport.html.pdf" \
-            "pdf_output/network_tls.html.pdf" \
-            "pdf_output/network_dns.html.pdf" \
-            "pdf_output/network_dnssec.html.pdf" \
-            "pdf_output/network_dos.html.pdf" \
-            "pdf_output/network_firewalls.html.pdf" \
-            "pdf_output/network_intrusion-detection.html.pdf" \
-            "pdf_output/network_abusing-intrusion-detection.html.pdf" \
-            "pdf_output/network_malware.html.pdf" \
-            "pdf_output/network_tor.html.pdf" \
-            "pdf_output/glossary.html.pdf" \
-            "$PWD/$combined_pdf"
+            "pdf_output/index.md.pdf" \
+            "pdf_output/principles_index.md.pdf" \
+            "pdf_output/principles_principles.md.pdf" \
+            "pdf_output/memory-safety_index.md.pdf" \
+            "pdf_output/memory-safety_x86.md.pdf" \
+            "pdf_output/memory-safety_vulnerabilities.md.pdf" \
+            "pdf_output/memory-safety_mitigations.md.pdf" \
+            "pdf_output/crypto_index.md.pdf" \
+            "pdf_output/crypto_intro.md.pdf" \
+            "pdf_output/crypto_symmetric.md.pdf" \
+            "pdf_output/crypto_hashes.md.pdf" \
+            "pdf_output/crypto_macs.md.pdf" \
+            "pdf_output/crypto_prng.md.pdf" \
+            "pdf_output/crypto_key-exchange.md.pdf" \
+            "pdf_output/crypto_public-key.md.pdf" \
+            "pdf_output/crypto_signatures.md.pdf" \
+            "pdf_output/crypto_certificates.md.pdf" \
+            "pdf_output/crypto_passwords.md.pdf" \
+            "pdf_output/crypto_case-studies.md.pdf" \
+            "pdf_output/crypto_bitcoin.md.pdf" \
+            "pdf_output/web_index.md.pdf" \
+            "pdf_output/web_sqli.md.pdf" \
+            "pdf_output/web_intro.md.pdf" \
+            "pdf_output/web_sop.md.pdf" \
+            "pdf_output/web_cookies.md.pdf" \
+            "pdf_output/web_csrf.md.pdf" \
+            "pdf_output/web_xss.md.pdf" \
+            "pdf_output/web_ui-attacks.md.pdf" \
+            "pdf_output/web_captchas.md.pdf" \
+            "pdf_output/network_index.md.pdf" \
+            "pdf_output/network_intro.md.pdf" \
+            "pdf_output/network_arp.md.pdf" \
+            "pdf_output/network_dhcp.md.pdf" \
+            "pdf_output/network_wpa.md.pdf" \
+            "pdf_output/network_bgp.md.pdf" \
+            "pdf_output/network_transport.md.pdf" \
+            "pdf_output/network_tls.md.pdf" \
+            "pdf_output/network_dns.md.pdf" \
+            "pdf_output/network_dnssec.md.pdf" \
+            "pdf_output/network_dos.md.pdf" \
+            "pdf_output/network_firewalls.md.pdf" \
+            "pdf_output/network_intrusion-detection.md.pdf" \
+            "pdf_output/network_abusing-intrusion-detection.md.pdf" \
+            "pdf_output/network_malware.md.pdf" \
+            "pdf_output/network_tor.md.pdf" \
+            "pdf_output/glossary.md.pdf" \
+            "textbook_full.pdf"
 
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3

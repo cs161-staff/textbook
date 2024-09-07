@@ -35,11 +35,8 @@ To redirect you to a child name server, the parent name server must provide the 
 
 As an example, a DNS query for `eecs.berkeley.edu` might have the following steps. (A comic version of this query is available at <https://howdns.works/>.)
 
-![Diagram of a recursive DNS query, where your resolver queries the root
-nameserver first in query 1 and response 2, then the nameserver at the second
-level of the tree in query 3 and response 4, then a nameserver at the third
-level of the tree in query 5 and response
-6](/assets/images/network/dns/dnsquery.png)
+<img src="/assets/images/network/dns/dnsquery.png" alt="Diagram of a recursive DNS query, where your resolver queries the root
+nameserver first in query 1 and response 2, then the nameserver at the second level of the tree in query 3 and response 4, then a nameserver at the third level of the tree in query 5 and response 6" />
 
 1. You to the root name server: Please tell me the IP address of `eecs.berkeley.edu`.
 

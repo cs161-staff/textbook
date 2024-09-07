@@ -26,7 +26,7 @@ void vulnerable() {
 
 In this example, `gets()` reads as many bytes of input as the user supplies (through standard input), and stores them into `buf[]`. If the input contains more than 8 bytes of data, then `gets()` will write past the end of `buf`, overwriting some other part of memory. This is a bug.
 
-<img src="/assets/images/memory-safety/vulnerabilities/overflow1.png" alt="Two words of memory for buf overwritten and two more words of memory above it overwritten" width="30%">
+<img src="/assets/images/memory-safety/vulnerabilities/overflow1.png" alt="Two words of memory for buf overwritten and two more words of memory above it overwritten" width="30%" />
 
 Note that `char buf[8]` is defined outside of the function, so it is located in the static part of memory. Also note that each row of the diagram represents 4 bytes, so `char buf[8]` takes up 2 rows.
 
@@ -46,7 +46,7 @@ Note that both `char buf[8]` and `authenticated` are defined outside of the func
 
 Imagine that elsewhere in the code, there is a login routine that sets the `authenticated` flag only if the user proves knowledge of the password. Unfortunately, the `authenticated` flag is stored in memory right after `buf`. Note that we use "after" here to mean "at a higher memory address".
 
-<img src="/assets/images/memory-safety/vulnerabilities/overflow2.png" alt="Two words of memory for buf overwritten and an authenticated above it overwritten" width="30%">
+<img src="/assets/images/memory-safety/vulnerabilities/overflow2.png" alt="Two words of memory for buf overwritten and an authenticated above it overwritten" width="30%" />
 
 If the attacker can write 9 bytes of data to `buf` (with the 9th byte set to a non-zero value), then this will set the `authenticated` flag to true, and the attacker will be able to gain access.
 
@@ -66,7 +66,7 @@ void vulnerable() {
 
 Like `authenticated` in the previous example, `fnptr` is stored directly above `buf` in memory.
 
-<img src="/assets/images/memory-safety/vulnerabilities/overflow3.png" alt="Two words of memory for buf overwritten and a function pointer above it overwritten" width="30%">
+<img src="/assets/images/memory-safety/vulnerabilities/overflow3.png" alt="Two words of memory for buf overwritten and a function pointer above it overwritten" width="30%" />
 
 Suppose the function pointer `fnptr` is called elsewhere in the program (not shown). This enables a more serious attack: the attacker can overwrite `fnptr` with any address of their choosing, redirecting program execution to some other memory location.
 
@@ -97,7 +97,7 @@ void vulnerable() {
 
 When `vulnerable()` is called, a stack frame is pushed onto the stack. The stack will look something like this:
 
-<img src="/assets/images/memory-safety/vulnerabilities/overflow4.png" alt="Two words of memory for buf overwritten and the rip and sfp above it overwritten" width="30%">
+<img src="/assets/images/memory-safety/vulnerabilities/overflow4.png" alt="Two words of memory for buf overwritten and the rip and sfp above it overwritten" width="30%" />
 
 If the input is too long, the code will write past the end of `buf`, overwrite the sfp, and overwrite the rip. This is a _stack smashing_ attack.
 
@@ -113,7 +113,7 @@ After writing 12 garbage bytes, our next input bytes will overwrite the rip. Rec
 
 Since malicious code exists at address `0xDEADBEEF`, the second part of our input, which overwrites the rip, is the address `0xDEADBEEF`. Note that since x86 is little-endian, we must input the bytes in reverse order: the byte `0xEF` is entered first, and the byte `0xDE` is entered last.
 
-<img src="/assets/images/memory-safety/vulnerabilities/overflow5.png" alt="Two words of memory for buf and the sfp overwritten with 0xAAAA and the rip overwritten with 0xDEADBEEF" width="50%">
+<img src="/assets/images/memory-safety/vulnerabilities/overflow5.png" alt="Two words of memory for buf and the sfp overwritten with 0xAAAA and the rip overwritten with 0xDEADBEEF" width="50%" />
 
 Now, when the `vulnerable()` function returns, the program will start executing instructions at the address in rip. Since we overwrote the rip with the address `0xDEADBEEF`, the program will start executing the malicious instructions at that address. This effectively transfers control of the program over to the attacker's malicious code.
 
@@ -129,7 +129,7 @@ At this point, we've entered 8 bytes, so we've filled up all of `buf`. Our next 
 
 Finally, we overwrite the rip with the address of shellcode, as before. However, this time, the shellcode is located in the buffer, so we overwrite the rip with the address of `buf`. When the function returns, it will start executing instructions at `buf`, which causes the shellcode to execute.
 
-<img src="/assets/images/memory-safety/vulnerabilities/overflow6.png" alt="buf overwritten with shellcode, the sfp overwritten with 0xAAAA, and the rip overwritten with the address of buf" width="50%">
+<img src="/assets/images/memory-safety/vulnerabilities/overflow6.png" alt="buf overwritten with shellcode, the sfp overwritten with 0xAAAA, and the rip overwritten with the address of buf" width="50%" />
 
 Now suppose our shellcode is 100 bytes long. If we try our input from before, the shellcode won't fit in the 12 bytes between the buffer and the rip. It turns out we can still craft an input to exploit the program:
 
@@ -137,7 +137,7 @@ Now suppose our shellcode is 100 bytes long. If we try our input from before, th
 
 In this input, we place the shellcode directly above the rip in memory. The rip is 4 bytes long, so the address of the start of shellcode is 4 bytes greater than the address of the rip. When the function returns, it will start executing instructions 4 bytes above the address of the rip, where we've placed our shellcode.
 
-<img src="/assets/images/memory-safety/vulnerabilities/overflow7.png" alt="Two words of buf and the sfp overwritten with 0xAAAA, the rip overwritten with the address of rip + 4, and the shellcode overwritten above it" width="50%">
+<img src="/assets/images/memory-safety/vulnerabilities/overflow7.png" alt="Two words of buf and the sfp overwritten with 0xAAAA, the rip overwritten with the address of rip + 4, and the shellcode overwritten above it" width="50%" />
 
 The discussion above has barely scratched the surface of techniques for exploiting buffer overrun bugs. Stack smashing dates back to at least the late 1980s, when the [Morris Worm](https://en.wikipedia.org/wiki/Morris_worm) exploited a buffer overflow vulnerability to infect thousands of computers. Buffer overflows gained wider attention in 1998 with the publication of ["Smashing the Stack for Fun and Profit" by Aleph One](https://inst.eecs.berkeley.edu/~cs161/fa08/papers/stack_smashing.pdf).
 
@@ -167,7 +167,7 @@ void not_vulnerable() {
 
 The stack diagram for this function would look something like this:
 
-<img src="/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png" alt="Initial non vulnerable code with printf" width="35%">
+<img src="/assets/images/memory-safety/vulnerabilities/printfnotvulnerable.png" alt="Initial non vulnerable code with printf" width="35%" />
 
 This is commonly another way we choose to represent a stack diagram, where each separate value or variable takes up one row and we dictate how many bytes it takes up in brackets to the left. For instance, the `[8] char buf` means that the `buf` character array takes up 8 bytes.
 
@@ -175,7 +175,7 @@ When the `printf()` function executes, it looks for a format string modifier den
 
 The behavior of the `printf()` function is generally controlled by the format modifier(s) that are passed into the function. The `printf()` function retrieves the parameters that are requested by the format string from the stack. Take, for example, the following line of code: `printf("x has the value %d, y has the value %d, z has the value %d \n", x, y, z);` The stack frame for this line of code would look like:
 
-<img src="/assets/images/memory-safety/vulnerabilities/printfnotvulnerable2.png" alt="Not vulnerable printf statement" width="35%">
+<img src="/assets/images/memory-safety/vulnerabilities/printfnotvulnerable2.png" alt="Not vulnerable printf statement" width="35%" />
 
 Remember that arguments to a function are pushed onto the stack in reverse order, which is why the address of the format string is at a lower address compared to the values of `x`, `y`, and `z`.
 
@@ -260,8 +260,8 @@ Consider a buffer whose bounds checks are off by one. This means we can write `n
 
 The following two diagrams are inspired by Section 10 of ["ASLR Smack & Laugh Reference" by Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf). They show how overwriting a single byte lets you start executing instructions at an arbitrary address in memory.
 
-![Stack diagrams showing the exploitation of an off-by-one
-vulnerability for the first return](/assets/images/memory-safety/vulnerabilities/offbyone1.png)
+<img src="/assets/images/memory-safety/vulnerabilities/offbyone1.png" alt="Stack diagrams showing the exploitation of an off-by-one
+vulnerability for the first return" />
 
 **Step 1**: This is what normal execution during a function looks like. Consider reviewing the x86 section of the notes if you'd like a refresher. The stack has the rip (saved eip), sfp (saved ebp), and the local variable `buff`. The esp register points to the bottom of the stack. The ebp register points to the sfp at the top of the stack. The sfp (saved ebp) points to the ebp of the previous function, which is higher up in memory. The rip (saved eip) points to somewhere in the code section.
 
@@ -289,8 +289,8 @@ After step 5, nothing has changed, except that the ebp now points inside the buf
 
 The key insight for this exploit is that one function return is not enough. However, eventually, if a second function return happens, it will allow us to start executing instructions at an arbitrary location. Let's walk through the same 3 instructions again, but this time with ebp incorrectly pointing in the buffer.
 
-![Stack diagrams showing the exploitation of an off-by-one
-vulnerability for the second return](/assets/images/memory-safety/vulnerabilities/offbyone2.png)
+<img src="/assets/images/memory-safety/vulnerabilities/offbyone2.png" alt="Stack diagrams showing the exploitation of an off-by-one
+vulnerability for the second return" />
 
 **Step 6**: `mov %ebp, %esp`: esp now points where ebp is pointing, which is inside the buffer. At this point in normal execution, both ebp and esp think that they are pointing at the sfp.
 
@@ -310,7 +310,7 @@ Buffer overflows, format string vulnerabilities, and the other examples above ar
 
 C++ vtable pointers are a classic example of a _heap overflow_. In C++, the programmer can declare an object on the heap. Storing an object requires storing a _vtable pointer_, a pointer to an array of pointers. Each pointer in the array contains the address of one of that object's methods. The object's instance variables are stored directly above the vtable pointer.
 
-<img src="/assets/images/memory-safety/vulnerabilities/vtable.png" alt="A diagram of a C++ object allocated in the heap, with its instance variables above its vtable" width="60%">
+<img src="/assets/images/memory-safety/vulnerabilities/vtable.png" alt="A diagram of a C++ object allocated in the heap, with its instance variables above its vtable" width="60%" />
 
 If the programmer fails to check bounds correctly, the attacker can overflow one of the instance variables of object `x`. If there is another object above `x` in memory, like object `y` in this diagram, then the attacker can overwrite that object's vtable pointer.
 
