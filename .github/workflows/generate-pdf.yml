@@ -21,12 +21,119 @@ jobs:
 
       - name: Generate PDFs from the textbook Markdown files
         run: |
-          pandoc memory-safety/vulnerabilities.md -V geometry:margin=1in --pdf-engine=pdflatex -o vulnerabilities.pdf
+          mkdir -p pdf_output
+          
+          file_list=(
+            "index.md"
+            "principles/index.md"
+            "principles/principles.md"
+            "memory-safety/index.md"
+            "memory-safety/x86.md"
+            "memory-safety/vulnerabilities.md"
+            "memory-safety/mitigations.md"
+            "crypto/index.md"
+            "crypto/intro.md"
+            "crypto/symmetric.md"
+            "crypto/hashes.md"
+            "crypto/macs.md"
+            "crypto/prng.md"
+            "crypto/key-exchange.md"
+            "crypto/public-key.md"
+            "crypto/signatures.md"
+            "crypto/certificates.md"
+            "crypto/passwords.md"
+            "crypto/case-studies.md"
+            "crypto/bitcoin.md"
+            "web/index.md"
+            "web/sqli.md"
+            "web/intro.md"
+            "web/sop.md"
+            "web/cookies.md"
+            "web/csrf.md"
+            "web/xss.md"
+            "web/ui-attacks.md"
+            "web/captchas.md"
+            "network/index.md"
+            "network/intro.md"
+            "network/arp.md"
+            "network/dhcp.md"
+            "network/wpa.md"
+            "network/bgp.md"
+            "network/transport.md"
+            "network/tls.md"
+            "network/dns.md"
+            "network/dnssec.md"
+            "network/dos.md"
+            "network/firewalls.md"
+            "network/intrusion-detection.md"
+            "network/abusing-intrusion-detection.md"
+            "network/malware.md"
+            "network/tor.md"
+            "glossary.md"
+          )
+          for md_file in "${file_list[@]}"; do
+            pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g').pdf"
+            pandoc "$md_file" -V geometry:margin=1in --pdf-engine=pdflatex -o "$pdf_file_name"
+
+            if [ ! -f "$pdf_file_name" ]; then
+              echo "Error: PDF file $pdf_file_name not created!" >&2
+              exit 1
+            fi
+          done
+          pdfunite \
+            "pdf_output/index.md.pdf" \
+            "pdf_output/principles_index.md.pdf" \
+            "pdf_output/principles_principles.md.pdf" \
+            "pdf_output/memory-safety_index.md.pdf" \
+            "pdf_output/memory-safety_x86.md.pdf" \
+            "pdf_output/memory-safety_vulnerabilities.md.pdf" \
+            "pdf_output/memory-safety_mitigations.md.pdf" \
+            "pdf_output/crypto_index.md.pdf" \
+            "pdf_output/crypto_intro.md.pdf" \
+            "pdf_output/crypto_symmetric.md.pdf" \
+            "pdf_output/crypto_hashes.md.pdf" \
+            "pdf_output/crypto_macs.md.pdf" \
+            "pdf_output/crypto_prng.md.pdf" \
+            "pdf_output/crypto_key-exchange.md.pdf" \
+            "pdf_output/crypto_public-key.md.pdf" \
+            "pdf_output/crypto_signatures.md.pdf" \
+            "pdf_output/crypto_certificates.md.pdf" \
+            "pdf_output/crypto_passwords.md.pdf" \
+            "pdf_output/crypto_case-studies.md.pdf" \
+            "pdf_output/crypto_bitcoin.md.pdf" \
+            "pdf_output/web_index.md.pdf" \
+            "pdf_output/web_sqli.md.pdf" \
+            "pdf_output/web_intro.md.pdf" \
+            "pdf_output/web_sop.md.pdf" \
+            "pdf_output/web_cookies.md.pdf" \
+            "pdf_output/web_csrf.md.pdf" \
+            "pdf_output/web_xss.md.pdf" \
+            "pdf_output/web_ui-attacks.md.pdf" \
+            "pdf_output/web_captchas.md.pdf" \
+            "pdf_output/network_index.md.pdf" \
+            "pdf_output/network_intro.md.pdf" \
+            "pdf_output/network_arp.md.pdf" \
+            "pdf_output/network_dhcp.md.pdf" \
+            "pdf_output/network_wpa.md.pdf" \
+            "pdf_output/network_bgp.md.pdf" \
+            "pdf_output/network_transport.md.pdf" \
+            "pdf_output/network_tls.md.pdf" \
+            "pdf_output/network_dns.md.pdf" \
+            "pdf_output/network_dnssec.md.pdf" \
+            "pdf_output/network_dos.md.pdf" \
+            "pdf_output/network_firewalls.md.pdf" \
+            "pdf_output/network_intrusion-detection.md.pdf" \
+            "pdf_output/network_abusing-intrusion-detection.md.pdf" \
+            "pdf_output/network_malware.md.pdf" \
+            "pdf_output/network_tor.md.pdf" \
+            "pdf_output/glossary.md.pdf" \
+            "textbook_full.pdf"
+
       - name: Upload PDF to site
         uses: actions/upload-artifact@v3
         with:
           name: textbook-full
-          path: vulnerabilities.pdf
+          path: textbook_full.pdf
 
       - name: Commit and push changes only on push
         if: github.event_name == 'push'
