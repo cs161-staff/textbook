@@ -1,11 +1,11 @@
 ---
-title: 2. State Spaces and Search Problems
+title: State Spaces and Search Problems
 parent: Search
 nav_order: 2
 layout: page
 ---
 
-# 2. State Spaces and Search Problems
+# State Spaces and Search Problems
 
 In order to create a rational planning agent, we need a way to mathematically express the given environment in which the agent will exist. To do this, we must formally express a **search problem** - given our agent's current **state** (its configuration within its environment), how can we arrive at a new state that satisfies its goals in the best possible way? A search problem consists of the following elements:
 
@@ -22,37 +22,37 @@ Before we continue with how to solve search problems, it's important to note the
 
 ![Pacman example image](../assets/images/pacman_example.png)
 
-Let's consider a variation of the game in which the maze contains only Pacman and food pellets. We can pose two distinct search problems in this scenario: pathing and eat-all-dots. Pathing attempts to solve the problem of getting from position (x₁, y₁) to position (x₂, y₂) in the maze optimally, while eat all dots attempts to solve the problem of consuming all food pellets in the maze in the shortest time possible. Below, the states, actions, transition model, and goal test for both problems are listed:
+Let's consider a variation of the game in which the maze contains only Pacman and food pellets. We can pose two distinct search problems in this scenario: pathing and eat-all-dots. Pathing attempts to solve the problem of getting from position $$(x_1, y_1)$$ to position $$(x_2, y_2)$$ in the maze optimally, while eat all dots attempts to solve the problem of consuming all food pellets in the maze in the shortest time possible. Below, the states, actions, transition model, and goal test for both problems are listed:
 
 **Pathing**
-- States: (x,y) locations
+- States: $$(x,y)$$ locations
 - Actions: North, South, East, West
 - Transition model (getting the next state): Update location only
-- Goal test: Is (x,y)=END?
+- Goal test: Is $$(x,y)=END$$?
 
 **Eat-all-dots**
-- States: {(x,y) location, dot booleans}
+- States: {$$(x,y)$$ location, dot booleans}
 - Actions: North, South, East, West
 - Transition model (getting the next state): Update location and booleans
 - Goal test: Are all dot booleans false?
 
-Note that for pathing, states contain less information than states for eat-all-dots, because for eat-all-dots we must maintain an array of booleans corresponding to each food pellet and whether or not it's been eaten in the given state. A world state may contain more information still, potentially encoding information about things like total distance traveled by Pacman or all positions visited by Pacman on top of its current (x,y) location and dot booleans.
+Note that for pathing, states contain less information than states for eat-all-dots, because for eat-all-dots we must maintain an array of booleans corresponding to each food pellet and whether or not it's been eaten in the given state. A world state may contain more information still, potentially encoding information about things like total distance traveled by Pacman or all positions visited by Pacman on top of its current $$(x,y)$$ location and dot booleans.
 
-## 2.1 State Space Size
+## State Space Size
 
-An important question that often comes up while estimating the computational runtime of solving a search problem is the size of the state space. This is done almost exclusively with the **fundamental counting principle**, which states that if there are n variable objects in a given world which can take on x₁, x₂, ..., xₙ different values respectively, then the total number of states is x₁ · x₂ · ... · xₙ. Let's use Pacman to show this concept by example:
+An important question that often comes up while estimating the computational runtime of solving a search problem is the size of the state space. This is done almost exclusively with the **fundamental counting principle**, which states that if there are n variable objects in a given world which can take on $$x_1$$, $$x_2$$, ..., $$x_n$$ different values respectively, then the total number of states is $$x_1$$ · $$x_2$$ · ... · $$x_n$$. Let's use Pacman to show this concept by example:
 
 ![State space size image](../assets/images/state_space_size.png)
 
 Let's say that the variable objects and their corresponding number of possibilities are as follows:
-- *Pacman positions* - Pacman can be in 120 distinct (x,y) positions, and there is only one Pacman
+- *Pacman positions* - Pacman can be in 120 distinct ($$x$$,$$y$$) positions, and there is only one Pacman
 - *Pacman Direction* - this can be North, South, East, or West, for a total of 4 possibilities
-- *Ghost positions* - There are two ghosts, each of which can be in 12 distinct (x,y) positions
+- *Ghost positions* - There are two ghosts, each of which can be in 12 distinct ($$x$$,$$y$$) positions
 - *Food pellet configurations* - There are 30 food pellets, each of which can be eaten or not eaten
 
 Using the fundamental counting principle, we have 120 positions for Pacman, 4 directions Pacman can be facing, 12 · 12 ghost configurations (12 for each ghost), and 2 · 2 · ... · 2 = 2³⁰ food pellet configurations (each of 30 food pellets has two possible values - eaten or not eaten). This gives us a total state space size of **120 · 4 · 12² · 2³⁰**.
 
-## 2.2 State Space Graphs and Search Trees
+## State Space Graphs and Search Trees
 
 Now that we've established the idea of a state space and the four components necessary to completely define one, we're almost ready to begin solving search problems. The final piece of the puzzle is that of state space graphs and search trees.
 

@@ -20,5 +20,3 @@ Regarding the search problems, they can be solved using a variety of search tech
 The first three search techniques listed above are examples of *uninformed search*, while the latter two are examples of *informed search* which use *heuristics* to estimate goal distance and optimize performance.
 
 We additionally made a distinction between *tree search* and *graph search* algorithms for the above techniques.
-
-[^1]: In other courses, such as CS70 and CS170, you may have been introduced to "trees" and "graphs" in the graph theory context. Specifically, a tree being a type of graph that satisfies certain constraints (connected and acyclic). This is not the distinction between tree search and graph search that we make in this course.
