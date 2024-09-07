@@ -75,9 +75,7 @@ The output of HMAC is the same number of bits as the underlying hash function, s
 
 To construct the HMAC algorithm, we first start with a more general version, NMAC:
 
-$$
-\text{NMAC}(K_1, K_2, M) = H(K_1 \Vert H(K_2 \Vert M))
-$$
+$$\text{NMAC}(K_1, K_2, M) = H(K_1 \Vert H(K_2 \Vert M))$$
 
 In words, NMAC concatenates $$K_2$$ and $$M$$, hashes the result, concatenates the result with $$K_1$$, and then hashes that result.
 
@@ -85,9 +83,7 @@ Note that NMAC takes two keys, $$K_1$$ and $$K_2$$, both of length $$n$$ (the le
 
 HMAC is a more specific version of NMAC that only requires one key instead of two unrelated keys:
 
-$$
-\text{HMAC}(M,K) = H((K' \oplus opad) \Vert H((K' \oplus ipad) \Vert M ))
-$$
+$$\text{HMAC}(M,K) = H((K' \oplus opad) \Vert H((K' \oplus ipad) \Vert M ))$$
 
 The HMAC algorithm actually supports a variable-length key $$K$$. However, NMAC uses $$K_1$$ and $$K_2$$ that are the same length as the hash output $$n$$, so we first transform $$K$$ to be length $$n$$. If $$K$$ is shorter than $$n$$ bits, we can pad $$K$$ with zeros until it is $$n$$ bits. If $$K$$ is longer than $$n$$ bits, we can hash $$K$$ to make it $$n$$ bits. The transformed $$n$$-bit version of $$K$$ is now denoted as $$K'$$.
 
