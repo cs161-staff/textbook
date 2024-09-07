@@ -51,9 +51,6 @@ $for(beameroption)$
 \setbeameroption{$beameroption$}
 $endfor$
 
-% AC 09/07/2024 - inject gobbling to prevent each individual pdf from reseting page numbering
-\pagenumbering{gobble}
-
 % Prevent slide breaks in the middle of a paragraph
 \widowpenalties 1 10000
 \raggedbottom
@@ -392,6 +389,8 @@ $endif$
 $if(pagestyle)$
 \pagestyle{$pagestyle$}
 $endif$
+% AC 09/07/2024 - inject gobbling to prevent each individual pdf from reseting page numbering
+\pagenumbering{gobble}
 $if(csl-refs)$
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
