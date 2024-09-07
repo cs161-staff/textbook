@@ -134,8 +134,8 @@ jobs:
       - name: Inject page numbers back into the pdf
         run: pdfjam --pagecommand '\pagestyle{plain}' --outfile textbook_full.pdf textbook_full_tmp.pdf
 
-      - name: Upload PDF to site
-        uses: actions/upload-artifact@v3
+      - name: Upload PDF as an artifact
+        uses: actions/upload-artifact@v4
         with:
           name: textbook-full
           path: textbook_full.pdf
