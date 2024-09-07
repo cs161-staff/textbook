@@ -85,8 +85,8 @@ jobs:
 
             python3 fix-image-paths.py "$md_file" | pandoc -V geometry:margin=1in -o "$pdf_file_name"
 
-            if [ ! -f "$pdf_file" ]; then
-              echo "Error: PDF file $pdf_file not created!" >&2
+            if [ ! -f "$pdf_file_name" ]; then
+              echo "Error: PDF file $pdf_file_name not created!" >&2
               exit 1
             fi
           done
