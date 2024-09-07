@@ -3,6 +3,8 @@ title: 17. SQL Injection
 parent: Web Security
 nav_order: 1
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 17. SQL Injection

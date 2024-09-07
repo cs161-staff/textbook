@@ -3,6 +3,8 @@ title: 12. Digital Signatures
 parent: Cryptography
 nav_order: 8
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 12. Digital Signatures
@@ -33,9 +35,7 @@ At a high level, the RSA signature scheme works like this. It specifies a trapdo
 
 We define a signature on a message $$M$$ as a value $$S$$ that satisfies the following equation:
 
-$$
-H(M) = F_U(S).
-$$
+$$H(M) = F_U(S).$$
 
 Note that given a message $$M$$, an alleged signature $$S$$, and a public key $$U$$, we can verify whether it satisfies the above equation. This makes it possible to verify the validity of signatures.
 
@@ -61,9 +61,7 @@ Let's assume that $$p$$ and $$q$$ are two different odd primes, that $$p = 2 \pm
 
 **Proof:** By Fact 3, $$3d=1+k \varphi(n)$$ for some integer $$k$$. Now applying Fact 1, we find
 
-$$
-G(F(x)) = (x^3)^d = x^{3d} = x^{1+k \varphi(n)} = x^1 \cdot (x^{\varphi(n)})^k = x \cdot 1^k = x \pmod n.
-$$
+$$G(F(x)) = (x^3)^d = x^{3d} = x^{1+k \varphi(n)} = x^1 \cdot (x^{\varphi(n)})^k = x \cdot 1^k = x \pmod n.$$
 
 The theorem follows.
 
@@ -75,9 +73,7 @@ We're now ready to describe the RSA signature scheme. The idea is that the funct
 
 We then apply this trapdoor one-way function to the basic approach outlined earlier. Thus, a signature on message $$M$$ is a value $$S$$ satisfying
 
-$$
-H(M) = S^3 \bmod n.
-$$
+$$H(M) = S^3 \bmod n.$$
 
 The RSA signature scheme is defined by the following three algorithms:
 
@@ -85,21 +81,15 @@ The RSA signature scheme is defined by the following three algorithms:
 
 - **Signing:** The signing algorithm is given by
 
-  $$
-  \text{Sign}_d(M) = H(M)^d \bmod n.
-  $$
+  $$\text{Sign}_d(M) = H(M)^d \bmod n.$$
 
 - **Verification:** The verification algorithm $$\text{Verify}$$ is given by
 
-  $$
-  \text{Verify}_n(M,S) = \begin{cases} \text{true} &\text{if $H(M)=S^3 \bmod n$,} \\ \text{false} &\text{otherwise.} \end{cases}
-  $$
+  $$\text{Verify}_n(M,S) = \begin{cases} \text{true} &\text{if $H(M)=S^3 \bmod n$,} \\ \text{false} &\text{otherwise.} \end{cases}$$
 
 Theorem [1](#th:cubing) ensures the correctness of the verification algorithm, i.e., that
 
-$$
-\text{Verify}_n(M,\text{Sign}_d(M))=\text{true}.
-$$
+$$\text{Verify}_n(M,\text{Sign}_d(M))=\text{true}.$$
 
 A quick reminder: in these notes we're developing the conceptual basis underlying MAC and digital signature algorithms that are widely used in practice, but again don't try to implement them yourself based upon just this discussion! We've omitted some technical details that do not change the big picture, but that are essential for security in practice. For your actual systems, use a reputable crypto library!
 

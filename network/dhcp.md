@@ -3,6 +3,8 @@ title: 27. DHCP
 parent: Network Security
 nav_order: 3
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 27. DHCP

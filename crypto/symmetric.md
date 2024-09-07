@@ -3,6 +3,8 @@ title: 6. Symmetric-Key Cryptography
 parent: Cryptography
 nav_order: 2
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 {% comment %} When updating, check w/ a crypto guru that AES is still well-described as basically having no known flaws. DAW confirmed this for 2013. {% endcomment %}
@@ -63,37 +65,31 @@ IND-CPA seemed to be very strict, but we will learn in the subsequent sections t
 
 Symmetric-key encryption often relies on the bitwise XOR (exclusive-or) operation (written as $$\oplus$$), so let's review the definition of XOR.
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 0 \oplus 0 &= 0 \\
 0 \oplus 1 &= 1 \\
 1 \oplus 0 &= 1 \\
 1 \oplus 1 &= 0
-\end{aligned}
-$$
+\end{aligned}$$
 
 Given this definition, we can derive some useful properties:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 x \oplus 0 &= x & &\text{0 is the identity} \\
 x \oplus x &= 0 & &\text{$x$ is its own inverse} \\
 x \oplus y &= y \oplus x & &\text{commutative property} \\
 (x \oplus y) \oplus z &= x \oplus (y \oplus z) & &\text{associative property}
-\end{aligned}
-$$
+\end{aligned}$$
 
 One handy identity that follows from these is: $$x \oplus y \oplus x = y$$. In other words, given $$(x \oplus y)$$, you can retrieve $$y$$ by computing $$(x \oplus y) \oplus x$$, effectively "cancelling out" the $$x$$.
 
 We can also perform algebra with the XOR operation:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 y \oplus 1 &= 0 & &\text{goal: solve for y} \\
 y \oplus 1 \oplus 1 &= 0 \oplus 1 & &\text{XOR both sides by 1} \\
 y &= 1 & &\text{simplify left-hand side using the identity above}
-\end{aligned}
-$$
+\end{aligned}$$
 
 ## 6.3. One Time Pad
 
@@ -115,13 +111,11 @@ Encryption in the one-time pad is very simple: $$c_j = m_j \oplus k_j$$. In word
 
 We can derive the decryption algorithm by doing some algebra on the encryption equation:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 c_j &= m_j \oplus k_j & &\text{encryption equation, solve for } m_j \\
 c_j \oplus k_j &= m_j \oplus k_j \oplus k_j & &\text{XOR both sides by } k_j \\
 c_j \oplus k_j &= m_j & &\text{simplify right-hand side using the handy identity from above}
-\end{aligned}
-$$
+\end{aligned}$$
 
 In words, given ciphertext $$C$$ and key $$K$$, the $$j$$th bit of the plaintext is the $$j$$th bit of the ciphertext, XOR with the $$j$$th bit of the key.
 
@@ -237,11 +231,11 @@ There are several standard ways (or modes of operation) of building an encryptio
 
 - ECB mode decryption: $$M_i = D_K(C_i)$$
 
-![Diagram of encryption for the ECB mode of
-operation](/assets/images/crypto/symmetric/ECB_encryption.png)
+<img src="/assets/images/crypto/symmetric/ECB_encryption.png" alt="Diagram of encryption for the ECB mode of
+operation" />
 
-![Diagram of decryption for the ECB mode of
-operation](/assets/images/crypto/symmetric/ECB_decryption.png)
+<img src="/assets/images/crypto/symmetric/ECB_decryption.png" alt="Diagram of decryption for the ECB mode of
+operation" />
 
 **CBC Mode** (Cipher Block Chaining): This is a popular mode for commercial applications. For each message the sender picks a random $$n$$-bit string, called the _initial vector_ or IV. Define $$C_0 = IV$$. The $$i^\textrm{th}$$ ciphertext block is given by $$C_i = E_K(C_{i-1} \oplus M_i)$$. The ciphertext is the concatenation of the initial vector and these individual blocks: $$C = IV \cdot C_1 \cdot C_2 \cdots C_l$$. CBC mode has been proven to provide strong security guarantees on the privacy of the plaintext message (assuming the underlying block cipher is secure).
 
@@ -249,48 +243,44 @@ operation](/assets/images/crypto/symmetric/ECB_decryption.png)
 
 - CBC mode decryption: $$P_i = D_K(C_i) \oplus C_{i-1}$$
 
-![Diagram of encryption for the CBC mode of
-operation](/assets/images/crypto/symmetric/CBC_encryption.png)
+<img src="/assets/images/crypto/symmetric/CBC_encryption.png" alt="Diagram of encryption for the CBC mode of
+operation" />
 
-![Diagram of decryption for the CBC mode of
-operation](/assets/images/crypto/symmetric/CBC_decryption.png)
+<img src="/assets/images/crypto/symmetric/CBC_decryption.png" alt="Diagram of decryption for the CBC mode of
+operation" />
 
 **CFB Mode** (Ciphertext Feedback Mode): This is another popular mode with properties very similar to CBC mode. Again, $$C_0$$ is the IV. The $$i^\textrm{th}$$ ciphertext block is given by $$C_i = E_K(C_{i-1}) \oplus M_i$$.
 
 - CFB mode encryption:
 
-  $$
-  \begin{cases}
+  $$\begin{cases}
     C_0 = IV \\
     C_i = E_K(C_{i-1}) \oplus P_i
-  \end{cases}
-  $$
+  \end{cases}$$
 
 - CFB mode decryption: $$P_i = E_K(C_{i-1}) \oplus C_i$$
 
-![Diagram of encryption for the CFB mode of
-operation](/assets/images/crypto/symmetric/CFB_encryption.png)
+<img src="/assets/images/crypto/symmetric/CFB_encryption.png" alt="Diagram of encryption for the CFB mode of
+operation" />
 
-![Diagram of decryption for the CFB mode of
-operation](/assets/images/crypto/symmetric/CFB_decryption.png)
+<img src="/assets/images/crypto/symmetric/CFB_decryption.png" alt="Diagram of decryption for the CFB mode of
+operation" />
 
 **OFB Mode** (Output Feedback Mode): In this mode, the initial vector IV is repeatedly encrypted to obtain a set of values $$Z_i$$ as follows: $$Z_0 = IV$$ and $$Z_i = E_K(Z_{i-1})$$. These values $$Z_i$$ are now used as though they were the key for a one-time pad, so that $$C_i = Z_i \oplus M_i$$. The ciphertext is the concatenation of the initial vector and these individual blocks: $$C = IV \cdot C_1 \cdot C_2 \cdots C_l$$. In OFB mode, it is very easy to tamper with ciphertexts. For instance, suppose that the adversary happens to know that the $$j^\textrm{th}$$ block of the message, $$M_j$$, specifies the amount of money being transferred to his account from the bank, and suppose he also knows that $$M_j = 100$$. Since he knows both $$M_j$$ and $$C_j$$, he can determine $$Z_j$$. He can then substitute any $$n$$-bit block in place of $$M_j$$ and get a new ciphertext $$C'_j$$ where the $$100$$ is replaced by any amount of his choice. This kind of tampering is also possible with other modes of operation as well (so don't be fooled into thinking that CBC mode is safe from tampering); it's just easier to illustrate on OFB mode.
 
 - OFB mode encryption:
 
-  $$
-  \begin{cases}
+  $$\begin{cases}
     Z_0 = IV \\ Z_i = E_K(Z_{i-1}) \\ C_i = M_i \oplus Z_i
-  \end{cases}
-  $$
+  \end{cases}$$
 
 - OFB mode decryption: $$P_i = C_i \oplus Z_i$$
 
-![Diagram of encryption for the OFB mode of
-operation](/assets/images/crypto/symmetric/OFB_encryption.png)
+<img src="/assets/images/crypto/symmetric/OFB_encryption.png" alt="Diagram of encryption for the OFB mode of
+operation" />
 
-![Diagram of decryption for the OFB mode of
-operation](/assets/images/crypto/symmetric/OFB_decryption.png)
+<img src="/assets/images/crypto/symmetric/OFB_decryption.png" alt="Diagram of decryption for the OFB mode of
+operation" />
 
 **Counter (CTR) Mode**: In CTR mode, a counter is initialized to IV and repeatedly incremented and encrypted to obtain a sequence that can now be used as though they were the keys for a one-time pad: namely, $$Z_i = E_K(IV + i)$$ and $$C_i = Z_i \oplus M_i$$. In CTR mode, the IV is sometimes renamed the _nonce_. This is just a terminology difference--nonce and IV can be used interchangeably for the purposes of this class.
 
@@ -300,11 +290,11 @@ Note that in CTR and OFB modes, the decryption algorithm uses the block cipher _
 
 - CTR mode decryption: $$M_i = E_K(IV + i) \oplus C_i$$
 
-![Diagram of encryption for the CTR mode of
-operation](/assets/images/crypto/symmetric/CTR_encryption.png)
+<img src="/assets/images/crypto/symmetric/CTR_encryption.png" alt="Diagram of encryption for the CTR mode of
+operation" />
 
-![Diagram of decryption for the CTR mode of
-operation](/assets/images/crypto/symmetric/CTR_decryption.png)
+<img src="/assets/images/crypto/symmetric/CTR_decryption.png" alt="Diagram of decryption for the CTR mode of
+operation" />
 
 For the rest of these notes, we will focus on analyzing CBC and CTR modes. As an exercise, you can try performing similar analysis on the other modes as well.
 

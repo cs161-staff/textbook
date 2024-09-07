@@ -3,6 +3,8 @@ title: 25. Introduction to Networking
 parent: Network Security
 nav_order: 1
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 25. Introduction to Networking

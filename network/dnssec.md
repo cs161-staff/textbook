@@ -3,6 +3,8 @@ title: 33. DNSSEC
 parent: Network Security
 nav_order: 9
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 33. DNSSEC
@@ -37,11 +39,8 @@ We can apply this delegation idea to the entire DNS tree. Each name server will 
 
 With these ideas in mind, let's revisit the DNS query for `eecs.berkeley.edu` from earlier and convert it to a secure DNSSEC query. _The DNSSEC additions are italicized._
 
-![Diagram of a recursive DNS query, where your resolver queries the root
-nameserver first in query 1 and response 2, then the nameserver at the second
-level of the tree in query 3 and response 4, then a nameserver at the third
-level of the tree in query 5 and response
-6](/assets/images/network/dns/dnsquery.png)
+<img src="/assets/images/network/dns/dnsquery.png" alt="Diagram of a recursive DNS query, where your resolver queries the root
+nameserver first in query 1 and response 2, then the nameserver at the second level of the tree in query 3 and response 4, then a nameserver at the third level of the tree in query 5 and response 6" />
 
 1. You to the root name server: Please tell me the IP address of `eecs.berkeley.edu`.
 

@@ -3,6 +3,8 @@ title: 22. Cross-Site Scripting (XSS)
 parent: Web Security
 nav_order: 6
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 22. Cross-Site Scripting (XSS)

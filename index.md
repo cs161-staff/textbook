@@ -1,6 +1,8 @@
 ---
 title: Introduction
 nav_order: 0
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # Computer Security
@@ -10,6 +12,11 @@ _By [David Wagner](https://people.eecs.berkeley.edu/~daw/), [Nicholas Weaver](ht
 _Additional contributions by Noura Alomar, Sheqi Zhang, and [Shomil Jain](https://shomil.me)_
 
 This is the textbook for [CS 161: Computer Security](https://cs161.org/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides a brief survey over common topics in computer security including memory safety, cryptography, web security, and network security.
+
+## PDF Version
+[These notes are available as a PDF.](https://textbook.cs161.org/textbook_full.pdf)
+
+This PDF is automatically generated each time there is a [correction](#corrections) made to the website. This means that it is _completely possible_ for a downloaded copy to be not up-to-date. If your desired mode of the textbook is in PDF form, we recommend you regularly redownload in cases there were recent corrections made.
 
 ## Corrections
 

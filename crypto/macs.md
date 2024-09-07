@@ -3,6 +3,8 @@ title: 8. Message Authentication Codes (MACs)
 parent: Cryptography
 nav_order: 4
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 8. Message Authentication Codes (MACs)
@@ -53,15 +55,13 @@ There are a number of schemes out there, but one good one is AES-CMAC, an algori
 
 In AES-EMAC, the key $$K$$ is 256 bits, viewed as a pair of 128-bit AES keys: $$K=\langle K_1,K_2 \rangle$$. The message $$M$$ is decomposed into a sequence of 128-bit blocks: $$M = P_1 \Vert P_2 \Vert ... \Vert P_n$$. We set $$S_0 = 0$$ and compute
 
-$$
-S_i = \textrm{AES}_{K_1}(S_{i-1} \oplus P_i),\qquad
-    \text{for $i=1,2,\dots,n$.}
-$$
+$$S_i = \textrm{AES}_{K_1}(S_{i-1} \oplus P_i),\qquad
+    \text{for $i=1,2,\dots,n$.}$$
 
 Finally we compute $$T = \textrm{AES}_{K_2}(S_n)$$; $$T$$ is the tag for message $$M$$. Here is what it looks like:
 
-![AES-EMAC block diagram, with K2 highlighted as the final encryption
-step](/assets/images/crypto/macs/aes-emac.svg)
+<img src="/assets/images/crypto/macs/aes-emac.svg" alt="AES-EMAC block diagram, with K2 highlighted as the final encryption
+step" />
 
 Assuming AES is a secure block cipher, this scheme is provably secure, using the unforgeability definition and security game described in the previous section. An attacker cannot forge a valid AES-EMAC for a message they haven't seen before, even if they are allowed to query for MACs of other messages.
 
@@ -77,9 +77,7 @@ The output of HMAC is the same number of bits as the underlying hash function, s
 
 To construct the HMAC algorithm, we first start with a more general version, NMAC:
 
-$$
-\text{NMAC}(K_1, K_2, M) = H(K_1 \Vert H(K_2 \Vert M))
-$$
+$$\text{NMAC}(K_1, K_2, M) = H(K_1 \Vert H(K_2 \Vert M))$$
 
 In words, NMAC concatenates $$K_2$$ and $$M$$, hashes the result, concatenates the result with $$K_1$$, and then hashes that result.
 
@@ -87,9 +85,7 @@ Note that NMAC takes two keys, $$K_1$$ and $$K_2$$, both of length $$n$$ (the le
 
 HMAC is a more specific version of NMAC that only requires one key instead of two unrelated keys:
 
-$$
-\text{HMAC}(M,K) = H((K' \oplus opad) \Vert H((K' \oplus ipad) \Vert M ))
-$$
+$$\text{HMAC}(M,K) = H((K' \oplus opad) \Vert H((K' \oplus ipad) \Vert M ))$$
 
 The HMAC algorithm actually supports a variable-length key $$K$$. However, NMAC uses $$K_1$$ and $$K_2$$ that are the same length as the hash output $$n$$, so we first transform $$K$$ to be length $$n$$. If $$K$$ is shorter than $$n$$ bits, we can pad $$K$$ with zeros until it is $$n$$ bits. If $$K$$ is longer than $$n$$ bits, we can hash $$K$$ to make it $$n$$ bits. The transformed $$n$$-bit version of $$K$$ is now denoted as $$K'$$.
 

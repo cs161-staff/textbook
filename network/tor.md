@@ -3,6 +3,8 @@ title: 39. Anonymity and Tor
 parent: Network Security
 nav_order: 15
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 {% comment %}
@@ -35,9 +37,9 @@ The key idea behind onion routing is the use of multiple proxy servers chained t
 
 - Charlie is going to be the final proxy in the chain, so it needs to know the final recipient and the final message. So the packet Charlie receives will be $$(M, Bob)$$ encrypted with Charlie’s $$PK$$, $$K_{Charlie}$$ since Alice wants the message to be private. Charlie then decrypts the packet with his private key to obtain $$(M, Bob)$$, then sends the message $$M$$ to Bob.
 - Since Alice doesn’t trust Charlie to not reveal her identity, however, she wants to route the message through another proxy server, Dan. Again, the proxy requires the message and the recipient it forwards the message to. In this case, the message is $$(M, Bob)_{KCharlie}$$, and the recipient is Charlie. So the packet that Dan receives is $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$. Dan decrypts the packet using his private key to obtain $$((M, Bob)_{KCharlie}, Charlie)$$, then sends $$M’$$ = $$(M, Bob)_{KCharlie}$$ to Charlie.
-- Since Alice doesn’t trust Dan either to not reveal her identity, she again wants to route the message through a different proxy server, Frank. Again, the proxy requires the message and the recipient that it forwards the message to. In this case the message is $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ and the recipient is Dan. So the packet that Frank receives is $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)_{KFrank}$$. Frank decrypts the packet using his private key to obtain $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)$$, then sends $$M’’$$ = $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ to Dan.
+- Since Alice doesn’t trust Dan either to not reveal her identity, she again wants to route the message through a different proxy server, Frank. Again, the proxy requires the message and the recipient that it forwards the message to. In this case the message is $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ and the recipient is Dan. So the packet that Frank receives is $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)_{KFrank}$$. Frank decrypts the packet using his private key to obtain $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)$$, then sends $$M''$$ = $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ to Dan.
 
-The overall routing scheme sends the packet from $$Alice$$ &rarr; $$Frank$$ &rarr; $$Dan$$ &rarr; $$Charlie$$ &rarr; $$Bob$$, where Frank, Dan, and Charlie are the three intermediaries, or proxies:
+The overall routing scheme sends the packet from $$Alice$$  $$\rightarrow$$  $$Frank$$  $$\rightarrow$$  $$Dan$$  $$\rightarrow$$  $$Charlie$$  $$\rightarrow$$  $$Bob$$, where Frank, Dan, and Charlie are the three intermediaries, or proxies:
 
 - Alice sends Frank $$(((M, Bob)_{KCharlie}, Charlie)_{KDan}, Dan)_{KFrank}$$
 - Frank decrypts this using his private key and sends $$((M, Bob)_{KCharlie}, Charlie)_{KDan}$$ to Dan

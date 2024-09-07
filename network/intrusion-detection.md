@@ -3,6 +3,8 @@ title: 36. Intrusion Detection
 parent: Network Security
 nav_order: 12
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 36. Intrusion Detection

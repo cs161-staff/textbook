@@ -3,6 +3,8 @@ title: 23. UI Attacks
 parent: Web Security
 nav_order: 7
 layout: page
+header-includes:
+- \pagenumbering{gobble}
 ---
 
 # 23. Clickjacking/User Interface (UI) Attacks
