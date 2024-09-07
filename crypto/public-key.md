@@ -138,9 +138,7 @@ The public system parameters are a large prime $$p$$ and a value $$g$$ satisfyin
 
 Now, suppose Alice has a message $$m$$ (in the range $$1\ldots p-1$$) she wants to send to Bob, and suppose Alice knows that Bob's public key is $$B$$. To encrypt the message $$m$$ to Bob, Alice picks a random value $$r$$ (in the range $$0\ldots p-2$$), and forms the ciphertext
 
-$$
-(g^r \bmod p, m \times B^r \bmod p).
-$$
+$$(g^r \bmod p, m \times B^r \bmod p).$$
 
 Note that the ciphertext is a pair of numbers, each number in the range $$0\ldots p-1$$.
 
