@@ -63,37 +63,31 @@ IND-CPA seemed to be very strict, but we will learn in the subsequent sections t
 
 Symmetric-key encryption often relies on the bitwise XOR (exclusive-or) operation (written as $$\oplus$$), so let's review the definition of XOR.
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 0 \oplus 0 &= 0 \\
 0 \oplus 1 &= 1 \\
 1 \oplus 0 &= 1 \\
 1 \oplus 1 &= 0
-\end{aligned}
-$$
+\end{aligned}$$
 
 Given this definition, we can derive some useful properties:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 x \oplus 0 &= x & &\text{0 is the identity} \\
 x \oplus x &= 0 & &\text{$x$ is its own inverse} \\
 x \oplus y &= y \oplus x & &\text{commutative property} \\
 (x \oplus y) \oplus z &= x \oplus (y \oplus z) & &\text{associative property}
-\end{aligned}
-$$
+\end{aligned}$$
 
 One handy identity that follows from these is: $$x \oplus y \oplus x = y$$. In other words, given $$(x \oplus y)$$, you can retrieve $$y$$ by computing $$(x \oplus y) \oplus x$$, effectively "cancelling out" the $$x$$.
 
 We can also perform algebra with the XOR operation:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 y \oplus 1 &= 0 & &\text{goal: solve for y} \\
 y \oplus 1 \oplus 1 &= 0 \oplus 1 & &\text{XOR both sides by 1} \\
 y &= 1 & &\text{simplify left-hand side using the identity above}
-\end{aligned}
-$$
+\end{aligned}$$
 
 ## 6.3. One Time Pad
 
@@ -115,13 +109,11 @@ Encryption in the one-time pad is very simple: $$c_j = m_j \oplus k_j$$. In word
 
 We can derive the decryption algorithm by doing some algebra on the encryption equation:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 c_j &= m_j \oplus k_j & &\text{encryption equation, solve for } m_j \\
 c_j \oplus k_j &= m_j \oplus k_j \oplus k_j & &\text{XOR both sides by } k_j \\
 c_j \oplus k_j &= m_j & &\text{simplify right-hand side using the handy identity from above}
-\end{aligned}
-$$
+\end{aligned}$$
 
 In words, given ciphertext $$C$$ and key $$K$$, the $$j$$th bit of the plaintext is the $$j$$th bit of the ciphertext, XOR with the $$j$$th bit of the key.
 
@@ -181,7 +173,7 @@ There is no proof that AES is computationally indistinguishable from random, but
 
 Thus AES behaves very differently than the one-time pad. Even given a very large number of plaintext/ciphertext pairs, there appears to be no effective way to decrypt any new ciphertexts. We can leverage this property to build symmetric-key encryption schemes where there is no effective way to decrypt _any_ ciphertext, even if it's the encryption of a message we've seen before.
 
-<!--
+{% comment %}
 
 removed advantage stuff since I don't think we cover it anymore -peyrin sp21
 
@@ -215,7 +207,7 @@ So the advantage is just a rescaled version of the probability that Gloria guess
 
 We often use the advantage to measure how "similar" (or "distinguishable") two things are. If Eve has advantage at most $$\epsilon$$ of guessing whether she is interacting with a type-I or type-II box, for some small $$\epsilon$$, then it follows that type-I boxes are basically indistinguishable from type-II boxes: e.g., any place where a type-II box is secure, a type-I box will also be secure. We will often compare a real scheme to an ideal (but unimplementable) model of what the scheme ought achieve; if Eve's advantage at distinguishing these two is guaranteed to be small, then the real scheme is just as good as the idealization.
 
--->
+{% endcomment %}
 
 ## 6.6. Block Cipher Modes of Operation
 
@@ -259,12 +251,10 @@ operation" />
 
 - CFB mode encryption:
 
-  $$
-  \begin{cases}
+  $$\begin{cases}
     C_0 = IV \\
     C_i = E_K(C_{i-1}) \oplus P_i
-  \end{cases}
-  $$
+  \end{cases}$$
 
 - CFB mode decryption: $$P_i = E_K(C_{i-1}) \oplus C_i$$
 
@@ -278,11 +268,9 @@ operation" />
 
 - OFB mode encryption:
 
-  $$
-  \begin{cases}
+  $$\begin{cases}
     Z_0 = IV \\ Z_i = E_K(Z_{i-1}) \\ C_i = M_i \oplus Z_i
-  \end{cases}
-  $$
+  \end{cases}$$
 
 - OFB mode decryption: $$P_i = C_i \oplus Z_i$$
 

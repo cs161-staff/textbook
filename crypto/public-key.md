@@ -15,7 +15,7 @@ In a public-key cryptosystem, the recipient Bob has a publicly available key, hi
 
 Public-key cryptography provides a nice way to help with the key management problem. Alice can pick a secret key $$K$$ for some symmetric-key cryptosystem, then encrypt $$K$$ under Bob's public key and send Bob the resulting ciphertext. Bob can decrypt using his private key and recover $$K$$. Then Alice and Bob can communicate using a symmetric-key cryptosystem, with $$K$$ as their shared key, from there on.
 
-<!--
+{% comment %}
 
 dropping this section, doesn't seem taught anymore -peyrin sp21
 
@@ -96,7 +96,7 @@ It turns out that it's easy to test whether a given number is prime. Fermat's Li
 
 For the purpose of selecting a random large prime (several thousand bits long), it suffices to pick a random number of that length, test it for primality, and repeat until we find a prime of the desired length. The prime number theorem tell us that among the $$n$$-bit numbers, roughly a $$\frac{1.44}{n}$$ fraction of them are prime. So after $$O(n)$$ iterations of this procedure we expect to find a prime of the desired length.
 
--->
+{% endcomment %}
 
 ## 11.2. Trapdoor One-way Functions
 
