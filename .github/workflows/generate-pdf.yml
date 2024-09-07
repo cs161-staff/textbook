@@ -29,15 +29,23 @@ jobs:
           mkdir -p pdf_output
           
           file_list=(
-            "web/index.md"
-            "web/sqli.md"
-            "web/intro.md"
-            "web/sop.md"
-            "web/cookies.md"
-            "web/csrf.md"
-            "web/xss.md"
-            "web/ui-attacks.md"
-            "web/captchas.md"
+            "network/index.md"
+            "network/intro.md"
+            "network/arp.md"
+            "network/dhcp.md"
+            "network/wpa.md"
+            "network/bgp.md"
+            "network/transport.md"
+            "network/tls.md"
+            "network/dns.md"
+            "network/dnssec.md"
+            "network/dos.md"
+            "network/firewalls.md"
+            "network/intrusion-detection.md"
+            "network/abusing-intrusion-detection.md"
+            "network/malware.md"
+            "network/tor.md"
+            "glossary.md"
           )
           for md_file in "${file_list[@]}"; do
             pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g').pdf"
@@ -49,15 +57,23 @@ jobs:
             fi
           done
           pdfunite \
-            "pdf_output/web_index.md.pdf" \
-            "pdf_output/web_sqli.md.pdf" \
-            "pdf_output/web_intro.md.pdf" \
-            "pdf_output/web_sop.md.pdf" \
-            "pdf_output/web_cookies.md.pdf" \
-            "pdf_output/web_csrf.md.pdf" \
-            "pdf_output/web_xss.md.pdf" \
-            "pdf_output/web_ui-attacks.md.pdf" \
-            "pdf_output/web_captchas.md.pdf" \
+            "pdf_output/network_index.md.pdf" \
+            "pdf_output/network_intro.md.pdf" \
+            "pdf_output/network_arp.md.pdf" \
+            "pdf_output/network_dhcp.md.pdf" \
+            "pdf_output/network_wpa.md.pdf" \
+            "pdf_output/network_bgp.md.pdf" \
+            "pdf_output/network_transport.md.pdf" \
+            "pdf_output/network_tls.md.pdf" \
+            "pdf_output/network_dns.md.pdf" \
+            "pdf_output/network_dnssec.md.pdf" \
+            "pdf_output/network_dos.md.pdf" \
+            "pdf_output/network_firewalls.md.pdf" \
+            "pdf_output/network_intrusion-detection.md.pdf" \
+            "pdf_output/network_abusing-intrusion-detection.md.pdf" \
+            "pdf_output/network_malware.md.pdf" \
+            "pdf_output/network_tor.md.pdf" \
+            "pdf_output/glossary.md.pdf" \
             "textbook_full.pdf"
 
       - name: Upload PDF to site
