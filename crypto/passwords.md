@@ -113,17 +113,13 @@ So, the second improvement is to _use a slow hash_. The reason that offline pass
 
 One way to take a fast hash function and make it slower is by iterating it. In other words, if $$H$$ is a cryptographic hash function like SHA256, define the function $$F$$ by
 
-$$
-F(x) = H(H(H(\cdots(H(x)) \cdots))),
-$$
+$$F(x) = H(H(H(\cdots(H(x)) \cdots))),$$
 
 where we have iteratively applied $$H$$ $$n$$ times. Now $$F$$ is a good cryptographic hash function, and evaluating $$F$$ will be $$n$$ times slower than evaluating $$H$$. This gives us a tunable parameter that lets us choose just how slow we want the hash function to be.
 
 Therefore, our final construction is to store $$s,F(w,s)$$ in the database, where $$s$$ is a randomly chosen salt, and $$F$$ is a slow hash constructed as above. In other words, we store
 
-$$
-s,H(H(H(\cdots(H(w,s)) \cdots)))
-$$
+$$s,H(H(H(\cdots(H(w,s)) \cdots)))$$
 
 in the database.
 
@@ -163,8 +159,6 @@ We most likely won't have time to discuss any of these further in this class, bu
 
 The bottom line is: don't store passwords in the clear. Instead, sites should store passwords in hashed form, using a slow cryptographic hash function and a random salt. If the user's password is $$w$$, one can store
 
-$$
-s,H(H(H(\cdots(H(w,s)) \cdots)))
-$$
+$$s,H(H(H(\cdots(H(w,s)) \cdots)))$$
 
 in the database, where $$s$$ is a random salt chosen randomly for that user and $$H$$ is a standard cryptographic hash function.

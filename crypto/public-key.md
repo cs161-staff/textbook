@@ -39,10 +39,8 @@ A naive algorithm for modular exponentiation is to repeatedly multiply by $$a$$ 
 
 There is a better way to do it. The key to an efficient algorithm is to notice that the exponent of a number $$a^j$$ can be doubled quickly, by multiplying the number by itself. Starting with $$a$$ and squaring repeatedly, we get the powers $$a^1, a^2, a^4, a^8, \ldots, a^{2^{\lfloor \log_2 b \rfloor}}$$, all modulo $$p$$. Each takes just $$O(\log^2 p)$$ time to compute, and they are all we need to determine $$a^b \bmod p$$: we just multiply together an appropriate subset of them, those corresponding to ones in the binary representation of $$b$$. For instance,
 
-$$
-a^{25} \ \ = \ \ a^{11001_2} \ \ = \ \ a^{10000_2} \cdot
-a^{1000_2} \cdot a^{1_2} \ \ = \ \ a^{16} \cdot a^{8} \cdot a^{1}.
-$$
+$$a^{25} \ \ = \ \ a^{11001_2} \ \ = \ \ a^{10000_2} \cdot
+a^{1000_2} \cdot a^{1_2} \ \ = \ \ a^{16} \cdot a^{8} \cdot a^{1}.$$
 
 This repeated squaring algorithm is shown in Algorithm 1. The overall running time is $O(\log^2 p \; \log b)$. When $p$ and $b$ are $n$-bit integers, the running time is _cubic_ in the input size. This is efficient enough that we can easily perform modular exponentiation on numbers that are thousands of bits long.
 
@@ -148,17 +146,13 @@ Note that the ciphertext is a pair of numbers, each number in the range $$0\ldot
 
 How does Bob decrypt? Well, let's say that Bob receives a ciphertext of the form $$(R,S)$$. To decrypt it, Bob computes
 
-$$
-R^{-b} \times S \bmod p,
-$$
+$$R^{-b} \times S \bmod p,$$
 
 and the result is the message $$m$$ Alice sent him.
 
 Why does this decryption procedure work? If $$R=g^r \bmod p$$ and $$S = m \times B^r \bmod p$$ (as should be the case if Alice encrypted the message $$m$$ properly), then
 
-$$
-R^{-b} \times S = (g^r)^{-b} \times (m \times B^r) = g^{-rb} \times m \times g^{br} = m \pmod p.
-$$
+$$R^{-b} \times S = (g^r)^{-b} \times (m \times B^r) = g^{-rb} \times m \times g^{br} = m \pmod p.$$
 
 If you squint your eyes just right, you might notice that El Gamal encryption is basically Diffie-Hellman, tweaked slightly. It's a Diffie-Hellman key exchange, where Bob uses his long-term public key $$B$$ and where Alice uses a fresh new public key $$R=g^r \bmod p$$ chosen anew just for this exchange. They derive a shared key $$K=g^{rb}=B^r=R^b \pmod p$$. Then, Alice encrypts her message $$m$$ by multiplying it by the shared key $$K$$ modulo $$p$$.
 

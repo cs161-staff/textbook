@@ -45,15 +45,11 @@ Then, Alice picks a secret value $$a$$ at random from the set $$\{0,1,\dots,p-2\
 
 Now Alice announces the value $$A$$ (keeping $$a$$ secret), and Bob announces $$B$$ (keeping $$b$$ secret). Alice uses her knowledge of $$B$$ and $$a$$ to compute
 
-$$
-S = B^a = (g^b)^a = g^{ba} \pmod p.
-$$
+$$S = B^a = (g^b)^a = g^{ba} \pmod p.$$
 
 Symmetrically, Bob uses his knowledge of $$A$$ and $$b$$ to compute
 
-$$
-S = A^b = (g^a)^b = g^{ab} \pmod p.
-$$
+$$S = A^b = (g^a)^b = g^{ab} \pmod p.$$
 
 Note that $$g^{ba} = g^{ab} \pmod{p}$$, so both Alice and Bob end up with the same result, $$S$$.
 
@@ -85,15 +81,11 @@ Alice computes $$A = a \cdot G$$ (this is a point on the curve $$A$$, obtained b
 
 Alice computes
 
-$$
-S = a \cdot B = a \cdot b \cdot G
-$$
+$$S = a \cdot B = a \cdot b \cdot G$$
 
 and Bob computes
 
-$$
-S = b \cdot A = b \cdot a \cdot G
-$$
+$$S = b \cdot A = b \cdot a \cdot G$$
 
 Because of the properties of the elliptic curve, Alice and Bob will derive the same point $$S$$, so they now have a shared secret. Also, the elliptic-curve Diffie-Hellman problem states that given $$A = a \cdot G$$ and $$B = b \cdot G$$, there is no known efficient method for Eve to calculate $$S$$.
 
