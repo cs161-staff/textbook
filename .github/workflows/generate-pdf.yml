@@ -24,7 +24,6 @@ jobs:
       - name: Install Pandoc and PDF tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-xetex
           sudo apt-get install -y pandoc poppler-utils
 
       - name: Generate PDFs from the textbook Markdown files
@@ -83,7 +82,7 @@ jobs:
           for md_file in "${file_list[@]}"; do
             pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g').pdf"
 
-            python3 fix-image-paths.py "$md_file" | pandoc -V geometry:margin=1in -o "$pdf_file_name"
+            python3 fix-image-paths.py "$md_file" | docker run --rm -i pandoc/core:2.9 pandoc -V geometry:margin=1in -o "$pdf_file_name"
 
             if [ ! -f "$pdf_file_name" ]; then
               echo "Error: PDF file $pdf_file_name not created!" >&2
