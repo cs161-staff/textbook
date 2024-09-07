@@ -3,23 +3,22 @@ title: Introduction
 nav_order: 0
 ---
 
-# Computer Security
+# Artificial Intelligence
 
-_By [David Wagner](https://people.eecs.berkeley.edu/~daw/), [Nicholas Weaver](https://www1.icsi.berkeley.edu/~nweaver), [Peyrin Kao](https://peyrin.github.io), Fuzail Shakir, Andrew Law, and [Nicholas Ngai](https://ngai.me/)_
+_By Nikhil Sharma, Josh Hug, Jacky Liang, and Henry Zhu._
 
-_Additional contributions by Noura Alomar, Sheqi Zhang, and [Shomil Jain](https://shomil.me)_
+_Edited by Regina Wang, Peyrin Kao._
 
-This is the textbook for [CS 161: Computer Security](https://cs161.org/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides a brief survey over common topics in computer security including memory safety, cryptography, web security, and network security.
+
+This is the textbook for [CS 188: Introduction to Artificial Intelligence](https://inst.eecs.berkeley.edu/~cs188/fa24/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides an introduction to the full range of topics studied in artificial intelligence, with emphasis on the "core competences" of intelligent systems - problem solving, reasoning, decision making, and learning - and on the logical and probabilistic foundations of these activities.
 
 ## Corrections
 
 As of the Fall 2024 semester, this textbook is still being actively maintained and updated.
 
-If you see any parts that needs to be corrected, please open a Github issue [here](https://github.com/cs161-staff/textbook/issues).
-
 ## Source and Changelog
 
-The source for the textbook and a log of all changes is [available on Github](https://github.com/cs161-staff/textbook).
+The source for the textbook and a log of all changes is [available on Github](https://github.com/BerkeleyAI/textbook).
 
 ## License
 
