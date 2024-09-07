@@ -129,10 +129,14 @@ jobs:
             "pdf_output/network_abusing-intrusion-detection.pdf" \
             "pdf_output/network_malware.pdf" \
             "pdf_output/network_tor.pdf" \
-            "textbook_full_tmp.pdf"
+            "textbook_full.pdf"
       
       - name: Inject page numbers back into the pdf
-        run: pdfjam --pagecommand '\pagestyle{plain}' --outfile textbook_full.pdf textbook_full_tmp.pdf
+        run: pdfjam --pagecommand '\pagestyle{plain}' --outfile textbook_full.pdf textbook_full.pdf
+
+      - name: Remove temporary files
+        run: |
+          rm -rf pdf_output
 
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v4
@@ -140,13 +144,25 @@ jobs:
           name: textbook-full
           path: textbook_full.pdf
 
-      - name: Commit and push changes only on push
-        if: github.event_name == 'push'
+      - name: Commit changes to a new branch
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
+          git checkout -b update-textbook-full-pdf
           git add textbook_full.pdf
-          git commit -m "Update full PDF of textbook on site"
-          git push
+          git commit -m "Update PDF of textbook on site after a merge to main"
+          git push origin HEAD
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create a Pull Request
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update PDF of textbook on site"
+          branch: update-textbook-full-pdf
+          title: "Update full PDF of textbook"
+          body: "This PR updates the full PDF of the textbook."
+          base: main
