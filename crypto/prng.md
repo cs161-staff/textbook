@@ -57,26 +57,21 @@ We also use HMAC to update the internal state $$K$$ and $$V$$ each time. If addi
 
 **Algorithm 1** $$\text{Generate}(n)$$: Generate $$n$$ pseudorandom bits, with no additional true random input
 
-<!-- prettier-ignore -->
-<div class="algorithm" markdown="1">
+&nbsp; $$\text{output} = \texttt{`'}$$
 
-\\(output = \texttt{''}\\)
+&nbsp; **while** $$\text{len}(\text{output}) < n$$ **do**
 
-**while** \\(\text{len}(output) < n\\) **do**
+&nbsp; &nbsp; &nbsp; &nbsp; $$V = \text{HMAC}(K, V)$$
 
-> \\(V = \text{HMAC}(K, V)\\)
->
-> \\(output = output \Vert V\\)
+&nbsp; &nbsp; &nbsp; &nbsp; $$\text{output} = \text{output} \Vert V$$
 
-**end while**
+&nbsp; **end while**
 
-\\(K = \text{HMAC}(K, V \Vert \texttt{0x00})\\)
+&nbsp; $$K = \text{HMAC}(K, V \Vert \texttt{0x00})$$
 
-\\(V = \text{HMAC}(K, V) \\)
+&nbsp; $$V = \text{HMAC}(K, V)$$
 
-**return** \\(output[0:n]\\)
-
-</div>
+&nbsp; **return** $$\text{output}[0:n]$$
 
 ---
 
@@ -88,22 +83,17 @@ Next, let's see how to seed the pRNG. The seed and reseed algorithms use true ra
 
 **Algorithm 2** $$\text{Seed}(s)$$: Take some truly random bits $$s$$ and initialize the internal state.
 
-<!-- prettier-ignore -->
-<div class="algorithm" markdown="1">
+&nbsp; $$K = 0$$
 
-\\(K = 0\\)
+&nbsp; $$V = 0$$
 
-\\(V = 0\\)
+&nbsp; $$H = \text{HMAC}(K, V \Vert s \Vert \texttt{0x00})$$
 
-\\(K = \text{HMAC}(K, V \Vert s \Vert \texttt{0x00})\\)
+&nbsp; $$V = \text{HMAC}(K, V)$$
 
-\\(V = \text{HMAC}(K, V)\\)
+&nbsp; $$K = \text{HMAC}(K, V \Vert s \Vert \texttt{0x01})$$
 
-\\(K = \text{HMAC}(K, V \Vert s \Vert \texttt{0x01})\\)
-
-\\(V = \text{HMAC}(K, V)\\)
-
-</div>
+&nbsp; $$V = \text{HMAC}(K, V)$$
 
 ---
 
@@ -118,25 +108,25 @@ Finally, if we want to generate pseudorandom output and add entropy at the same 
 <!-- prettier-ignore -->
 <div class="algorithm" markdown="1">
 
-\\(output = \texttt{''}\\)
+&nbsp; $$\text{output} = \texttt{`'}$$
 
-**while** \\(\text{len}(output) < n\\) **do**
+&nbsp;  **while** $$\text{len}(\text{output}) < n$$ **do**
 
-> \\(V = \text{HMAC}(K, V)\\)
->
-> \\(output = output \Vert V\\)
+&nbsp; &nbsp; &nbsp; &nbsp; $$V = \text{HMAC}(K, V)$$
 
-**end while**
+&nbsp; &nbsp; &nbsp; &nbsp;  $$\text{output} = \text{output} \Vert V$$
 
-\\(K = \text{HMAC}(K, V \Vert s \Vert \texttt{0x00})\\)
+&nbsp; **end while**
 
-\\(V = \text{HMAC}(K, V)\\)
+&nbsp; $$K = \text{HMAC}(K, V \Vert s \Vert \texttt{0x00})$$
 
-\\(K = \text{HMAC}(K, V \Vert s \Vert \texttt{0x01})\\)
+&nbsp; $$V = \text{HMAC}(K, V)$$
 
-\\(V = \text{HMAC}(K, V)\\)
+&nbsp; $$K = \text{HMAC}(K, V \Vert s \Vert \texttt{0x01})$$
 
-**return** \\(output[0:n]\\)
+&nbsp; $$V = \text{HMAC}(K, V)$$
+
+&nbsp; **return** $$\text{output}[0:n]$$
 
 </div>
 
