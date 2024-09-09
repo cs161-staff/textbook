@@ -140,6 +140,13 @@ jobs:
 
           num_pages=$(pdftk textbook_full_original.pdf dump_data | grep NumberOfPages | awk '{print $2}')
           sed -i "s/161/$num_pages/" pdf-generation/numbering.tex
+          
+          # Don't continue if the sed failed
+          if [ $? -ne 0 ]; then
+            echo "Error: sed command failed" >&2
+            exit 1
+          fi
+
           pdflatex pdf-generation/numbering.tex
           pdftk pdf-generation/numbering.pdf burst output pdf_numbering_output/number_%03d.pdf
           pdftk textbook_full_original.pdf burst output pdf_numbering_output/page_%03d.pdf
