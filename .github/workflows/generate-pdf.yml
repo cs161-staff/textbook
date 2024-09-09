@@ -16,9 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Pandoc, Latex necessities, and pdftk
+      - name: Install Pandoc, Latex necessities, and qpdf
         run: |
-          sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils texlive-extra-utils pdftk
+          sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils texlive-extra-utils qpdf
 
       - name: Install Python
         uses: actions/setup-python@v4
@@ -85,7 +85,7 @@ jobs:
               exit 1
             fi
           done
-          pdftk \
+          qpdf --empty --pages \
             "pdf_output/index.pdf" \
             "pdf_output/principles_index.pdf" \
             "pdf_output/principles_principles.pdf" \
@@ -131,7 +131,7 @@ jobs:
             "pdf_output/network_abusing-intrusion-detection.pdf" \
             "pdf_output/network_malware.pdf" \
             "pdf_output/network_tor.pdf" \
-            cat output textbook_full.pdf
+            -- "textbook_full.pdf"
       
       - name: Inject page numbers back into the pdf
         run: pdfjam --pagecommand '\pagestyle{plain}' --outfile textbook_full.pdf textbook_full.pdf
