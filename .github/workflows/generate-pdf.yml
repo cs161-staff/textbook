@@ -183,6 +183,7 @@ jobs:
         run: git diff --stat
 
       - name: Commit changes to a new branch
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
@@ -194,6 +195,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check git log on update-textbook-full-pdf branch
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
         run: |
           git checkout update-textbook-full-pdf
           git log
