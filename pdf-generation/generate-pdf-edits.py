@@ -1,7 +1,9 @@
 import re
 import argparse
 
-def adjust_images(input_file):
+# thanks https://www.reddit.com/r/pandoc/comments/17tsijd/render_htmlsyntax_images_in_pdf_from_markdown/
+
+def adjust_content(input_file):
     # Read the contents of the input file
     with open(input_file, 'r') as file:
         content = file.read()
@@ -27,4 +29,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    adjust_images(args.input_file)
+    adjust_content(args.input_file)

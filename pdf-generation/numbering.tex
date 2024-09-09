@@ -1,0 +1,6 @@
+\documentclass[12pt,a4paper]{article} % https://cazencott.info/index.php/post/2015/04/30/Numbering-PDF-Pages
+\usepackage{multido}
+\usepackage[hmargin=.8cm,vmargin=1.5cm,nohead,nofoot]{geometry}
+\begin{document}
+\multido{}{194}{\vphantom{x}\newpage}
+\end{document}
