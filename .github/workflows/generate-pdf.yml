@@ -169,6 +169,10 @@ jobs:
           rm -rf pdf_numbering_output
           rm -rf textbook_full_original.pdf
           rm -rf textbook_full_cpy.pdf
+      
+      - name: Check if PDF files are created
+        run: |
+          if [ -f "textbook_full.pdf" ]; then echo "textbook_full.pdf here"; else echo "textbook_full.pdf gone"; fi
 
       - name: Commit changes to a new branch
         if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
