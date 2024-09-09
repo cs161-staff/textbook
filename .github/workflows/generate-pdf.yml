@@ -139,7 +139,7 @@ jobs:
           mkdir -p pdf_numbering_output
 
           num_pages=$(pdftk textbook_full_original.pdf dump_data | grep NumberOfPages | awk '{print $2}')
-          sed -i "s/194/$num_pages/" pdf-generation/numbering.tex
+          sed -i "s/161/$num_pages/" pdf-generation/numbering.tex
           
           # Don't continue if the sed failed
           if [ $? -ne 0 ]; then
@@ -148,25 +148,27 @@ jobs:
           fi
 
           pdflatex pdf-generation/numbering.tex
-          pdftk pdf-generation/numbering.pdf burst output pdf_numbering_output/number_%03d.pdf
+          pdftk numbering.pdf burst output pdf_numbering_output/number_%03d.pdf
           pdftk textbook_full_original.pdf burst output pdf_numbering_output/page_%03d.pdf
           for i in $(seq -f %03g 1 $num_pages) ; do pdftk pdf_numbering_output/page_$i.pdf background pdf_numbering_output/number_$i.pdf output pdf_numbering_output/new_$i.pdf; done
 
           pdftk pdf_numbering_output/new_???.pdf output textbook_full.pdf
-
-          sed -i "s/$num_pages/194/" pdf-generation/numbering.tex
-
-      - name: Remove temporary files, make temporary copy to upload as artifact
-        run: |
-          rm -rf pdf_output
-          rm -rf pdf_numbering_output
           cp textbook_full.pdf textbook_full_cpy.pdf
+
+          sed -i "s/$num_pages/161/" pdf-generation/numbering.tex
 
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v4
         with:
           name: textbook-full-copy
           path: textbook_full_cpy.pdf
+
+      - name: Remove temporary files
+        run: |
+          rm -rf pdf_output
+          rm -rf pdf_numbering_output
+          rm -rf textbook_full_original.pdf
+          rm -rf textbook_full_cpy.pdf
 
       - name: Commit changes to a new branch
         if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
