@@ -168,7 +168,7 @@ jobs:
           rm -rf pdf_output
           rm -rf pdf_numbering_output
           rm -rf textbook_full_original.pdf
-          rm -rf textbook_full.pdf
+          rm -rf textbook_full_cpy.pdf
 
       - name: Commit changes to a new branch
         if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
