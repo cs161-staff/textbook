@@ -169,6 +169,8 @@ jobs:
           rm -rf pdf_numbering_output
           rm -rf textbook_full_original.pdf
           rm -rf textbook_full_cpy.pdf
+          rm -rf numbering.pdf
+          rm -rf numbering.aux
       
       - name: Check if PDF files are created
         run: |
