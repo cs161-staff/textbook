@@ -210,3 +210,10 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,jekyll,node
+
+# PDF Page Numbering
+pdf-generation/numbering.aux
+pdf-generation/numbering.fdb_latexmk
+pdf-generation/numbering.fls
+pdf-generation/numbering.log
+pdf-generation/numbering.synctex.gz
