@@ -193,6 +193,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check git log on update-textbook-full-pdf branch
+        run: |
+          git checkout -b update-textbook-full-pdf
+          git log
+
       - name: Create a Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
