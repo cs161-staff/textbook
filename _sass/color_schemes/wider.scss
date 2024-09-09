@@ -102,16 +102,16 @@ a.skip-to-main:focus, a.skip-to-main:active {
   color: #27262b !important;
 }
 
-span.blue {
-  color: blue;
+span[style*="color:blue"] {
+  color: blue !important;
 }
 
-span.red {
-  color: #AD0000;
+span[style*="color:red"] {
+  color: #AD0000 !important;
 }
 
-span.green {
-  color: #005200;
+span[style*="color:green"] {
+  color: #005200 !important;
 }
 
 body, .site-footer {
