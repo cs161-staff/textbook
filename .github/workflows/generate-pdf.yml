@@ -187,7 +187,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
           git checkout -b update-textbook-full-pdf
-          git add -f --renormalize textbook_full.pdf
+          git add -f textbook_full.pdf
           git commit -m "Update PDF of textbook on site after a merge to main"
           git push -f origin update-textbook-full-pdf
         env:
