@@ -139,7 +139,7 @@ jobs:
           mkdir -p pdf_numbering_output
 
           num_pages=$(pdftk textbook_full_original.pdf dump_data | grep NumberOfPages | awk '{print $2}')
-          sed -i "s/161/$num_pages/" pdf-generation/numbering.tex
+          sed -i "s/194/$num_pages/" pdf-generation/numbering.tex
           
           # Don't continue if the sed failed
           if [ $? -ne 0 ]; then
@@ -154,7 +154,7 @@ jobs:
 
           pdftk pdf_numbering_output/new_???.pdf output textbook_full.pdf
 
-          sed -i "s/$num_pages/161/" pdf-generation/numbering.tex
+          sed -i "s/$num_pages/194/" pdf-generation/numbering.tex
 
       - name: Remove temporary files, make temporary copy to upload as artifact
         run: |
