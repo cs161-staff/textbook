@@ -213,6 +213,10 @@ $RECYCLE.BIN/
 
 # PDF Page Numbering
 pdf-generation/numbering.aux
+numbering.aux
+numbering.pdf
+textbook_full_cpy.pdf
+textbook_full_original.pdf
 pdf-generation/numbering.fdb_latexmk
 pdf-generation/numbering.fls
 pdf-generation/numbering.log
