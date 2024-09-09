@@ -1,14 +1,14 @@
 ---
-title: Search
+title: 1. Search
 nav_order: 1
 has_children: true
 ---
 
-# Search
+# 1. Search
 
 Author: Nikhil Sharma
 
-Edited by: Matei Gardea
+Edited by: Matei Gardea and Wesley Zheng
 
 Credit (Machine Learning and Logic notes): Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 

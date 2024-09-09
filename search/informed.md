@@ -1,15 +1,15 @@
 ---
-title: Informed Search
-parent: Search
+title: 1.4 Informed Search
+parent: 1. Search
 nav_order: 4
 layout: page
 ---
 
-# Informed Search
+# 1.4 Informed Search
 
 Uniform cost search is good because it's both complete and optimal, but it can be fairly slow because it expands in every direction from the start state while searching for a goal. If we have some notion of the direction in which we should focus our search, we can significantly improve performance and "hone in" on a goal much more quickly. This is exactly the focus of **informed search**.
 
-## Heuristics
+## 1.4.1 Heuristics
 
 **Heuristics** are the driving force that allow estimation of distance to goal states - they're functions that take in a state as input and output a corresponding estimate. The computation performed by such a function is specific to the search problem being solved. For reasons that we'll see in A* search, below, we usually want heuristic functions to be a lower bound on this remaining distance to the goal, and so heuristics are typically solutions to **relaxed problems** (where some of the constraints of the original problem have been removed).  Turning to our Pacman example, let's consider the pathing problem described earlier. A common heuristic that's used to solve this problem is the **Manhattan distance**, which for two points ($$x_1$$, $$y_1$$) and ($$x_2$$, $$y_2$$) is defined as follows:
 
@@ -21,7 +21,7 @@ $$
 
 The above visualization shows the relaxed problem that the Manhattan distance helps solve - assuming Pacman desires to get to the bottom left corner of the maze, it computes the distance from Pacman's current location to Pacman's desired location *assuming a lack of walls in the maze*. This distance is the *exact* goal distance in the relaxed search problem, and correspondingly is the *estimated* goal distance in the actual search problem. With heuristics, it becomes very easy to implement logic in our agent that enables them to "prefer" expanding states that are estimated to be closer to goal states when deciding which action to perform. This concept of preference is very powerful, and is utilized by the following two search algorithms that implement heuristic functions: greedy search and A*.
 
-## Greedy Search
+## 1.4.2 Greedy Search
 
 - *Description* - Greedy search is a strategy for exploration that always selects the frontier node with the *lowest heuristic value* for expansion, which corresponds to the state it believes is nearest to a goal.
 - *Frontier Representation* - Greedy search operates identically to UCS, with a priority queue Frontier Representation. The difference is that instead of using *computed backward cost* (the sum of edge weights in the path to the state) to assign priority, greedy search uses *estimated forward cost* in the form of heuristic values.
@@ -30,13 +30,13 @@ The above visualization shows the relaxed problem that the Manhattan distance he
 ![Image: Greedy search on a good day :)](../assets/images/good_greedy.png)
 ![Image: Greedy search on a bad day :(](../assets/images/bad_greedy.png)
 
-## A* Search
+## 1.4.3 A* Search
 
 - *Description* - A* search is a strategy for exploration that always selects the frontier node with the *lowest estimated total cost* for expansion, where total cost is the entire cost from the start node to the goal node.
 - *Frontier Representation* - Just like greedy search and UCS, A* search also uses a priority queue to represent its frontier. Again, the only difference is the method of priority selection. A* combines the total backward cost (sum of edge weights in the path to the state) used by UCS with the estimated forward cost (heuristic value) used by greedy search by adding these two values, effectively yielding an *estimated total cost* from start to goal. Given that we want to minimize the total cost from start to goal, this is an excellent choice.
 - *Completeness and Optimality* - A* search is both complete and optimal, given an appropriate heuristic (which we'll cover in a minute). It's a combination of the good from all the other search strategies we've covered so far, incorporating the generally high speed of greedy search with the optimality and completeness of UCS!
 
-## Admissibility
+## 1.4.4. Admissibility
 
 Now that we've discussed heuristics and how they are applied in both greedy and A* search, let's spend some time discussing what constitutes a good heuristic. To do so, let's first reformulate the methods used for determining priority queue ordering in UCS, greedy search, and A* with the following definitions:
 
@@ -106,7 +106,7 @@ Note that in implementation, it's critically important to store the reached set 
 
 A couple of important highlights from the discussion above before we proceed: for heuristics that are admissible to be valid, it must by definition be the case that $$h(G) = 0$$ for any goal state $$G$$.
 
-## Dominance
+## 1.4.5 Dominance
 
 Now that we've established the property of admissibility and its role in maintaining the optimality of A* search, we can return to our original problem of creating "good" heuristics, and how to tell if one heuristic is better than another. The standard metric for this is that of **dominance**. If heuristic $$$$ is dominant over heuristic $$b$$, then the estimated goal distance for $$a$$ is greater than the estimated goal distance for $$b$$ for every node in the state space graph. Mathematically,
 

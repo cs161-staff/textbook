@@ -1,11 +1,11 @@
 ---
-title: State Spaces and Search Problems
-parent: Search
+title: 1.2 State Spaces and Search Problems
+parent: 1. Search
 nav_order: 2
 layout: page
 ---
 
-# State Spaces and Search Problems
+# 1.2 State Spaces and Search Problems
 
 In order to create a rational planning agent, we need a way to mathematically express the given environment in which the agent will exist. To do this, we must formally express a **search problem** - given our agent's current **state** (its configuration within its environment), how can we arrive at a new state that satisfies its goals in the best possible way? A search problem consists of the following elements:
 
@@ -38,7 +38,7 @@ Let's consider a variation of the game in which the maze contains only Pacman an
 
 Note that for pathing, states contain less information than states for eat-all-dots, because for eat-all-dots we must maintain an array of booleans corresponding to each food pellet and whether or not it's been eaten in the given state. A world state may contain more information still, potentially encoding information about things like total distance traveled by Pacman or all positions visited by Pacman on top of its current $$(x,y)$$ location and dot booleans.
 
-## State Space Size
+## 1.2.1 State Space Size
 
 An important question that often comes up while estimating the computational runtime of solving a search problem is the size of the state space. This is done almost exclusively with the **fundamental counting principle**, which states that if there are n variable objects in a given world which can take on $$x_1$$, $$x_2$$, ..., $$x_n$$ different values respectively, then the total number of states is $$x_1$$ · $$x_2$$ · ... · $$x_n$$. Let's use Pacman to show this concept by example:
 
@@ -52,7 +52,7 @@ Let's say that the variable objects and their corresponding number of possibilit
 
 Using the fundamental counting principle, we have 120 positions for Pacman, 4 directions Pacman can be facing, 12 · 12 ghost configurations (12 for each ghost), and 2 · 2 · ... · 2 = 2³⁰ food pellet configurations (each of 30 food pellets has two possible values - eaten or not eaten). This gives us a total state space size of **120 · 4 · 12² · 2³⁰**.
 
-## State Space Graphs and Search Trees
+## 1.2.2 State Space Graphs and Search Trees
 
 Now that we've established the idea of a state space and the four components necessary to completely define one, we're almost ready to begin solving search problems. The final piece of the puzzle is that of state space graphs and search trees.
 

@@ -1,11 +1,11 @@
 ---
-title: Model-Based Learning
-parent: RL
+title: 6.2 Model-Based Learning
+parent: 6. RL
 nav_order: 2
 layout: page
 ---
 
-# Model-Based Learning
+# 6.2 Model-Based Learning
 
 In model-based learning, an agent generates an approximation of the transition function, $$\hat{T}(s, a, s')$$, by keeping counts of the number of times it arrives in each state $$s'$$ after entering each Q-state $$(s, a)$$. The agent can then generate the approximate transition function $$\hat{T}$$ upon request by **normalizing** the counts it has collected—dividing the count for each observed tuple $$(s, a, s')$$ by the sum over the counts for all instances where the agent was in Q-state $$(s, a)$$. Normalization of counts scales them such that they sum to one, allowing them to be interpreted as probabilities. 
 

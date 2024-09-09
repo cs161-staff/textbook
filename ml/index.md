@@ -1,15 +1,15 @@
 ---
-title: ML
-nav_order: 3
+title: 10. ML
+nav_order: 10
 has_children: true
 ---
 
-# ML
+# 10. ML
 
 Author: Nikhil Sharma
 
 Edited by: Wesley Zheng
 
-Credit (Machine Learning and Logic notes): Some sections adapted from the textbook Artificial Intelligence: A Modern Approach.
+Credit (Machine Learning and Logic notes): Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
 Last updated: September 2024

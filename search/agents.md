@@ -1,11 +1,11 @@
 ---
-title: Agents
-parent: Search
+title: 1.1 Agents
+parent: 1. Search
 nav_order: 1
 layout: page
 ---
 
-# Agents
+# 1.1 Agents
 
 In artificial intelligence, the central problem at hand is the creation of a rational **agent**, an entity that has goals or preferences and tries to perform a series of **actions** that yield the best/optimal expected outcome given these goals. Rational agents exist in an **environment**, which is specific to the given instantiation of the agent. Agents use sensors to interact with the environment and act on it using actuators. As a very simple example, the environment for a checkers agent is the virtual checkers board on which it plays against opponents, where piece moves are actions. Together, an environment and the agents that reside within it create a **world**.
 

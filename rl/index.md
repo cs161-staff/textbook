@@ -1,15 +1,15 @@
 ---
-title: RL
-nav_order: 3
+title: 6. RL
+nav_order: 6
 has_children: true
 ---
 
-# RL
+# 6. RL
 
 Author: Nikhil Sharma
 
 Edited by: Wesley Zheng
 
-Credit (Machine Learning and Logic notes): Some sections adapted from the textbook Artificial Intelligence: A Modern Approach.
+Credit (Machine Learning and Logic notes): Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
 Last updated: September 2024
