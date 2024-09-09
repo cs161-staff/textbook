@@ -195,7 +195,7 @@ jobs:
 
       - name: Check git log on update-textbook-full-pdf branch
         run: |
-          git checkout -b update-textbook-full-pdf
+          git checkout update-textbook-full-pdf
           git log
 
       - name: Create a Pull Request
