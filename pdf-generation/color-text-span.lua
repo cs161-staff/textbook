@@ -3,8 +3,9 @@
 -- https://ulriklyngs.com/post/2019/02/20/how-to-use-pandoc-filters-for-advanced-customisation-of-your-r-markdown-documents/
 
 function Span (el)
-    if string.find(el.attributes.style, "color") then
-      stylestr = el.attributes.style
+    local style = el.attributes.style
+    if style and string.find(style, "color") then
+      stylestr = style
       thecolor = string.match(stylestr, "color:%s*(%a+);?")
 
       local color_mapping = {
