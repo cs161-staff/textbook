@@ -178,19 +178,17 @@ jobs:
         run: git status
 
       - name: Commit changes to a new branch
-        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
           git checkout -b update-textbook-full-pdf
-          git add textbook_full.pdf
+          git add -f textbook_full.pdf
           git commit -m "Update PDF of textbook on site after a merge to main"
           git push origin HEAD
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a Pull Request
-        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
