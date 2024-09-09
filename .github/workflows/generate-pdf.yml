@@ -174,7 +174,11 @@ jobs:
         run: |
           if [ -f "textbook_full.pdf" ]; then echo "textbook_full.pdf here"; else echo "textbook_full.pdf gone"; fi
 
+      - name: Check git status
+        run: git status
+
       - name: Commit changes to a new branch
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
@@ -186,6 +190,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a Pull Request
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'Update PDF of textbook')
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
