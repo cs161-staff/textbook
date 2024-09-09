@@ -207,3 +207,8 @@ jobs:
           title: "Update full PDF of textbook"
           body: "This PR updates the full PDF of the textbook."
           base: main
+      
+      - name: Check git log on update-textbook-full-pdf branch
+        run: |
+          git checkout update-textbook-full-pdf
+          git log
