@@ -16,9 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Pandoc, Latex necessities, and pdftk
+      - name: Install Pandoc, Latex necessities, lua, and pdftk
         run: |
-          sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils texlive-extra-utils pdftk
+          sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils texlive-extra-utils lua5.3 pdftk
 
       - name: Install Python
         uses: actions/setup-python@v4
