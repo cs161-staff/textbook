@@ -78,7 +78,7 @@ jobs:
           )
           for md_file in "${file_list[@]}"; do
             pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g' | sed 's/.md//g').pdf"
-            python3 pdf-generation/generate-pdf-edits.py "$md_file" | pandoc -V geometry:margin=1in -V colorlinks=true -V linkcolor=blue -V urlcolor=blue --pdf-engine=pdflatex -o "$pdf_file_name"
+            python3 pdf-generation/generate-pdf-edits.py "$md_file" | pandoc -V geometry:margin=1in -V colorlinks=true -V linkcolor=blue -V urlcolor=blue --lua-filter=pdf-generation/color-text-span.lua --pdf-engine=pdflatex -o "$pdf_file_name"
 
             if [ ! -f "$pdf_file_name" ]; then
               echo "Error: PDF file $pdf_file_name not created!" >&2

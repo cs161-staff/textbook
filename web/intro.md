@@ -5,6 +5,9 @@ nav_order: 2
 layout: page
 header-includes:
 - \pagenumbering{gobble}
+output:
+  pdf_document:
+    pandoc_args: ["--lua-filter=color-text-span.lua"]
 ---
 
 # 18. Introduction to the Web
@@ -15,9 +18,9 @@ Every resource (webpage, image, PDF, etc.) on the web is identified by a URL (Un
 
 <p style="text-align: center">
   <code>
-    <span class="blue">http</span
-    >://<span class="green">www.example.com</span
-    ><span class="red">/index.html</span>
+    <span style="color:blue">http</span
+    >://<span style="color:green">www.example.com</span
+    ><span style="color:red">/index.html</span>
   </code>
 </p>
 
@@ -41,13 +44,13 @@ In summary, a URL with all elements present may look like this:
 
 <p style="text-align: center">
   <code>
-    <span class="blue">http://</span
-    ><span class="red">evanbot@</span
-    ><span class="blue">www.cs161.org</span
-    ><span class="red">:161</span
-    ><span class="blue">/whoami</span
-    ><span class="red">?k1=v1&amp;k2=v2</span
-    ><span class="blue">#anchor</span>
+    <span style="color:blue">http://</span
+    ><span style="color:red">evanbot@</span
+    ><span style="color:blue">www.cs161.org</span
+    ><span style="color:red">:161</span
+    ><span style="color:blue">/whoami</span
+    ><span style="color:red">?k1=v1&amp;k2=v2</span
+    ><span style="color:blue">#anchor</span>
   </code>
 </p>
 

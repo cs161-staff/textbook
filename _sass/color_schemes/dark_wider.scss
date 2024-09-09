@@ -106,16 +106,16 @@ a.skip-to-main:focus, a.skip-to-main:active {
   color: #f5f6fa !important;
 }
 
-span.blue {
-  color: #00D3EB;
+span[style*="color:blue"] {
+  color: #00D3EB !important;
 }
 
-span.red {
-  color: #FFB3B3;
+span[style*="color:red"] {
+  color: #FFB3B3 !important;
 }
 
-span.green {
-  color: #79DB00;
+span[style*="color:green"] {
+  color: #79DB00 !important;
 }
 
 body {
