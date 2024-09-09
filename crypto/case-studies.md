@@ -8,4 +8,4 @@ header-includes:
 
 # Case Studies
 
-No longer under construction.
+TODO: Under construction.

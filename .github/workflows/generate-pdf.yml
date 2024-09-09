@@ -197,18 +197,3 @@ jobs:
         run: |
           git checkout update-textbook-full-pdf
           git log
-
-      - name: Create a Pull Request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Update PDF of textbook on site"
-          branch: update-textbook-full-pdf
-          title: "Update full PDF of textbook"
-          body: "This PR updates the full PDF of the textbook."
-          base: main
-      
-      - name: Check git log on update-textbook-full-pdf branch
-        run: |
-          git checkout update-textbook-full-pdf
-          git log
