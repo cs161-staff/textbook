@@ -17,7 +17,7 @@ In this section, we will define _message authentication codes (MACs)_ and show h
 
 ## 8.2. MAC: Definition
 
-A MAC is a keyed checksum of the message that is sent along with the message. It takes in a fixed-length secret key and an arbitrary-length message, and outputs a fixed-length checksum. A secure MAC has the property that any change to the message will render the checksum invalid.
+A MAC is a keyed checksum of the message that is sent along with the message. It takes in a fixed-length secret key and an arbitrary-length message, and outputs a fixed-length checksum. A secure MAC has the property that any change to the message will render the checksum invalid: secure MACs are _existentially unforgeable_.
 
 Formally, the MAC on a message $$M$$ is a value $$F(K,M)$$ computed from $$K$$ and $$M$$; the value $$F(K,M)$$ is called the _tag_ for $$M$$ or the MAC of $$M$$. Typically, we might use a 128-bit key $$K$$ and 128-bit tags.
 
@@ -37,7 +37,7 @@ Recall that MACs are deterministic--if Alice calculates $$F(K,M)$$ twice on the 
 
 More generally, secure MACs are designed to be secure against known-plaintext attacks. For instance, suppose an adversary Eve eavesdrops on Alice's communications and observes a number of messages and their corresponding tags: $$\langle M_1,T_1\rangle,\langle M_2,T_2\rangle,\dots,\langle M_n,T_n\rangle$$, where $$T_i=F(K,M_i)$$. Then Eve has no hope of finding some new message $$M'$$ (such that $$M' \notin \{M_1,\dots,M_n\}$$) and a corresponding value $$T'$$ such that $$T'$$ is the correct tag on $$M'$$ (i.e., such that $$T' = F(K,M')$$). The same is true even if Eve was able to choose the $$M_i$$'s. In other words, even though Eve may know some valid MACs $$\langle M_n,T_n\rangle$$, she still cannot generate valid MACs for messages she has never seen before.
 
-Here is a formal security definition that captures both properties described above. We imagine a game played between Georgia (the adversary) and Reginald (the referee). Initially, Reginald picks a random key $$K$$, which will be used for all subsequent rounds of the game. In each round of the game, Georgia may query Reginald with one of two kinds of queries:
+Here is a formal security definition that captures both properties described above. We imagine a game played between Georgia (the adversary) and Reginald (the referee). This is the EU-CPA game, for existential unforgeability under chosen-plaintext attack. Initially, Reginald picks a random key $$K$$, which will be used for all subsequent rounds of the game. In each round of the game, Georgia may query Reginald with one of two kinds of queries:
 
 - **Generation query:** Georgia may specify a message $$M_i$$ and ask for the tag for $$M_i$$. Reginald will respond with $$T_i=F(K,M_i)$$.
 

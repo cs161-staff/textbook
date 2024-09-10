@@ -95,7 +95,7 @@ A quick reminder: in these notes we're developing the conceptual basis underlyin
 
 ## 12.5. Definition of Security for Digital Signatures
 
-Finally, let's outline a formal definition of what we mean when we say that a digital signature scheme is secure. The approach is very similar to what we saw for MACs.
+Finally, let's outline a formal definition of what we mean when we say that a digital signature scheme is secure. The approach is very similar to what we saw for MACs, as we use the same EU-CPA game. 
 
 We imagine a game played between Georgia (the adversary) and Reginald (the referee). Initially, Reginald runs $$\text{KeyGen}$$ to get a keypair $$\langle K,U \rangle$$. Reginald sends the public key $$U$$ to Georgia and keeps the private key $$K$$ to himself. In each round of the game, Georgia may query Reginald with a message $$M_i$$; Reginald responds with $$S_i = \text{Sign}_K(M_i)$$. At any point, Georgia can yell "Bingo!" and output a pair $$\langle M,S \rangle$$. If this pair satisfies $$\text{Verify}_U(M,S)=\text{true}$$, and if Reginald has not been previously queried with the message $$M$$, then Georgia wins the game: she has forged a signature. Otherwise, Georgia loses.
 

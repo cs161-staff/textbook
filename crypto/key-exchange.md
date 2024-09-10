@@ -119,6 +119,8 @@ If Alice and Bob fall victim to this attack, Mallory can now decrypt any message
 
 The main reason why the Diffie-Hellman protocol is vulnerable to this attack is that the messages exchanged between Alice and Bob have no integrity or authenticity. To defend against this attack, Alice and Bob will need to additionally use a cryptoscheme that provides integrity and authenticity, such as digital signatures. If the messages sent during the Diffie-Hellman exchange have integrity and authenticity, then Alice and Bob would be able to detect Mallory's tampering with the messages.
 
+There exist other MITM attacks against Diffie-Hellman. For instance, consider the following scenario. Alice and Bob do not use hardcoded parameters, but instead negotiate them first. They must first exchange a list of generators and moduli they each support, before one of them picks a pair. Mallory could alter each list to only include low-order generators $$g$$ that can be broken. This attack can be mitigated if the negotiation itself also has integrity and authenticity, or if the choice of parameters is hardcoded before starting the protocol. 
+
 {% comment %} To defend against this attack, Alice and Bob can sign the messages using their signing keys and then use the corresponding verification keys to verify that they are negotiating shared keys with the right party. If they do so, Mallory would not be able to intercept the communications since she does not have Alice and Bob’s signing keys. If Mallory signs messages with her signing key, however; Alice and Bob would be able to detect the attack and reject the messages sent by Mallory accordingly. {% endcomment %}
 
 {% comment %} TODO: Diffie-Hellman MITM attack (Noura) -peyrin {% endcomment %}
