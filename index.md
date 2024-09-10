@@ -12,17 +12,17 @@ _Additional Contributions by Regina Wang, Peyrin Kao, Matei Gardea, and [Wesley 
 _Special Thanks to the Ashley Chiu from CS 161._
 
 
-This is the textbook for [CS 188: Introduction to Artificial Intelligence](https://inst.eecs.berkeley.edu/~cs188/fa24/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides an introduction to the full range of topics studied in artificial intelligence, with emphasis on the "core competences" of intelligent systems - problem solving, reasoning, decision making, and learning - and on the logical and probabilistic foundations of these activities.
+This is the lecture notes for [CS 188: Introduction to Artificial Intelligence](https://inst.eecs.berkeley.edu/~cs188/fa24/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides an introduction to the full range of topics studied in artificial intelligence, with emphasis on the "core competences" of intelligent systems - problem solving, reasoning, decision making, and learning - and on the logical and probabilistic foundations of these activities.
 
 ## Corrections
 
-As of the Fall 2024 semester, this textbook is still being actively maintained and updated.
+As of the Fall 2024 semester, these lecture notes are still being actively maintained and updated.
 
 If you see any parts that needs to be corrected, please email [Wesley Zheng](mailto:wzheng0302@berkeley.edu).
 
 ## Source and Changelog
 
-The source for the textbook and a log of all changes is [available on Github](https://github.com/BerkeleyAI/textbook).
+The source for the lecture notes and a log of all changes is [available on Github](https://github.com/BerkeleyAI/textbook).
 
 ## License
 
