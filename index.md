@@ -3,16 +3,18 @@ title: Introduction
 nav_order: 0
 ---
 
-# Artificial Intelligence
+# Introduction to Artificial Intelligence
 
 _By Nikhil Sharma, Josh Hug, Jacky Liang, and Henry Zhu._
 
-_Additional Contributions by Regina Wang, Peyrin Kao, Matei Gardea, and [Wesley Zheng](https://wkaiz.github.io)._
+_Additional Contributions by Regina Wang, Peyrin Kao, Matei Gardea, Danial Toktarbayev, and [Wesley Zheng](https://wkaiz.github.io)._
 
-_Special Thanks to the Ashley Chiu from CS 161._
+_Website Set Up By [Wesley Zheng](https://wkaiz.github.io)._
+
+_Special Thanks to Ashley Chiu from CS 161._
 
 
-This is the lecture notes for [CS 188: Introduction to Artificial Intelligence](https://inst.eecs.berkeley.edu/~cs188/fa24/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides an introduction to the full range of topics studied in artificial intelligence, with emphasis on the "core competences" of intelligent systems - problem solving, reasoning, decision making, and learning - and on the logical and probabilistic foundations of these activities.
+This is the lecture notes for [CS 188: Introduction to Artificial Intelligence](https://inst.eecs.berkeley.edu/~cs188/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides an introduction to the full range of topics studied in artificial intelligence, with emphasis on the "core competences" of intelligent systems - problem solving, reasoning, decision making, and learning - and on the logical and probabilistic foundations of these activities.
 
 ## Corrections
 

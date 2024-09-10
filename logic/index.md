@@ -6,10 +6,10 @@ has_children: true
 
 # 11. Logic
 
-Author: Nikhil Sharma
+Author: Henry Zhu
 
-Edited by: Danial Toktarbayev and Wesley Zheng
+Edited by: Peyrin Kao, Danial Toktarbayev, and Wesley Zheng
 
-Credit (Machine Learning and Logic notes): Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
+Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
 Last updated: September 2024
