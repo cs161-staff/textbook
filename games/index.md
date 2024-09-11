@@ -1,14 +1,14 @@
 ---
-title: 1. Search
-nav_order: 1
+title: 2. Games
+nav_order: 2
 has_children: true
 ---
 
-# 1. Search
+# 2. Games
 
 Author: Nikhil Sharma
 
-Edited by: Matei Gardea, Catherine Chu, and Wesley Zheng
+Edited by: Catherine Chu and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
