@@ -1,11 +1,11 @@
 ---
-title: 2.2 Minimax
-parent: 2. Games
+title: 3.2 Minimax
+parent: 3. Games
 nav_order: 2
 layout: page
 ---
 
-# 2.2 Minimax
+# 3.2 Minimax
 
 The first zero-sum-game algorithm we will consider is **minimax**, which runs under the motivating assumption that the opponent we face behaves optimally, and will always perform the move that is worst for us. To introduce this algorithm, we must first formalize the notion of **terminal utilities** and **state value**. The value of a state is the optimal score attainable by the agent which controls that state. In order to get a sense of what this means, observe the following trivially simple Pacman game board:
 
@@ -60,7 +60,7 @@ In implementation, minimax behaves similarly to depth-first search, computing va
 
 ![Minimax Pseudocode](../assets/images/minimax-pseudocode.png)
 
-## 2.2.1 Alpha-Beta Pruning
+## 3.2.1 Alpha-Beta Pruning
 
 Minimax seems just about perfect - it's simple, it's optimal, and it's intuitive. Yet, its execution is very similar to depth-first search and its time complexity is identical, a dismal $$O(b^m)$$. Recalling that $$b$$ is the branching factor and $$m$$ is the approximate tree depth at which terminal nodes can be found, this yields far too great a runtime for many games. For example, chess has a branching factor $$b \approx 35$$ and tree depth $$m \approx 100$$. To help mitigate this issue, minimax has an optimization - **alpha-beta pruning**.
 
@@ -78,7 +78,7 @@ Implementing such pruning can reduce our runtime to as good as $$O(b^{m/2})$$, e
 
 Take some time to compare this with the pseudocode for vanilla minimax, and note that we can now return early without searching through every successor.
 
-## 2.2.2 Evaluation Functions
+## 3.2.2 Evaluation Functions
 
 Though alpha-beta pruning can help increase the depth for which we can feasibly run minimax, this still usually isn't even close to good enough to get to the bottom of search trees for a large majority of games. As a result, we turn to **evaluation functions**, functions that take in a state and output an estimate of the true minimax value of that node. Typically, this is plainly interpreted as "better" states being assigned higher values by a good evaluation function than "worse" states. Evaluation functions are widely employed in **depth-limited minimax**, where we treat non-terminal nodes located at our maximum solvable depth as terminal nodes, giving them mock terminal utilities as determined by a carefully selected evaluation function. Because evaluation functions can only yield estimates of the values of non-terminal utilities, this removes the guarantee of optimal play when running minimax.
 

@@ -1,14 +1,14 @@
 ---
-title: 3. Games
-nav_order: 3
+title: 8. Decision Network and VPIs
+nav_order: 8
 has_children: true
 ---
 
-# 3. Games
+# 8. Decision Network and VPIs
 
 Author: Nikhil Sharma
 
-Edited by: Catherine Chu and Wesley Zheng
+Edited by: Saathvik Selvan and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 

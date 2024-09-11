@@ -1,14 +1,14 @@
 ---
-title: 3. Games
-nav_order: 3
+title: 9. HMMs
+nav_order: 9
 has_children: true
 ---
 
-# 3. Games
+# 9. HMMs
 
 Author: Nikhil Sharma
 
-Edited by: Catherine Chu and Wesley Zheng
+Edited by: Saathvik Selvan and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 

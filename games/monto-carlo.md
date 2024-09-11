@@ -1,11 +1,11 @@
 ---
-title: 2.5 Monto Carlo Tree Search
-parent: 2. Games
+title: 3.5 Monto Carlo Tree Search
+parent: 3. Games
 nav_order: 5
 layout: page
 ---
 
-# 2.5 Monte Carlo Tree Search
+# 3.5 Monte Carlo Tree Search
 
 For applications with a large branching factor, like playing Go, minimax can no longer be used. For such applications, we use the **Monte Carlo Tree Search (MCTS)** algorithm. MCTS is based on two ideas:
 

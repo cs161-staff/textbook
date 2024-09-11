@@ -1,14 +1,14 @@
 ---
-title: 3. Games
-nav_order: 3
+title: 4. MDPs
+nav_order: 4
 has_children: true
 ---
 
-# 3. Games
+# 4. MDPs
 
 Author: Nikhil Sharma
 
-Edited by: Catherine Chu and Wesley Zheng
+Edited by: Saathvik Selvan and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
