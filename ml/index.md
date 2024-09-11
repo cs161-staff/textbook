@@ -8,7 +8,7 @@ has_children: true
 
 Author: Nikhil Sharma
 
-Edited by: Wesley Zheng
+Edited by: Samantha Huang and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
