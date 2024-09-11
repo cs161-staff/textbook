@@ -55,4 +55,9 @@ Secure session tokens should be random and unpredictable, so an attacker cannot 
 
 It is easy to confuse session tokens and cookies. Session tokens are the values that the browser sends to the server to associate the request with a logged-in user. Cookies are how the browser stores and sends session tokens to the server. Cookies can also be used to save other state, as discussed earlier. In other words, session tokens are a special type of cookie that keep users logged in over many requests and responses.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover cookies.
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12">Spring 2023 Final Question 7: Web Security: Botgram</a>
+
 [^1]: The lack of restriction on the `Path` attribute has caused problems in the past, as cookies are presented to the server and JavaScript as an unordered set of name/value pairs, but is stored internally as name/path/value tuples, so if two cookies with the same name and host but different path are present, both will be presented to the server in unspecified order.

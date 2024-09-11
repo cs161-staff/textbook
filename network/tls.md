@@ -91,6 +91,11 @@ These days TLS is effectively free. The computational overhead is minor to the p
 
 This leaves the biggest cost of TLS in managing the private keys. Previously CAs charged a substantial amount to issue a certificate, but [LetsEncrypt](https://letsencrypt.org/) costs nothing because they have fully automated the process. You run a small program on your web server that generates keys, sends the public key to LetsEncrypt, and LetsEncrypt instructs that you put a particular file in a particular location on your server, acting to prove that you control the server. So LetsEncrypt has reduced the cost in two ways: It makes the TLS certificate monetarily free and, as important, makes it very easy to generate and use.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover TLS.
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=17">Spring 2023 Final Question 9: Networking: TLS Times Two</a>
+
 [^1]: A: No. An attacker can obtain the genuine server's certificate by starting its own TLS connection with the genuine server, and then present a copy of that certificate in step 2.
 [^2]: A: It was signed by a certificate authority in the previous step.
 [^3]: A: TCP is insecure against on-path and MITM attackers, who can spoof messages.

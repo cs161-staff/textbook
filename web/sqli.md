@@ -223,3 +223,8 @@ The biggest problem with parameterized SQL is compatibility. SQL is a (mostly) g
 In practice, most modern SQL libraries support parameterized SQL and prepared statements. If the library you are using does not support parameterized SQL, it is probably best to switch to a different SQL library.
 
 _Further reading:_ [OWASP Cheat Sheet on SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
+
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover SQL Injection.
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12">Spring 2023 Final Question 7: Web Security: Botgram</a>

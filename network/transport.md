@@ -105,4 +105,9 @@ The main problem here is that TCP by itself provides no confidentiality or integ
 
 One important defense against off-path attackers is using random, unpredictable initial sequence numbers. This forces the off-path attacker to guess the correct sequence number with very low probability.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover the Transport Layer.
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=15">Spring 2023 Final Question 8: Network Security: Life of a Packet</a>
+
 [^1]: The sequence number is 32 bits, so guessing a random sequence number succeeds with probability $$1/2^{32}$$.

@@ -164,3 +164,8 @@ The bottom line is: don't store passwords in the clear. Instead, sites should st
 $$s,H(H(H(\cdots(H(w,s)) \cdots)))$$
 
 in the database, where $$s$$ is a random salt chosen randomly for that user and $$H$$ is a standard cryptographic hash function.
+
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover passwords.
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=9">Spring 2023 Midterm Question 5: Passwords and Integrity: alice161</a>

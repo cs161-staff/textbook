@@ -320,4 +320,12 @@ The attacker can overwrite the vtable pointer with the address of another attack
 
 This method of injection is very similar to stack smashing, where the attacker overwrites the rip to point to some malicious code. However, overwriting C++ vtables requires overwriting a pointer to a pointer.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover memory safety vulnerabilities.
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=4">Spring 2023 Final Question 3: Memory Safety: No Doubt</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Memory Safety: Andor, or XOR?</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Format Strings: Cake without Pan</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Memory Safety Exploit: Valentine's Day</a>
+
 [^1]: You sometimes see variants on this like pwned, 0wned, ownzored, etc.

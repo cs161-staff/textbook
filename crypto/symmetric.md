@@ -342,6 +342,12 @@ For example, in CTR mode, reusing the IV (nonce) is equivalent to reusing the on
 
 Different modes have different tradeoffs between usability and security. Although proper use of CBC and CTR mode are both IND-CPA, insecure use of either mode (e.g. reusing the IV) breaks IND-CPA security, and the severity of information leakage is different in the two modes. In CBC mode, the information leakage is contained, but in CTR mode, the leakage is catastrophic (equivalent to reusing a one-time pad). On the other hand, CTR mode can be parallelized, but CBC can not, which is why many high performance systems use CTR mode or CTR-mode based encryption schemes.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover symmetric cryptography.
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=8">Spring 2023 Final Question 5: Cryptography: EvanBlock Cipher</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=4">Spring 2023 Midterm Question 3: IND-CPA and Block Ciphers: evanbotevanbotevanbotevan...</a>
+
 [^1]: Answer: Given $$M$$ and $$C = M \oplus K$$, Eve can calculate $$K = M \oplus C$$.
 [^2]: This is why the only primary users of one-time-pads are spies in the field. Before the spy leaves, they obtain a large amount of key material. Unlike the other encryption systems we'll see in these notes, a one-time pad can be processed entirely with pencil and paper. The spy then broadcasts messages encrypted with the one-time pad to send back to their home base. To obfuscate the spy's communication, there are also "numbers stations" that continually broadcast meaningless sequences of random numbers. Since the one-time pad is IND-CPA secure, an adversary can't distinguish between the random number broadcasts and the messages encoded with a one time pad.
 [^3]: Answer: The key is needed to determine which scrambling setting was used to generate the ciphertext. If decryption didn't require a key, any attacker would be able to decrypt encrypted messages!

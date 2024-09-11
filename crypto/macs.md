@@ -137,6 +137,11 @@ One such mode is called AES-GCM (Galois Counter Mode). The specifics are out of 
 
 Some other modes include CCM mode, CWC mode, and OCB mode, but these are out of scope for these notes.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover MACs.
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=10">Spring 2023 Final Question 6: Cryptography: Lights, Camera, MACtion</a>
+
 [^1]: Strictly speaking, there is a very small chance that the tag for $$M$$ will also be a valid tag for $$M'$$. However, if we choose tags to be long enough---say, 128 bits---and if the MAC algorithm is secure, the chances of this happening should be about $$1/2^{128}$$, which is small enough that it can be safely ignored.
 [^2]: The formal definition of "unrelated" is out of scope for these notes. See [this paper](http://cseweb.ucsd.edu/~mihir/papers/kmd5.pdf) to learn more.
 [^3]: The security proof for HMAC just required that ipad and opad be different by at least one bit but, showing the paranoia of cryptography engineers, the designers of HMAC chose to make them very different.
