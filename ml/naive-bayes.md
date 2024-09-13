@@ -1,11 +1,11 @@
 ---
-title: "10.2 Naives Bayes"
-parent: 10. ML
+title: "9.2 Naives Bayes"
+parent: 9. ML
 nav_order: 2
 layout: page
 ---
 
-# 10.2 Naive Bayes
+# 9.2 Naive Bayes
 
 We'll motivate our discussion of machine learning with a concrete example of a machine learning algorithm. Let's consider the common problem of building an email spam filter, which sorts messages into spam (unwanted email) or ham (wanted email). Such a problem is called a **classification problem**—given various datapoints (in this case, each email is a datapoint), our goal is to group them into one of two or more **classes**. For classification problems, we're given a training set of datapoints along with their corresponding **labels**, which are typically one of a few discrete values.
 
@@ -86,7 +86,7 @@ $$
 
 We've now learned the basic theory behind the modeling assumptions of the Naive Bayes classifier and how to make predictions with one, but have yet to touch on how exactly we learn the conditional probability tables used in our Bayes' net from the input data. This will have to wait for our next topic of discussion, **parameter estimation**.
 
-## 10.2.1 Parameter Estimation
+## 9.2.1 Parameter Estimation
 
 Assume you have a set of **sample points** or **observations**, $$x_1, \ldots, x_N$$, and you believe that this data was drawn from a distribution **parametrized** by an unknown value $$\theta$$. In other words, you believe that the probability $$P_{\theta}(x_i)$$ of each of your observations is a function of $$\theta$$. For example, we could be flipping a coin which has probability $$\theta$$ of coming up heads.
 
@@ -143,7 +143,7 @@ $$
 Solving this equation for $$\theta$$ yields $$\theta = \frac{2}{3}$$, which intuitively makes sense! (There's a second solution, too, $$\theta = 0$$ -- but this corresponds to a minimum of the likelihood function, as $$\mathcal{L}(0) = 0 < \mathcal{L}(\frac{2}{3}) = \frac{4}{27}$$.)
 
 
-## 10.2.2 Maximum Likelihood for Naive Bayes
+## 9.2.2 Maximum Likelihood for Naive Bayes
 
 Let's now return to the problem of inferring conditional probability tables for our spam classifier, beginning with a recap of variables we know:
 
@@ -230,7 +230,7 @@ $$
 We've arrived at a remarkably simple final result! According to our formula above, the maximum likelihood estimate for $$\theta$$ (which, remember, is the probability that $$P(F_i = 1 | Y = ham)$$) corresponds to counting the number of ham emails in which word $$i$$ appears and dividing it by the total number of ham emails. You may think this was a lot of work for an intuitive result (and it was), but the derivation and techniques will be useful for more complex distributions than the simple Bernoulli distribution we are using for each feature here. To summarize, in this Naive Bayes model with Bernoulli feature distributions, within any given class the maximum likelihood estimate for the probability of any outcome corresponds to the count for the outcome divided by the total number of samples for the given class. The above derivation can be generalized to cases where we have more than two classes and more than two outcomes for each feature, though this derivation is not provided here.
 
 
-## 10.2.3 Smoothing
+## 9.2.3 Smoothing
 
 Though maximum likelihood estimation is a very powerful method for parameter estimation, bad training data can often lead to unfortunate consequences. For example, if every time the word "minute" appears in an email in our training set, that email is classified as spam, our trained model will learn that 
 

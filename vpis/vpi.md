@@ -1,15 +1,15 @@
 ---
-title: 8.3 The Value of Perfect Information
-parent: 8. Decision Network and VPIs
+title: 7.3 The Value of Perfect Information
+parent: 7. Decision Network and VPIs
 nav_order: 3
 layout: page
 ---
 
-# 8.3 The Value of Perfect Information
+# 7.3 The Value of Perfect Information
 
 In everything we've covered up to this point, we've generally always assumed that our agent has all the information it needs for a particular problem and/or has no way to acquire new information. In practice, this is hardly the case, and one of the most important parts of decision making is knowing whether or not it's worth gathering more evidence to help decide which action to take. Observing new evidence almost always has some cost, whether it be in terms of time, money, or some other medium. In this section, we'll talk about a very important concept - the **value of perfect information** (VPI) - which mathematically quantifies the amount an agent's maximum expected utility is expected to increase if it observes some new evidence. We can compare the VPI of learning some new information with the cost associated with observing that information to make decisions about whether or not it's worthwhile to observe.
 
-## 8.3.1 General Formula
+## 7.3.1 General Formula
 
 Rather than simply presenting the formula for computing the value of perfect information for new evidence, let's walk through an intuitive derivation. We know from our above definition that the value of perfect information is the amount our maximum expected utility is expected to increase if we decide to observe new evidence. We know our current maximum utility given our current evidence $$e$$:
 
@@ -66,7 +66,7 @@ $$
 
 Hence we conclude $$VPI(F) = MEU(F) - MEU(\varnothing) = 77.78 - 70 = \boxed{7.78}$$.
 
-## 8.3.2 Properties of VPI
+## 7.3.2 Properties of VPI
 
 The value of perfect information has several very important properties, namely:
 

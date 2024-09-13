@@ -1,11 +1,11 @@
 ---
-title: 6.1 Reinforcement Learning
-parent: 6. RL
+title: 5.1 Reinforcement Learning
+parent: 5. RL
 nav_order: 1
 layout: page
 ---
 
-# 6.1 Reinforcement Learning
+# 5.1 Reinforcement Learning
 
 In the previous note, we discussed Markov decision processes, which we solved using techniques such as value iteration and policy iteration to compute the optimal values of states and extract optimal policies. Solving Markov decision processes is an example of **offline planning**, where agents have full knowledge of both the **transition** function and the **reward** function, all the information they need to precompute optimal actions in the world encoded by the MDP without ever actually taking any actions. 
 

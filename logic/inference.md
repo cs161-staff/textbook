@@ -1,11 +1,11 @@
 ---
-title: "11.4 Propositional Logical Inference"
-parent: 11. Logic
+title: "10.4 Propositional Logical Inference"
+parent: 10. Logic
 nav_order: 4
 layout: page
 ---
 
-# 11.4 Propositional Logical Inference
+# 10.4 Propositional Logical Inference
 
 Logic is useful and powerful because it grants the ability to draw new conclusions from what we already know. To define the problem of inference we first need to define some terminology.
 
@@ -21,7 +21,7 @@ We draw on two useful theorems to show entailment:
 
     Proving entailment by showing that $$A \wedge \neg B$$ is unsatisfiable is known as a **proof by contradiction**.
 
-## 11.4.1 Model Checking
+## 10.4.1 Model Checking
 
 One simple algorithm for checking whether $$KB \models q$$ is to enumerate all possible models, and to check if in all the ones in which $$KB$$ is true, $$q$$ is true as well. This approach is known as **model checking**. In a sentence with a feasible number of symbols, enumeration can be done by drawing out a **truth table**.
 
@@ -35,7 +35,7 @@ The first, proposed by Davis, Putnam, Logemann, and Loveland (which we will call
 
 ![DPLL Algorithm](../assets/images/DPLL_alg.png)
 
-## 11.4.2 DPLL: Example
+## 10.4.2 DPLL: Example
 
 Suppose we have the
 

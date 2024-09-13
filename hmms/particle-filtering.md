@@ -1,11 +1,11 @@
 ---
-title: 9.1 Particle Filtering
-parent: 9. HMMs
-nav_order: 1
+title: 8.4 Particle Filtering
+parent: 8. HMMs
+nav_order: 4
 layout: page
 ---
 
-# 9.1 Particle Filtering
+# 8.4 Particle Filtering
 
 Recall that with Bayes' nets, when running exact inference was too computationally expensive, using one of the sampling techniques we discussed was a viable alternative to efficiently approximate the desired probability distribution(s) we wanted. Hidden Markov Models have the same drawback — the time it takes to run exact inference with the forward algorithm scales with the number of values in the domains of the random variables. This was acceptable in our current weather problem formulation where the weather can only take on 2 values, $$W_i \in \{sun, rain\}$$, but say instead we wanted to run inference to compute the distribution of the actual temperature on a given day to the nearest tenth of a degree.
 
@@ -26,7 +26,7 @@ By taking counts of each temperature that appears in our particle list and divid
 
 Now that we've seen how to recover a belief distribution from a particle list, all that remains to be discussed is how to generate such a list for a timestep of our choosing.
 
-## 9.1.1 Particle Filtering Simulation
+## 8.4.1 Particle Filtering Simulation
 
 Particle filtering simulation begins with particle initialization, which can be done quite flexibly — we can sample particles randomly, uniformly, or from some initial distribution. Once we've sampled an initial list of particles, the simulation takes on a similar form to the forward algorithm, with a time elapse update followed by an observation update at each timestep:
 
@@ -69,9 +69,9 @@ $$[15, 13, 13, 11, 17, 15, 13, 12, 12, 10]$$
 
 Verify this for yourself! The updated particle list gives rise to the corresponding updated belief distribution $$ B(T_{i+1}) $$:
 
-| **$$ T_i $$**    | 10  | 11  | 12  | 13  | 14  | 15  | 16  | 17  | 18  | 19  | 20  |
+| $$ T_i $$    | 10  | 11  | 12  | 13  | 14  | 15  | 16  | 17  | 18  | 19  | 20  |
 |------------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| **$$ B(T_{i+1}) $$** | 0.1 | 0.1 | 0.2 | 0.3 | 0   | 0.2 | 0   | 0.1 | 0   | 0   | 0   |
+| $$ B(T_{i+1}) $$ | 0.1 | 0.1 | 0.2 | 0.3 | 0   | 0.2 | 0   | 0.1 | 0   | 0   | 0   |
 
 Comparing our updated belief distribution $$ B(T_{i+1}) $$ to our initial belief distribution $$ B(T_i) $$, we can see that as a general trend the particles tend to converge towards a temperature of $$ T = 15 $$.
 
@@ -111,8 +111,8 @@ $$[13, 13, 13, 13, 13, 13, 13, 15, 13, 13]$$
 
 With the corresponding final new belief distribution:
 
-| **$$ T_i $$**    | 10  | 11  | 12  | 13  | 14  | 15  | 16  | 17  | 18  | 19  | 20  |
+| $$ T_i $$    | 10  | 11  | 12  | 13  | 14  | 15  | 16  | 17  | 18  | 19  | 20  |
 |------------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| **$$ B(T_{i+1}) $$** | 0   | 0   | 0   | 0.9 | 0   | 0.1 | 0   | 0   | 0   | 0   | 0   |
+| $$ B(T_{i+1}) $$ | 0   | 0   | 0   | 0.9 | 0   | 0.1 | 0   | 0   | 0   | 0   | 0   |
 
 Observe that our sensor model encodes that our weather prediction is very accurate with probability 80%, and that our new particles list is consistent with this since most particles are resampled to be $$ T_{i+1} = 13 $$.

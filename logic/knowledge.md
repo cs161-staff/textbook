@@ -1,11 +1,11 @@
 ---
-title: "11.1 A Knowledge Based Agent"
-parent: 11. Logic
+title: "10.1 A Knowledge Based Agent"
+parent: 10. Logic
 nav_order: 1
 layout: page
 ---
 
-# 11.1 A Knowledge Based Agent
+# 10.1 A Knowledge Based Agent
 
 Imagine a dangerous world filled with lava, the only respite a far away oasis. We would like our agent to be able to safely navigate from its current position to the oasis.
 

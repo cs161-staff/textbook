@@ -1,14 +1,14 @@
 ---
-title: 9. ML
-nav_order: 9
+title: 6. Bayes Nets
+nav_order: 6
 has_children: true
 ---
 
-# 9. ML
+# 6. Bayes Nets
 
 Author: Nikhil Sharma
 
-Edited by: Samantha Huang and Wesley Zheng
+Edited by: Pranav Muralikrishnan and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 

@@ -1,11 +1,11 @@
 ---
-title: "11.3 Propositional Logic"
-parent: 11. Logic
+title: "10.3 Propositional Logic"
+parent: 10. Logic
 nav_order: 3
 layout: page
 ---
 
-# 11.3 Propositional Logic 
+# 10.3 Propositional Logic 
 
 Like other languages, logic has multiple dialects. We will introduce two: propositional logic and first-order logic. **Propositional logic** is written in sentences composed of **proposition symbols**, possibly joined by logical connectives. A proposition symbol is generally represented as a single uppercase letter. Each proposition symbol stands for an atomic proposition about the world. A **model** is an assignment of true or false to all the proposition symbols, which we might think of as a "possible world." For example, if we had the propositions A = "today it rained" and B = "I forgot my umbrella" then the possible models (or "worlds") are:
 
@@ -22,7 +22,7 @@ Below are some useful logical equivalences, which can be used for simplifying se
 
 One particularly useful syntax in propositional logic is the **conjunctive normal form** or **CNF** which is a conjunction of clauses, each of which a disjunction of literals. It has the general form $$(P_1 \vee \cdots \vee P_i) \wedge \cdots \wedge (P_j \vee \cdots \vee P_n)$$, i.e. it is an 'AND' of 'OR's. As we'll see, a sentence in this form is good for some analyses. Importantly, every logical sentence has a logically equivalent conjunctive normal form. This means that we can formulate all the information contained in our knowledge base (which is just a conjunction of different sentences) as one large CNF statement, by 'AND'-ing these CNF statements together.
 
-CNF representation is particularly important in propositional logic. Here we will see an example of converting a sentence to CNF representation. Assume we have the sentence $$A\Leftrightarrow (B\vee C)$$ and we want to convert it to CNF. The derivation is based on the rules in Figure 7.11.
+CNF representation is particularly important in propositional logic. Here we will see an example of converting a sentence to CNF representation. Assume we have the sentence $$A\Leftrightarrow (B\vee C)$$ and we want to convert it to CNF. The derivation is based on the rules in Figure 7.10.
 
 1. **Eliminate** $$\Leftrightarrow$$: expression becomes $$(A\Rightarrow (B\vee C))\wedge ((B\vee C)\Rightarrow A)$$ using **biconditional elimination**.
 2. **Eliminate** $$\Rightarrow$$: expression becomes $$(\neg A\vee B\vee C)\wedge (\neg(B\vee C )\vee A)$$ using **implication elimination**.

@@ -1,11 +1,11 @@
 ---
-title: "10.6 Optimization"
-parent: 10. ML
+title: "9.6 Optimization"
+parent: 9. ML
 nav_order: 6
 layout: page
 ---
 
-# 10.6 Optimization
+# 9.6 Optimization
 
 The linear regression method allows us to derive a closed form solution for the optimal weights by differentiating the loss function and setting the gradient equal to zero. In general, though, a closed form solution may not exist for a given objective function. In such cases, we use **gradient-based methods** to find the optimal weights. The idea is that the gradient points towards the direction of steepest increase of the objective. We maximize a function by moving towards the steepest **ascent**, and we minimize a function by moving towards the steepest **descent** direction.
 

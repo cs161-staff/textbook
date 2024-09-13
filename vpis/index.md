@@ -1,10 +1,10 @@
 ---
-title: 8. Decision Network and VPIs
-nav_order: 8
+title: 7. Decision Network and VPIs
+nav_order: 7
 has_children: true
 ---
 
-# 8. Decision Network and VPIs
+# 7. Decision Network and VPIs
 
 Author: Nikhil Sharma
 

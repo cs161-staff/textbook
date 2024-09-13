@@ -1,15 +1,15 @@
 ---
-title: "10.9 Neural Networks: Motivation"
-parent: 10. ML
+title: "9.9 Neural Networks: Motivation"
+parent: 9. ML
 nav_order: 9
 layout: page
 ---
 
-# 10.9 Neural Networks: Motivation
+# 9.9 Neural Networks: Motivation
 
 In what follows we will introduce the concept of a neural network. In doing so, we will be using some of the modeling techniques we developed for binary logistic and multi-class logistic regression.
 
-## 10.9.1 Non-linear Separators
+## 9.9.1 Non-linear Separators
 
 We know how to construct a model that learns a linear boundary for binary classification tasks. This is a powerful technique, and one that works well when the underlying optimal decision boundary is itself linear. However, many practical problems involve the need for decision boundaries that are nonlinear in nature, and our linear perceptron model isn't expressive enough to capture this relationship.
 
@@ -24,7 +24,7 @@ To fix this problem, we can add additional (potentially nonlinear) features to c
 
 With this additional piece of information, we are now able to construct a linear separator in the two-dimensional space containing the points. In this case, we were able to fix the problem by mapping our data to a higher dimensional space by manually adding useful features to data points. However, in many high-dimensional problems, such as image classification, manually selecting useful features is tedious. This requires domain-specific expertise and works against the goal of generalization across tasks. A natural desire is to learn these feature transformations as well, using a nonlinear function class capable of representing a wider variety of functions.
 
-## 10.9.2 Multi-layer Perceptron
+## 9.9.2 Multi-layer Perceptron
 
 Let's examine how we can derive a more complex function from our original perceptron architecture. Consider the following setup, a two-layer perceptron, which is a perceptron that takes as input the outputs of another perceptron.
 
@@ -38,11 +38,11 @@ With this additional structure and weights, we can express a much wider set of f
 
 By increasing the complexity of our model, we greatly increase its expressive power. Multi-layer perceptrons give us a generic way to represent a much wider set of functions. In fact, a multi-layer perceptron is a **universal function approximator** and can represent _any_ real function, leaving us only with the problem of selecting the best set of weights to parameterize our network. This is formally stated below:
 
-### 10.9.2.1 Theorem. (Universal Function Approximators)
+### 9.9.2.1 Theorem. (Universal Function Approximators)
 
 A two-layer neural network with a sufficient number of neurons can approximate any continuous function to any desired accuracy.
 
-## 10.9.3 Measuring Accuracy
+## 9.9.3 Measuring Accuracy
 
 The accuracy of the binary perceptron after making $$n$$ predictions can be expressed as:
 
@@ -70,7 +70,7 @@ $$
 \log\ell(\mathbf{w}) = \log \prod_{i=1}^n P(y_{i} | x_{i}; \mathbf{w}) = \sum_{i=1}^n \log P(y_{i} | \mathbf{f}(\mathbf{x}_{i}); \mathbf{w}).
 $$
 
-## 10.9.4 Multi-layer Feedforward Neural Networks
+## 9.9.4 Multi-layer Feedforward Neural Networks
 
 We now introduce the idea of an artificial neural network. Like the multi-layer perceptron, we choose a non-linearity to apply after each perceptron node. These added non-linearities make the network as a whole non-linear and more expressive. Without them, a multi-layer perceptron would simply be a composition of linear functions and hence still linear.
 
@@ -89,7 +89,7 @@ Graphically, it looks like this:
 
 This is difficult to optimize because it is not continuous and has a derivative of zero at all points. Instead of using a step function, a better solution is to select a continuous function, such as the **sigmoid function** or the **rectified linear unit (ReLU)**.
 
-### 10.9.4.1 Sigmoid Function: 
+### 9.9.4.1 Sigmoid Function: 
 
 $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
@@ -97,7 +97,7 @@ $$
 
 ![Sigmoid Function](../assets/images/sigmoid_function.png)
 
-### 10.9.4.2 ReLU: 
+### 9.9.4.2 ReLU: 
 
 $$
 f(x) = \begin{cases} 
@@ -110,7 +110,7 @@ $$
 
 In a multi-layer perceptron, we apply one of these non-linearities at the output of each layer. The choice of non-linearity is a design decision that typically requires experimentation.
 
-## 10.9.5 Loss Functions and Multivariate Optimization
+## 9.9.5 Loss Functions and Multivariate Optimization
 
 Now that we understand how a feed-forward neural network is constructed, we need a way to train it. Returning to our log-likelihood function, we can derive an intuitive algorithm to optimize our weights.
 

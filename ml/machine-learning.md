@@ -1,11 +1,11 @@
 ---
-title: "10.1 Machine Learning"
-parent: 10. ML
+title: "9.1 Machine Learning"
+parent: 9. ML
 nav_order: 1
 layout: page
 ---
 
-# 10.1 Machine Learning
+# 9.1 Machine Learning
 
 In the previous few notes of this course, we've learned about various types of models that help us reason under uncertainty. Until now, we've assumed that the probabilistic models we've worked with can be taken for granted, and the methods by which the underlying probability tables we worked with were generated have been abstracted away. We'll begin to break down this abstraction barrier as we delve into our discussion of **machine learning**, a broad field of computer science that deals with constructing and/or learning the parameters of a specified model given some data.
 

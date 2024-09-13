@@ -1,11 +1,11 @@
 ---
-title: "11.5 Theorem Proving"
-parent: 11. Logic
+title: "10.5 Theorem Proving"
+parent: 10. Logic
 nav_order: 5
 layout: page
 ---
 
-# 11.5 Theorem Proving
+# 10.5 Theorem Proving
 
 An alternate approach is to apply rules of inference to $$KB$$ to prove that $$KB \models q$$. For example, if our knowledge base contains $$A$$ and $$A \Rightarrow B$$ then we can infer $$B$$ (this rule is known as **Modus Ponens**). 
 The two previously mentioned algorithms use the fact ii.) by writing $$A \wedge \neg B$$ in CNF and show that it is either satisfiable or not.

@@ -1,11 +1,11 @@
 ---
-title: "10.7 Logistic Regression"
-parent: 10. ML
+title: "9.7 Logistic Regression"
+parent: 9. ML
 nav_order: 7
 layout: page
 ---
 
-# 10.7 Logistic Regression
+# 9.7 Logistic Regression
 
 Let's again think about our previous method of linear regression. In it, we assumed that the output is a numeric real-valued number.
 

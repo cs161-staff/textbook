@@ -1,11 +1,11 @@
 ---
-title: "11.9 Logical Agents"
-parent: 11. Logic
+title: "10.9 Logical Agents"
+parent: 10. Logic
 nav_order: 9
 layout: page
 ---
 
-# 11.9 Logical Agents
+# 10.9 Logical Agents
 
 Now that we understand how to formulate what we know and how to reason with it, we will talk about how to incorporate the power of deduction into our agents. One obvious ability an agent should have is the ability to figure out what state it is in, based on a history of observations and what it knows about the world (**state-estimation**). For example, if we told the agent that the air starts to shimmer near pools of lava and it observed that the air right before it is shimmering, it could infer that danger is nearby.
 

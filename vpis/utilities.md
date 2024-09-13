@@ -1,11 +1,11 @@
 ---
-title: 8.1 Utilities
-parent: 8. Decision Network and VPIs
+title: 7.1 Utilities
+parent: 7. Decision Network and VPIs
 nav_order: 1
 layout: page
 ---
 
-# 8.1 Utilities
+# 7.1 Utilities
 
 Throughout our discussion of rational agents, the concept of utility came up repeatedly. In games, for example, Utility values are generally hard-wired into the game, and agents use these utility values to select an action. We'll now discuss what's necessary in order to generate a viable utility function.
 

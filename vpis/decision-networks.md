@@ -1,11 +1,11 @@
 ---
-title: 8.2 Decision Networks
-parent: 8. Decision Network and VPIs
+title: 7.2 Decision Networks
+parent: 7. Decision Network and VPIs
 nav_order: 2
 layout: page
 ---
 
-# 8.2 Decision Networks
+# 7.2 Decision Networks
 
 Previously we learned about game trees and algorithms such as minimax and expectimax, which we used to determine optimal actions that maximized our expected utility. Then in the fifth note, we discussed Bayes' nets and how we can use evidence we know to run probabilistic inference to make predictions. Now we'll discuss a combination of both Bayes' nets and expectimax known as a **decision network** that we can use to model the effect of various actions on utilities based on an overarching graphical probabilistic model. Let's dive right in with the anatomy of a decision network:
 
@@ -53,7 +53,7 @@ $$
 
 The action that yields the maximum expected utility is *take*, and so this is the action recommended to us by the decision network. More formally, the action that yields the MEU can be determined by taking the **argmax** over expected utilities.
 
-## 8.2.1 Outcome Trees
+## 7.2.1 Outcome Trees
 
 We mentioned at the start of this note that decision networks involved some expectimax-esque elements, so let's discuss what exactly that means. We can unravel the selection of an action corresponding to the one that maximizes expected utility in a decision network as an **outcome tree**. Our weather forecast example from above unravels into the following outcome tree:
 

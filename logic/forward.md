@@ -1,16 +1,16 @@
 ---
-title: "11.6 Forward Chaining"
-parent: 11. Logic
+title: "10.6 Forward Chaining"
+parent: 10. Logic
 nav_order: 6
 layout: page
 ---
 
-# 11.6 Forward Chaining
+# 10.6 Forward Chaining
 
 An algorithm, **forward chaining**, iterates through every implication statement in which the premise (left-hand side) is known to be true, adding the conclusion (right-hand side) to the list of known facts.
 
 
-## 11.6.1 Forward Chaining: Example
+## 10.6.1 Forward Chaining: Example
 
 Suppose we had the following knowledge base:
 1. $$A \to B$$

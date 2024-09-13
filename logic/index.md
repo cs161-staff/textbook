@@ -1,10 +1,10 @@
 ---
-title: 11. Logic
-nav_order: 11
+title: 10. Logic
+nav_order: 10
 has_children: true
 ---
 
-# 11. Logic
+# 10. Logic
 
 Author: Henry Zhu
 

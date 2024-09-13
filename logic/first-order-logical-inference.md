@@ -1,11 +1,11 @@
 ---
-title: "11.8 First Order Logical Inference"
-parent: 11. Logic
+title: "10.8 First Order Logical Inference"
+parent: 10. Logic
 nav_order: 8
 layout: page
 ---
 
-# 11.8 First Order Logical Inference
+# 10.8 First Order Logical Inference
 
 With first-order logic we formulate inference exactly the same way. We'd like to find out if $$KB \models q$$, that is if $$q$$ is true in all models under which $$KB$$ is true. One approach to finding a solution is **propositionalization** or translating the problem into propositional logic so that it can be solved with techniques we have already laid out. Each universal (existential) quantifier sentence can be converted to a conjunction (disjunction) of sentences with a clause for each possible object that could be substituted in for the variable. Then, we can use a SAT solver, like DPLL or Walk-SAT, (un)satisfiability of $$(KB \wedge \neg q)$$.
 

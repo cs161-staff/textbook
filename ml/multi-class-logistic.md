@@ -1,11 +1,11 @@
 ---
-title: "10.8 Multi-Class Logistic Regression"
-parent: 10. ML
+title: "9.8 Multi-Class Logistic Regression"
+parent: 9. ML
 nav_order: 8
 layout: page
 ---
 
-# 10.8 Multi-Class Logistic Regression
+# 9.8 Multi-Class Logistic Regression
 
 In multi-class logistic regression, we want to classify data points into $$K$$ distinct categories, rather than just two. Thus, we want to build a model that outputs estimates of the probabilities for a new data point to belong to each of the $$K$$ possible categories. For that reason, we use the **softmax function** in place of the logistic function, which models the probability of a new data point with features $$\mathbf{x}$$ having label $$i$$ as follows:
 

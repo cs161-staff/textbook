@@ -1,19 +1,19 @@
 ---
-title: 6.4 Exploration and Exploitation
-parent: 6. RL
+title: 5.4 Exploration and Exploitation
+parent: 5. RL
 nav_order: 4
 layout: page
 ---
 
-# 6.4 Exploration and Exploitation
+# 5.4 Exploration and Exploitation
 
 We've now covered several different methods for an agent to learn an optimal policy, and emphasized that "sufficient exploration" is necessary for this, without really elaborating on what "sufficient" means. In the following sections, we'll discuss two methods for distributing time between exploration and exploitation: $$\epsilon$$-greedy policies and exploration functions.
 
-## 6.4.1 $$\varepsilon$$-Greedy Policies
+## 5.4.1 $$\varepsilon$$-Greedy Policies
 
 Agents following an **$$\epsilon$$-greedy policy** define some probability $$0 \leq \epsilon \leq 1$$, and act randomly and explore with probability $$\epsilon$$. Accordingly, they follow their current established policy and exploit with probability $$(1 - \epsilon)$$. This is a very simple policy to implement, yet can still be quite difficult to handle. If a large value for $$\epsilon$$ is selected, then even after learning the optimal policy, the agent will still behave mostly randomly. Similarly, selecting a small value for $$\epsilon$$ means the agent will explore infrequently, leading Q-learning (or any other selected learning algorithm) to learn the optimal policy very slowly. To get around this, $$\epsilon$$ must be manually tuned and lowered over time to see results.
 
-## 6.4.2 Exploration Functions
+## 5.4.2 Exploration Functions
 
 The issue of manually tuning $$\epsilon$$ is avoided by **exploration functions**, which use a modified Q-value iteration update to give some preference to visiting less-visited states. The modified update is as follows:
 

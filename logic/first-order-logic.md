@@ -1,11 +1,11 @@
 ---
-title: "11.7 First Order Logic"
-parent: 11. Logic
+title: "10.7 First Order Logic"
+parent: 10. Logic
 nav_order: 7
 layout: page
 ---
 
-# 11.7 First Order Logic
+# 10.7 First Order Logic
 
 The second dialect of logic, **first-order logic (FOL)**, is more expressive than propositional logic and uses objects as its basic components. With first-order logic we can describe relationships between objects and apply functions to them. Each object is represented by a **constant symbol**, each relationship by a **predicate symbol**, and each function by a **function symbol**.
 

@@ -1,11 +1,11 @@
 ---
-title: 6.5 Summary
-parent: 6. RL
+title: 5.5 Summary
+parent: 5. RL
 nav_order: 5
 layout: page
 ---
 
-# 6.5 Summary
+# 5.5 Summary
 
 It's very important to remember that reinforcement learning has an underlying MDP, and the goal of reinforcement learning is to solve this MDP by deriving an optimal policy. The difference between using reinforcement learning and using methods like value iteration and policy iteration is the lack of knowledge of the transition function $$T$$ and the reward function $$R$$ for the underlying MDP. As a result, agents must *learn* the optimal policy through online trial-by-error rather than pure offline computation. There are many ways to do this:
 

@@ -1,11 +1,11 @@
 ---
-title: "11.2 The Language of Logic"
-parent: 11. Logic
+title: "10.2 The Language of Logic"
+parent: 10. Logic
 nav_order: 2
 layout: page
 ---
 
-# 11.2 The Language of Logic
+# 10.2 The Language of Logic
 
 Just as with any other language, logic sentences are written in a special **syntax**. Every logical sentence is code for a **proposition** about a world that may or may not be true. For example, the sentence "the floor is lava" may be true in our agent's world, but probably not true in ours. We can construct complex sentences by stringing together simpler ones with **logical connectives** to create sentences like "you can see all of campus from the Big C *and* hiking is a healthy break from studying". There are five logical connectives in the language:
 

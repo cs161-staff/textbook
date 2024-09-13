@@ -1,11 +1,11 @@
 ---
-title: "10.5 Linear Regression"
-parent: 10. ML
+title: "9.5 Linear Regression"
+parent: 9. ML
 nav_order: 5
 layout: page
 ---
 
-# 10.5 Linear Regression
+# 9.5 Linear Regression
 
 Now we'll move on from our previous discussion of Naive Bayes to **Linear Regression**. This method, also called **least squares**, dates all the way back to Carl Friedrich Gauss and is one of the most studied tools in machine learning and econometrics.
 

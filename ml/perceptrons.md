@@ -1,13 +1,13 @@
 ---
-title: "10.3 Perceptron"
-parent: 10. ML
+title: "9.3 Perceptron"
+parent: 9. ML
 nav_order: 3
 layout: page
 ---
 
-# 10.3 Perceptron
+# 9.3 Perceptron
 
-## 10.3.1 Linear Classifiers
+## 9.3.1 Linear Classifiers
 <p>
 </p>
 The core idea behind Naive Bayes is to extract certain attributes of the training data called features and then estimate the probability of a label given the features: $$P(y|f_1, f_2, \ldots, f_n)$$. Thus, given a new data point, we can then extract the corresponding features and classify the new data point with the label with the highest probability given the features. However, this requires us to estimate distributions, which we did with MLE. What if instead we decided not to estimate the probability distribution? Let's start by looking at a simple linear classifier, which we can use for **binary classification**, where the label has two possibilities: positive or negative.

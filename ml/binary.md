@@ -1,11 +1,11 @@
 ---
-title: "10.4 Binary Perceptron"
-parent: 10. ML
+title: "9.4 Binary Perceptron"
+parent: 9. ML
 nav_order: 4
 layout: page
 ---
 
-# 10.4 Binary Perceptron
+# 9.4 Binary Perceptron
 
 Great, now you know how linear classifiers work, but how do we build a good one? When building a classifier, you start with data, which are labeled with the correct class; we call this the **training set**. You build a classifier by evaluating it on the training data, comparing that to your training labels, and adjusting the parameters of your classifier until you reach your goal.
 
@@ -144,7 +144,7 @@ Let's run one pass through the data with the perceptron algorithm, taking each d
 
 We'll stop here, but in actuality, this algorithm would run for many more passes through the data before all the data points are classified correctly in a single pass.
 
-## 10.4.1 Multiclass Perceptron
+## 9.4.1 Multiclass Perceptron
 
 The perceptron presented above is a binary classifier, but we can extend it to account for multiple classes rather easily. The main difference is in how we set up weights and how we update said weights. For the binary case, we had one weight vector, which had a dimension equal to the number of features (plus the bias feature). For the multi-class case, we will have one weight vector for each class. So, in the 3-class case, we have 3 weight vectors. In order to classify a sample, we compute a score for each class by taking the dot product of the feature vector with each of the weight vectors. Whichever class yields the highest score is the one we choose as our prediction.
 

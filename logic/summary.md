@@ -1,11 +1,11 @@
 ---
-title: "11.10 Summary"
-parent: 11. Logic
+title: "10.10 Summary"
+parent: 10. Logic
 nav_order: 10
 layout: page
 ---
 
-# 11.10 Summary
+# 10.10 Summary
 
 We introduced the concept of logic which knowledge-based agents can use to reason about
 the world and make decisions. We introduced the language of logic, its syntax and the standard logical

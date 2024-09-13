@@ -1,14 +1,14 @@
 ---
-title: 9. HMMs
-nav_order: 9
+title: 8. HMMs
+nav_order: 8
 has_children: true
 ---
 
-# 9. HMMs
+# 8. HMMs
 
 Author: Nikhil Sharma
 
-Edited by: Saathvik Selvan and Wesley Zheng
+Edited by: Saathvik Selvan, Pranav Muralikrishnan, and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
