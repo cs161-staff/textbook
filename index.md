@@ -18,7 +18,7 @@ This is the textbook for [CS 188: Introduction to Artificial Intelligence](https
 
 ## Corrections
 
-As of the Fall 2024 semester, these lecture notes are still being actively maintained and updated.
+As of the Fall 2024 semester, this textbook are still being actively maintained and updated.
 
 If you see any parts that needs to be corrected, please email [Wesley Zheng](mailto:wzheng0302@berkeley.edu).
 

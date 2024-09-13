@@ -6,9 +6,9 @@ has_children: true
 
 # 6. Bayes Nets
 
-Author: Nikhil Sharma
+Author: Josh Hug and Jacky Liang
 
-Edited by: Pranav Muralikrishnan and Wesley Zheng
+Edited by: Regina Wang, Pranav Muralikrishnan, and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
