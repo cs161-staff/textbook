@@ -323,9 +323,20 @@ This method of injection is very similar to stack smashing, where the attacker o
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover memory safety vulnerabilities.
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=4">Spring 2023 Final Question 3: Memory Safety: No Doubt</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Memory Safety: Andor, or XOR?</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Format Strings: Cake without Pan</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Memory Safety Exploit: Valentine's Day</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4">Spring 2024 Final Question 3: Everyone Loves PIE</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6">Spring 2024 Final Question 4: Breaking Bot</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4">Spring 2024 Midterm Question 3: 'Tis But a Scratch</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7">Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!</a>
+- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=4">Fall 2023 Final Question 3: exec</a>
+- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4">Fall 2023 Midterm Question 3: Homecoming</a>
+- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=7">Fall 2023 Midterm Question 4: Forbidden Instruction</a>
+- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=4">Summer 2023 Final Question 3: Letter from EvanBot</a>
+- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=5">Summer 2023 Final Question 4: The Last Dance</a>
+- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=4">Summer 2023 Midterm Question 3: Across the Security-Verse</a>
+- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=6">Summer 2023 Midterm Question 4: Snacktime</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=4">Spring 2023 Final Question 3: No Doubt</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Andor, or XOR?</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Cake without Pan</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Valentine's Day</a>
 
 [^1]: You sometimes see variants on this like pwned, 0wned, ownzored, etc.

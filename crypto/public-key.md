@@ -191,6 +191,10 @@ Because public key schemes are expensive and difficult to make IND-CPA secure, w
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover public-key cryptography.
-- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=7">Spring 2023 Midterm Question 4: Public-Key Cryptography: Mallory Forger</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=10">Spring 2024 Final Question 6: Plentiful Playlists</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=17">Spring 2024 Midterm Question 7: Ephemeral Exchanges</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13">Spring 2024 Midterm Question 6: Authentic Auctions</a>
+- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=17">Fall 2023 Midterm Question 7: Does EvanBot Snore?</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=7">Spring 2023 Midterm Question 4: Mallory Forger</a>
 
 [^1]: That is, using AES with 128b keys in CBC mode and then using HMAC with SHA-256 for integrity

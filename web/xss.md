@@ -90,3 +90,8 @@ CSPs are defined by a web server and enforced by a browser. In the HTTP response
 If you enable CSP, you can no longer run _any_ scripts that are embedded directly in the HTML document. You can only load external scripts specified by the `script` tag and an external URL. These scripts can only be fetched from the sites specified in the CSP. This prevents an attacker from directly injecting scripts into an HTML document or modifying the HTML document to fetch scripts from the attacker's domain.
 
 _Further reading:_ [OWASP Cheat Sheet on XSS](https://owasp.org/www-community/attacks/xss/)
+
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover XSS.
+- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13">Fall 2023 Final Question 7: Unscramble</a>

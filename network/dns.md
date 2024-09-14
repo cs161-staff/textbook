@@ -235,7 +235,10 @@ Sanity check: How much extra security does source port randomization provide aga
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover DNS.
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=18">Spring 2023 Final Question 10: Networking: Don't Need Security</a>
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=17">Spring 2024 Final Question 8: Check Please</a>
+- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=18">Fall 2023 Final Question 9: Double-Check Your Work</a>
+- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=18">Summer 2023 Final Question 10: DNS Hack Finding</a>
+- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=18">Spring 2023 Final Question 10: Don't Need Security</a>
 
 [^1]: A: MITM and on-path can read the ID field. Off-path must guess the ID field.
 [^2]: Query `a.edu-servers.net`, whose location we know because of the records in the additional section. Query for the IP address of `eecs.berkeley.edu` just like before.
