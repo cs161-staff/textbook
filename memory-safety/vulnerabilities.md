@@ -328,6 +328,7 @@ Here we've compiled a list of past exam questions that cover memory safety vulne
 - <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4">Spring 2024 Midterm Question 3: 'Tis But a Scratch</a>
 - <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7">Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!</a>
 - <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=4">Fall 2023 Final Question 3: exec</a>
+- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6">Fall 2023 Final Question 4: Ins and Outs</a>
 - <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4">Fall 2023 Midterm Question 3: Homecoming</a>
 - <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=7">Fall 2023 Midterm Question 4: Forbidden Instruction</a>
 - <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=4">Summer 2023 Final Question 3: Letter from EvanBot</a>
@@ -338,5 +339,47 @@ Here we've compiled a list of past exam questions that cover memory safety vulne
 - <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Andor, or XOR?</a>
 - <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Cake without Pan</a>
 - <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Valentine's Day</a>
+
+A large portion of memory safety vulnerability questions is identifying what type of vulnerability exists within the code. However, if you'd like to practice a specific type of question, feel free to toggle the options below.
+<details>
+    <summary><em>Buffer overflow</em></summary>
+    <ul>
+        <li><a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=7">Fall 2023 Midterm Question 4: Forbidden Instruction</a></li>
+        <li>Involves canaries: <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Andor, or XOR?</a></li>
+        <li>Involves ASLR: <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Valentine's Day</a></li>
+    </ul>
+</details>
+<details>
+    <summary><em>Format string vulnerability</em></summary>
+    <ul>
+        <li><a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4">Spring 2024 Midterm Question 3: 'Tis But a Scratch</a></li>
+        <li><a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=6">Summer 2023 Midterm Question 4: Snacktime</a></li>
+        <li><a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Cake without Pan</a></li>
+    </ul>
+</details>
+<details>
+    <summary><em>Integer conversion vulnerability</em></summary>
+    <ul>
+        <li><a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4">Spring 2024 Midterm Question 3: 'Tis But a Scratch</a></li>
+        <li><a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=4">Summer 2023 Final Question 3: Letter from EvanBot</a></li>
+    </ul>
+</details>
+<details>
+    <summary><em>Off-by-one vulnerability</em></summary>
+    <ul>
+        <li><a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4">Spring 2024 Final Question 3: Everyone Loves PIE</a></li>
+        <li><a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6">Fall 2023 Final Question 4: Ins and Outs</a></li>
+        <li><a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4">Fall 2023 Midterm Question 3: Homecoming</a></li>
+        <li><a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=4">Summer 2023 Midterm Question 3: Across the Security-Verse</a></li>
+    </ul>
+</details>
+<details>
+    <summary><em>Other vulnerabilities</em></summary>
+    <ul>
+        <li>Use after free: <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6">Spring 2024 Final Question 4: Breaking Bot</a></li>
+        <li><a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=4">Summer 2023 Final Question 3: Letter from EvanBot</a></li>
+    </ul>
+</details>
+
 
 [^1]: You sometimes see variants on this like pwned, 0wned, ownzored, etc.
