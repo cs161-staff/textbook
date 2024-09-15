@@ -170,6 +170,6 @@ This is known as a _Time-Of-Check To Time-Of-Use_ (TOCTTOU) vulnerability, becau
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover security principles.
-- <a href="https://assets.cs161.org/exams/fa21/fa21mt1.pdf#page=4" alt="Fall 2021 Midterm Question 3">Fall 2021 Midterm Question 3: EvanBot Alpha</a>
+- [Fall 2021 Midterm Question 3: EvanBot Alpha](https://assets.cs161.org/exams/fa21/fa21mt1.pdf#page=4)
 
 [^1]: Windows XP consisted of about 40 million lines of code---all of which were in the TCB. Yikes!

@@ -108,8 +108,8 @@ Note however that the security of signatures do rely on the underlying hash func
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover signatures.
-- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13">Spring 2024 Midterm Question 6: Authentic Auctions</a>
-- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=8">Summer 2023 Final Question 6: EvanBot Signature Scheme</a>
-- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=12">Summer 2023 Midterm Question 6: One-Time Signatures</a>
+- [Spring 2024 Midterm Question 6: Authentic Auctions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13)
+- [Summer 2023 Final Question 6: EvanBot Signature Scheme](https://assets.cs161.org/exams/su23/su23final.pdf#page=8)
+- [Summer 2023 Midterm Question 6: One-Time Signatures](https://assets.cs161.org/exams/su23/su23mt.pdf#page=12)
 
 [^1]: Why do we pick those particular conditions on $$p$$ and $$q$$? Because then $$\varphi(pq) = (p-1)(q-1)$$ will not be a multiple of 3, which is going to allow us to have unique cube roots.

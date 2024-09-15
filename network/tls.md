@@ -94,9 +94,9 @@ This leaves the biggest cost of TLS in managing the private keys. Previously CAs
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover TLS.
-- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=19">Spring 2024 Final Question 9: Key Rotation</a>
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=20">Fall 2023 Final Question 11: New Phone Who This</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=17">Spring 2023 Final Question 9: TLS Times Two</a>
+- [Spring 2024 Final Question 9: Key Rotation](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=19)
+- [Fall 2023 Final Question 11: New Phone Who This](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=20)
+- [Spring 2023 Final Question 9: TLS Times Two](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=17)
 
 [^1]: A: No. An attacker can obtain the genuine server's certificate by starting its own TLS connection with the genuine server, and then present a copy of that certificate in step 2.
 [^2]: A: It was signed by a certificate authority in the previous step.

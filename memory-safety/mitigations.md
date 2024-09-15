@@ -175,15 +175,15 @@ We can use multiple mitigations together to force the attacker to find multiple 
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover memory safety mitigations.
-- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4">Spring 2024 Final Question 3: Everyone Loves PIE</a>
-- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6">Spring 2024 Final Question 4: Breaking Bot</a>
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=4">Fall 2023 Final Question 3: exec</a>
-- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7">Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!</a>
-- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4">Fall 2023 Midterm Question 3: Homecoming</a>
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6">Fall 2023 Final Question 4: Ins and Outs</a>
-- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=5">Summer 2023 Final Question 4: The Last Dance</a>
-- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=4">Summer 2023 Midterm Question 3: Across the Security-Verse</a>
-- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=6">Summer 2023 Midterm Question 4: Snacktime</a>
+- [Spring 2024 Final Question 3: Everyone Loves PIE](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4)
+- [Spring 2024 Final Question 4: Breaking Bot](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6)
+- [Fall 2023 Final Question 3: exec](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=4)
+- [Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7)
+- [Fall 2023 Midterm Question 3: Homecoming](https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4)
+- [Fall 2023 Final Question 4: Ins and Outs](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6)
+- [Summer 2023 Final Question 4: The Last Dance](https://assets.cs161.org/exams/su23/su23final.pdf#page=5)
+- [Summer 2023 Midterm Question 3: Across the Security-Verse](https://assets.cs161.org/exams/su23/su23mt.pdf#page=4)
+- [Summer 2023 Midterm Question 4: Snacktime](https://assets.cs161.org/exams/su23/su23mt.pdf#page=6)
 
 [^1]: The one real performance advantage C has over a garbage collected language like Go is a far more deterministic behavior for memory allocation. But with languages like Rust, which are safe but not garbage collected, this is no longer an advantage for C.
 [^2]: This function is called a MAC (message authentication code), and we will study it in more detail in the cryptography unit.

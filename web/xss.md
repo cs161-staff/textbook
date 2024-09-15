@@ -94,4 +94,4 @@ _Further reading:_ [OWASP Cheat Sheet on XSS](https://owasp.org/www-community/at
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover XSS.
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13">Fall 2023 Final Question 7: Unscramble</a>
+- [Fall 2023 Final Question 7: Unscramble](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13)

@@ -60,7 +60,7 @@ _Further reading:_ [OWASP Cheat Sheet on CSRF](https://owasp.org/www-community/a
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover CSRF.
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13">Fall 2023 Final Question 7: Unscramble</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12">Spring 2023 Final Question 7: Botgram</a>
+- [Fall 2023 Final Question 7: Unscramble](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13)
+- [Spring 2023 Final Question 7: Botgram](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12)
 
 [^1]: Yes, the "Referer" field represents a roughly three decade old misspelling of referrer. This is a silly example of how "legacy", that is old design decisions, can impact things decades later because it can be very hard to change things

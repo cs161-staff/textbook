@@ -140,9 +140,9 @@ Some other modes include CCM mode, CWC mode, and OCB mode, but these are out of 
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover MACs.
-- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13">Spring 2024 Midterm Question 6: Authentic Auctions</a>
-- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=12">Fall 2023 Midterm Question 6: Mix-and-MAC</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=10">Spring 2023 Final Question 6: Lights, Camera, MACtion</a>
+- [Spring 2024 Midterm Question 6: Authentic Auctions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13)
+- [Fall 2023 Midterm Question 6: Mix-and-MAC](https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=12)
+- [Spring 2023 Final Question 6: Lights, Camera, MACtion](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=10)
 
 [^1]: Strictly speaking, there is a very small chance that the tag for $$M$$ will also be a valid tag for $$M'$$. However, if we choose tags to be long enough---say, 128 bits---and if the MAC algorithm is secure, the chances of this happening should be about $$1/2^{128}$$, which is small enough that it can be safely ignored.
 [^2]: The formal definition of "unrelated" is out of scope for these notes. See [this paper](http://cseweb.ucsd.edu/~mihir/papers/kmd5.pdf) to learn more.

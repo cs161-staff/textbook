@@ -168,6 +168,6 @@ in the database, where $$s$$ is a random salt chosen randomly for that user and 
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover passwords.
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=11">Fall 2023 Final Question 6: YAAS (Yet Another Authentication Scheme)</a>
-- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=13">Summer 2023 Final Question 8: EvanBank</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=9">Spring 2023 Midterm Question 5: alice161</a>
+- [Fall 2023 Final Question 6: YAAS (Yet Another Authentication Scheme)](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=11)
+- [Summer 2023 Final Question 8: EvanBank](https://assets.cs161.org/exams/su23/su23final.pdf#page=13)
+- [Spring 2023 Midterm Question 5: alice161](https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=9)

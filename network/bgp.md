@@ -52,7 +52,7 @@ In practice, there's not much anyone can do to defend against a malicious AS, si
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover BGP.
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=15">Spring 2023 Final Question 8: Life of a Packet</a>
+- [Spring 2023 Final Question 8: Life of a Packet](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=15)
 
 [^1]: $$2^8$$. The prefix is 24 bits, so there are 32 - 24 = 8 bits not in the prefix.
 [^2]: Checksums are not cryptographic. The malicious AS could modify the packet and create a new checksum for the modified packet.

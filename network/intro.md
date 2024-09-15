@@ -116,5 +116,5 @@ Note that all adversaries can send packets of their own, including faking or **s
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover an introduction to networking or network adversaries in specific.
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=20">Fall 2023 Final Question 11: New Phone Who This</a>
-- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=15">Summer 2023 Final Question 9: Passwords-R-Us</a>
+- [Fall 2023 Final Question 11: New Phone Who This](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=20)
+- [Summer 2023 Final Question 9: Passwords-R-Us](https://assets.cs161.org/exams/su23/su23final.pdf#page=15)

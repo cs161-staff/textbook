@@ -58,8 +58,8 @@ It is easy to confuse session tokens and cookies. Session tokens are the values 
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover cookies.
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13">Fall 2023 Final Question 7: Unscramble</a>
-- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=13">Summer 2023 Final Question 8: EvanBank</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12">Spring 2023 Final Question 7: Botgram</a>
+- [Fall 2023 Final Question 7: Unscramble](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13)
+- [Summer 2023 Final Question 8: EvanBank](https://assets.cs161.org/exams/su23/su23final.pdf#page=13)
+- [Spring 2023 Final Question 7: Botgram](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12)
 
 [^1]: The lack of restriction on the `Path` attribute has caused problems in the past, as cookies are presented to the server and JavaScript as an unordered set of name/value pairs, but is stored internally as name/path/value tuples, so if two cookies with the same name and host but different path are present, both will be presented to the server in unspecified order.

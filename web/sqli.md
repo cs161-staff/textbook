@@ -227,7 +227,7 @@ _Further reading:_ [OWASP Cheat Sheet on SQL Injection](https://owasp.org/www-co
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover SQL Injection.
-- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=13">Spring 2024 Final Question 7: Suspicious SQL</a>
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=16">Fall 2023 Final Question 8: Word Game</a>
-- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=11">Summer 2023 Final Question 7: Barbenheimer</a>
-- <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12">Spring 2023 Final Question 7: Botgram</a>
+- [Spring 2024 Final Question 7: Suspicious SQL](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=13)
+- [Fall 2023 Final Question 8: Word Game](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=16)
+- [Summer 2023 Final Question 7: Barbenheimer](https://assets.cs161.org/exams/su23/su23final.pdf#page=11)
+- [Spring 2023 Final Question 7: Botgram](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12)

@@ -70,7 +70,7 @@ A slight variation on this method is to hash each record 10 separate times, each
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover cryptographic hashes.
-- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=17">Spring 2024 Midterm Question 7: Ephemeral Exchanges</a>
-- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13">Spring 2024 Midterm Question 6: Authentic Auctions</a>
-- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=11">Fall 2023 Final Question 6: YAAS (Yet Another Authentication Scheme)</a>
-- <a href="https://assets.cs161.org/exams/fa21/fa21mt1.pdf#page=8" alt="Fall 2021 Midterm Question 6">Fall 2021 Midterm Question 6: Bonsai</a>
+- [Spring 2024 Midterm Question 7: Ephemeral Exchanges](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=17)
+- [Spring 2024 Midterm Question 6: Authentic Auctions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13)
+- [Fall 2023 Final Question 6: YAAS (Yet Another Authentication Scheme)](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=11)
+- [Fall 2021 Midterm Question 6: Bonsai](https://assets.cs161.org/exams/fa21/fa21mt1.pdf#page=8)
