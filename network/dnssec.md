@@ -332,7 +332,6 @@ Of course, an attacker could buy a GPU and precompute hashes to learn domain nam
 Here we've compiled a list of past exam questions that cover DNSSEC.
 
 - [Spring 2024 Final Question 8: Check Please](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=17)
-- [Spring 2023 Final Question 10: Don't Need Security](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=18)
 
 [^1]: A: DNS responses don't contain sensitive data. Anyone could query the name servers for the same information.
 [^2]: A: The ZSK of the `.edu` name server.
