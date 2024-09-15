@@ -36,3 +36,12 @@ There are many ways to defend against clickjacking attacks. The general idea is 
 **Direct the user's attention to their click**: This can be done by freezing the rest of the screen besides the area directly around the user's cursor, or by highlighting the user's cursor. This will make the user less likely to be fooled by a fake cursor and force them to focus on where their real cursor is pointing. The user's clicks can also be invalidated if the user tries to click outside of a relevant portion of the screen.
 
 **Delay the click**: Force the user to hover over the desired button for some amount of time before allowing the user to click the button. This forces the user to spend some time looking at where they're clicking before they actually perform the click.
+
+## 23.3 Phishing
+
+Phishing is an attack in which the attacker tricks the victim into sending the attacker personal information. In the context of web pages, the attackers exploit the user's inability to distinguish between a legitimate website and a website impersonating the legitimate website. In order to do this, attackers setup fake websites that mimick the UI of the original website. More sophisticated attacks involve:
+
+* Valid certificate: obtain a valid certificate so the browser displays the green lock icon, giving users a false sense of security.
+* Homograph attack: create a malicious URL that looks similar to the legitimate one, often using non-ascii characters. 
+* Browser-in-browser attack: simulates the entire web browser with JavaScript.
+

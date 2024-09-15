@@ -64,3 +64,8 @@ Here we've compiled a list of past exam questions that cover cookies.
 - [Spring 2023 Final Question 7: Botgram](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12)
 
 [^1]: The lack of restriction on the `Path` attribute has caused problems in the past, as cookies are presented to the server and JavaScript as an unordered set of name/value pairs, but is stored internally as name/path/value tuples, so if two cookies with the same name and host but different path are present, both will be presented to the server in unspecified order.
+
+
+## 20.5 Cookie Policy versus Same-Origin Policy
+
+Cookie polices and the same-origin policies have subtle differences. For example, it is possible for two different origins to share cookies. If a cookie is set for domain `berkeley.edu`, then `eecs.berkeley.edu` and `auth.berkeley.edu` can both read and write that cookie, even if they do not have the same origin. This can be used by an attacker: lets say an attacker controls `eecs.berkeley.edu`. They can then set a cookie for `berkeley.edu`, which will be sent to `auth.berkeley.edu` requests by the browser. 
