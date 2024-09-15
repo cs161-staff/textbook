@@ -56,3 +56,8 @@ Secure session tokens should be random and unpredictable, so an attacker cannot 
 It is easy to confuse session tokens and cookies. Session tokens are the values that the browser sends to the server to associate the request with a logged-in user. Cookies are how the browser stores and sends session tokens to the server. Cookies can also be used to save other state, as discussed earlier. In other words, session tokens are a special type of cookie that keep users logged in over many requests and responses.
 
 [^1]: The lack of restriction on the `Path` attribute has caused problems in the past, as cookies are presented to the server and JavaScript as an unordered set of name/value pairs, but is stored internally as name/path/value tuples, so if two cookies with the same name and host but different path are present, both will be presented to the server in unspecified order.
+
+
+## 20.5 Cookie Policy versus Same-Origin Policy
+
+Cookie polices and the same-origin policies have subtle differences. For example, it is possible for two different origins to share cookies. If a cookie is set for domain `berkeley.edu`, then `eecs.berkeley.edu` and `auth.berkeley.edu` can both read and write that cookie, even if they do not have the same origin. This can be used by an attacker: lets say an attacker controls `eecs.berkeley.edu`. They can then set a cookie for `berkeley.edu`, which will be sent to `auth.berkeley.edu` requests by the browser. 
