@@ -175,6 +175,7 @@ We can use multiple mitigations together to force the attacker to find multiple 
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover memory safety mitigations.
+
 - [Spring 2024 Final Question 3: Everyone Loves PIE](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4)
 - [Spring 2024 Final Question 4: Breaking Bot](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6)
 - [Fall 2023 Final Question 3: exec](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=4)

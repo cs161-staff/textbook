@@ -345,6 +345,7 @@ Different modes have different tradeoffs between usability and security. Althoug
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover symmetric cryptography.
+
 - [Spring 2024 Final Question 5: AES-ROVW](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=8)
 - [Spring 2024 Midterm Question 5: Challenging Constructions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=10)
 - [Fall 2023 Final Question 5: Meet Me in the Middle](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=5)

@@ -64,6 +64,7 @@ Defending against low-layer attacks like DHCP spoofing is hard, because there is
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover DHCP.
+
 - [Spring 2023 Final Question 8: Life of a Packet](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=15)
 
 [^1]: A: Before DHCP, the client has no idea where the servers are.

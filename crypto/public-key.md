@@ -191,6 +191,7 @@ Because public key schemes are expensive and difficult to make IND-CPA secure, w
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover public-key cryptography.
+
 - [Spring 2024 Final Question 6: Plentiful Playlists](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=10)
 - [Spring 2024 Midterm Question 7: Ephemeral Exchanges](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=17)
 - [Spring 2024 Midterm Question 6: Authentic Auctions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13)

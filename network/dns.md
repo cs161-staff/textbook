@@ -235,6 +235,7 @@ Sanity check: How much extra security does source port randomization provide aga
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover DNS.
+
 - [Spring 2024 Final Question 8: Check Please](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=17)
 - [Fall 2023 Final Question 9: Double-Check Your Work](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=18)
 - [Summer 2023 Final Question 10: DNS Hack Finding](https://assets.cs161.org/exams/su23/su23final.pdf#page=18)

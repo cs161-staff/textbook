@@ -140,6 +140,7 @@ Some other modes include CCM mode, CWC mode, and OCB mode, but these are out of 
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover MACs.
+
 - [Spring 2024 Midterm Question 6: Authentic Auctions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13)
 - [Fall 2023 Midterm Question 6: Mix-and-MAC](https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=12)
 - [Spring 2023 Final Question 6: Lights, Camera, MACtion](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=10)

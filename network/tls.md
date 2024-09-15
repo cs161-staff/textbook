@@ -94,6 +94,7 @@ This leaves the biggest cost of TLS in managing the private keys. Previously CAs
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover TLS.
+
 - [Spring 2024 Final Question 9: Key Rotation](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=19)
 - [Fall 2023 Final Question 11: New Phone Who This](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=20)
 - [Spring 2023 Final Question 9: TLS Times Two](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=17)

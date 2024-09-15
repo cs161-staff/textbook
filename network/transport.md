@@ -108,6 +108,7 @@ One important defense against off-path attackers is using random, unpredictable 
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover the Transport Layer.
+
 - [Spring 2023 Final Question 8: Life of a Packet](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=15)
 
 [^1]: The sequence number is 32 bits, so guessing a random sequence number succeeds with probability $$1/2^{32}$$.

@@ -323,6 +323,7 @@ This method of injection is very similar to stack smashing, where the attacker o
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover memory safety vulnerabilities.
+
 - [Spring 2024 Final Question 3: Everyone Loves PIE](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4)
 - [Spring 2024 Final Question 4: Breaking Bot](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6)
 - [Spring 2024 Midterm Question 3: 'Tis But a Scratch](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4)
@@ -340,50 +341,40 @@ Here we've compiled a list of past exam questions that cover memory safety vulne
 - [Spring 2023 Midterm Question 6: Cake without Pan](https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12)
 - [Spring 2023 Midterm Question 7: Valentine's Day](https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14)
 
-A large portion of memory safety vulnerability questions is identifying what type of vulnerability exists within the code. However, if you'd like to practice a specific type of question, feel free to toggle the options below.
+A large portion of memory safety vulnerability questions is identifying what type of vulnerability exists within the code. However, if you'd like to practice a specific type of question, feel free to toggle the options below. Please utilize the links from above.
 <details>
-    <summary><em>Buffer overflow</em></summary>
+    <summary>Buffer overflow</summary>
 
-    <ul>
-        <li><a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=7">Fall 2023 Midterm Question 4: Forbidden Instruction</a></li>
-        <li>Involves canaries: <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Andor, or XOR?</a></li>
-        <li>Involves ASLR: <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Valentine's Day</a></li>
-    </ul>
+- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=7">Fall 2023 Midterm Question 4: Forbidden Instruction</a><br>
+- Involves canaries: <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Andor, or XOR?</a><br>
+- Involves ASLR: <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Valentine's Day</a>
 </details>
 <details>
-    <summary><em>Format string vulnerability</em></summary>
+    <summary>Format string vulnerability</summary>
 
-    <ul>
-        <li><a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7">Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!</a></li>
-        <li><a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=6">Summer 2023 Midterm Question 4: Snacktime</a></li>
-        <li> a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Cake without Pan</a></li>
-    </ul>
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7">Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=6">Summer 2023 Midterm Question 4: Snacktime</a><br>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Cake without Pan</a>
 </details>
 <details>
-    <summary><em>Integer conversion vulnerability</em></summary>
+    <summary>Integer conversion vulnerability</summary>
     
-    <ul>
-        <li><a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4">Spring 2024 Midterm Question 3: 'Tis But a Scratch</a></li>
-        <li><a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=4">Summer 2023 Final Question 3: Letter from EvanBot</a></li>
-    </ul>
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4">Spring 2024 Midterm Question 3: 'Tis But a Scratch</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=4">Summer 2023 Final Question 3: Letter from EvanBot</a>
 </details>
 <details>
-    <summary><em>Off-by-one vulnerability</em></summary>
+    <summary>Off-by-one vulnerability</summary>
 
-    <ul>
-        <li><a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4">Spring 2024 Final Question 3: Everyone Loves PIE</a></li>
-        <li><a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6">Fall 2023 Final Question 4: Ins and Outs</a></li>
-        <li><a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4">Fall 2023 Midterm Question 3: Homecoming</a></li>
-        <li><a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=4">Summer 2023 Midterm Question 3: Across the Security-Verse</a></li>
-    </ul>
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4">Spring 2024 Final Question 3: Everyone Loves PIE</a><br>
+- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6">Fall 2023 Final Question 4: Ins and Outs</a><br>
+- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4">Fall 2023 Midterm Question 3: Homecoming</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=4">Summer 2023 Midterm Question 3: Across the Security-Verse</a>
 </details>
 <details>
-    <summary><em>Other vulnerabilities</em></summary>
+    <summary>Other vulnerabilities</summary>
 
-    <ul>
-        <li>Use after free: <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6">Spring 2024 Final Question 4: Breaking Bot</a></li>
-        <li><a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=5">Summer 2023 Final Question 4: The Last Dance</a></li>
-    </ul>
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6">Use after free: Spring 2024 Final Question 4: Breaking Bot</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=5">Summer 2023 Final Question 4: The Last Dance</a>
 </details>
 
 

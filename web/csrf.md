@@ -60,6 +60,7 @@ _Further reading:_ [OWASP Cheat Sheet on CSRF](https://owasp.org/www-community/a
 ## Past Exam Questions
 
 Here we've compiled a list of past exam questions that cover CSRF.
+
 - [Fall 2023 Final Question 7: Unscramble](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=13)
 - [Spring 2023 Final Question 7: Botgram](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=12)
 
