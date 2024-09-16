@@ -15,7 +15,7 @@ def adjust_content(input_file):
     content = content.replace('.svg', '.png')
 
     # Define a regular expression to match the HTML-style image pattern
-    pattern = r'<img\s+src="(/[^"]+)"\s+alt="([^"]*)"(?:\s+width="([^"]*)")?[^>]*>'
+    pattern = r'<img\s+src="{{ site.baseurl }}(/[^"]+)"\s+alt="([^"]*)"(?:\s+width="([^"]*)")?[^>]*>'
 
     # Replace the HTML-style image pattern with equivalent Markdown syntax with width attribute
     new_content = re.sub(pattern, lambda m: f'![{m.group(2)}]({m.group(1).lstrip("/")}){{ width={m.group(3)} }}' if m.group(3) else f'![{m.group(2)}]({m.group(1).lstrip("/")})', content)
