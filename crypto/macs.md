@@ -60,7 +60,7 @@ $$S_i = \textrm{AES}_{K_1}(S_{i-1} \oplus P_i),\qquad
 
 Finally we compute $$T = \textrm{AES}_{K_2}(S_n)$$; $$T$$ is the tag for message $$M$$. Here is what it looks like:
 
-<img src="/assets/images/crypto/macs/aes-emac.svg" alt="AES-EMAC block diagram, with K2 highlighted as the final encryption
+<img src="{{ site.baseurl }}/assets/images/crypto/macs/aes-emac.svg" alt="AES-EMAC block diagram, with K2 highlighted as the final encryption
 step" />
 
 Assuming AES is a secure block cipher, this scheme is provably secure, using the unforgeability definition and security game described in the previous section. An attacker cannot forge a valid AES-EMAC for a message they haven't seen before, even if they are allowed to query for MACs of other messages.

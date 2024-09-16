@@ -17,7 +17,7 @@ TLS relies on TCP to guarantee that messages are delivered reliably in the prope
 
 ## 31.1. TLS Handshake
 
-<img src="/assets/images/network/tls/tls1.png" alt="Diagram of the first part of the TLS handshake, from the ClientHello to the server certificate presentation" width="75%">
+<img src="{{ site.baseurl }}/assets/images/network/tls/tls1.png" alt="Diagram of the first part of the TLS handshake, from the ClientHello to the server certificate presentation" width="75%">
 
 Because it's built on top of TCP, the TLS handshake starts with a TCP handshake. This lets us abstract away the notion of best-effort, fixed-size packets and think in terms of reliable messages for the rest of the TLS protocol.
 
@@ -35,7 +35,7 @@ The next step in TLS is to generate a random **Premaster Secret** (**PS**) known
 
 The first way to derive a shared PS is to encrypt it with RSA, shown in the last (blue) arrow here that depicts $$\{PS\}_{K_{server}}$$:
 
-<img src="/assets/images/network/tls/tls2-rsa.png" alt="Diagram of the second part of the TLS handshake using RSA, from the server certificate presentation to the exchange of MACs" width="40%">
+<img src="{{ site.baseurl }}/assets/images/network/tls/tls2-rsa.png" alt="Diagram of the second part of the TLS handshake using RSA, from the server certificate presentation to the exchange of MACs" width="40%">
 
 Here, the client generates the random PS, encrypts it with the server's public key, and sends it to the server, which decrypts using its private key.
 
@@ -45,7 +45,7 @@ We can verify that this method satisfies all the properties of a PS. Because it 
 
 The second way to generate a PS is to use Diffie-Hellman key exchange, shown in the fourth (red) and fifth (blue) arrows here that depict $$\{g^a \bmod p\}_{K^{-1}_{server}}$$ and $$g^b \bmod p$$ respectively:
 
-<img src="/assets/images/network/tls/tls2-dh.png" alt="Diagram of the second part of the TLS handshake using Diffie-Hellman, from the server certificate presentation to the exchange of MACs" width="40%">
+<img src="{{ site.baseurl }}/assets/images/network/tls/tls2-dh.png" alt="Diagram of the second part of the TLS handshake using Diffie-Hellman, from the server certificate presentation to the exchange of MACs" width="40%">
 
 The exchange looks just like classic Diffie-Hellman, except the server signs its half of the exchange with its secret key. The shared PS is the result of the key exchange, $$g^{ab} \bmod p$$.
 
