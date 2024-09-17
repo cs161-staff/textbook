@@ -1,11 +1,11 @@
 ---
-title: 2.7 Summary
+title: 2.6 Summary
 parent: 2. CSPs
-nav_order: 7
+nav_order: 6
 layout: page
 ---
 
-# 2.7 Summary
+# 2.6 Summary
 
 It's important to remember that constraint satisfaction problems in general do not have an efficient algorithm which solves them in polynomial time with respect to the number of variables involved. However, by using various heuristics, we can often find solutions in an acceptable amount of time:
 
