@@ -188,4 +188,14 @@ There is a problem with public key: it is _slow_. It is very, very slow. When en
 
 Because public key schemes are expensive and difficult to make IND-CPA secure, we tend to only use public key cryptography to distribute one or more _session keys_. Session keys are the keys used to actually encrypt and authenticate the message. To send a message, Alice first generates a random set of session keys. Often, we generate several different session keys for different purposes. For example, we may generate one key for encryption algorithms and another key for MAC algorithms. We may also generate one key to encrypt messages from Alice to Bob, and another key to encrypt messages from Bob to Alice. (If we need different keys for each message direction and different keys for encryption and MAC, we would need a total of four symmetric keys.) Alice then encrypts the message using a symmetric algorithm with the session keys (such as AES-128-CBC-HMAC-SHA-256 [^1]) and encrypts the random session keys with Bob's public key. When he receives the ciphertext, Bob first decrypts the session keys and then uses the session keys to decrypt the original message.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover public-key cryptography.
+
+- [Spring 2024 Final Question 6: Plentiful Playlists](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=10)
+- [Spring 2024 Midterm Question 7: Ephemeral Exchanges](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=17)
+- [Spring 2024 Midterm Question 6: Authentic Auctions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13)
+- [Fall 2023 Midterm Question 7: Does EvanBot Snore?](https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=17)
+- [Spring 2023 Midterm Question 4: Mallory Forger](https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=7)
+
 [^1]: That is, using AES with 128b keys in CBC mode and then using HMAC with SHA-256 for integrity

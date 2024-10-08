@@ -112,3 +112,10 @@ Network adversaries can be sorted into 3 general categories. They are, from weak
 **In-path Adversaries**: can read, modify, and block packets. Also known as a **man-in-the-middle**.
 
 Note that all adversaries can send packets of their own, including faking or **spoofing** the packet headers to appear like the message is coming from somebody else. This is often as simple as setting the "source\" field on the packet header to somebody else's address.
+
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover an introduction to networking or network adversaries in specific.
+
+- [Fall 2023 Final Question 11: New Phone Who This](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=20)
+- [Summer 2023 Final Question 9: Passwords-R-Us](https://assets.cs161.org/exams/su23/su23final.pdf#page=15)
