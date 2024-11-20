@@ -11,28 +11,28 @@ header-includes:
 
 ## 1.1. Know your threat model
 
-A threat model is a model of who your attacker is and what resources they have. Attackers target systems for various reasons, be it money, politics, fun, etc. Some aren't looking for anything logical--some attackers just want to watch the world burn.
+A threat model is a model of who your attacker is and what resources they have. Attackers target systems for various reasons, be it money, politics, fun, etc. Some aren't looking for anything logical---some attackers just want to watch the world burn.
 
-Take, for example your own personal security. Understanding your threat model has to do with understanding who and why might someone attack you; criminals, for example, could attack you for money, teenagers could attack you for laughs (or to win a dare), governments might spy on you to collect intelligence (but you probably are not important enough for that just yet), or intimate partners could spy on you.
+Take, for example, your own personal security. Understanding your threat model has to do with understanding who and why might someone attack you; criminals, for example, could attack you for money, teenagers could attack you for laughs (or to win a dare), governments might spy on you to collect intelligence (but you probably are not important enough for that just yet), or intimate partners could spy on you.
 
 Once you understand who your attacker is and what resources they might possess, there are some common assumptions that we take into account for attackers:
 
 1. The attacker can interact with your systems without anyone noticing, meaning that you might not always be able to detect the attacker tampering with your system before they attack.
 2. The attacker has some general information about your system, namely the operating system, any potential software vulnerabilities, etc.
 3. The attacker is persistent and lucky; for example, if an attack is successful 1/1,000,000 times, the attacker will try 1,000,000 times.
-4. The attacker has the resources required to undertake the attack (up to an extent). This will be touched on in "Securities is Economics", but depending on who your threat model is, assume that the attacker has the ability and resources to perform the attack.
-5. The attacker can coordinate several complex attacks across various systems, meaning that the attacker does not have to mount only a single attack on one device, but rather can attack your entire network at the same time.
+4. The attacker is willing to devote time and resources to the attack (though this may vary; see "Security is Economics" below).
+5. The attacker can coordinate several complex attacks across various systems. The attacker is not limited to to attacking only a single device, but can attack your entire network at the same time or chain multiple attacks together.
 6. Every system is a potential target. For example, a casino was once hacked because a fish-tank thermometer was hacked within the network.
 
-Finally, be extremely vigilant when dealing with old code as the assumptions that were originally made might no longer be valid and the threat model might have changed. When the Internet was first created, for example, it was mostly populated by academics who (mostly) trusted one another. As such, several networking protocols made the assumption that all other network participants could be trusted and were not malicious. Today however, the Internet is populated by billions of devices, some of whom are malicious. As such, many network protocols that were designed a long time ago are now suffering under the strain of attack.
+Finally, be extremely vigilant when dealing with old code as the assumptions that were originally made might no longer be valid and the threat model might have changed. When the Internet was first created, for example, it was mostly populated by academics who (mostly) trusted one another. As such, several networking protocols made the assumption that all other network participants could be trusted and were not malicious. Today however, the Internet is populated by billions of devices, some of whom are malicious. As a result, many network protocols that were designed a long time ago are now suffering under the strain of attack.
 
 ## 1.2. Consider Human Factors
 
-The key idea here is that security systems must be usable by ordinary people, and therefore must be designed to take into account the role that humans will play. As such, you must remember that programmers make mistakes and will use tools that allow them to make mistakes (like C and C++). Similarly, users like convenience; if a security system is unusable and not user-friendly, no matter how secure it is, it will go unused. Users will find a way to subvert security systems if it makes their lives easier.
+The key idea here is that security systems must be usable by ordinary people, and therefore must be designed to take into account the role that humans will play. For example, programmers are human and make mistakes. Similarly, users like convenience; if a security system is unusable and not user-friendly, no matter how secure it is, it will go unused. Users will find a way to subvert security systems if it makes their lives easier.
 
 No matter how secure your system is, it all comes down to people. Social engineering attacks, for example, exploit other people's trust and access for personal gain. The takeaway here is to consider the tools that are presented to users, and try to make them fool-proof and as user-friendly as possible.
 
-For example, your computer pops up with a notification that tells you it needs to restart to "finish installing important updates"; if you are like a majority of the user population, you likely click "remind me later", pushing off the update. If the computer is attempting to fix a security patch, the longer the update gets pushed, the more time your computer is vulnerable to an attack. However, since the update likely inconveniences the user, they forego the extra security for convenience.
+For example, suppose your computer pops up with a notification that tells you it needs to restart to "finish installing important updates" while you are in the middle of working on something. If you are like the majority of the user population, you might click "remind me later", pushing off the update. If the computer is attempting to fix a security patch, the longer the update gets delayed, the longer your computer is vulnerable to an attack. If updates inconvenience the user, they might forego the extra security for convenience.
 
 Another example: the NSA’s cryptographic equipment stores its key material on a small physical token. This token is built in the shape of an ordinary door key. To activate an encryption device, you insert the key into a slot on the device and turn the key. This interface is intuitively understandable, even for 18-year-old soldiers out in the field with minimal training in cryptography.
 
@@ -40,7 +40,7 @@ Another example: the NSA’s cryptographic equipment stores its key material on 
 
 No system is completely, 100% secure against all attacks; rather, systems only need to be protected against a certain level of attacks. Since more security usually costs more money to implement, the expected benefit of your defense should be proportional to the expected cost of the attack. Essentially, there is no point putting a $100 lock on a $1 item.
 
-To understand this concept, we can think about physical safes, which come with a rating of their level of security. For instance, a consumer grade safe, a TL-15, might indicate that it will resist attacks for up to 15 minutes by anyone with common tools, and might cost around $3,000, while a TL-30, a safe that would resist attacks for up to 30 minutes with common tools might cost around $5000. Finally, a TXTL-60 (a super high-end safe), might resist attacks for up to 60 minutes with common tools, a cutting torch, and up to 4 oz of explosives, and would cost upwards of $50,000. The idea is that security usually comes at a cost. A more secure safe is going to cost you more than a less secure safe. With infinite money, you could use the best safe available to lock all your valuables, but since you don't have infinite money, you must determine how valuable the thing you want to protect is, and you must judge how much you are willing to pay to protect it. This illustrates that security is often a cost-benefit analysis where someone needs to make a decision regarding how much security is worth.
+To understand this concept, we can think about physical safes, which come with a rating of their level of security. For instance, a consumer grade safe rated TL-15 is designed to resist attacks for up to 15 minutes by anyone with common tools; it might cost around $3,000. A TL-30, a safe that would resist attacks for up to 30 minutes with common tools, might cost around $5000. Finally, a TXTL-60 (a super high-end safe), which is rated to resist attacks for up to 60 minutes with common tools, a cutting torch, and up to 4 oz of explosives, might cost upwards of $50,000. Security usually comes at a cost. A more secure safe is going to cost you more than a less secure safe. With infinite money, you could use the best safe available to lock all your valuables, but since you don't have infinite money, you must determine how valuable the thing you want to protect is, and you must judge how much you are willing to pay to protect it. This illustrates that security is often a cost-benefit analysis where someone needs to make a decision regarding how much security is worth.
 
 A corollary of this principle is you should focus your energy on securing the weakest links. Security is like a chain: a system is only as secure as the weakest link. Attackers follow the path of least resistance, and they will attack the system at its weakest point. There is no sense putting an expensive high-end deadbolt on a screen door; attackers aren't going to bother trying to pick the lock when they can just rip out the screen and step through.
 
@@ -48,33 +48,35 @@ A closely related principle is conservative design, which states that systems sh
 
 ## 1.4. Detect if you can't prevent
 
-If prevention is stopping an attack from taking place, detection is simply learning that the attack has taken place, and response would be doing something about the attack. The idea is that if you cannot prevent the attack from happening, you should at least be able to know that the attack has happened. Once you know that the attack has happened, you should find a way to respond, since detection without response is pointless.
+Prevention is stopping an attack from taking place, detection is simply learning that the attack has taken place, and response is doing something about the attack. The idea is that if you cannot prevent the attack from happening, you should at least be able to know that the attack has happened. Once you know that the attack has happened, you should find a way to respond, since detection without response is pointless.
 
-For example, the Federal Information Processing Standard (FIPS) are publicly announced standards developed for use in computer systems by various government contractors. Type III devices---the highest level of security in the standard, are intended to be tamper-resistant. However, Type III devices are very expensive. Type II devices are only required to be tamper-evident, so that if someone tampers with them, this will be visible (e.g., a seal will be visibly broken). This means they can be built more cheaply and used in a broader array of applications.
+For example, Federal Information Processing Standard (FIPS) 140 provides technical standards for hardware components used by government contractors for encryption. Level III devices---the highest level of security in the standard---are intended to be tamper-resistant. However, Level III devices are very expensive. Level II devices are only required to be tamper-evident, so that if someone tampers with them, this will be visible (e.g., a seal will be visibly broken). This means they can be built more cheaply and used in a broader array of applications.
 
-When dealing with response, you should always assume that bad things will happen, and therefore prepare your systems for the worst case outcome. You should always plan security in a way that lets you get back to some form of a working state. For example, keeping offsite backups of computer systems is a great idea. Even if your system is completely destroyed, it should be no big deal since all your data is backed up in some other location.
+When dealing with response, you should always assume that bad things will happen, and therefore prepare your systems for the worst case outcome. You should always plan security in a way that lets you get back to some form of a working state. For example, keeping offsite backups of computer systems is a great idea. Even if your system is completely destroyed, it should be survivable since all your data is backed up in some other location.
 
 ## 1.5. Defense in depth
 
 The key idea of defense in depth is that multiple types of defenses should be layered together so an attacker would have to breach all the defenses to successfully attack a system.
 
-Take, for example, a castle defending its king. The castle has high walls. Behind those walls might be a moat, and then another layer of walls. Layering multiple simple defensive strategies together can make security stronger. However, defense in depth is not foolproof--no amount of walls will stop siege cannons from attacking the castle. Also, beware of diminishing returns--if you've already built 100 walls, the 101st wall may not add enough additional protection to justify the cost of building it (security is economics).
+Take, for example, a castle defending its king. The castle has high walls. Behind those walls might be a moat, and then another layer of walls. Layering multiple simple defensive strategies together can make security stronger. However, defense in depth is not foolproof---no amount of walls will stop siege cannons from attacking the castle. Also, beware of diminishing returns---if you've already built 100 walls, the 101st wall may not add enough additional protection to justify the cost of building it (security is economics).
 
-Another example of defense in depth is through a composition of detectors. Say you had two detectors, $$D_1$$ and $$D_2$$, which have false positive rates of $$FP_1$$ and $$FP_2$$ respectively, and false negative rates of $$FN_1$$ and $$FN_2$$, respectively. One way to use the two detectors would be to have them in parallel, meaning that either detector going off would trigger a response. This would increase the false positive rate and decrease the false negative rate. On the other hand, we could also have the detectors in series, meaning that both detectors have to alert in order to trigger a response. In this case, the false positive rate would decrease while the false negative rate would increase.
+Another example of defense in depth is through a composition of detectors. Say you had two detectors, $$D_1$$ and $$D_2$$, each of which have some rate of generating false alarms (alerts that are not actually a security compromise) and some rate of missed attacks (security compromises that didn't trigger any alert). One way to use the two detectors would be to have them in parallel, meaning that either detector going off would trigger a response. This would increase the false alarm rate and decrease the rate of missed attacks. Or, we could also have the detectors in series, meaning that both detectors have to alert in order to trigger a response. In this case, the false alarm rate would decrease while the rate of missed attacks would increase.
 
 ## 1.6. Least privilege
 
-Consider a research building home to a team of scientists as well as other people hired to maintain the building (janitors, IT staff, kitchen staff, etc.) Some rooms with sensitive research data might be only accessible to trusted scientists. These rooms should not be accessible to the maintenance staff (e.g. janitors). For best security practices, any one party should only have as much privilege as it needs to play its intended role.
+Consider a research building that is home to a team of scientists as well as other people hired to maintain the building (janitors, IT staff, kitchen staff, etc.) Some rooms with sensitive research data might be only accessible to trusted scientists. These rooms should not be accessible to the others (e.g., kitchen staff). For best security practices, any one party should only have as much privilege as it needs to play its intended role.
 
 In technical terms, give a program the set of access privileges that it legitimately needs to do its job---but nothing more. Try to minimize how much privilege you give each program and system component.
 
 Least privilege is an enormously powerful approach. It doesn't reduce the probability of failure, but it can reduce the expected cost of failures. The less privilege that a program has, the less harm it can do if it goes awry or becomes subverted.
 
-For instance, the principle of least privilege can help reduce the damage caused by buffer overflow. (We'll discuss buffer overflows more in the next section.) If a program is compromised by a buffer overflow attack, then it will probably be completely taken over by an intruder, and the intruder will gain all the privileges the program had. Thus, the fewer privileges that a program has, the less harm is done if it should someday be penetrated by a buffer overflow attack.
+For instance, the principle of least privilege can help reduce the damage caused by buffer overflow. (We'll discuss buffer overflows more in the next chapter.) If a program is compromised by a buffer overflow attack, then it will probably be completely taken over by an intruder, and the intruder will gain all the privileges the program had. Thus, the fewer privileges that a program has, the less harm is done if it should someday be penetrated by a buffer overflow attack.
 
-How does Unix do, in terms of least privilege? Answer: Pretty lousy. Every program gets all the privileges of the user that invokes it. For instance, if I run a editor to edit a single file, the editor receives all the privileges of my user account, including the powers to read, modify, or delete all my files. That's much more than is needed; strictly speaking, the editor probably only needs access to the file being edited to get the job done.
+How does Unix do, in terms of least privilege? Answer: Pretty lousy. Every program gets all the privileges of the user that invokes it. For instance, if I run a editor to edit a single file, the editor receives all the privileges of my user account, including the powers to read, modify, or delete all my files. That's much more than is needed; strictly speaking, the editor probably only needs access to the one file being edited to get the job done.
 
-How is Windows, in terms of least privilege? Answer: Just as lousy. Arguably worse, because many users run under an Administrator account, and many Windows programs require that you be Administrator to run them. In this case, every program receives total power over the whole computer. Folks on the Microsoft security team have recognized the risks inherent in this, and have taken many steps to warn people away from running with Administrator privileges, so things have gotten better in this respect.
+How is Windows, in terms of least privilege? Answer: Just as lousy. 
+
+Mobile phones do much better. Each app is sandboxed, and typically cannot access other apps' data. If one app is malicious or compromised, the damage it can do is therefore limited.
 
 ## 1.7. Separation of responsibility
 
@@ -82,13 +84,15 @@ Split up privilege, so no one person or program has complete power. Require more
 
 In a nuclear missile silo, for example, two launch officers must agree before the missile can be launched.
 
-Another example of this principle in action is in a movie theater, To watch a movie, you first pay the cashier and get a ticket stub. Then, when you enter the movie theater, a different employee tears your ticket in half and collects one half of it, putting it into a lockbox. Why bother giving you a ticket that 10 feet later is going to be collected from you? One answer is that this helps prevent insider fraud. Employees might be tempted to let their friends watch a movie without paying. The presence of two employees makes an attack harder, since both employees must work together to let someone watch a movie without paying.
+Another example of this principle in action is in a movie theater. To watch a movie, you first pay the cashier and get a ticket stub. Then, when you enter the movie theater, a different employee tears your ticket in half and collects one half of it, putting it into a lockbox. Why bother giving you a ticket that 10 feet later is going to be collected from you? One answer is that this helps prevent insider fraud. Employees might be tempted to let their friends watch a movie without paying. The presence of two employees makes an attack harder, since both employees must work together to let someone watch a movie without paying.
 
-In summary, if you need to perform a privileged action, require multiple parties to work together to exercise that privilege, since it is more likely for a single party to be malicious than for all of the parties to be malicious and collude with one another.
+In summary, if you need to protect a highly sensitive action, require multiple parties to work together to take that action, since it is more likely for a single party to be malicious than for all of the parties to be malicious and collude with one another.
 
 ## 1.8. Ensure complete mediation
 
 When enforcing access control policies, make sure that you check _every_ access to _every_ object. This kind of thinking is helpful to detect where vulnerabilities could be. As such, you have to ensure that all access is monitored and protected. One way to accomplish this is through a _reference monitor_, which is a single point through which all access must occur.
+
+A security checkpoint at an airport is a good example of a reference monitor.  All passengers are funneled through one or a small number of checkpoints, where they be scanned. If we make sure that these checkpoints are handled correctly and there is no way to bypass the checkpoint, this will be enough to protect hundreds of gates at the terminals.
 
 ## 1.9. Shannon's Maxim
 
@@ -96,7 +100,7 @@ Shannon's Maxim states that the attacker knows the system that they are attackin
 
 "Security through obscurity" refers to systems that rely on the secrecy of their design, algorithms, or source code to be secure. The issue with this, however, is that it is extremely brittle and it is often difficult to keep the design of a system secret from a sufficiently motivated attacker. Historically, security through obscurity has a lousy track record: many systems that have relied upon the secrecy of their code or design for security have failed miserably.
 
-In defense of security through obscurity, one might hear reasoning like: "this system is so obscure, only 100 people around the world understand anything about it, so what are the odds that an adversary will bother attacking it?" One problem with such reasoning is that such an approach is self-defeating. As the system becomes more popular, there will be more incentive to attack it, and then we cannot rely on its obscurity to keep attackers away.
+Someone relying on security through obscurity might reason like this: "this system is so obscure, only 100 people around the world understand anything about it, so what are the odds that an adversary will bother attacking it?" One problem with such reasoning is that such an approach is self-defeating in the long run. If the system becomes more popular, there will be more incentive to attack it, and then we cannot rely on its obscurity to keep attackers away.
 
 This doesn't mean that open-source applications are necessarily more secure than closed-source applications. But it does mean that you shouldn't trust any system that _relies_ on security through obscurity, and you should probably be skeptical about claims that keeping the source code secret makes the system significantly more secure.
 
@@ -106,15 +110,13 @@ A closely related principle is Kerckhoff's Principle, which states that cryptogr
 
 ## 1.10. Use fail-safe defaults
 
-Choose default settings that "fail safe", balancing security with usability when a system goes down. When we get to firewalls, you will learn about default-deny polices, which start by denying all access, then allowing only those which have been explicitly permitted. Ensure that if the security mechanisms fail or crash, they will default to secure behavior, not to insecure behavior.
+Choose default settings that "fail safe", balancing security with usability when a system goes down. Ensure that if the security mechanisms fail or crash, they will default to secure behavior, not to insecure behavior.
 
-For example, firewalls must explicitly decide to forward a given packet or else the packet is lost (dropped). If a firewall suffers a failure, no packets will be forwarded. Thus, a firewall fails safe. This is good for security. It would be much more dangerous if it had fail-open behavior, since then all an attacker would need to do is wait for the firewall to crash (or induce a crash) and then the fort is wide open.
+For example, when we get to firewalls, you will learn about default-deny policies, which start by denying all access, then allowing only those which have been explicitly permitted. Firewalls must explicitly decide to forward a given packet or else the packet is lost (dropped). If a firewall suffers a failure, no packets will be forwarded. Thus, a firewall fails safe. This is good for security. It would be more dangerous if it had fail-open behavior, since then all an attacker would need to do is wait for the firewall to crash (or induce a crash) and then the fort is wide open.
 
 ## 1.11. Design security in from the start
 
-Trying to retrofit security to an existing application after it has already been spec'ed, designed, and implemented is usually a very difficult proposition. At that point, you're stuck with whatever architecture has been chosen, and you don't have the option of decomposing the system in a way that ensures least privilege, separation of privilege, complete mediation, defense in depth, and other good properties. Backwards compatibility is often particularly painful, because you can be stuck with supporting the worst insecurities of all previous versions of the software.
-
-Finally, let's examine three principles that are widely accepted in the cryptographic community (although not often articulated) that can play a useful role in considering computer system security as well.
+Trying to retrofit security to an existing application after it has already been spec'ed, designed, and implemented is usually difficult. At that point, you're stuck with whatever architecture has been chosen, and you don't have the option of decomposing the system in a way that ensures least privilege, separation of privilege, complete mediation, defense in depth, and other good properties. Backwards compatibility is often particularly painful, because you can be stuck with supporting the worst insecurities of all previous versions of the software.
 
 ## 1.12. The Trusted Computing Base (TCB)
 
@@ -122,7 +124,7 @@ Now that you understand some of the important principles for building secure sys
 
 In any system, the _trusted computing base_ (TCB) is that portion of the system that must operate correctly in order for the security goals of the system to be assured. We have to rely on every component in the TCB to work correctly. However, anything that is outside the TCB isn't relied upon in any way; even if it misbehaves or operates maliciously, it cannot defeat the system's security goals. Generally, the TCB is made to be as small as possible since a smaller, simpler TCB is easier to write and audit.
 
-Suppose the security goal is that only authorized users are allowed to log into my system using SSH. What is the TCB? Well, the TCB includes the SSH daemon, since it is the one that makes the authentication and authorization decisions; if it has a bug, or if it was programmed to behave maliciously, then it will be able to violate my security goal by allowing access to unauthorized users. The TCB also includes the operating system, since the operating system has the power to tamper with the operation of the SSH daemon (e.g., by modifying its address space). Likewise, the CPU is in the TCB, since we are relying upon the CPU to execute the SSH daemon's machine instructions correctly. Suppose a web browser application is installed on the same machine; is the web browser in the TCB? Hopefully not! If we've built the system in a way that is at all reasonable, the SSH daemon is supposed to be protected (by the operating system's memory protection) from interference by unprivileged applications, like a web browser.
+Suppose the security goal is that only authorized users are allowed to log into my Linux server using SSH. What is the TCB? Well, the TCB includes the SSH daemon, since it is the one that makes the authentication and authorization decisions; if it has a bug, or if it was programmed to behave maliciously, then it will be able to violate my security goal by allowing access to unauthorized users. The TCB also includes the operating system, since the operating system has the power to tamper with the operation of the SSH daemon (e.g., by modifying its address space). Likewise, the CPU is in the TCB, since we are relying upon the CPU to execute the SSH daemon's machine instructions correctly. Suppose a web browser application is installed on the same machine; is the web browser in the TCB? Hopefully not! If we've built the system in a way that is at all reasonable, the SSH daemon is supposed to be protected (by the operating system's memory protection) from interference by unprivileged applications, like a web browser.
 
 **TCB Design Principles**: Several principles guide us when designing a TCB:
 
@@ -130,11 +132,11 @@ Suppose the security goal is that only authorized users are allowed to log into 
 - _Tamper-resistant (or security):_ The TCB should be protected from tampering by anyone else. For instance, other parts of the system outside the TCB should not be able to modify the TCB's code or state. The integrity of the TCB must be maintained.
 - _Verifiable (or correctness):_ It should be possible to verify the correctness of the TCB. This usually means that the TCB should be as simple as possible, as generally it is beyond the state of the art to verify the correctness of subsystems with any appreciable degree of complexity.
 
-Keeping the TCB **simple and small** is excellent. The less code you have to write, the fewer chances you have to make a mistake or introduce some kind of implementation flaw. Industry standard error rates are 1--5 defects per thousand lines of code. Thus, a TCB containing 1,000 lines of code might have 1--5 defects, while a TCB containing 100,000 lines of code might have 100--500 defects. If we need to then try to make sure we find and eliminate any defects that an adversary can exploit, it's pretty clear which one to pick![^1] The lesson is to shed code: design your system so that as much code as possible can be _moved outside_ the TCB.
+Keeping the TCB simple and small is excellent. The less code you have to write, the fewer chances you have to make a mistake or introduce some kind of implementation flaw. Industry standard error rates are 1--5 defects per thousand lines of code. Thus, a TCB containing 1,000 lines of code might have 1--5 defects, while a TCB containing 100,000 lines of code might have 100--500 defects. If we need to then try to make sure we find and eliminate any defects that an adversary can exploit, it's pretty clear which one to pick![^1] The lesson is to shed code: design your system so that as much code as possible can be _moved outside_ the TCB.
 
 **Benefits of TCBs**: The notion of a TCB is a very powerful and pragmatic one as it allows a primitive yet effective form of modularity. It lets us separate the system into two parts: the part that is security-critical (the TCB), and everything else.
 
-This separation is a big win for security. Security is hard. It is really hard to build systems that are secure and correct. The more pieces the system contains, the harder it is to assure its security. If we are able to identify a clear TCB, then we will know that only the parts in the TCB must be correct for the system to be secure. Thus, when thinking about security, we can focus our effort where it really matters. And, if the TCB is only a small fraction of the system, we have much better odds at ending up with a secure system: the less of the system we have to rely upon, the less likely that it will disappoint.
+This separation is a big win for security. Security is hard. It is hard to build systems that are secure and correct. The more stuff the system contains, the harder it is to assure its security. If we are able to identify a clear TCB, then we will know that only the parts in the TCB must be correct for the system to be secure. Thus, when thinking about security, we can focus our effort where it really matters. And, if the TCB is only a small fraction of the system, we have much better odds at ending up with a secure system: the less of the system we have to rely upon, the less likely that it will disappoint.
 
 In summary, some good principles are:
 
@@ -145,7 +147,7 @@ In summary, some good principles are:
 
 ## 1.13. TOCTTOU Vulnerabilities
 
-A common failure of ensuring complete mediation involves race conditions. The time of check to time of use (TOCTTOU) vulnerability usually arises when enforcing access control policies such as when using a reference monitor. Consider the following code:
+A common failure of ensuring complete mediation involves race conditions. The time of check to time of use (TOCTTOU) vulnerability usually arises when enforcing access control policies such as when using a reference monitor. Consider the following code, which might run in a bank ATM:
 
 ```
 procedure withdraw(amount w) {
@@ -159,9 +161,9 @@ procedure withdraw(amount w) {
 }
 ```
 
-This code takes as input the amount you want to withdraw, w. It then looks up your bank balance in the database; if you do not have enough money in your account to withdraw the specified amount, then it aborts the transaction. If you do have enough money, it decrements your balance by the amount that you want to withdraw and then dispenses the cash to you.
+This code takes as input the amount you want to withdraw, `w`. It then looks up your bank balance in the database. If you do not have enough money in your account to withdraw the specified amount, it aborts the transaction. If you do have enough money, it decrements your balance by the amount that you want to withdraw and then dispenses the cash to you.
 
-Suppose that multiple calls to withdraw can take place concurrently (i.e. two separate ATMs). Also suppose that the attacker can somehow pause the execution of procedure on one ATM.
+Suppose that multiple calls to `withdraw` can take place concurrently (i.e. two separate ATMs). Also suppose that the attacker can somehow pause the execution of procedure on one ATM.
 
 So suppose that your current account balance is $100 and you want to withdraw $100. At the first ATM, suppose you pause it _after_ step 2. Then, you go over to the second ATM and proceed to withdraw $100 successfully (meaning that your account balance should now be $0). You then go back to the first ATM and unpause the procedure; since the account balance check was completed before you withdrew the money from the second ATM, the first ATM still thinks you have $100 in your account, and it allows you to withdraw another $100! So despite your bank account having only $100 to begin with, you ended up with $200.
 
@@ -173,4 +175,4 @@ Here we've compiled a list of past exam questions that cover security principles
 
 - [Fall 2021 Midterm Question 3: EvanBot Alpha](https://assets.cs161.org/exams/fa21/fa21mt1.pdf#page=4)
 
-[^1]: Windows XP consisted of about 40 million lines of code---all of which were in the TCB. Yikes!
+[^1]: For example, Windows XP consisted of about 40 million lines of code---all of which were in the TCB. With that much code, it's a virtual certainty there will be security vulnerabilities somewhere.

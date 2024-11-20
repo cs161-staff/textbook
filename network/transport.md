@@ -35,7 +35,7 @@ The transport layer has 2 main protocols to choose from: TCP guarantees reliable
 
 The UDP header contains 16-bit source and destination port numbers to support communication between processes. The header also contains a checksum (non-cryptographic) to detect corrupted packets.
 
-<img src="/assets/images/network/transport/UDP_header.png" alt="UDP header" width="60%">
+<img src="{{ site.baseurl }}/assets/images/network/transport/UDP_header.png" alt="UDP header" width="60%">
 
 ## 30.4. Protocol: TCP
 
@@ -43,7 +43,7 @@ The UDP header contains 16-bit source and destination port numbers to support co
 
 Like UDP, the TCP header contains 16-bit source and destination port numbers to support communication between processes, and a checksum to detect corrupted packets. Additionally, a 32-bit **sequence number** and a 32-bit **acknowledgment (ACK) number** are used for keeping track of missing or out-of-order packets. Flags such as SYN, ACK, and FIN can be set in the header to indicate that the packet has some special meaning in the TCP protocol.
 
-<img src="/assets/images/network/transport/TCP_header.png" alt="TCP header" width="60%">
+<img src="{{ site.baseurl }}/assets/images/network/transport/TCP_header.png" alt="TCP header" width="60%">
 
 A unique TCP connection is identified by a 5-tuple of (Client IP Address, Client Port, Server IP Address, Server Port, Protocol), where protocol is always TCP. In other words, a TCP connection is a sequence of back-and-forth communications between one port on one IP address, and another port on another IP address.
 
@@ -51,7 +51,7 @@ TCP communication works between any two machines, but it is most commonly used b
 
 A TCP connection consists of two bytestreams of data: one from the client to the server, and one from the server to the client. The data in each stream is indexed using sequence numbers. Since there are two streams, there are two sets of sequence numbers in each TCP connection, one for each bytestream.
 
-<img src="/assets/images/network/transport/tcp.png" alt="Diagram of TCP communication, with sequence numbers and ACK numbers" width="50%">
+<img src="{{ site.baseurl }}/assets/images/network/transport/tcp.png" alt="Diagram of TCP communication, with sequence numbers and ACK numbers" width="50%">
 
 In every TCP packet, the sequence number field in the header is set to the index of the first byte sent in that packet. In packets from the client to the server, the sequence number is an index in the client-to-server bytestream, and in packets from the server to the client, the sequence number is an index in the server-to-client bytestream. If packets are reordered, the end hosts can use the sequence numbers to reconstruct the message in the correct order.
 
@@ -65,7 +65,7 @@ To support acknowledgments, the acknowledgment (ACK) number in the header is set
 
 Note that in each packet, the sequence number is an index in the sender's bytestream, and the ACK number is an index in the recipient's bytestream.
 
-<img src="/assets/images/network/transport/tcp-handshake.png" alt="Diagram of the TCP 3-way handshake" width="50%">
+<img src="{{ site.baseurl }}/assets/images/network/transport/tcp-handshake.png" alt="Diagram of the TCP 3-way handshake" width="50%">
 
 Note that the sequence numbers do not start at 0 (for a security reason discussed below). Instead, to initiate a connection, the client and server participate in a three-way **TCP handshake** to exchange random initial sequence numbers.
 

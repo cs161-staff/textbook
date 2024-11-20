@@ -39,7 +39,7 @@ We can apply this delegation idea to the entire DNS tree. Each name server will 
 
 With these ideas in mind, let's revisit the DNS query for `eecs.berkeley.edu` from earlier and convert it to a secure DNSSEC query. _The DNSSEC additions are italicized._
 
-<img src="/assets/images/network/dns/dnsquery.png" alt="Diagram of a recursive DNS query, where your resolver queries the root
+<img src="{{ site.baseurl }}/assets/images/network/dns/dnsquery.png" alt="Diagram of a recursive DNS query, where your resolver queries the root
 nameserver first in query 1 and response 2, then the nameserver at the second level of the tree in query 3 and response 4, then a nameserver at the third level of the tree in query 5 and response 6" />
 
 1. You to the root name server: Please tell me the IP address of `eecs.berkeley.edu`.
@@ -96,11 +96,11 @@ In our current DNSSEC design, a name server that wants to change keys must notif
 
 To minimize the use of this difficult key change protocol, each DNSSEC name server generates two public/private key pairs. The **key signing key (KSK)** is only used to sign the zone signing key, and the **zone signing key (ZSK)** is used to sign everything else.
 
-<img src="/assets/images/network/dnssec/zsk.png" alt="Diagram depicting a ZSK used to sign records" width="70%">
+<img src="{{ site.baseurl }}/assets/images/network/dnssec/zsk.png" alt="Diagram depicting a ZSK used to sign records" width="70%">
 
 In our previous design with one key pair, the name server sends (1) a set of records, (2) a signature on those records, and (3) the public key (endorsed by the parent). The DNS resolver uses the public key to verify the signature, and accepts the set of records.
 
-<img src="/assets/images/network/dnssec/ksk.png" alt="Diagram depicting a KSK used to sign a ZSK, which is then used to sign records" width="70%">
+<img src="{{ site.baseurl }}/assets/images/network/dnssec/ksk.png" alt="Diagram depicting a KSK used to sign a ZSK, which is then used to sign records" width="70%">
 
 In our new design with two key pairs, the name server sends (1) the public ZSK, (2) a signature on the public ZSK, and (3) the public KSK (endorsed by the parent). The DNS resolver uses the public KSK to verify the signature, and accepts the public ZSK. Note that this is the exact same structure that was used to sign records before, but in this case, the record is the public ZSK, signed using the KSK.
 
@@ -108,7 +108,7 @@ Another way to think about this step is to recall that a parent endorses a child
 
 The result of this first step is that we now have a trusted public ZSK. The second step is the same as before: the name server sends a set of records, a signature on those records (using the private ZSK), and the public ZSK (endorsed by the KSK in the previous step).
 
-<img src="/assets/images/network/dnssec/dnssec.png" alt="Diagram of the full chain of trust in DNSSEC. The trust anchor is the root's KSK, which is used to sign the root's ZSK, which is used to sign .edu's KSK, which is used to sign .edu's ZSK, which is used to sign berkeley.edu's KSK, which is used to sign berkeley.edu's ZSK, which is used to sign berkeley.edu's A record" width="70%">
+<img src="{{ site.baseurl }}/assets/images/network/dnssec/dnssec.png" alt="Diagram of the full chain of trust in DNSSEC. The trust anchor is the root's KSK, which is used to sign the root's ZSK, which is used to sign .edu's KSK, which is used to sign .edu's ZSK, which is used to sign berkeley.edu's KSK, which is used to sign berkeley.edu's ZSK, which is used to sign berkeley.edu's A record" width="70%">
 
 Here is a diagram of the entire two-key DNSSEC. Each color (blue, green, orange) represents a name server. The lighter shade represents records signed with the KSK. The darker shade represents records signed with the ZSK.
 

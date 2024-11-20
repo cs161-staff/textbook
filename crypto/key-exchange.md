@@ -105,7 +105,7 @@ It turns out the Diffie-Hellman key exchange protocol is only secure against a p
 
 The following figure demonstrates how an active attacker (Mallory) can agree on a key ($$K_1=g^{am} \pmod{p}$$) with Alice and another key ($$K_2=g^{bm} \pmod{p}$$) with Bob in order to man-in-the-middle (MITM) their communications.
 
-<img src="/assets/images/crypto/key-exchange/diffie_mitm.png" alt="Diagram of the Diffie-Hellman key exchange between Alice and Bob, with Mallory in the middle" />
+<img src="{{ site.baseurl }}/assets/images/crypto/key-exchange/diffie_mitm.png" alt="Diagram of the Diffie-Hellman key exchange between Alice and Bob, with Mallory in the middle" />
 
 When Alice sends $$g^a \pmod{p}$$ to Bob, Mallory intercepts the message and replaces it with $$g^m \pmod{p}$$, where $$m$$ is Mallory's secret. Bob now receives $$g^m \pmod{p}$$ instead of $$g^a \pmod{p}$$. Now, when Bob wants to calculate his shared key, he will calculate $$K = A^b \pmod{p}$$, where $$A$$ is the value he received from Alice. Since he received a tampered value from Mallory, Bob will actually calculate $$K = (g^m)^b = g^{mb} \pmod{p}$$.
 
