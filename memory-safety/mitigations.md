@@ -172,5 +172,19 @@ Note that ASLR randomizes absolute addresses by changing the start of sections o
 
 We can use multiple mitigations together to force the attacker to find multiple vulnerabilities to exploit the program; this is a process known as _synergistic protection_, where one mitigation helps strengthen another mitigation. For example, combining ASLR and non-executable pages results in an attacker not being able to write their own shellcode, because of non-executable pages, and not being able to use existing code in memory, because they don't know the addresses of that code (ASLR). Thus, to defeat ASLR and non-executable pages, the attacker needs to find two vulnerabilities. First, they need to find a way to leak memory and reveal the address location (to defeat ASLR). Next, they need to find a way to write to memory and write an ROP chain (to defeat non-executable pages).
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover memory safety mitigations.
+
+- [Spring 2024 Final Question 3: Everyone Loves PIE](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4)
+- [Spring 2024 Final Question 4: Breaking Bot](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6)
+- [Fall 2023 Final Question 3: exec](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=4)
+- [Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7)
+- [Fall 2023 Midterm Question 3: Homecoming](https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4)
+- [Fall 2023 Final Question 4: Ins and Outs](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6)
+- [Summer 2023 Final Question 4: The Last Dance](https://assets.cs161.org/exams/su23/su23final.pdf#page=5)
+- [Summer 2023 Midterm Question 3: Across the Security-Verse](https://assets.cs161.org/exams/su23/su23mt.pdf#page=4)
+- [Summer 2023 Midterm Question 4: Snacktime](https://assets.cs161.org/exams/su23/su23mt.pdf#page=6)
+
 [^1]: The one real performance advantage C has over a garbage collected language like Go is a far more deterministic behavior for memory allocation. But with languages like Rust, which are safe but not garbage collected, this is no longer an advantage for C.
 [^2]: This function is called a MAC (message authentication code), and we will study it in more detail in the cryptography unit.

@@ -320,4 +320,62 @@ The attacker can overwrite the vtable pointer with the address of another attack
 
 This method of injection is very similar to stack smashing, where the attacker overwrites the rip to point to some malicious code. However, overwriting C++ vtables requires overwriting a pointer to a pointer.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover memory safety vulnerabilities.
+
+- [Spring 2024 Final Question 3: Everyone Loves PIE](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4)
+- [Spring 2024 Final Question 4: Breaking Bot](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6)
+- [Spring 2024 Midterm Question 3: 'Tis But a Scratch](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4)
+- [Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7)
+- [Fall 2023 Final Question 3: exec](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=4)
+- [Fall 2023 Final Question 4: Ins and Outs](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6)
+- [Fall 2023 Midterm Question 3: Homecoming](https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4)
+- [Fall 2023 Midterm Question 4: Forbidden Instruction](https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=7)
+- [Summer 2023 Final Question 3: Letter from EvanBot](https://assets.cs161.org/exams/su23/su23final.pdf#page=4)
+- [Summer 2023 Final Question 4: The Last Dance](https://assets.cs161.org/exams/su23/su23final.pdf#page=5)
+- [Summer 2023 Midterm Question 3: Across the Security-Verse](https://assets.cs161.org/exams/su23/su23mt.pdf#page=4)
+- [Summer 2023 Midterm Question 4: Snacktime](https://assets.cs161.org/exams/su23/su23mt.pdf#page=6)
+- [Spring 2023 Final Question 3: No Doubt](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=4)
+- [Spring 2023 Final Question 4: Andor, or XOR?](https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6)
+- [Spring 2023 Midterm Question 6: Cake without Pan](https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12)
+- [Spring 2023 Midterm Question 7: Valentine's Day](https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14)
+
+A large portion of memory safety vulnerability questions is identifying what type of vulnerability exists within the code. However, if you'd like to practice a specific type of question, feel free to toggle the options below. Please utilize the links from above.
+<details>
+    <summary>Buffer overflow</summary>
+
+- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=7">Fall 2023 Midterm Question 4: Forbidden Instruction</a><br>
+- Involves canaries: <a href="https://assets.cs161.org/exams/sp23/sp23final.pdf#page=6">Spring 2023 Final Question 4: Andor, or XOR?</a><br>
+- Involves ASLR: <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=14">Spring 2023 Midterm Question 7: Valentine's Day</a>
+</details>
+<details>
+    <summary>Format string vulnerability</summary>
+
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=7">Spring 2024 Midterm Question 4: I Sawed This Shellcode In Half!</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=6">Summer 2023 Midterm Question 4: Snacktime</a><br>
+- <a href="https://assets.cs161.org/exams/sp23/sp23mt.pdf#page=12">Spring 2023 Midterm Question 6: Cake without Pan</a>
+</details>
+<details>
+    <summary>Integer conversion vulnerability</summary>
+    
+- <a href="https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=4">Spring 2024 Midterm Question 3: 'Tis But a Scratch</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=4">Summer 2023 Final Question 3: Letter from EvanBot</a>
+</details>
+<details>
+    <summary>Off-by-one vulnerability</summary>
+
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=4">Spring 2024 Final Question 3: Everyone Loves PIE</a><br>
+- <a href="https://assets.cs161.org/exams/fa23/fa23final.pdf#page=6">Fall 2023 Final Question 4: Ins and Outs</a><br>
+- <a href="https://assets.cs161.org/exams/fa23/fa23mt.pdf#page=4">Fall 2023 Midterm Question 3: Homecoming</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23mt.pdf#page=4">Summer 2023 Midterm Question 3: Across the Security-Verse</a>
+</details>
+<details>
+    <summary>Other vulnerabilities</summary>
+
+- <a href="https://assets.cs161.org/exams/sp24/sp24final.pdf#page=6">Use after free: Spring 2024 Final Question 4: Breaking Bot</a><br>
+- <a href="https://assets.cs161.org/exams/su23/su23final.pdf#page=5">Summer 2023 Final Question 4: The Last Dance</a>
+</details>
+
+
 [^1]: You sometimes see variants on this like pwned, 0wned, ownzored, etc.

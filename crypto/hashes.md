@@ -66,3 +66,12 @@ What if the hacker tries to cheat? If the hacker only has 15 million records, th
 Still, the hacker might decide to spend some time _precomputing_ fake records with low hashes before making a claim. This is called an _offline attack_, since the attacker is generating records offline before interacting with the reporter. We will see more offline attacks when we discuss password hashing later in the notes. We can prevent the offline attack by having the reporter choose a random word at the start of the interaction, like "fubar," and send it to the hacker. Now, instead of hashing each record, the hacker will hash each record, concatenated with the random word. The reporter will give the attacker just enough time to compute 150 million hashes (but no more) before requesting the 10 lowest values. Now, a cheating hacker cannot compute values ahead of time, because they won't know what the random word is.
 
 A slight variation on this method is to hash each record 10 separate times, each with a different reporter-chosen random word concatenated to the end (e.g. "fubar-1," "fubar-2," "fubar-3," etc.). In total, the hacker is now hashing 1.5b (150 million times 10) records. Then, instead of returning the lowest 10 hashes overall, the hacker returns the record with the lowest hash for each random word. Another way to think of this variation is: the hacker hashes all 150 million records with the first random word concatenated to each record, and returns the record with the lowest hash. Then the hacker hashes all 150 million records again with the second random word concatenated to each record, and returns the record with the lowest hash. This process repeats 10 times until the hacker has presented 10 hashes. The math for using the hash values to estimate the total number of lines is slightly different in this variation (the original uses random selection without substitution, while the variant uses random selection with substitution), but the underlying idea is the same.
+
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover cryptographic hashes.
+
+- [Spring 2024 Midterm Question 7: Ephemeral Exchanges](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=17)
+- [Spring 2024 Midterm Question 6: Authentic Auctions](https://assets.cs161.org/exams/sp24/sp24mt.pdf#page=13)
+- [Fall 2023 Final Question 6: YAAS (Yet Another Authentication Scheme)](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=11)
+- [Fall 2021 Midterm Question 6: Bonsai](https://assets.cs161.org/exams/fa21/fa21mt1.pdf#page=8)

@@ -56,3 +56,9 @@ Tor uses this type of onion routing for anonymous web browsing and censorship ci
 One of the downsides in onion routing is performance, as the message has to bounce off of several proxy servers before it reaches its destination, it takes a lot longer to get there. Each time the message goes through a proxy, there is an extra delay that is added to the latency. However, it should be noted that performance decreases linearly with the number of proxies added, and if you estimate that roughly half of the available proxy servers are honest then you only need to chain together a small number of proxies before you can be fairly sure that you have gained some level of anonymity (you can think of security going up exponentially, but performance going down linearly with the number of proxy servers added).
 
 Another possible attack is one that was mentioned in the previous section, when the first and last proxy servers are under malicious control. The attacker can use timing information to link Alice and Bob, but, as mentioned earlier, this depends on the amount of traffic that is flowing through the proxy servers at that time. A possible defense is to pad messages (this is what Tor does but they note that it's not enough for defense), introduce significant delays, or if Bob is ready to accept encrypted messages, then the original message $$M$$ can be encrypted.
+
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover Tor.
+
+- [Fall 2023 Final Question 10: A TORrible Mistake](https://assets.cs161.org/exams/fa23/fa23final.pdf#page=19)

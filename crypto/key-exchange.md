@@ -123,4 +123,11 @@ The main reason why the Diffie-Hellman protocol is vulnerable to this attack is 
 
 {% comment %} TODO: Diffie-Hellman MITM attack (Noura) -peyrin {% endcomment %}
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover Diffie-Hellman key exchange.
+
+- [Spring 2024 Final Question 6: Plentiful Playlists](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=10)
+- [Summer 2023 Midterm Question 7: Oblivious Transfer](https://assets.cs161.org/exams/su23/su23mt.pdf#page=15)
+
 [^1]: You don't need to worry about how to choose $$g$$, just know that it satisfies some special number theory properties. In short, $$g$$ must satisfy the following properties: $$1 < g < p-1$$, and there exists a $$k$$ where $$g^k = a$$ for all $$1 \leq a \leq p-1$$.

@@ -327,6 +327,12 @@ The order of the domain names has changed, but the process is the same - if some
 
 Of course, an attacker could buy a GPU and precompute hashes to learn domain names anyway... and [NSEC5](https://datatracker.ietf.org/doc/draft-vcelak-nsec5/) was born. Fortunately, it's still out of scope for this class.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover DNSSEC.
+
+- [Spring 2024 Final Question 8: Check Please](https://assets.cs161.org/exams/sp24/sp24final.pdf#page=17)
+
 [^1]: A: DNS responses don't contain sensitive data. Anyone could query the name servers for the same information.
 [^2]: A: The ZSK of the `.edu` name server.
 [^3]: A: Denial of service (DoS). Flood the name server with requests for nonexistent domains, and it will be forced to sign all of them.

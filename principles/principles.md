@@ -169,4 +169,10 @@ So suppose that your current account balance is $100 and you want to withdraw $1
 
 This is known as a _Time-Of-Check To Time-Of-Use_ (TOCTTOU) vulnerability, because between the check and the use of whatever state was checked, the state somehow changed. In the above example, between the time that the balance was checked and the time that balance was set, the balance was somehow changed.
 
+## Past Exam Questions
+
+Here we've compiled a list of past exam questions that cover security principles.
+
+- [Fall 2021 Midterm Question 3: EvanBot Alpha](https://assets.cs161.org/exams/fa21/fa21mt1.pdf#page=4)
+
 [^1]: For example, Windows XP consisted of about 40 million lines of code---all of which were in the TCB. With that much code, it's a virtual certainty there will be security vulnerabilities somewhere.
