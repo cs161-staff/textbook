@@ -282,13 +282,13 @@ operation" />
 <img src="{{ site.baseurl }}/assets/images/crypto/symmetric/OFB_decryption.png" alt="Diagram of decryption for the OFB mode of
 operation" />
 
-**Counter (CTR) Mode**: In CTR mode, a counter is initialized to IV and repeatedly incremented and encrypted to obtain a sequence that can now be used as though they were the keys for a one-time pad: namely, $$Z_i = E_K(IV + i)$$ and $$C_i = Z_i \oplus M_i$$. In CTR mode, the IV is sometimes renamed the _nonce_. This is just a terminology difference--nonce and IV can be used interchangeably for the purposes of this class.
+**Counter (CTR) Mode**: In CTR mode, a counter is initialized to IV and repeatedly incremented and encrypted to obtain a sequence that can now be used as though they were the keys for a one-time pad: namely, $$Z_i = E_K(IV \| i)$$ and $$C_i = Z_i \oplus M_i$$. In CTR mode, the IV is sometimes renamed the _nonce_. This is just a terminology difference--nonce and IV can be used interchangeably for the purposes of this class.
 
 Note that in CTR and OFB modes, the decryption algorithm uses the block cipher _encryption_ function instead of the decryption function. Intuitively, this is because Alice used the encryption function to generate a one-time pad, so Bob should also use the encryption function to generate the same pad. The plaintext is never passed through the block cipher encryption, so the block cipher decryption is never used.
 
-- CTR mode encryption: $$C_i = E_K(IV + i) \oplus M_i$$
+- CTR mode encryption: $$C_i = E_K(IV \| i) \oplus M_i$$
 
-- CTR mode decryption: $$M_i = E_K(IV + i) \oplus C_i$$
+- CTR mode decryption: $$M_i = E_K(IV \| i) \oplus C_i$$
 
 <img src="{{ site.baseurl }}/assets/images/crypto/symmetric/CTR_encryption.png" alt="Diagram of encryption for the CTR mode of
 operation" />
