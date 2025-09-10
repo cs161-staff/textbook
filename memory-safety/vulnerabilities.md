@@ -260,16 +260,36 @@ Off-by-one errors are very common in programming: for example, you might acciden
 
 Consider a buffer whose bounds checks are off by one. This means we can write `n+1` bytes into a buffer of size `n`, overflowing the byte immediately after the buffer (but no more than that).
 
-The following two diagrams are inspired by Section 10 of ["ASLR Smack & Laugh Reference" by Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf). They show how overwriting a single byte lets you start executing instructions at an arbitrary address in memory.
+As a simplified toy example, suppose might have code like this:
+
+```c
+void vulnerable(void) {
+    char buf[12];
+    fread(buf, 13, 1, stdin); // reads 13 bytes into buf
+}
+
+int main(void) {
+    vulnerable();
+    return 0;
+}
+```
+
+This code writes one byte past the end of `buf`.  Is that enough to exploit the bug?  On first glance, it doesn't seem like it: it can overwrite one byte after ("above") buf, which happens to be the least significant byte of the SFP.  But it's not possible to overwrite the RIP stored in the stack, so our exploit techniques so far are not sufficient to exploit such a bug.
+
+Nonetheless, exploits are possible.  Surprisingly, the ability to overwrite one byte of the SFP is enough for an attacker to get the program to execute their malicious shellcode.  The details are intricate; we'll work through them below.
+
+The rough intuition is that the attacker creates a "fake stack frame" elsewhere on the stack, and then arranges to confuse the code into using that fake stack frame instead of the real one.  Since a stack frame contains the RIP, the attacker can create a bogus RIP in their fake stack frame (pointing to malicious shellcode), and if the program uses that fake stack frame, it'll use the bogus RIP and start executing the shellcode.  Specifically, when `vulnerable()` returns, EBP will be restored from this SFP, but the SFP is now corrupted a little (its least significant byte has been overwritten), so the EBP is a little corrupted and points to not quite the right place.  Recall that the EBP helps determine where the current stack frame lives.  That means that when `main()` continues executing, it will be looking in the wrong place for the stack frame; it will interpret memory at that location as being part of a stack frame, even though it was actually intended to be something else.  If we make just the right change to the SFP, then we can arrange that the location where `main()` looks for the RIP (recall, `main()` will be looking in the wrong spot, since its EBP has been corrupted) is a part of the stack that the attacker controls, and then the attacker can get the program to start executing the shellcode by putting the address of the shellcode in that location.
+
+Let's dig into this in further detail.  The following two diagrams show how overwriting a single byte lets you start executing instructions at an arbitrary address in memory [^2].
 
 <img src="{{ site.baseurl }}/assets/images/memory-safety/vulnerabilities/offbyone1.png" alt="Stack diagrams showing the exploitation of an off-by-one
 vulnerability for the first return" />
 
-**Step 1**: This is what normal execution during a function looks like. Consider reviewing the x86 section of the notes if you'd like a refresher. The stack has the rip (saved eip), sfp (saved ebp), and the local variable `buff`. The esp register points to the bottom of the stack. The ebp register points to the sfp at the top of the stack. The sfp (saved ebp) points to the ebp of the previous function, which is higher up in memory. The rip (saved eip) points to somewhere in the code section.
+**Step 1**: This is what normal execution of `vulnerable()` looks like. The stack has the rip (saved eip), sfp (saved ebp), and the local variable `buf`. The esp register points to the bottom of the stack. The ebp register points to the sfp at the top of the stack. The sfp (saved ebp) points to the ebp of the previous function, which is higher up in memory. The rip (saved eip) points to somewhere in the code section.
 
-**Step 2**: We overwrite all of `buff`, plus the byte immediately after `buff`, which is the least significant byte of the sfp directly above `buff`. (Remember that x86 is little-endian, so the least significant byte is stored at the lowest address in memory. For example, if the sfp is `0x12345678`, we'd be overwriting the byte `0x78`.) We can change the last byte of sfp so that the sfp points to somewhere inside `buff`. The SFP label becomes FSP here to indicate that it is now a forged sfp with the last byte changed.
+**Step 2**: The bug in `vulnerable()` allows the attacker to overwrite all of `buf`, plus the byte immediately after `buf`, which is the least significant byte of the sfp directly above `buf`. (Remember that x86 is little-endian, so the least significant byte is stored at the lowest address in memory. For example, if the sfp is `0x12345678`, we'd be overwriting the byte `0x78`.) If the attacker is clever about what byte value they pick, the attacker can change the last byte of sfp so that the sfp points to somewhere inside `buf`
 
-Eventually, after your function finishes executing, it returns. Recall from the x86 section of these notes that when a function returns, it executes the following 3 instructions:
+Eventually, after `vulnerable()` finishes executing, it returns. Recall from the x86 section of these notes that when a function returns, it executes the following 3 instructions:
 
 `mov %ebp, %esp`: Change the esp register to point to wherever ebp is currently pointing.
 
@@ -279,30 +299,32 @@ Eventually, after your function finishes executing, it returns. Recall from the 
 
 In normal execution, `mov %ebp, %esp` causes esp to point to sfp (recall that ebp always points to sfp during function execution). `pop %ebp` places the next value on the stack (sfp) inside the ebp register (in other words, you're restoring the saved ebp back into ebp). `pop %eip` places the next value on the stack (rip, just above sfp) inside the eip register (in other words, you're restoring the saved eip back into eip).
 
-So now let's see what happens if you execute these same 3 instructions when sfp incorrectly points in the buffer.
+So now let's see what happens if you execute these same 3 instructions when the least significant byte of sfp has been overwritten, so the sfp now incorrectly points into the buffer.
 
-**Step 3**: `mov %ebp, %esp`: esp now points where ebp is pointing, which is the forged sfp.
+**Step 3**: `mov %ebp, %esp`: esp now points where ebp is pointing, i.e., to the forged sfp.
 
 **Step 4**: `pop %ebp`: Take the next value on the stack, the forged sfp, and place it in the ebp register. Now ebp is pointing inside the buffer.
 
-**Step 5**: `pop %eip`: Take the next value on the stack, the rip, and place it in the eip register. Since we didn't maliciously change the rip, the old eip is correctly restored.
+**Step 5**: `pop %eip`: Take the next value on the stack, the rip, and place it in the eip register. Since we didn't maliciously change the rip, the old eip is correctly restored, and execution returns to `main()`.
 
-After step 5, nothing has changed, except that the ebp now points inside the buffer. This makes sense: we only changed the sfp (saved ebp), so when ebp is restored, it will point to where the forged sfp was pointing (inside the buffer).
+After step 5, almost everything is as if there had been no attack---except that the ebp now points inside the buffer. This makes sense: we only changed the sfp (saved ebp), so when ebp is restored, it will point to where the forged sfp was pointing (inside the buffer).
 
-The key insight for this exploit is that one function return is not enough. However, eventually, if a second function return happens, it will allow us to start executing instructions at an arbitrary location. Let's walk through the same 3 instructions again, but this time with ebp incorrectly pointing in the buffer.
+The key insight for this exploit is that one function return is not enough. However, eventually, if a second function return happens, it will allow us to start executing instructions at an arbitrary location. In the code example above, when `main()` returns, now the attacker's shellcode gets executed. Let's walk through the same 3 instructions again, but this time with ebp incorrectly pointing into the buffer.
 
 <img src="{{ site.baseurl }}/assets/images/memory-safety/vulnerabilities/offbyone2.png" alt="Stack diagrams showing the exploitation of an off-by-one
 vulnerability for the second return" />
 
 **Step 6**: `mov %ebp, %esp`: esp now points where ebp is pointing, which is inside the buffer. At this point in normal execution, both ebp and esp think that they are pointing at the sfp.
 
-**Step 7**: `pop %ebp`: Take the next value on the stack (which the program thinks is the sfp, but is actually some attacker-controlled value inside the buffer), and place it in the ebp register. The question mark here says that even though the attacker controls what gets placed in the ebp register, we don't care what the value actually is.
+**Step 7**: `pop %ebp`: Take the next value on the stack (which the program thinks is the sfp for `main()`, but is actually some attacker-controlled value inside the buffer), and place it in the ebp register. The question mark here says that even though the attacker controls what gets placed in the ebp register, we don't care what the value actually is.
 
-**Step 8**: `pop %eip`: Take the next value on the stack (which the program thinks is the rip, but is actually some attacker-controlled value inside the buffer), and place it in the eip register. This is where you place the address of shellcode, since you control the values in `buff`, and the program is taking an address from `buff` and jumping there to execute instructions.
+**Step 8**: `pop %eip`: Take the next value on the stack (which the program thinks is the rip for `main()`, but is actually some attacker-controlled value inside the buffer), and place it in the eip register. This is where you place the address of shellcode, since you control the values in `buf`, and the program is taking an address from `buf` and jumping there to execute instructions.
 
 In step 8, note that there is an offset of 4 from where the forged sfp points and where you should place the address of shellcode. This is because the forged sfp points to a place the program eventually tries to interpret as the sfp, but we care about the place that the program eventually tries to interpret as the rip (which is 4 bytes higher).
 
 Also, note that it is not enough to place the shellcode 4 bytes above where the forged sfp is pointing. You need to put the address of shellcode there, since the program will interpret that part of memory as the rip.
+
+Ultimately, this demonstrates that even an off-by-one error---which might seem fairly minor and innocuous---can still allow an attacker to take control of the program and execute malicious code. Ensuring code is memory safe is tricky and requires avoiding even small mistakes.
 
 ## 3.6. Other memory safety vulnerabilities
 
@@ -379,3 +401,5 @@ A large portion of memory safety vulnerability questions is identifying what typ
 
 
 [^1]: You sometimes see variants on this like pwned, 0wned, ownzored, etc.
+
+[^2]: These diagrams were inspired by Section 10 of ["ASLR Smack & Laugh Reference" by Tilo Müller](http://www.icir.org/matthias/cs161-sp13/aslr-bypass.pdf).
